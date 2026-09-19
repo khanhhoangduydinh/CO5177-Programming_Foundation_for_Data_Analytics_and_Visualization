@@ -334,7 +334,7 @@ svg {
 }
 
 .hero-info-grid {
-  width: min(100%, 1440px);
+  width: min(100%, 1600px);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
