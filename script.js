@@ -143,6 +143,7 @@ const trackType = document.querySelector("[data-track-type]");
 const trackTitle = document.querySelector("[data-track-title]");
 const trackDescription = document.querySelector("[data-track-description]");
 const trackList = document.querySelector("[data-track-list]");
+const trackReportLink = document.querySelector("[data-report-link]");
 const previewName = document.querySelector("[data-preview-name]");
 const previewCount = document.querySelector("[data-preview-count]");
 const previewVisual = document.querySelector("[data-preview]");
@@ -150,6 +151,8 @@ const previewVisual = document.querySelector("[data-preview]");
 function switchTrack(trackName) {
   const next = trackData[trackName];
   if (!next) return;
+
+  if (trackReportLink) trackReportLink.hidden = trackName !== "tabular";
 
   trackButtons.forEach((button) => {
     const selected = button.dataset.track === trackName;
