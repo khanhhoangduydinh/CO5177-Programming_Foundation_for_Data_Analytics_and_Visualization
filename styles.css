@@ -378,6 +378,17 @@ svg {
   font-weight: 800;
 }
 
+.info-link {
+  color: var(--orange-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.info-link:hover {
+  color: var(--ink-deep);
+}
+
 .marker {
   position: relative;
   white-space: nowrap;
