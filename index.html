@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="DataFlow - không gian dự án Bài tập lớn môn Nền tảng lập trình cho phân tích và trực quan dữ liệu tại HCMUT."
+    >
+    <meta name="theme-color" content="#f7f5ef">
+    <meta property="og:title" content="DataFlow — From raw data to real insight">
+    <meta
+      property="og:description"
+      content="Project hub cho hành trình phân tích dữ liệu, trực quan hóa và machine learning."
+    >
+    <meta property="og:type" content="website">
+    <title>DataFlow | HCMUT Data Analytics Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Đi đến nội dung chính</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="DataFlow - Trang chủ">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span>DataFlow</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Mở menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-menu-toggle
+      >
+        <span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính" data-nav>
+        <a href="#overview">Tổng quan</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#data-tracks">Dữ liệu</a>
+        <a href="#rubric">Rubric</a>
+      </nav>
+
+      <a
+        class="header-cta"
+        href="https://github.com/khanhhoangduydinh"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13" />
+        </svg>
+      </a>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <p class="eyebrow reveal">
+            <span class="eyebrow-dot"></span>
+            HCMUT · HỌC KỲ 261 · 2026–2027
+          </p>
+          <h1 id="hero-title" class="reveal">
+            <span>Data</span><span class="hero-title-accent">Flow.</span>
+          </h1>
+          <div class="signal-bars reveal" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <p class="hero-lead reveal">
+            Biến dữ liệu thô thành insight có thể
+            <span class="marker">nhìn thấy</span>, kiểm chứng và kể lại.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="button button-primary" href="#pipeline">
+              Khám phá pipeline
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="m7 4 6 6-6 6" />
+              </svg>
+            </a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/khanhhoangduydinh"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Xem mã nguồn
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="hero-visual reveal"
+          data-parallax
+          role="img"
+          aria-label="Mô phỏng một data pipeline"
+        >
+          <div class="terminal-top">
+            <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>pipeline.py</span>
+            <span class="terminal-status"><i></i> running</span>
+          </div>
+
+          <div class="pipeline-canvas">
+            <svg class="pipeline-lines" viewBox="0 0 560 400" aria-hidden="true">
+              <path d="M112 89 C205 89, 175 198, 275 198" />
+              <path d="M275 198 C378 198, 343 310, 448 310" />
+              <path class="line-pulse" d="M112 89 C205 89, 175 198, 275 198" />
+              <path class="line-pulse pulse-two" d="M275 198 C378 198, 343 310, 448 310" />
+            </svg>
+
+            <article class="pipeline-node node-input">
+              <span class="node-index">01</span>
+              <div class="node-icon node-icon-yellow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 7c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3Z" />
+                  <path d="M4 7v5c0 2 3.6 3 8 3s8-1 8-3V7M4 12v5c0 2 3.6 3 8 3s8-1 8-3v-5" />
+                </svg>
+              </div>
+              <strong>Raw data</strong>
+              <small>CSV · text · image</small>
+            </article>
+
+            <article class="pipeline-node node-process">
+              <span class="node-index">02</span>
+              <div class="node-icon node-icon-orange">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 5h14v14H5zM9 5v14M15 5v14M5 10h14M5 15h14" />
+                </svg>
+              </div>
+              <strong>Transform</strong>
+              <small>clean · encode · scale</small>
+            </article>
+
+            <article class="pipeline-node node-output">
+              <span class="node-index">03</span>
+              <div class="node-icon node-icon-mint">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 19V9M10 19V5M16 19v-7M22 19V3" />
+                </svg>
+              </div>
+              <strong>Insight</strong>
+              <small>visualize · model · tell</small>
+            </article>
+
+            <div class="metric-card metric-card-top">
+              <span>data quality</span>
+              <strong>94.8%</strong>
+              <svg viewBox="0 0 120 34" aria-hidden="true">
+                <path d="m1 29 18-6 16 2 17-14 16 7 18-12 16 5 17-9" />
+              </svg>
+            </div>
+
+            <div class="metric-card metric-card-bottom">
+              <span>model score</span>
+              <strong>+12.4</strong>
+              <em>↑ iteration 04</em>
+            </div>
+          </div>
+
+          <div class="terminal-log">
+            <span><i class="log-ok">✓</i> Load dataset</span>
+            <span><i class="log-ok">✓</i> Validate schema</span>
+            <span><i class="log-live"></i> Train &amp; evaluate</span>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+          <span>scroll to explore</span>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="Các công nghệ sử dụng">
+        <div class="ticker-track">
+          <span>PYTHON</span><i></i><span>NUMPY</span><i></i><span>PANDAS</span><i></i>
+          <span>SEABORN</span><i></i><span>SCIKIT-LEARN</span><i></i><span>OPENCV</span><i></i>
+          <span aria-hidden="true">PYTHON</span><i aria-hidden="true"></i>
+          <span aria-hidden="true">NUMPY</span><i aria-hidden="true"></i>
+          <span aria-hidden="true">PANDAS</span><i aria-hidden="true"></i>
+          <span aria-hidden="true">SEABORN</span><i aria-hidden="true"></i>
+          <span aria-hidden="true">SCIKIT-LEARN</span><i aria-hidden="true"></i>
+          <span aria-hidden="true">OPENCV</span><i aria-hidden="true"></i>
+        </div>
+      </section>
+
+      <section class="section overview-section" id="overview">
+        <div class="section-heading reveal">
+          <p class="section-kicker">01 — TỔNG QUAN</p>
+          <h2>Một project hub.<br>Toàn bộ hành trình dữ liệu.</h2>
+          <p>
+            Không chỉ là nơi đặt notebook. DataFlow kết nối câu hỏi, dữ liệu, mô hình
+            và câu chuyện thành một quy trình có thể tái lập.
+          </p>
+        </div>
+
+        <div class="overview-grid">
+          <article class="overview-card overview-card-large reveal">
+            <span class="card-label">MISSION</span>
+            <h3>From raw data<br>to <em>real insight.</em></h3>
+            <p>
+              Áp dụng Python, OOP và hệ sinh thái data science để phân tích nhiều
+              loại dữ liệu — từ khám phá, tiền xử lý đến đánh giá mô hình.
+            </p>
+            <div class="mini-flow" role="img" aria-label="Bốn giai đoạn dự án">
+              <span>COLLECT</span><i></i><span>CLEAN</span><i></i>
+              <span>MODEL</span><i></i><span>COMMUNICATE</span>
+            </div>
+          </article>
+
+          <article class="overview-card stat-card stat-yellow reveal">
+            <span class="card-label">TABULAR / TEXT</span>
+            <strong><span>2.000</span><sup>+</sup></strong>
+            <p>samples tối thiểu cho mỗi hướng dữ liệu cốt lõi.</p>
+          </article>
+
+          <article class="overview-card stat-card stat-mint reveal">
+            <span class="card-label">IMAGE DATA</span>
+            <strong><span>5.000</span><sup>+</sup></strong>
+            <p>hình ảnh với tối thiểu 3 lớp cho bài toán classification.</p>
+          </article>
+
+          <article class="overview-card profile-card reveal">
+            <div class="profile-head">
+              <span class="profile-avatar">KD</span>
+              <div>
+                <strong>Khanh Hoang Duy Dinh</strong>
+                <small>Project owner · HCMUT</small>
+              </div>
+            </div>
+            <p>Researcher building thoughtful, reproducible data experiences.</p>
+            <a
+              href="https://github.com/khanhhoangduydinh"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @khanhhoangduydinh
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13" />
+              </svg>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section pipeline-section" id="pipeline">
+        <div class="section-heading section-heading-light reveal">
+          <p class="section-kicker">02 — PIPELINE</p>
+          <h2>Rõ từng bước.<br>Chắc từng quyết định.</h2>
+          <p>
+            Một workflow nhất quán giúp notebook dễ đọc, dễ kiểm tra và có thể chạy
+            lại từ đầu đến cuối trên Google Colab.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step-number">01</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M4 8c0-2.2 5.4-4 12-4s12 1.8 12 4-5.4 4-12 4S4 10.2 4 8Z" />
+                <path d="M4 8v8c0 2.2 5.4 4 12 4s12-1.8 12-4V8M4 16v8c0 2.2 5.4 4 12 4s12-1.8 12-4v-8" />
+              </svg>
+            </div>
+            <div>
+              <p class="step-meta">UNDERSTAND</p>
+              <h3>Mô tả dữ liệu</h3>
+              <p>Đặt câu hỏi, hiểu nguồn dữ liệu, schema, phân phối và giới hạn.</p>
+            </div>
+            <span class="step-tag">EDA</span>
+          </li>
+
+          <li class="step reveal">
+            <span class="step-number">02</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M5 6h22v20H5zM11 6v20M21 6v20M5 13h22M5 20h22" />
+              </svg>
+            </div>
+            <div>
+              <p class="step-meta">PREPARE</p>
+              <h3>Chuẩn bị dữ liệu</h3>
+              <p>Xử lý thiếu, outlier, encoding, scaling và chia train/val/test.</p>
+            </div>
+            <span class="step-tag">PANDAS</span>
+          </li>
+
+          <li class="step reveal">
+            <span class="step-number">03</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="8" cy="9" r="3" /><circle cx="24" cy="7" r="3" />
+                <circle cx="16" cy="24" r="3" /><path d="m11 10 10-2M10 12l5 9M22 10l-5 11" />
+              </svg>
+            </div>
+            <div>
+              <p class="step-meta">LEARN</p>
+              <h3>Phân tích &amp; mô hình</h3>
+              <p>Huấn luyện, so sánh mô hình và theo dõi ảnh hưởng của tham số.</p>
+            </div>
+            <span class="step-tag">SKLEARN</span>
+          </li>
+
+          <li class="step reveal">
+            <span class="step-number">04</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M5 26V15M13 26V8M21 26V18M29 26V4" />
+              </svg>
+            </div>
+            <div>
+              <p class="step-meta">EXPLAIN</p>
+              <h3>Đánh giá &amp; kể chuyện</h3>
+              <p>Đọc metric, trực quan kết quả, nêu giới hạn và hướng mở rộng.</p>
+            </div>
+            <span class="step-tag">STORY</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section tracks-section" id="data-tracks">
+        <div class="section-heading reveal">
+          <p class="section-kicker">03 — DATA TRACKS</p>
+          <h2>Ba góc nhìn.<br>Một ngôn ngữ dữ liệu.</h2>
+        </div>
+
+        <div class="track-shell reveal">
+          <div class="track-tabs" role="tablist" aria-label="Chọn loại dữ liệu">
+            <button
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="track-panel"
+              id="tab-tabular"
+              data-track="tabular"
+            >
+              <span>01</span> Tabular
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="track-panel"
+              id="tab-text"
+              data-track="text"
+            >
+              <span>02</span> Text
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="track-panel"
+              id="tab-image"
+              data-track="image"
+            >
+              <span>03</span> Image
+            </button>
+          </div>
+
+          <div class="track-panel" id="track-panel" role="tabpanel" aria-labelledby="tab-tabular">
+            <div class="track-copy">
+              <p class="track-type" data-track-type>CORE TRACK · BẮT BUỘC</p>
+              <h3 data-track-title>Tabular Data</h3>
+              <p data-track-description>
+                Khám phá các mối quan hệ ẩn trong dữ liệu dạng bảng bằng thống kê,
+                trực quan và machine learning có thể giải thích.
+              </p>
+              <ul class="track-list" data-track-list>
+                <li>≥ 2.000 samples, ≥ 10 cột</li>
+                <li>Missing values &amp; outliers</li>
+                <li>Categorical + numerical features</li>
+              </ul>
+            </div>
+
+            <div class="data-preview" aria-live="polite">
+              <div class="preview-toolbar">
+                <span data-preview-name>dataset.csv</span>
+                <div><i></i><i></i><i></i></div>
+              </div>
+              <div class="preview-visual preview-table" data-preview>
+                <div class="table-head">
+                  <span>id</span><span>category</span><span>value</span><span>target</span>
+                </div>
+                <div><span>#0842</span><span class="pill pill-yellow">alpha</span><span>18.42</span><span>1</span></div>
+                <div><span>#0843</span><span class="pill pill-mint">beta</span><span>—</span><span>0</span></div>
+                <div><span>#0844</span><span class="pill pill-orange">gamma</span><span>31.07</span><span>1</span></div>
+                <div><span>#0845</span><span class="pill pill-yellow">alpha</span><span>22.91</span><span>0</span></div>
+                <div><span>#0846</span><span class="pill pill-mint">beta</span><span>14.66</span><span>1</span></div>
+              </div>
+              <div class="preview-foot">
+                <span><i></i> schema valid</span>
+                <span data-preview-count>2.000+ rows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rubric-section" id="rubric">
+        <div class="rubric-wrap">
+          <div class="rubric-copy reveal">
+            <p class="section-kicker">04 — EVALUATION</p>
+            <h2>Chất lượng<br>được tạo nên<br>từ <em>chi tiết.</em></h2>
+            <p>
+              Rubric chính thức được chuyển thành dashboard để mọi quyết định trong
+              dự án luôn gắn với mục tiêu đánh giá.
+            </p>
+            <a class="text-link" href="Assigment.pdf" target="_blank">
+              Đọc brief môn học
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="rubric-dashboard reveal">
+            <div class="score-orbit" role="img" aria-label="Tổng điểm 100">
+              <div>
+                <span>TOTAL</span>
+                <strong>100</strong>
+                <small>POINTS</small>
+              </div>
+            </div>
+            <div class="score-list">
+              <div class="score-row">
+                <span>Notebook</span><div><i style="--score: 100%"></i></div><strong>50</strong>
+              </div>
+              <div class="score-row">
+                <span>Markdown</span><div><i style="--score: 40%"></i></div><strong>20</strong>
+              </div>
+              <div class="score-row">
+                <span>Demo</span><div><i style="--score: 30%"></i></div><strong>15</strong>
+              </div>
+              <div class="score-row">
+                <span>Sáng tạo</span><div><i style="--score: 20%"></i></div><strong>10</strong>
+              </div>
+              <div class="score-row">
+                <span>Hình thức</span><div><i style="--score: 10%"></i></div><strong>05</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-content reveal">
+          <p>READY TO FOLLOW THE DATA?</p>
+          <h2>Let’s make the pattern<br><em>visible.</em></h2>
+          <a
+            class="button button-light"
+            href="https://github.com/khanhhoangduydinh"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Mở GitHub profile
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="m7 4 6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+        <div class="cta-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>DataFlow</span>
+      </a>
+      <p>
+        Nền tảng lập trình cho phân tích và trực quan dữ liệu<br>
+        Giảng viên: Lê Thành Sách · HCMUT · 2026
+      </p>
+      <a
+        href="https://github.com/khanhhoangduydinh"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
+      </a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
