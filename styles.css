@@ -320,6 +320,28 @@ svg {
   line-height: 1.42;
 }
 
+.course-info {
+  max-width: 560px;
+  margin: 26px 0 0;
+  padding: 20px 24px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(23, 63, 76, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(14, 44, 54, 0.08);
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.55;
+}
+
+.course-info p {
+  margin: 0;
+}
+
+.course-info strong {
+  color: var(--ink-deep);
+  font-weight: 800;
+}
+
 .marker {
   position: relative;
   white-space: nowrap;
