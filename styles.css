@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -107,32 +108,12 @@ svg {
   letter-spacing: -0.04em;
 }
 
-.brand-mark {
-  width: 28px;
-  display: grid;
-  gap: 3px;
-  transform: skewX(7deg);
-}
-
-.brand-mark i {
+.brand-logo {
+  width: 40px;
+  height: 40px;
   display: block;
-  height: 4px;
-  border-radius: 99px;
-}
-
-.brand-mark i:nth-child(1) {
-  width: 15px;
-  background: var(--yellow);
-}
-
-.brand-mark i:nth-child(2) {
-  width: 23px;
-  background: var(--orange);
-}
-
-.brand-mark i:nth-child(3) {
-  width: 19px;
-  background: var(--ink);
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .site-nav {
@@ -1506,6 +1487,11 @@ svg {
     min-height: 64px;
     grid-template-columns: 1fr auto;
     padding: 0 20px;
+  }
+
+  .brand-logo {
+    width: 38px;
+    height: 38px;
   }
 
   .site-header.is-scrolled {
