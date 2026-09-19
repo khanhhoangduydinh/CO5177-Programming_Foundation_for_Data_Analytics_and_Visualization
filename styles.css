@@ -188,9 +188,9 @@ svg {
   position: relative;
   min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(480px, 1.1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: clamp(44px, 7vw, 112px);
+  gap: 38px;
   padding: 118px 6.5vw 72px;
   isolation: isolate;
 }
@@ -263,13 +263,14 @@ svg {
 }
 
 .hero h1 {
-  max-width: 650px;
-  margin: 0;
+  max-width: 1000px;
+  margin: 0 auto;
   color: var(--ink);
   font-size: clamp(18px, 1.7vw, 27px);
   font-weight: 800;
   letter-spacing: 0.14em;
   line-height: 1.1;
+  text-align: center;
 }
 
 .hero h1 span {
@@ -298,7 +299,7 @@ svg {
   grid-template-columns: 0.8fr 1.4fr 2.2fr 1fr;
   gap: 9px;
   width: min(410px, 86%);
-  margin: 29px 0 33px 12%;
+  margin: 29px auto 33px;
 }
 
 .signal-bars span {
@@ -312,17 +313,38 @@ svg {
 .signal-bars span:nth-child(4) { background: var(--ink); }
 
 .hero-lead {
-  max-width: 560px;
-  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
   color: #385a64;
   font-size: clamp(20px, 2vw, 28px);
   letter-spacing: -0.035em;
   line-height: 1.42;
+  text-align: center;
+}
+
+.hero-copy {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero .eyebrow {
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-info-grid {
+  width: min(100%, 980px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 26px auto 0;
+  text-align: left;
 }
 
 .course-info {
-  max-width: 560px;
-  margin: 26px 0 0;
+  height: 100%;
+  margin: 0;
   padding: 20px 24px;
   color: var(--ink);
   background: rgba(255, 255, 255, 0.94);
@@ -335,6 +357,20 @@ svg {
 
 .course-info p {
   margin: 0;
+}
+
+.info-card-label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--orange-dark);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.personal-info {
+  background: rgba(216, 233, 226, 0.72);
 }
 
 .course-info strong {
@@ -365,7 +401,8 @@ svg {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 38px;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .button {
@@ -1494,13 +1531,8 @@ svg {
     padding-top: 140px;
   }
 
-  .hero-copy { max-width: 760px; }
-  .hero h1 { max-width: 720px; }
-
-  .hero-visual {
-    width: min(100%, 720px);
-    justify-self: center;
-  }
+  .hero-copy { max-width: 100%; }
+  .hero h1 { max-width: 1000px; }
 
   .scroll-cue { display: none; }
   .overview-grid { grid-template-columns: 1fr 1fr; }
@@ -1600,6 +1632,7 @@ svg {
     font-size: clamp(30px, 9vw, 43px);
     line-height: 1.04;
   }
+  .hero-info-grid { grid-template-columns: 1fr; }
   .eyebrow { font-size: 9px; }
   .signal-bars { margin-left: 4%; }
   .hero-lead { font-size: 20px; }

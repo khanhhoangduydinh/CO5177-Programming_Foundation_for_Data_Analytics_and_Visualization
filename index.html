@@ -86,12 +86,22 @@
           <p class="hero-lead reveal">
             Course ID: CO5177 | Semester: HK261 | Academic Year: 2026-2027
           </p>
-          <aside class="course-info reveal" aria-label="Course information">
-            <p><strong>Group:</strong> APlus</p>
-            <p><strong>University:</strong> Ho Chi Minh City University of Technology (HCMUT)</p>
-            <p><strong>Department:</strong> Computer Science</p>
-            <p><strong>Instructor:</strong> Dr. Le Thanh Sach</p>
-          </aside>
+          <div class="hero-info-grid reveal">
+            <aside class="course-info" aria-label="Course information">
+              <span class="info-card-label">COURSE INFORMATION</span>
+              <p><strong>Group:</strong> APlus</p>
+              <p><strong>University:</strong> Ho Chi Minh City University of Technology (HCMUT)</p>
+              <p><strong>Department:</strong> Computer Science</p>
+              <p><strong>Instructor:</strong> Dr. Le Thanh Sach</p>
+            </aside>
+            <aside class="course-info personal-info" aria-label="Personal information">
+              <span class="info-card-label">PERSONAL INFORMATION</span>
+              <p><strong>Name:</strong> Khanh Hoang Duy Dinh</p>
+              <p><strong>Role:</strong> Project owner</p>
+              <p><strong>University:</strong> Ho Chi Minh City University of Technology (HCMUT)</p>
+              <p><strong>GitHub:</strong> @khanhhoangduydinh</p>
+            </aside>
+          </div>
           <div class="hero-actions reveal">
             <a class="button button-primary" href="#pipeline">
               Khám phá pipeline
@@ -107,82 +117,6 @@
             >
               Xem mã nguồn
             </a>
-          </div>
-        </div>
-
-        <div
-          class="hero-visual reveal"
-          data-parallax
-          role="img"
-          aria-label="Mô phỏng một data pipeline"
-        >
-          <div class="terminal-top">
-            <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-            <span>pipeline.py</span>
-            <span class="terminal-status"><i></i> running</span>
-          </div>
-
-          <div class="pipeline-canvas">
-            <svg class="pipeline-lines" viewBox="0 0 560 400" aria-hidden="true">
-              <path d="M112 89 C205 89, 175 198, 275 198" />
-              <path d="M275 198 C378 198, 343 310, 448 310" />
-              <path class="line-pulse" d="M112 89 C205 89, 175 198, 275 198" />
-              <path class="line-pulse pulse-two" d="M275 198 C378 198, 343 310, 448 310" />
-            </svg>
-
-            <article class="pipeline-node node-input">
-              <span class="node-index">01</span>
-              <div class="node-icon node-icon-yellow">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 7c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3Z" />
-                  <path d="M4 7v5c0 2 3.6 3 8 3s8-1 8-3V7M4 12v5c0 2 3.6 3 8 3s8-1 8-3v-5" />
-                </svg>
-              </div>
-              <strong>Raw data</strong>
-              <small>CSV · text · image</small>
-            </article>
-
-            <article class="pipeline-node node-process">
-              <span class="node-index">02</span>
-              <div class="node-icon node-icon-orange">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 5h14v14H5zM9 5v14M15 5v14M5 10h14M5 15h14" />
-                </svg>
-              </div>
-              <strong>Transform</strong>
-              <small>clean · encode · scale</small>
-            </article>
-
-            <article class="pipeline-node node-output">
-              <span class="node-index">03</span>
-              <div class="node-icon node-icon-mint">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 19V9M10 19V5M16 19v-7M22 19V3" />
-                </svg>
-              </div>
-              <strong>Insight</strong>
-              <small>visualize · model · tell</small>
-            </article>
-
-            <div class="metric-card metric-card-top">
-              <span>data quality</span>
-              <strong>94.8%</strong>
-              <svg viewBox="0 0 120 34" aria-hidden="true">
-                <path d="m1 29 18-6 16 2 17-14 16 7 18-12 16 5 17-9" />
-              </svg>
-            </div>
-
-            <div class="metric-card metric-card-bottom">
-              <span>model score</span>
-              <strong>+12.4</strong>
-              <em>↑ iteration 04</em>
-            </div>
-          </div>
-
-          <div class="terminal-log">
-            <span><i class="log-ok">✓</i> Load dataset</span>
-            <span><i class="log-ok">✓</i> Validate schema</span>
-            <span><i class="log-live"></i> Train &amp; evaluate</span>
           </div>
         </div>
 
