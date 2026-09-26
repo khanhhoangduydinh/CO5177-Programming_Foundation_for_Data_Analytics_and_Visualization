@@ -11,9 +11,9 @@
   "validation_results": [
     {
       "model": "Balanced Random Forest",
-      "accuracy": 0.78879,
-      "balanced_accuracy": 0.760443,
-      "macro_f1": 0.758852
+      "accuracy": 0.788107,
+      "balanced_accuracy": 0.759439,
+      "macro_f1": 0.757992
     },
     {
       "model": "Logistic baseline",
@@ -24,35 +24,35 @@
   ],
   "test_metrics": {
     "model": "Balanced Random Forest",
-    "accuracy": 0.7596017069701281,
-    "balanced_accuracy": 0.7324803033181175,
-    "macro_f1": 0.7293425045680579
+    "accuracy": 0.7581792318634424,
+    "balanced_accuracy": 0.7304979929673765,
+    "macro_f1": 0.7274877416979276
   },
   "top_features": [
     {
       "feature": "koi_model_snr",
-      "importance": 0.147812,
-      "std": 0.006988
+      "importance": 0.150307,
+      "std": 0.005885
     },
     {
       "feature": "koi_prad",
-      "importance": 0.076234,
-      "std": 0.008564
+      "importance": 0.07356,
+      "std": 0.00917
     },
     {
       "feature": "koi_impact",
-      "importance": 0.039677,
-      "std": 0.003005
+      "importance": 0.039053,
+      "std": 0.004566
+    },
+    {
+      "feature": "koi_tce_delivname",
+      "importance": 0.034696,
+      "std": 0.006297
     },
     {
       "feature": "koi_duration",
-      "importance": 0.036877,
-      "std": 0.00433
-    },
-    {
-      "feature": "koi_period",
-      "importance": 0.035051,
-      "std": 0.004048
+      "importance": 0.032665,
+      "std": 0.003401
     }
   ]
 }

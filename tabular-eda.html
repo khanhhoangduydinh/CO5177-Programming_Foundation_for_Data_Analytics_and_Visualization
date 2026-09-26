@@ -21,10 +21,10 @@
       </a>
       <nav aria-label="EDA navigation">
         <a href="#overview">Overview</a>
+        <a href="#schema">Schema</a>
         <a href="#quality">Quality</a>
         <a href="#analysis">Analysis</a>
         <a href="#models">Models</a>
-        <a href="#insights">Insights</a>
       </nav>
       <a class="back-link" href="index.html#data-tracks">← Back to Tasks</a>
     </header>
@@ -51,7 +51,7 @@
               <div><strong>9.5K</strong><span>objects</span></div>
               <div><strong>13.8K</strong><span>missing cells</span></div>
               <div><strong>.727</strong><span>test macro F1</span></div>
-              <div><strong>14</strong><span>independent plots</span></div>
+              <div><strong>15</strong><span>independent plots</span></div>
             </div>
             <div class="signal-line"><span></span><span></span><span></span><span></span></div>
             <p>quality / distributions / leakage control / model comparison</p>
@@ -83,12 +83,17 @@
         </div>
         <div class="metric-grid">
           <article><strong>9,564</strong><span>catalogue objects</span></article>
-          <article><strong>30</strong><span>selected columns</span></article>
+          <article><strong>30</strong><span>total features</span></article>
           <article><strong>25</strong><span>numerical columns</span></article>
           <article><strong>5</strong><span>categorical columns</span></article>
-          <article><strong>3</strong><span>target classes</span></article>
-          <article class="accent"><strong>KOI</strong><span>object of interest</span></article>
+          <article><strong>18</strong><span>columns with missing values</span></article>
+          <article class="accent"><strong>0</strong><span>duplicate rows</span></article>
         </div>
+        <figure class="analysis-figure full-figure overview-target">
+          <div class="figure-label"><span>TARGET DISTRIBUTION</span><i>FIG. 01</i></div>
+          <img src="reports/figures/01_target_distribution.png" alt="Counts of false-positive, confirmed, and candidate KOIs" loading="lazy">
+          <figcaption><b>4,839 false positives (50.60%)</b> · 2,748 confirmed planets (28.73%) · 1,977 candidates (20.67%). This class imbalance is why the evaluation reports macro F1 and balanced accuracy in addition to accuracy.</figcaption>
+        </figure>
         <div class="context-grid">
           <article><span>PROBLEM</span><p>Classify each observed transit signal as <b>CONFIRMED</b>, <b>CANDIDATE</b>, or <b>FALSE POSITIVE</b> from catalogue-level measurements.</p></article>
           <article><span>ASSIGNMENT FIT</span><p>More than 2,000 rows and 10 columns, with missing values, categorical encoding, numerical scaling, imbalance, and outliers.</p></article>
@@ -96,9 +101,108 @@
         </div>
       </section>
 
+      <section class="eda-section" id="schema">
+        <div class="section-heading compact">
+          <p class="kicker">02 — FEATURE LIST &amp; DATA TYPES</p>
+        </div>
+        <div class="table-card schema-card">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Attribute</th><th>Data type</th><th>Non-null</th><th>Missing</th><th>Unique</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>01</td><td><code>kepid</code></td><td><span class="type-badge integer">int64</span></td><td>9,564</td><td>0</td><td>8,214</td><td>Kepler Input Catalog host-star identifier.</td></tr>
+              <tr><td>02</td><td><code>kepoi_name</code></td><td><span class="type-badge identifier">object · ID</span></td><td>9,564</td><td>0</td><td>9,564</td><td>Unique KOI designation; excluded from model inputs.</td></tr>
+              <tr><td>03</td><td><code>kepler_name</code></td><td><span class="type-badge text">object</span></td><td>2,748</td><td><span class="missing critical">6,816 · 71.27%</span></td><td>2,748</td><td>Official name assigned only to confirmed planets; leakage risk.</td></tr>
+              <tr><td>04</td><td><code>koi_disposition</code></td><td><span class="type-badge target">object · target</span></td><td>9,564</td><td>0</td><td>3</td><td>Final archive classification to predict.</td></tr>
+              <tr><td>05</td><td><code>koi_pdisposition</code></td><td><span class="type-badge categorical">object</span></td><td>9,564</td><td>0</td><td>2</td><td>Pipeline disposition; excluded because it encodes vetting outcome.</td></tr>
+              <tr><td>06</td><td><code>koi_score</code></td><td><span class="type-badge numeric">float64</span></td><td>8,054</td><td><span class="missing moderate">1,510 · 15.79%</span></td><td>650</td><td>Disposition confidence score; excluded to prevent leakage.</td></tr>
+              <tr><td>07</td><td><code>koi_fpflag_nt</code></td><td><span class="type-badge flag">int64 · flag</span></td><td>9,564</td><td>0</td><td>3</td><td>Not-transit-like false-positive flag; excluded from inputs.</td></tr>
+              <tr><td>08</td><td><code>koi_fpflag_ss</code></td><td><span class="type-badge flag">int64 · flag</span></td><td>9,564</td><td>0</td><td>2</td><td>Stellar-eclipse false-positive flag; excluded from inputs.</td></tr>
+              <tr><td>09</td><td><code>koi_fpflag_co</code></td><td><span class="type-badge flag">int64 · flag</span></td><td>9,564</td><td>0</td><td>2</td><td>Centroid-offset false-positive flag; excluded from inputs.</td></tr>
+              <tr><td>10</td><td><code>koi_fpflag_ec</code></td><td><span class="type-badge flag">int64 · flag</span></td><td>9,564</td><td>0</td><td>2</td><td>Ephemeris-match false-positive flag; excluded from inputs.</td></tr>
+              <tr><td>11</td><td><code>koi_period</code></td><td><span class="type-badge numeric">float64</span></td><td>9,564</td><td>0</td><td>9,564</td><td>Orbital period in days.</td></tr>
+              <tr><td>12</td><td><code>koi_period_err1</code></td><td><span class="type-badge numeric">float64</span></td><td>9,110</td><td><span class="missing low">454 · 4.75%</span></td><td>7,448</td><td>Positive orbital-period uncertainty.</td></tr>
+              <tr><td>13</td><td><code>koi_period_err2</code></td><td><span class="type-badge numeric">float64</span></td><td>9,110</td><td><span class="missing low">454 · 4.75%</span></td><td>7,448</td><td>Negative orbital-period uncertainty.</td></tr>
+              <tr><td>14</td><td><code>koi_impact</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,406</td><td>Projected transit impact parameter.</td></tr>
+              <tr><td>15</td><td><code>koi_duration</code></td><td><span class="type-badge numeric">float64</span></td><td>9,564</td><td>0</td><td>7,834</td><td>Transit duration in hours.</td></tr>
+              <tr><td>16</td><td><code>koi_depth</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>6,953</td><td>Fractional stellar brightness loss in ppm.</td></tr>
+              <tr><td>17</td><td><code>koi_prad</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,988</td><td>Estimated planet radius in Earth radii.</td></tr>
+              <tr><td>18</td><td><code>koi_prad_err1</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>1,787</td><td>Positive planet-radius uncertainty.</td></tr>
+              <tr><td>19</td><td><code>koi_prad_err2</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>1,561</td><td>Negative planet-radius uncertainty.</td></tr>
+              <tr><td>20</td><td><code>koi_teq</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,511</td><td>Estimated equilibrium temperature in kelvin.</td></tr>
+              <tr><td>21</td><td><code>koi_insol</code></td><td><span class="type-badge numeric">float64</span></td><td>9,243</td><td><span class="missing low">321 · 3.36%</span></td><td>7,801</td><td>Incident stellar flux relative to Earth.</td></tr>
+              <tr><td>22</td><td><code>koi_model_snr</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,740</td><td>Transit model signal-to-noise ratio.</td></tr>
+              <tr><td>23</td><td><code>koi_tce_plnt_num</code></td><td><span class="type-badge numeric">float64</span></td><td>9,218</td><td><span class="missing low">346 · 3.62%</span></td><td>8</td><td>Planet-candidate number within a host system.</td></tr>
+              <tr><td>24</td><td><code>koi_tce_delivname</code></td><td><span class="type-badge categorical">object</span></td><td>9,218</td><td><span class="missing low">346 · 3.62%</span></td><td>3</td><td>TCE catalogue delivery release; categorical model input.</td></tr>
+              <tr><td>25</td><td><code>koi_steff</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,445</td><td>Host-star effective temperature in kelvin.</td></tr>
+              <tr><td>26</td><td><code>koi_slogg</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>1,557</td><td>Host-star surface gravity (log10 cgs).</td></tr>
+              <tr><td>27</td><td><code>koi_srad</code></td><td><span class="type-badge numeric">float64</span></td><td>9,201</td><td><span class="missing low">363 · 3.80%</span></td><td>2,289</td><td>Host-star radius in solar radii.</td></tr>
+              <tr><td>28</td><td><code>ra</code></td><td><span class="type-badge numeric">float64</span></td><td>9,564</td><td>0</td><td>8,131</td><td>Right ascension in decimal degrees.</td></tr>
+              <tr><td>29</td><td><code>dec</code></td><td><span class="type-badge numeric">float64</span></td><td>9,564</td><td>0</td><td>8,195</td><td>Declination in decimal degrees.</td></tr>
+              <tr><td>30</td><td><code>koi_kepmag</code></td><td><span class="type-badge numeric">float64</span></td><td>9,563</td><td><span class="missing low">1 · 0.01%</span></td><td>3,887</td><td>Host-star brightness in the Kepler band.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="insight-panel mint-panel">
+          <span class="panel-label">DATA TYPE SUMMARY</span>
+          <div class="insight-grid">
+            <p><b>5 integer columns</b> include the host identifier and four catalogue vetting flags.</p>
+            <p><b>20 floating-point columns</b> contain transit, planetary, stellar, positional, and uncertainty measurements.</p>
+            <p><b>5 object columns</b> include identifiers, outcomes, and the TCE delivery category.</p>
+            <p><b>13 model inputs</b> are retained: 12 physical numeric features and 1 categorical delivery feature.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="eda-section" id="breakdown">
+        <div class="section-heading compact">
+          <p class="kicker">03 — FEATURE VALUE BREAKDOWN</p>
+        </div>
+        <div class="table-card breakdown-card">
+          <table>
+            <thead><tr><th>Feature</th><th>Role</th><th>Kind</th><th>Values / range</th><th>Distribution / statistics</th></tr></thead>
+            <tbody>
+              <tr><td><code>koi_disposition</code></td><td><span class="type-badge target">Target</span></td><td>Categorical · nominal</td><td>{CONFIRMED, CANDIDATE, FALSE POSITIVE}</td><td>FP 4,839 · Confirmed 2,748 · Candidate 1,977</td></tr>
+              <tr><td><code>koi_pdisposition</code></td><td><span class="type-badge exclude">Excluded</span></td><td>Categorical · binary</td><td>{CANDIDATE, FALSE POSITIVE}</td><td>False positive 4,847 · Candidate 4,717</td></tr>
+              <tr><td><code>koi_period</code></td><td>Feature</td><td>Numerical · continuous</td><td>0.242–129,995.778 days</td><td>median 9.753 · mean 75.671 · strongly right-skewed</td></tr>
+              <tr><td><code>koi_impact</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–100.806</td><td>median 0.537 · mean 0.735 · extreme upper tail</td></tr>
+              <tr><td><code>koi_duration</code></td><td>Feature</td><td>Numerical · continuous</td><td>0.052–138.540 hours</td><td>median 3.793 · mean 5.622</td></tr>
+              <tr><td><code>koi_depth</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–1,541,400 ppm</td><td>median 421.1 · mean 23,791.3 · heavy tail</td></tr>
+              <tr><td><code>koi_prad</code></td><td>Feature</td><td>Numerical · continuous</td><td>0.08–200,346 Earth radii</td><td>median 2.39 · mean 102.89 · extreme outliers</td></tr>
+              <tr><td><code>koi_teq</code></td><td>Feature</td><td>Numerical · continuous</td><td>25–14,667 K</td><td>median 878 · mean 1,085.39</td></tr>
+              <tr><td><code>koi_model_snr</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–9,054.7</td><td>median 23.0 · mean 259.90 · strongest model input</td></tr>
+              <tr><td><code>koi_tce_delivname</code></td><td>Feature</td><td>Categorical · nominal</td><td>3 releases + missing</td><td>DR25 8,054 · Q1–Q16 796 · DR24 368 · missing 346</td></tr>
+              <tr><td><code>koi_steff</code></td><td>Feature</td><td>Numerical · continuous</td><td>2,661–15,896 K</td><td>median 5,767 · mean 5,706.82</td></tr>
+              <tr><td><code>koi_kepmag</code></td><td>Feature</td><td>Numerical · continuous</td><td>6.966–20.003 mag</td><td>median 14.520 · mean 14.265 · one missing value</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="eda-section" id="samples">
+        <div class="section-heading compact">
+          <p class="kicker">04 — SAMPLE ROWS / FIRST 6 OBJECTS</p>
+        </div>
+        <div class="table-card sample-card">
+          <table>
+            <thead><tr><th>kepid</th><th>KOI name</th><th>Kepler name</th><th>Disposition</th><th>Score</th><th>Period</th><th>Radius</th><th>Teq</th><th>SNR</th><th>TCE delivery</th></tr></thead>
+            <tbody>
+              <tr><td>10797460</td><td>K00752.01</td><td>Kepler-227 b</td><td><span class="class-chip confirmed">Confirmed</span></td><td>1.000</td><td>9.488</td><td>2.26</td><td>793</td><td>35.8</td><td>q1_q17_dr25_tce</td></tr>
+              <tr><td>10797460</td><td>K00752.02</td><td>Kepler-227 c</td><td><span class="class-chip confirmed">Confirmed</span></td><td>0.969</td><td>54.418</td><td>2.83</td><td>443</td><td>25.8</td><td>q1_q17_dr25_tce</td></tr>
+              <tr><td>10811496</td><td>K00753.01</td><td>—</td><td><span class="class-chip candidate">Candidate</span></td><td>0.000</td><td>19.899</td><td>14.60</td><td>638</td><td>76.3</td><td>q1_q17_dr25_tce</td></tr>
+              <tr><td>10848459</td><td>K00754.01</td><td>—</td><td><span class="class-chip false-positive">False positive</span></td><td>0.000</td><td>1.737</td><td>33.46</td><td>1,395</td><td>505.6</td><td>q1_q17_dr25_tce</td></tr>
+              <tr><td>10854555</td><td>K00755.01</td><td>Kepler-664 b</td><td><span class="class-chip confirmed">Confirmed</span></td><td>1.000</td><td>2.526</td><td>2.75</td><td>1,406</td><td>40.9</td><td>q1_q17_dr25_tce</td></tr>
+              <tr><td>10872983</td><td>K00756.01</td><td>Kepler-228 d</td><td><span class="class-chip confirmed">Confirmed</span></td><td>1.000</td><td>11.094</td><td>3.90</td><td>835</td><td>66.5</td><td>q1_q17_dr25_tce</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Values are shown from the cached NASA Exoplanet Archive snapshot used by the executable notebook. Period is in days, radius in Earth radii, and equilibrium temperature in kelvin.</p>
+      </section>
+
       <section class="eda-section" id="quality">
         <div class="section-heading compact">
-          <p class="kicker">02 — DATA QUALITY</p>
+          <p class="kicker">05 — MISSING &amp; DUPLICATE VALUES</p>
         </div>
         <div class="figure-grid split-figure">
           <figure class="analysis-figure">
@@ -108,19 +212,22 @@
           </figure>
           <div class="quality-stack">
             <article class="quality-stat"><span>Missing cells</span><strong>13,878</strong><small>across the selected 30-column table</small></article>
-            <div class="table-card">
-              <table>
-                <thead><tr><th>Feature</th><th>Missing</th><th>Share</th><th>Action</th></tr></thead>
-                <tbody>
-                  <tr><td>kepler_name</td><td>6,816</td><td>71.27%</td><td><span class="status exclude">exclude</span></td></tr>
-                  <tr><td>koi_score</td><td>1,510</td><td>15.79%</td><td><span class="status exclude">exclude</span></td></tr>
-                  <tr><td>koi_impact</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
-                  <tr><td>koi_depth</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
-                  <tr><td>koi_prad</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
-                </tbody>
-              </table>
-            </div>
+            <article class="quality-stat alternate"><span>Exact duplicate rows</span><strong>0</strong><small>no row-level deduplication required</small></article>
           </div>
+        </div>
+        <div class="table-card missing-card">
+          <table>
+            <thead><tr><th>Feature</th><th>Missing count</th><th>Missing %</th><th>Visual</th><th>Severity</th><th>Strategy</th></tr></thead>
+            <tbody>
+              <tr><td><code>kepler_name</code></td><td>6,816</td><td>71.27%</td><td><span class="missing-track"><i style="width:71.27%"></i></span></td><td><span class="severity critical">Critical</span></td><td>Exclude: official naming directly reveals confirmed status.</td></tr>
+              <tr><td><code>koi_score</code></td><td>1,510</td><td>15.79%</td><td><span class="missing-track"><i style="width:15.79%"></i></span></td><td><span class="severity moderate">Moderate</span></td><td>Exclude: catalogue confidence score is target-adjacent.</td></tr>
+              <tr><td><code>period errors</code></td><td>454 each</td><td>4.75%</td><td><span class="missing-track"><i style="width:4.75%"></i></span></td><td><span class="severity low">Low</span></td><td>Exclude uncertainty columns from the compact model feature set.</td></tr>
+              <tr><td><code>physical group</code></td><td>363 each</td><td>3.80%</td><td><span class="missing-track"><i style="width:3.8%"></i></span></td><td><span class="severity low">Low</span></td><td>Median imputation fitted on training data only.</td></tr>
+              <tr><td><code>koi_tce_delivname</code></td><td>346</td><td>3.62%</td><td><span class="missing-track"><i style="width:3.62%"></i></span></td><td><span class="severity low">Low</span></td><td>Most-frequent imputation, then one-hot encoding.</td></tr>
+              <tr><td><code>koi_insol</code></td><td>321</td><td>3.36%</td><td><span class="missing-track"><i style="width:3.36%"></i></span></td><td><span class="severity low">Low</span></td><td>Median imputation inside the preprocessing pipeline.</td></tr>
+              <tr><td><code>koi_kepmag</code></td><td>1</td><td>0.01%</td><td><span class="missing-track"><i style="width:max(.6%, .01%)"></i></span></td><td><span class="severity low">Low</span></td><td>Median imputation inside the preprocessing pipeline.</td></tr>
+            </tbody>
+          </table>
         </div>
         <figure class="analysis-figure full-figure">
           <div class="figure-label"><span>QUALITY / IQR OUTLIERS</span><i>FIG. 06</i></div>
@@ -131,7 +238,7 @@
 
       <section class="eda-section" id="analysis">
         <div class="section-heading compact">
-          <p class="kicker">03 — DISTRIBUTIONS</p>
+          <p class="kicker">06 — NUMERICAL FEATURE DISTRIBUTIONS</p>
         </div>
         <div class="figure-grid three-figure">
           <figure class="analysis-figure">
@@ -150,17 +257,52 @@
             <figcaption>Most KOIs orbit stars in a dense temperature band, with fewer extreme hosts.</figcaption>
           </figure>
         </div>
+        <aside class="insight-panel yellow-panel">
+          <span class="panel-label">KEY INSIGHTS / CONTINUOUS FEATURES</span>
+          <div class="insight-grid">
+            <p><b>Orbital period:</b> median 9.75 days, but the upper tail reaches about 130,000 days; a log axis is required.</p>
+            <p><b>Planet radius:</b> median 2.39 Earth radii with extreme catalogue values; robust preprocessing is safer than deletion.</p>
+            <p><b>Stellar temperature:</b> most hosts cluster around the median of 5,767 K, with fewer very cool or hot stars.</p>
+            <p><b>Outliers:</b> scientifically rare objects can be valid observations, so they remain available to the tree model.</p>
+          </div>
+        </aside>
       </section>
 
-      <section class="eda-section target-section">
+      <section class="eda-section" id="categorical">
         <div class="section-heading compact">
-          <p class="kicker">04 — TARGET &amp; RELATIONSHIPS</p>
+          <p class="kicker">07 — CATEGORICAL FEATURE DISTRIBUTIONS</p>
         </div>
-        <figure class="analysis-figure hero-figure">
-          <div class="figure-label"><span>TARGET BALANCE</span><i>FIG. 01</i></div>
-          <img src="reports/figures/01_target_distribution.png" alt="Counts of false-positive, confirmed, and candidate KOIs" loading="lazy">
-          <figcaption>4,839 false positives · 2,748 confirmed planets · 1,977 candidates. Macro F1 and balanced accuracy are reported alongside accuracy.</figcaption>
+        <figure class="analysis-figure hero-figure categorical-figure">
+          <div class="figure-label"><span>TCE DELIVERY CATALOGUE</span><i>FIG. 15</i></div>
+          <img src="reports/figures/15_tce_delivery_distribution.png" alt="Counts of KOIs by TCE catalogue delivery release" loading="lazy">
+          <figcaption>The final DR25 delivery supplies 8,054 records. The release label is the only categorical feature retained by the modeling pipeline.</figcaption>
         </figure>
+        <aside class="insight-panel mint-panel">
+          <span class="panel-label">KEY INSIGHTS / CATEGORICAL FEATURES</span>
+          <div class="insight-grid">
+            <p><b>Target:</b> false positives form a narrow majority (50.60%), while candidates are the smallest and most ambiguous class.</p>
+            <p><b>TCE delivery:</b> DR25 dominates the table, so rare release categories receive little independent statistical support.</p>
+            <p><b>Names and IDs:</b> object names identify rows but carry no transferable physical signal and are excluded.</p>
+            <p><b>Vetting fields:</b> pipeline disposition and false-positive flags are intentionally excluded because they encode the answer.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="eda-section" id="correlation">
+        <div class="section-heading compact">
+          <p class="kicker">08 — CORRELATION ANALYSIS</p>
+        </div>
+        <figure class="analysis-figure correlation-figure">
+          <div class="figure-label"><span>SPEARMAN CORRELATION</span><i>FIG. 09</i></div>
+          <img src="reports/figures/09_correlation_heatmap.png" alt="Spearman correlation heatmap of important KOI measurements" loading="lazy">
+          <figcaption>Spearman correlation captures monotonic relationships without assuming normality. Related physical variables form visible blocks, but no single measurement determines the three-class outcome.</figcaption>
+        </figure>
+      </section>
+
+      <section class="eda-section target-section" id="relationships">
+        <div class="section-heading compact">
+          <p class="kicker">09 — TARGET RELATIONSHIPS</p>
+        </div>
         <div class="figure-grid two-figure">
           <figure class="analysis-figure">
             <div class="figure-label"><span>TARGET × RADIUS</span><i>FIG. 07</i></div>
@@ -173,16 +315,15 @@
             <figcaption>Signal strength helps separate classes, yet cannot determine disposition independently.</figcaption>
           </figure>
         </div>
-        <figure class="analysis-figure full-figure correlation-figure">
-          <div class="figure-label"><span>SPEARMAN CORRELATION</span><i>FIG. 09</i></div>
-          <img src="reports/figures/09_correlation_heatmap.png" alt="Spearman correlation heatmap of important KOI measurements" loading="lazy">
-          <figcaption>Related physical variables create interaction effects; the target still requires multivariate evidence.</figcaption>
-        </figure>
+        <aside class="insight-panel yellow-panel">
+          <span class="panel-label">INTERPRETATION</span>
+          <p>Radius and signal-to-noise provide useful separation, but the overlapping class distributions explain why a nonlinear multivariate model outperforms a linear baseline. These associations support prediction; they do not establish planetary causality.</p>
+        </aside>
       </section>
 
       <section class="eda-section preprocessing-section">
         <div class="section-heading compact">
-          <p class="kicker">05 — PREPROCESSING</p>
+          <p class="kicker">10 — PREPROCESSING</p>
         </div>
         <div class="pipeline-strip" aria-label="Preprocessing pipeline">
           <span>RAW TABLE</span><i>→</i><span>GROUP SPLIT</span><i>→</i><span>IMPUTE</span><i>→</i><span>ENCODE</span><i>→</i><span>SCALE</span><i>→</i><span>MODEL</span>
@@ -203,7 +344,7 @@
 
       <section class="eda-section" id="models">
         <div class="section-heading compact">
-          <p class="kicker">06 — MODEL COMPARISON</p>
+          <p class="kicker">11 — MODEL COMPARISON</p>
         </div>
         <div class="model-score-grid">
           <article><span>VALIDATION MACRO F1</span><strong>.758</strong><small>Balanced Random Forest</small></article>
@@ -232,7 +373,7 @@
 
       <section class="eda-section insights-section" id="insights">
         <div class="insight-card">
-          <p class="kicker">07 — KEY INSIGHTS</p>
+          <p class="kicker">12 — KEY INSIGHTS</p>
           <div class="insight-columns">
             <ul>
               <li>The KOI catalogue satisfies every tabular-data constraint in the assignment.</li>

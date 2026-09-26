@@ -244,7 +244,38 @@ finish_plot("05_stellar_temperature_distribution.png")
 # with a smaller number of unusually cool or hot hosts.
 
 # %% [markdown]
-# ## 5. Outlier audit
+# ## 5. Categorical feature distribution
+
+# %%
+delivery_counts = (
+    df["koi_tce_delivname"]
+    .fillna("Missing")
+    .value_counts()
+    .rename_axis("delivery_catalogue")
+    .reset_index(name="objects")
+)
+
+plt.figure(figsize=(9, 5.6))
+ax = sns.barplot(
+    data=delivery_counts,
+    x="objects",
+    y="delivery_catalogue",
+    hue="delivery_catalogue",
+    palette=["#173f4c", "#d35b12", "#a9cfc1", "#efae00"],
+    legend=False,
+)
+ax.set(title="KOIs by TCE delivery catalogue", xlabel="Objects", ylabel="")
+for container in ax.containers:
+    ax.bar_label(container, padding=5, fmt="{:,.0f}")
+finish_plot("15_tce_delivery_distribution.png")
+
+# %% [markdown]
+# **Finding:** the DR25 catalogue supplies most records. Delivery name is kept
+# as a categorical model input and missing values are handled inside the fitted
+# preprocessing pipeline.
+
+# %% [markdown]
+# ## 6. Outlier audit
 
 # %%
 MODEL_NUMERIC_FEATURES = [
@@ -280,7 +311,7 @@ finish_plot("06_outlier_share.png")
 # nonlinear ranges without assuming a Gaussian distribution.
 
 # %% [markdown]
-# ## 6. Target–feature relationships
+# ## 7. Target–feature relationships
 
 # %%
 plot_data = df.loc[df["koi_prad"].between(0, df["koi_prad"].quantile(0.99))]
@@ -321,7 +352,7 @@ finish_plot("08_target_vs_snr.png")
 # overlap. A multivariate model is needed.
 
 # %% [markdown]
-# ## 7. Correlation structure
+# ## 8. Correlation structure
 
 # %%
 correlation_features = [
@@ -350,7 +381,7 @@ finish_plot("09_correlation_heatmap.png")
 # explains the target. This supports testing interactions through a tree ensemble.
 
 # %% [markdown]
-# ## 8. Leakage-safe data preparation
+# ## 9. Leakage-safe data preparation
 #
 # The following fields are deliberately **excluded** from the input features:
 #
@@ -409,7 +440,7 @@ assert train_hosts.isdisjoint(test_hosts)
 assert val_hosts.isdisjoint(test_hosts)
 
 # %% [markdown]
-# ## 9. Before and after scaling
+# ## 10. Before and after scaling
 
 # %%
 raw_scaling_frame = X_train[["koi_period", "koi_depth", "koi_steff"]].copy()
@@ -441,7 +472,7 @@ finish_plot("11_after_scaling.png")
 # pipeline to prevent evaluation leakage.
 
 # %% [markdown]
-# ## 10. Baseline vs extended model
+# ## 11. Baseline vs extended model
 
 # %%
 baseline_preprocessor = ColumnTransformer(
@@ -552,7 +583,7 @@ finish_plot("12_model_comparison.png")
 # the primary selection metric because it gives each disposition equal weight.
 
 # %% [markdown]
-# ## 11. Final test evaluation
+# ## 12. Final test evaluation
 #
 # The better validation model is now evaluated once on the held-out test set.
 
@@ -591,7 +622,7 @@ finish_plot("13_confusion_matrix.png")
 # class and makes minority-class errors visible—something overall accuracy hides.
 
 # %% [markdown]
-# ## 12. Model interpretation
+# ## 13. Model interpretation
 
 # %%
 permutation = permutation_importance(
@@ -636,7 +667,7 @@ finish_plot("14_feature_importance.png")
 # not astronomical causality.
 
 # %% [markdown]
-# ## 13. Conclusions and limitations
+# ## 14. Conclusions and limitations
 #
 # ### Main conclusions
 #
@@ -677,4 +708,3 @@ summary = {
 SUMMARY_PATH = PROJECT_ROOT / "reports" / "tabular_koi_summary.json"
 SUMMARY_PATH.write_text(json.dumps(summary, indent=2), encoding="utf-8")
 print(f"Saved machine-readable summary to {SUMMARY_PATH}")
-
