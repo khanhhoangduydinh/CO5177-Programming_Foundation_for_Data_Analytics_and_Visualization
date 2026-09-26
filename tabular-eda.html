@@ -3,15 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive exploratory data analysis report for the CO5177 tabular task.">
+    <meta name="description" content="Leakage-safe EDA and classification of NASA Kepler Objects of Interest for the CO5177 tabular assignment.">
     <meta name="theme-color" content="#f7f5ef">
-    <title>Tabular EDA | CO5177 DataFlow</title>
+    <title>Kepler KOI · Tabular EDA | CO5177 DataFlow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="eda.css">
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <header class="eda-header">
       <a class="eda-brand" href="index.html#data-tracks" aria-label="Back to CO5177 tasks">
         <img src="assets/logo-bachkhoa.png" alt="Logo Bách Khoa TP.HCM">
@@ -20,120 +22,249 @@
       <nav aria-label="EDA navigation">
         <a href="#overview">Overview</a>
         <a href="#quality">Quality</a>
-        <a href="#distributions">Distributions</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#models">Models</a>
         <a href="#insights">Insights</a>
       </nav>
       <a class="back-link" href="index.html#data-tracks">← Back to Tasks</a>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="eda-hero" id="top">
         <p class="kicker"><span></span>02 — TASKS / TABULAR</p>
         <div class="hero-layout">
           <div>
-            <p class="eyebrow">EXPLORATORY DATA ANALYSIS</p>
-            <h1>Read the<br><em>shape of data.</em></h1>
+            <p class="eyebrow">NASA KEPLER · EXPLORATORY DATA ANALYSIS</p>
+            <h1>Signals beyond<br><em>the starlight.</em></h1>
             <p class="hero-intro">
-              A compact EDA report for the tabular assignment: understand schema,
-              quality, distributions and relationships before building a model.
+              A reproducible study of Kepler Objects of Interest: audit data quality,
+              explore physical measurements, prevent target leakage, and compare a
+              linear baseline with a class-aware nonlinear model.
             </p>
-            <div class="hero-tags">
-              <span>dataset.csv</span><span>32.561 rows</span><span>14 features</span>
+            <div class="hero-tags" aria-label="Dataset tags">
+              <span>9,564 objects</span><span>30 columns</span><span>3 classes</span>
             </div>
           </div>
-          <div class="hero-signal" role="img" aria-label="Dataset summary">
-            <div class="signal-head"><span>DATASET / ADULT INCOME</span><i>EDA-01</i></div>
+          <aside class="hero-signal" aria-label="Analysis summary">
+            <div class="signal-head"><span>DATASET / KEPLER KOI</span><i>RUN ALL ✓</i></div>
             <div class="signal-grid">
-              <div><strong>14</strong><span>features</span></div>
-              <div><strong>6</strong><span>numeric</span></div>
-              <div><strong>8</strong><span>categorical</span></div>
-              <div><strong>75.9%</strong><span>majority class</span></div>
+              <div><strong>9.5K</strong><span>objects</span></div>
+              <div><strong>13.8K</strong><span>missing cells</span></div>
+              <div><strong>.727</strong><span>test macro F1</span></div>
+              <div><strong>14</strong><span>independent plots</span></div>
             </div>
             <div class="signal-line"><span></span><span></span><span></span><span></span></div>
-            <p>quality check / distributions / relationships / next steps</p>
-          </div>
+            <p>quality / distributions / leakage control / model comparison</p>
+          </aside>
+        </div>
+
+        <div class="resource-bar" aria-label="Project resources">
+          <a class="resource-primary" href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb" target="_blank" rel="noreferrer">
+            <span>01</span><strong>Open in Colab</strong><i>↗</i>
+          </a>
+          <a href="https://github.com/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb" target="_blank" rel="noreferrer">
+            <span>02</span><strong>View notebook</strong><i>↗</i>
+          </a>
+          <a href="https://github.com/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.py" target="_blank" rel="noreferrer">
+            <span>03</span><strong>Python source</strong><i>↗</i>
+          </a>
+          <a href="reports/tabular-koi-eda-report.pdf" target="_blank" rel="noreferrer">
+            <span>04</span><strong>PDF report</strong><i>↗</i>
+          </a>
+          <a href="https://exoplanetarchive.ipac.caltech.edu/docs/Kepler_KOI_docs.html" target="_blank" rel="noreferrer">
+            <span>05</span><strong>NASA source</strong><i>↗</i>
+          </a>
         </div>
       </section>
 
       <section class="eda-section" id="overview">
-        <div class="section-heading">
-          <p class="kicker">01 — METHODOLOGY</p>
-          <h2>Start with<br><em>questions.</em></h2>
-          <p>Five lenses keep the analysis focused and reproducible.</p>
-        </div>
-        <div class="method-grid">
-          <article><span>01</span><h3>Missing values</h3><p>Locate gaps, quantify severity and choose an imputation strategy.</p></article>
-          <article><span>02</span><h3>Numerical shape</h3><p>Compare centre, spread, skew and outlier behaviour.</p></article>
-          <article><span>03</span><h3>Categories</h3><p>Inspect cardinality, frequency and rare classes.</p></article>
-          <article><span>04</span><h3>Relationships</h3><p>Look for correlation, dependence and possible leakage.</p></article>
-          <article><span>05</span><h3>Target balance</h3><p>Understand the outcome distribution before modelling.</p></article>
-        </div>
-      </section>
-
-      <section class="eda-section overview-section">
         <div class="section-heading compact">
-          <p class="kicker">02 — DATASET OVERVIEW</p>
-          <h2>Know the<br><em>baseline.</em></h2>
+          <p class="kicker">01 — DATASET OVERVIEW</p>
+          <h2>One catalogue.<br><em>Three outcomes.</em></h2>
+          <p>The cumulative KOI table describes transit-like signals reviewed by NASA: confirmed planets, candidates awaiting stronger evidence, and false positives.</p>
         </div>
         <div class="metric-grid">
-          <article><strong>32,561</strong><span>training samples</span></article>
-          <article><strong>16,281</strong><span>test samples</span></article>
-          <article><strong>14</strong><span>total features</span></article>
-          <article><strong>6</strong><span>numerical features</span></article>
-          <article><strong>8</strong><span>categorical features</span></article>
-          <article class="accent"><strong>income</strong><span>target variable</span></article>
+          <article><strong>9,564</strong><span>catalogue objects</span></article>
+          <article><strong>30</strong><span>selected columns</span></article>
+          <article><strong>25</strong><span>numerical columns</span></article>
+          <article><strong>5</strong><span>categorical columns</span></article>
+          <article><strong>3</strong><span>target classes</span></article>
+          <article class="accent"><strong>KOI</strong><span>object of interest</span></article>
+        </div>
+        <div class="context-grid">
+          <article><span>PROBLEM</span><p>Classify each observed transit signal as <b>CONFIRMED</b>, <b>CANDIDATE</b>, or <b>FALSE POSITIVE</b> from catalogue-level measurements.</p></article>
+          <article><span>ASSIGNMENT FIT</span><p>More than 2,000 rows and 10 columns, with missing values, categorical encoding, numerical scaling, imbalance, and outliers.</p></article>
+          <article><span>LEAKAGE CONTROL</span><p>Vetting outcomes, confidence scores, false-positive flags, object names, and identifiers are excluded from model inputs.</p></article>
         </div>
       </section>
 
       <section class="eda-section" id="quality">
         <div class="section-heading row-heading">
-          <div><p class="kicker">03 — DATA QUALITY</p><h2>Trust comes<br>from <em>clean inputs.</em></h2></div>
-          <p>Missing values are concentrated in three categorical columns. The pattern is manageable, but it should be made explicit before training.</p>
+          <div><p class="kicker">02 — DATA QUALITY</p><h2>Missing does not<br>mean <em>meaningless.</em></h2></div>
+          <p>The table contains 13,878 missing cells. Missing physical measurements are imputed inside the training pipeline; label-like columns are audited but never used as predictors.</p>
         </div>
-        <div class="quality-layout">
-          <div class="quality-score"><span>Missing cells</span><strong>4,262</strong><small>3 affected columns · 0.62% of all cells</small><div class="quality-bar"><i style="--value: 38%"></i></div><p>Overall quality signal <b>GOOD / REVIEW</b></p></div>
-          <div class="table-card"><table><thead><tr><th>Feature</th><th>Missing</th><th>Share</th><th>Status</th></tr></thead><tbody><tr><td>occupation</td><td>1,843</td><td>5.66%</td><td><span class="status medium">review</span></td></tr><tr><td>workclass</td><td>1,836</td><td>5.64%</td><td><span class="status medium">review</span></td></tr><tr><td>native_country</td><td>583</td><td>1.79%</td><td><span class="status low">low</span></td></tr></tbody></table></div>
+        <div class="figure-grid split-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>QUALITY / MISSINGNESS</span><i>FIG. 02</i></div>
+            <img src="reports/figures/02_missing_values.png" alt="Bar chart of missing-value percentages by KOI column" loading="lazy">
+            <figcaption><b>71.27%</b> of <code>kepler_name</code> is missing because only confirmed objects receive an official name. It is excluded to avoid leakage.</figcaption>
+          </figure>
+          <div class="quality-stack">
+            <article class="quality-stat"><span>Missing cells</span><strong>13,878</strong><small>across the selected 30-column table</small></article>
+            <div class="table-card">
+              <table>
+                <thead><tr><th>Feature</th><th>Missing</th><th>Share</th><th>Action</th></tr></thead>
+                <tbody>
+                  <tr><td>kepler_name</td><td>6,816</td><td>71.27%</td><td><span class="status exclude">exclude</span></td></tr>
+                  <tr><td>koi_score</td><td>1,510</td><td>15.79%</td><td><span class="status exclude">exclude</span></td></tr>
+                  <tr><td>koi_impact</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
+                  <tr><td>koi_depth</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
+                  <tr><td>koi_prad</td><td>363</td><td>3.80%</td><td><span class="status impute">impute</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>QUALITY / IQR OUTLIERS</span><i>FIG. 06</i></div>
+          <img src="reports/figures/06_outlier_share.png" alt="IQR outlier percentage for numerical KOI features" loading="lazy">
+          <figcaption>Outliers are retained because rare astronomical objects may be valid. Robust scaling and tree models reduce sensitivity without erasing potentially meaningful cases.</figcaption>
+        </figure>
       </section>
 
-      <section class="eda-section" id="distributions">
+      <section class="eda-section" id="analysis">
         <div class="section-heading row-heading">
-          <div><p class="kicker">04 — DISTRIBUTIONS</p><h2>See the<br><em>spread.</em></h2></div>
-          <p>Numerical and categorical features tell different stories. Read both before deciding what to encode, scale or transform.</p>
+          <div><p class="kicker">03 — DISTRIBUTIONS</p><h2>Read each signal<br><em>on its own.</em></h2></div>
+          <p>Each chart is rendered independently in the notebook. Log scales preserve the dense core while keeping extreme orbital and radius values visible.</p>
         </div>
-        <div class="distribution-layout">
-          <div class="chart-card"><div class="card-top"><span>NUMERICAL FEATURES</span><i>mean / median</i></div><div class="bars"><div><span>age</span><i style="--bar:58%"></i><b>38.58</b></div><div><span>education_num</span><i style="--bar:42%"></i><b>10.08</b></div><div><span>hours_per_week</span><i style="--bar:61%"></i><b>40.44</b></div><div><span>capital_gain</span><i style="--bar:18%"></i><b>1077</b></div><div><span>capital_loss</span><i style="--bar:9%"></i><b>87</b></div></div></div>
-          <div class="category-card"><div class="card-top"><span>CATEGORICAL FEATURES</span><i>cardinality</i></div><div class="category-cloud"><span>workclass · 8</span><span>education · 16</span><span>occupation · 14</span><span>relationship · 6</span><span>native_country · 41</span><span>marital_status · 7</span><span>race · 5</span><span>sex · 2</span></div><p>High-cardinality features need careful encoding and rare-category checks.</p></div>
+        <div class="figure-grid three-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>ORBITAL PERIOD</span><i>FIG. 03</i></div>
+            <img src="reports/figures/03_orbital_period_distribution.png" alt="Log-scale distribution of KOI orbital period" loading="lazy">
+            <figcaption>Orbital periods span several orders of magnitude and are strongly right-skewed.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>PLANET RADIUS</span><i>FIG. 04</i></div>
+            <img src="reports/figures/04_planet_radius_distribution.png" alt="Log-scale distribution of estimated planetary radius" loading="lazy">
+            <figcaption>Estimated radius has a long tail, motivating robust preprocessing and nonlinear comparison.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>STELLAR TEMPERATURE</span><i>FIG. 05</i></div>
+            <img src="reports/figures/05_stellar_temperature_distribution.png" alt="Distribution of host-star effective temperature" loading="lazy">
+            <figcaption>Most KOIs orbit stars in a dense temperature band, with fewer extreme hosts.</figcaption>
+          </figure>
         </div>
       </section>
 
       <section class="eda-section target-section">
         <div class="section-heading row-heading">
-          <div><p class="kicker">05 — TARGET VARIABLE</p><h2>Class balance<br>changes the <em>story.</em></h2></div>
-          <p>The target is imbalanced. Accuracy alone would hide poor performance on the minority class, so compare precision, recall and F1 as well.</p>
+          <div><p class="kicker">04 — TARGET &amp; RELATIONSHIPS</p><h2>Overlap is where<br><em>the problem lives.</em></h2></div>
+          <p>False positives form 50.60% of the catalogue. Physical features show real separation, but none provides a clean threshold on its own.</p>
         </div>
-        <div class="target-card"><div class="target-row"><div><strong>&lt;=50K</strong><span>24,720 records · 75.92%</span></div><i style="--bar:76%"></i></div><div class="target-row minority"><div><strong>&gt;50K</strong><span>7,841 records · 24.08%</span></div><i style="--bar:24%"></i></div></div>
+        <figure class="analysis-figure hero-figure">
+          <div class="figure-label"><span>TARGET BALANCE</span><i>FIG. 01</i></div>
+          <img src="reports/figures/01_target_distribution.png" alt="Counts of false-positive, confirmed, and candidate KOIs" loading="lazy">
+          <figcaption>4,839 false positives · 2,748 confirmed planets · 1,977 candidates. Macro F1 and balanced accuracy are reported alongside accuracy.</figcaption>
+        </figure>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TARGET × RADIUS</span><i>FIG. 07</i></div>
+            <img src="reports/figures/07_target_vs_planet_radius.png" alt="Planet radius boxplots by KOI disposition" loading="lazy">
+            <figcaption>False positives cover a broader radius range, but substantial class overlap remains.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TARGET × SIGNAL</span><i>FIG. 08</i></div>
+            <img src="reports/figures/08_target_vs_snr.png" alt="Signal-to-noise boxplots by KOI disposition" loading="lazy">
+            <figcaption>Signal strength helps separate classes, yet cannot determine disposition independently.</figcaption>
+          </figure>
+        </div>
+        <figure class="analysis-figure full-figure correlation-figure">
+          <div class="figure-label"><span>SPEARMAN CORRELATION</span><i>FIG. 09</i></div>
+          <img src="reports/figures/09_correlation_heatmap.png" alt="Spearman correlation heatmap of important KOI measurements" loading="lazy">
+          <figcaption>Related physical variables create interaction effects; the target still requires multivariate evidence.</figcaption>
+        </figure>
       </section>
 
-      <section class="eda-section relationship-section">
+      <section class="eda-section preprocessing-section">
         <div class="section-heading row-heading">
-          <div><p class="kicker">06 — RELATIONSHIPS</p><h2>Find the<br><em>signal.</em></h2></div>
-          <p>Most numeric features remain relatively independent. The strongest modelling signal is likely to come from interactions between education, occupation, hours and capital features.</p>
+          <div><p class="kicker">05 — PREPROCESSING</p><h2>Transform without<br><em>peeking ahead.</em></h2></div>
+          <p>Median imputation, categorical one-hot encoding, and scaling are fitted only on training data. Host-star groups keep the same <code>kepid</code> out of validation and test folds.</p>
         </div>
-        <div class="correlation-card"><div class="corr-labels"><span></span><span>age</span><span>edu</span><span>hours</span><span>gain</span></div><div class="corr-row"><b>age</b><i class="heat h4">1.00</i><i class="heat h2">.21</i><i class="heat h2">.07</i><i class="heat h1">.08</i></div><div class="corr-row"><b>edu</b><i class="heat h2">.21</i><i class="heat h4">1.00</i><i class="heat h2">.15</i><i class="heat h1">.12</i></div><div class="corr-row"><b>hours</b><i class="heat h2">.07</i><i class="heat h2">.15</i><i class="heat h4">1.00</i><i class="heat h1">.06</i></div><div class="corr-row"><b>gain</b><i class="heat h1">.08</i><i class="heat h1">.12</i><i class="heat h1">.06</i><i class="heat h4">1.00</i></div></div>
+        <div class="pipeline-strip" aria-label="Preprocessing pipeline">
+          <span>RAW TABLE</span><i>→</i><span>GROUP SPLIT</span><i>→</i><span>IMPUTE</span><i>→</i><span>ENCODE</span><i>→</i><span>SCALE</span><i>→</i><span>MODEL</span>
+        </div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>BEFORE SCALING</span><i>FIG. 10</i></div>
+            <img src="reports/figures/10_before_scaling.png" alt="Selected numerical features before scaling" loading="lazy">
+            <figcaption>Raw temperature and transit depth operate on very different numerical magnitudes.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>AFTER SCALING</span><i>FIG. 11</i></div>
+            <img src="reports/figures/11_after_scaling.png" alt="Selected numerical features after standardization" loading="lazy">
+            <figcaption>Standardization centers features in comparable units for the logistic baseline.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section class="eda-section sample-section">
-        <div class="section-heading row-heading"><div><p class="kicker">07 — SAMPLE ROWS</p><h2>Keep a<br><em>ground truth.</em></h2></div><p>A small, readable sample makes it easier to verify types, labels and transformations before the full pipeline runs.</p></div>
-        <div class="table-card wide"><table><thead><tr><th>age</th><th>workclass</th><th>education</th><th>occupation</th><th>hours_per_week</th><th>income</th></tr></thead><tbody><tr><td>39</td><td>State-gov</td><td>Bachelors</td><td>Adm-clerical</td><td>40</td><td>&lt;=50K</td></tr><tr><td>50</td><td>Self-emp</td><td>Bachelors</td><td>Exec-managerial</td><td>13</td><td>&lt;=50K</td></tr><tr><td>52</td><td>Self-emp</td><td>HS-grad</td><td>Exec-managerial</td><td>45</td><td>&gt;50K</td></tr></tbody></table></div>
+      <section class="eda-section" id="models">
+        <div class="section-heading row-heading">
+          <div><p class="kicker">06 — MODEL COMPARISON</p><h2>Measure the<br><em>improvement.</em></h2></div>
+          <p>The assignment's extension criterion is answered quantitatively: a balanced Random Forest is compared against a leakage-safe Logistic Regression baseline on the same unseen host stars.</p>
+        </div>
+        <div class="model-score-grid">
+          <article><span>VALIDATION MACRO F1</span><strong>.758</strong><small>Balanced Random Forest</small></article>
+          <article><span>BASELINE MACRO F1</span><strong>.558</strong><small>Logistic Regression</small></article>
+          <article class="highlight"><span>ABSOLUTE GAIN</span><strong>+.200</strong><small>macro-F1 points</small></article>
+          <article><span>FINAL TEST MACRO F1</span><strong>.727</strong><small>unseen host stars</small></article>
+        </div>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>VALIDATION METRICS</span><i>FIG. 12</i></div>
+          <img src="reports/figures/12_model_comparison.png" alt="Validation metric comparison between Logistic Regression and balanced Random Forest" loading="lazy">
+          <figcaption>The nonlinear model improves accuracy, balanced accuracy, and macro F1—not only one favorable metric.</figcaption>
+        </figure>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TEST ERRORS</span><i>FIG. 13</i></div>
+            <img src="reports/figures/13_confusion_matrix.png" alt="Normalized test confusion matrix for the balanced Random Forest" loading="lazy">
+            <figcaption>Confirmed planets and false positives are recalled well; candidates remain the hardest, with approximately 54% recall.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>FEATURE IMPORTANCE</span><i>FIG. 14</i></div>
+            <img src="reports/figures/14_feature_importance.png" alt="Permutation importance of the final model features" loading="lazy">
+            <figcaption>Transit signal-to-noise is the strongest predictive input, followed by estimated radius and impact parameter.</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="eda-section insights-section" id="insights">
-        <div class="insight-card"><p class="kicker">08 — KEY INSIGHTS</p><h2>Turn observations<br>into <em>next steps.</em></h2><ul><li>Impute three missing categorical columns and document the decision.</li><li>Use class-aware metrics because the target is imbalanced.</li><li>Investigate hours-per-week and capital features for outliers and transformations.</li><li>Compare encoded feature groups before selecting a baseline model.</li></ul><a class="report-link" href="index.html#data-tracks">← Back to Tasks</a></div>
+        <div class="insight-card">
+          <p class="kicker">07 — KEY INSIGHTS</p>
+          <h2>Useful ranking.<br><em>Not confirmation.</em></h2>
+          <div class="insight-columns">
+            <ul>
+              <li>The KOI catalogue satisfies every tabular-data constraint in the assignment.</li>
+              <li>Grouped splitting prevents the same host star from leaking across evaluation sets.</li>
+              <li>The extended model raises validation macro F1 from 0.558 to 0.758.</li>
+            </ul>
+            <ul>
+              <li>Candidates remain scientifically ambiguous and are the hardest class to predict.</li>
+              <li>Model importance describes predictive utility, not physical causality.</li>
+              <li>Predictions support review priorities; they do not establish planetary confirmation.</li>
+            </ul>
+          </div>
+          <div class="insight-actions">
+            <a class="report-link" href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb" target="_blank" rel="noreferrer">Run the notebook in Colab ↗</a>
+            <a class="report-link secondary" href="index.html#data-tracks">← Back to Tasks</a>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer class="eda-footer"><span>CO5177 · TABULAR EDA</span><span>HCMUT · DataFlow</span><a href="#top">Back to top ↑</a></footer>
-    <script src="eda.js"></script>
+    <footer class="eda-footer">
+      <span>CO5177 · TABULAR EDA</span>
+      <span>TRAILBLAZER · DINH HOANG DUY KHANH</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
   </body>
 </html>

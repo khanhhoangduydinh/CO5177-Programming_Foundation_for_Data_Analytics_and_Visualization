@@ -1,0 +1,58 @@
+{
+  "dataset": "NASA Kepler Objects of Interest cumulative table",
+  "rows": 9564,
+  "columns": 30,
+  "missing_cells": 13878,
+  "target_counts": {
+    "FALSE POSITIVE": 4839,
+    "CONFIRMED": 2748,
+    "CANDIDATE": 1977
+  },
+  "validation_results": [
+    {
+      "model": "Balanced Random Forest",
+      "accuracy": 0.78879,
+      "balanced_accuracy": 0.760443,
+      "macro_f1": 0.758852
+    },
+    {
+      "model": "Logistic baseline",
+      "accuracy": 0.659604,
+      "balanced_accuracy": 0.581504,
+      "macro_f1": 0.558206
+    }
+  ],
+  "test_metrics": {
+    "model": "Balanced Random Forest",
+    "accuracy": 0.7596017069701281,
+    "balanced_accuracy": 0.7324803033181175,
+    "macro_f1": 0.7293425045680579
+  },
+  "top_features": [
+    {
+      "feature": "koi_model_snr",
+      "importance": 0.147812,
+      "std": 0.006988
+    },
+    {
+      "feature": "koi_prad",
+      "importance": 0.076234,
+      "std": 0.008564
+    },
+    {
+      "feature": "koi_impact",
+      "importance": 0.039677,
+      "std": 0.003005
+    },
+    {
+      "feature": "koi_duration",
+      "importance": 0.036877,
+      "std": 0.00433
+    },
+    {
+      "feature": "koi_period",
+      "importance": 0.035051,
+      "std": 0.004048
+    }
+  ]
+}

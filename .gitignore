@@ -3,3 +3,6 @@ tmp/
 Thumbs.db
 node_modules/
 01_logobachkhoasang.png
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

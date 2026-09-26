@@ -41,3 +41,21 @@ Trang sẽ được xuất bản sau khi workflow Pages hoàn tất.
 ## Tác giả
 
 [Khanh Hoang Duy Dinh](https://github.com/khanhhoangduydinh)
+
+## Tabular assignment
+
+- Website report: `tabular-eda.html`
+- Executed notebook: `notebooks/tabular_koi_eda.ipynb`
+- Editable percent-format source: `notebooks/tabular_koi_eda.py`
+- Dataset snapshot: `data/koi_cumulative.csv`
+- Generated figures: `reports/figures/`
+- PDF report: `reports/tabular-koi-eda-report.pdf`
+- PDF generator: `reports/generate_tabular_report.py`
+
+Open the notebook in Colab:
+
+<https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb>
+
+The notebook is the source of truth. Edit the `.py` or `.ipynb`, run all cells,
+then commit and push; the GitHub-backed Colab link always opens the latest
+version from `main`.
