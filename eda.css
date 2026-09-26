@@ -63,7 +63,7 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 .resource-bar i { font-style: normal; }
 .eda-section { padding: 98px 0; border-top: 1px solid var(--line); }
 .section-heading { max-width: 730px; margin-bottom: 48px; }
-.section-heading.compact { margin-bottom: 35px; }
+.section-heading.compact { margin-bottom: 28px; }
 .section-heading h2 { margin-bottom: 18px; color: var(--ink); font-size: clamp(48px, 5.6vw, 78px); letter-spacing: -.08em; line-height: .9; }
 .section-heading > p:last-child { max-width: 690px; color: var(--muted); font-size: 17px; }
 .row-heading { max-width: none; display: grid; grid-template-columns: 1fr .75fr; align-items: end; gap: 80px; }

@@ -80,8 +80,6 @@
       <section class="eda-section" id="overview">
         <div class="section-heading compact">
           <p class="kicker">01 — DATASET OVERVIEW</p>
-          <h2>One catalogue.<br><em>Three outcomes.</em></h2>
-          <p>The cumulative KOI table describes transit-like signals reviewed by NASA: confirmed planets, candidates awaiting stronger evidence, and false positives.</p>
         </div>
         <div class="metric-grid">
           <article><strong>9,564</strong><span>catalogue objects</span></article>
@@ -99,9 +97,8 @@
       </section>
 
       <section class="eda-section" id="quality">
-        <div class="section-heading row-heading">
-          <div><p class="kicker">02 — DATA QUALITY</p><h2>Missing does not<br>mean <em>meaningless.</em></h2></div>
-          <p>The table contains 13,878 missing cells. Missing physical measurements are imputed inside the training pipeline; label-like columns are audited but never used as predictors.</p>
+        <div class="section-heading compact">
+          <p class="kicker">02 — DATA QUALITY</p>
         </div>
         <div class="figure-grid split-figure">
           <figure class="analysis-figure">
@@ -133,9 +130,8 @@
       </section>
 
       <section class="eda-section" id="analysis">
-        <div class="section-heading row-heading">
-          <div><p class="kicker">03 — DISTRIBUTIONS</p><h2>Read each signal<br><em>on its own.</em></h2></div>
-          <p>Each chart is rendered independently in the notebook. Log scales preserve the dense core while keeping extreme orbital and radius values visible.</p>
+        <div class="section-heading compact">
+          <p class="kicker">03 — DISTRIBUTIONS</p>
         </div>
         <div class="figure-grid three-figure">
           <figure class="analysis-figure">
@@ -157,9 +153,8 @@
       </section>
 
       <section class="eda-section target-section">
-        <div class="section-heading row-heading">
-          <div><p class="kicker">04 — TARGET &amp; RELATIONSHIPS</p><h2>Overlap is where<br><em>the problem lives.</em></h2></div>
-          <p>False positives form 50.60% of the catalogue. Physical features show real separation, but none provides a clean threshold on its own.</p>
+        <div class="section-heading compact">
+          <p class="kicker">04 — TARGET &amp; RELATIONSHIPS</p>
         </div>
         <figure class="analysis-figure hero-figure">
           <div class="figure-label"><span>TARGET BALANCE</span><i>FIG. 01</i></div>
@@ -186,9 +181,8 @@
       </section>
 
       <section class="eda-section preprocessing-section">
-        <div class="section-heading row-heading">
-          <div><p class="kicker">05 — PREPROCESSING</p><h2>Transform without<br><em>peeking ahead.</em></h2></div>
-          <p>Median imputation, categorical one-hot encoding, and scaling are fitted only on training data. Host-star groups keep the same <code>kepid</code> out of validation and test folds.</p>
+        <div class="section-heading compact">
+          <p class="kicker">05 — PREPROCESSING</p>
         </div>
         <div class="pipeline-strip" aria-label="Preprocessing pipeline">
           <span>RAW TABLE</span><i>→</i><span>GROUP SPLIT</span><i>→</i><span>IMPUTE</span><i>→</i><span>ENCODE</span><i>→</i><span>SCALE</span><i>→</i><span>MODEL</span>
@@ -208,9 +202,8 @@
       </section>
 
       <section class="eda-section" id="models">
-        <div class="section-heading row-heading">
-          <div><p class="kicker">06 — MODEL COMPARISON</p><h2>Measure the<br><em>improvement.</em></h2></div>
-          <p>The assignment's extension criterion is answered quantitatively: a balanced Random Forest is compared against a leakage-safe Logistic Regression baseline on the same unseen host stars.</p>
+        <div class="section-heading compact">
+          <p class="kicker">06 — MODEL COMPARISON</p>
         </div>
         <div class="model-score-grid">
           <article><span>VALIDATION MACRO F1</span><strong>.758</strong><small>Balanced Random Forest</small></article>
@@ -240,7 +233,6 @@
       <section class="eda-section insights-section" id="insights">
         <div class="insight-card">
           <p class="kicker">07 — KEY INSIGHTS</p>
-          <h2>Useful ranking.<br><em>Not confirmation.</em></h2>
           <div class="insight-columns">
             <ul>
               <li>The KOI catalogue satisfies every tabular-data constraint in the assignment.</li>
