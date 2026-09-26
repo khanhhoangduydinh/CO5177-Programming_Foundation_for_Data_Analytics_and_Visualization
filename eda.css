@@ -69,18 +69,18 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 .row-heading { max-width: none; display: grid; grid-template-columns: 1fr .75fr; align-items: end; gap: 80px; }
 .row-heading > p { margin: 0; color: var(--muted); font-size: 16px; }
 .metric-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
-.metric-grid article { padding: 24px 20px; border: 1px solid var(--line); background: var(--white); border-radius: 14px; }
+.metric-grid article { min-height: 132px; display: flex; flex-direction: column; justify-content: center; padding: 28px 24px; border: 1px solid var(--line); background: var(--white); border-radius: 14px; }
 .metric-grid article.accent { color: var(--white); background: var(--orange); border-color: var(--orange); }
-.metric-grid strong { display: block; color: var(--ink); font-size: 31px; letter-spacing: -.06em; line-height: 1; }
+.metric-grid strong { display: block; color: var(--ink); font-size: clamp(36px, 2.7vw, 44px); letter-spacing: -.06em; line-height: 1; }
 .metric-grid .accent strong { color: var(--white); }
-.metric-grid span { display: block; margin-top: 12px; color: var(--muted); font-family: var(--mono); font-size: 9px; }
+.metric-grid span { display: block; margin-top: 16px; color: var(--muted); font-family: var(--mono); font-size: 13px; line-height: 1.45; letter-spacing: .02em; }
 .metric-grid .accent span { color: rgba(255,255,255,.75); }
 .context-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
-.context-grid article { padding: 25px; border: 1px solid var(--line); border-radius: 14px; }
+.context-grid article { min-height: 166px; padding: 30px; border: 1px solid var(--line); border-radius: 14px; }
 .context-grid article:nth-child(2) { background: #f8e4a5; }
 .context-grid article:nth-child(3) { background: var(--mint-light); }
-.context-grid span { color: var(--orange-dark); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; }
-.context-grid p { margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+.context-grid span { color: var(--orange-dark); font-family: var(--mono); font-size: 13px; line-height: 1.4; letter-spacing: .1em; }
+.context-grid p { margin: 18px 0 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
 .context-grid b { color: var(--ink); }
 .figure-grid { display: grid; gap: 22px; }
 .split-figure { grid-template-columns: 1.2fr .8fr; align-items: stretch; }
