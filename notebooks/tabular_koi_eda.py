@@ -17,13 +17,12 @@
 # easy to inspect, rerun, and reuse in the project website.
 
 # %% [markdown]
-# ## 0. Reproducibility and data source
+# ## 0. Import libraries and load data
 #
-# The data come directly from the
-# [NASA Exoplanet Archive TAP service](https://exoplanetarchive.ipac.caltech.edu/).
-# The selected table contains more than 2,000 rows, more than 10 columns,
-# missing values, categorical fields, numerical fields, class imbalance, and
-# outliers—meeting the assignment's tabular constraints.
+# The data come from the
+# [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/).
+# A fixed copy is stored in the GitHub repository so everyone obtains the same
+# results when running the notebook.
 #
 # The Kaggle notebook *Kepler Objects of Interest — Exploratory Analysis* was
 # used as a reference for domain-aware feature selection. This implementation
@@ -32,8 +31,6 @@
 
 # %%
 from pathlib import Path
-from urllib.parse import urlencode
-
 import json
 import warnings
 
@@ -59,63 +56,35 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, RobustScaler, StandardScaler
 
 warnings.filterwarnings("ignore", category=FutureWarning)
-RANDOM_STATE = 42
-PALETTE = ["#d35b12", "#efae00", "#173f4c"]
+
+random_state = 42
+colors = ["#d35b12", "#efae00", "#173f4c"]
 sns.set_theme(style="whitegrid", context="notebook")
 plt.rcParams.update({"figure.dpi": 120, "savefig.dpi": 180})
 
-PROJECT_ROOT = Path.cwd()
-if PROJECT_ROOT.name == "notebooks":
-    PROJECT_ROOT = PROJECT_ROOT.parent
+if Path.cwd().name == "notebooks":
+    project_folder = Path.cwd().parent
+else:
+    project_folder = Path.cwd()
 
-DATA_DIR = PROJECT_ROOT / "data"
-FIGURE_DIR = PROJECT_ROOT / "reports" / "figures"
-DATA_DIR.mkdir(parents=True, exist_ok=True)
-FIGURE_DIR.mkdir(parents=True, exist_ok=True)
-
-
-def finish_plot(filename: str) -> None:
-    """Save the current figure, render it, and release its memory."""
-    plt.tight_layout()
-    plt.savefig(FIGURE_DIR / filename, bbox_inches="tight", facecolor="white")
-    plt.show()
-    plt.close()
+figure_folder = project_folder / "reports" / "figures"
+figure_folder.mkdir(parents=True, exist_ok=True)
 
 
 # %% [markdown]
-# ### Download a reproducible subset of the cumulative KOI table
-#
-# The query keeps identifiers, labels, diagnostic flags, uncertainties, and
-# physical measurements. The local CSV is a cache: delete it to fetch a fresh
-# catalogue from NASA.
+# ### Load the KOI table
 
 # %%
-SELECTED_COLUMNS = [
-    "kepid", "kepoi_name", "kepler_name", "koi_disposition",
-    "koi_pdisposition", "koi_score", "koi_fpflag_nt", "koi_fpflag_ss",
-    "koi_fpflag_co", "koi_fpflag_ec", "koi_period", "koi_period_err1",
-    "koi_period_err2", "koi_impact", "koi_duration", "koi_depth",
-    "koi_prad", "koi_prad_err1", "koi_prad_err2", "koi_teq",
-    "koi_insol", "koi_model_snr", "koi_tce_plnt_num",
-    "koi_tce_delivname", "koi_steff", "koi_slogg", "koi_srad",
-    "ra", "dec", "koi_kepmag",
-]
+data_file = project_folder / "data" / "koi_cumulative.csv"
+data_url = "https://raw.githubusercontent.com/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/main/data/koi_cumulative.csv"
 
-query = f"select {','.join(SELECTED_COLUMNS)} from cumulative"
-DATA_URL = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?" + urlencode(
-    {"query": query, "format": "csv"}
-)
-DATA_PATH = DATA_DIR / "koi_cumulative.csv"
-
-if DATA_PATH.exists():
-    df = pd.read_csv(DATA_PATH)
-    print(f"Loaded cached data: {DATA_PATH}")
+if data_file.exists():
+    df = pd.read_csv(data_file)
+    print("Loaded local data:", data_file)
 else:
-    df = pd.read_csv(DATA_URL)
-    df.to_csv(DATA_PATH, index=False)
-    print(f"Downloaded and cached data: {DATA_PATH}")
+    df = pd.read_csv(data_url)
+    print("Loaded data from GitHub")
 
-df_raw = df.copy()
 display(df.head())
 
 # %%
@@ -154,10 +123,10 @@ display(overview)
 
 # %%
 target_counts = df["koi_disposition"].value_counts()
-target_share = df["koi_disposition"].value_counts(normalize=True).mul(100)
-target_summary = pd.concat(
-    [target_counts.rename("count"), target_share.rename("percentage")], axis=1
-).round(2)
+target_share = df["koi_disposition"].value_counts(normalize=True) * 100
+target_summary = pd.DataFrame()
+target_summary["count"] = target_counts
+target_summary["percentage"] = target_share.round(2)
 display(target_summary)
 
 plt.figure(figsize=(8.4, 5.2))
@@ -165,13 +134,15 @@ ax = sns.barplot(
     x=target_summary.index,
     y=target_summary["count"],
     hue=target_summary.index,
-    palette=PALETTE,
+    palette=colors,
     legend=False,
 )
 ax.set(title="KOI disposition is moderately imbalanced", xlabel="Disposition", ylabel="Objects")
 for container in ax.containers:
     ax.bar_label(container, fmt="{:,.0f}", padding=4)
-finish_plot("01_target_distribution.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "01_target_distribution.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** false positives form the largest class. Accuracy alone is not
@@ -181,12 +152,11 @@ finish_plot("01_target_distribution.png")
 # ## 3. Missing values
 
 # %%
-missing_summary = (
-    df.isna().sum().rename("missing_count").to_frame()
-    .assign(missing_pct=lambda table: table["missing_count"] / len(df) * 100)
-    .query("missing_count > 0")
-    .sort_values("missing_pct", ascending=False)
-)
+missing_summary = pd.DataFrame()
+missing_summary["missing_count"] = df.isnull().sum()
+missing_summary["missing_pct"] = missing_summary["missing_count"] / len(df) * 100
+missing_summary = missing_summary[missing_summary["missing_count"] > 0]
+missing_summary = missing_summary.sort_values("missing_pct", ascending=False)
 display(missing_summary.round(2))
 
 plt.figure(figsize=(9.5, 6.8))
@@ -198,7 +168,9 @@ ax = sns.barplot(
     color="#d35b12",
 )
 ax.set(title="Top columns by missing-value share", xlabel="Missing values (%)", ylabel="")
-finish_plot("02_missing_values.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "02_missing_values.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** missingness is concentrated in a limited set of physical
@@ -213,7 +185,9 @@ plt.figure(figsize=(9, 5.6))
 ax = sns.histplot(df["koi_period"].dropna(), bins=60, color="#173f4c")
 ax.set_xscale("log")
 ax.set(title="Orbital period spans several orders of magnitude", xlabel="Orbital period (days, log scale)", ylabel="Objects")
-finish_plot("03_orbital_period_distribution.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "03_orbital_period_distribution.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** orbital period is strongly right-skewed. The log axis preserves
@@ -225,7 +199,9 @@ radius = df.loc[df["koi_prad"].gt(0), "koi_prad"].dropna()
 ax = sns.histplot(radius, bins=60, color="#d35b12")
 ax.set_xscale("log")
 ax.set(title="Estimated planetary radius contains extreme values", xlabel="Planet radius (Earth radii, log scale)", ylabel="Objects")
-finish_plot("04_planet_radius_distribution.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "04_planet_radius_distribution.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** the radius distribution has a long tail. Robust preprocessing
@@ -237,7 +213,9 @@ ax = sns.histplot(df["koi_steff"].dropna(), bins=45, color="#efae00")
 ax.axvline(df["koi_steff"].median(), color="#173f4c", linestyle="--", label="Median")
 ax.set(title="Host-star effective temperature", xlabel="Temperature (K)", ylabel="Objects")
 ax.legend()
-finish_plot("05_stellar_temperature_distribution.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "05_stellar_temperature_distribution.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** most KOIs orbit stars in a relatively dense temperature band,
@@ -247,13 +225,9 @@ finish_plot("05_stellar_temperature_distribution.png")
 # ## 5. Categorical feature distribution
 
 # %%
-delivery_counts = (
-    df["koi_tce_delivname"]
-    .fillna("Missing")
-    .value_counts()
-    .rename_axis("delivery_catalogue")
-    .reset_index(name="objects")
-)
+delivery_counts = df["koi_tce_delivname"].fillna("Missing").value_counts()
+delivery_counts = delivery_counts.rename_axis("delivery_catalogue")
+delivery_counts = delivery_counts.reset_index(name="objects")
 
 plt.figure(figsize=(9, 5.6))
 ax = sns.barplot(
@@ -267,7 +241,9 @@ ax = sns.barplot(
 ax.set(title="KOIs by TCE delivery catalogue", xlabel="Objects", ylabel="")
 for container in ax.containers:
     ax.bar_label(container, padding=5, fmt="{:,.0f}")
-finish_plot("15_tce_delivery_distribution.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "15_tce_delivery_distribution.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** the DR25 catalogue supplies most records. Delivery name is kept
@@ -278,14 +254,14 @@ finish_plot("15_tce_delivery_distribution.png")
 # ## 6. Outlier audit
 
 # %%
-MODEL_NUMERIC_FEATURES = [
+numeric_features = [
     "koi_period", "koi_impact", "koi_duration", "koi_depth", "koi_prad",
     "koi_teq", "koi_insol", "koi_model_snr", "koi_steff", "koi_slogg",
     "koi_srad", "koi_kepmag",
 ]
 
 outlier_rows = []
-for column in MODEL_NUMERIC_FEATURES:
+for column in numeric_features:
     values = df[column].dropna()
     q1, q3 = values.quantile([0.25, 0.75])
     iqr = q3 - q1
@@ -302,7 +278,9 @@ plt.figure(figsize=(9.5, 6.2))
 outlier_plot = outlier_summary.sort_values("outlier_pct")
 ax = sns.barplot(data=outlier_plot, x="outlier_pct", y="feature", color="#efae00")
 ax.set(title="IQR outlier share by model feature", xlabel="Outliers (%)", ylabel="")
-finish_plot("06_outlier_share.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "06_outlier_share.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** the catalogue genuinely contains many IQR outliers. They are not
@@ -321,12 +299,14 @@ ax = sns.boxplot(
     x="koi_disposition",
     y="koi_prad",
     hue="koi_disposition",
-    palette=PALETTE,
+    palette=colors,
     legend=False,
     showfliers=False,
 )
 ax.set(title="Planet radius differs across dispositions", xlabel="Disposition", ylabel="Planet radius (Earth radii; ≤99th percentile)")
-finish_plot("07_target_vs_planet_radius.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "07_target_vs_planet_radius.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** false positives tend to occupy a broader and larger radius range,
@@ -340,12 +320,14 @@ ax = sns.boxplot(
     x="koi_disposition",
     y="koi_model_snr",
     hue="koi_disposition",
-    palette=PALETTE,
+    palette=colors,
     legend=False,
     showfliers=False,
 )
 ax.set(title="Transit signal-to-noise by disposition", xlabel="Disposition", ylabel="Model SNR (≤99th percentile)")
-finish_plot("08_target_vs_snr.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "08_target_vs_snr.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** signal strength also separates some objects but retains substantial
@@ -374,7 +356,9 @@ ax = sns.heatmap(
     cbar_kws={"label": "Spearman correlation"},
 )
 ax.set_title("Rank correlations among selected measurements", pad=16)
-finish_plot("09_correlation_heatmap.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "09_correlation_heatmap.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** some physical variables are related, but no single compact block
@@ -396,28 +380,29 @@ finish_plot("09_correlation_heatmap.png")
 # training and evaluation sets.
 
 # %%
-CATEGORICAL_FEATURES = ["koi_tce_delivname"]
-TARGET = "koi_disposition"
-FEATURES = MODEL_NUMERIC_FEATURES + CATEGORICAL_FEATURES
+categorical_features = ["koi_tce_delivname"]
+target = "koi_disposition"
+features = numeric_features + categorical_features
 
-model_df = df.dropna(subset=[TARGET, "kepid"]).copy()
-X = model_df[FEATURES]
-y = model_df[TARGET]
+model_df = df.dropna(subset=[target, "kepid"]).copy()
+X = model_df[features]
+y = model_df[target]
 groups = model_df["kepid"]
 
-outer_split = GroupShuffleSplit(n_splits=1, test_size=0.30, random_state=RANDOM_STATE)
+# Split by host star, not by individual row
+outer_split = GroupShuffleSplit(n_splits=1, test_size=0.30, random_state=random_state)
 train_idx, holdout_idx = next(outer_split.split(X, y, groups))
 X_train, y_train = X.iloc[train_idx], y.iloc[train_idx]
 holdout = model_df.iloc[holdout_idx]
 
-inner_split = GroupShuffleSplit(n_splits=1, test_size=0.50, random_state=RANDOM_STATE)
+inner_split = GroupShuffleSplit(n_splits=1, test_size=0.50, random_state=random_state)
 val_rel_idx, test_rel_idx = next(
-    inner_split.split(holdout[FEATURES], holdout[TARGET], holdout["kepid"])
+    inner_split.split(holdout[features], holdout[target], holdout["kepid"])
 )
-X_val = holdout.iloc[val_rel_idx][FEATURES]
-y_val = holdout.iloc[val_rel_idx][TARGET]
-X_test = holdout.iloc[test_rel_idx][FEATURES]
-y_test = holdout.iloc[test_rel_idx][TARGET]
+X_val = holdout.iloc[val_rel_idx][features]
+y_val = holdout.iloc[val_rel_idx][target]
+X_test = holdout.iloc[test_rel_idx][features]
+y_test = holdout.iloc[test_rel_idx][target]
 
 split_summary = pd.DataFrame(
     {
@@ -448,7 +433,9 @@ raw_scaling_long = raw_scaling_frame.melt(var_name="feature", value_name="value"
 plt.figure(figsize=(9, 5.6))
 ax = sns.boxplot(data=raw_scaling_long, x="feature", y="value", color="#f1c9b2", showfliers=False)
 ax.set(title="Before scaling: feature magnitudes are incompatible", xlabel="", ylabel="Raw value")
-finish_plot("10_before_scaling.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "10_before_scaling.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** temperature and transit depth dominate the raw numeric scale;
@@ -464,7 +451,9 @@ scaled_long = scaled_frame.melt(var_name="feature", value_name="standardized val
 plt.figure(figsize=(9, 5.6))
 ax = sns.boxplot(data=scaled_long, x="feature", y="standardized value", color="#a9cfc1", showfliers=False)
 ax.set(title="After standardization: features share a comparable scale", xlabel="", ylabel="Standard deviations")
-finish_plot("11_after_scaling.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "11_after_scaling.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** standardization centers each feature near zero with comparable
@@ -475,7 +464,8 @@ finish_plot("11_after_scaling.png")
 # ## 11. Baseline vs extended model
 
 # %%
-baseline_preprocessor = ColumnTransformer(
+# Logistic Regression: fill missing values, encode text, and standardize numbers
+logistic_preprocessor = ColumnTransformer(
     transformers=[
         (
             "numeric",
@@ -485,7 +475,7 @@ baseline_preprocessor = ColumnTransformer(
                     ("scaler", StandardScaler()),
                 ]
             ),
-            MODEL_NUMERIC_FEATURES,
+            numeric_features,
         ),
         (
             "categorical",
@@ -495,12 +485,23 @@ baseline_preprocessor = ColumnTransformer(
                     ("encoder", OneHotEncoder(handle_unknown="ignore")),
                 ]
             ),
-            CATEGORICAL_FEATURES,
+            categorical_features,
         ),
     ]
 )
 
-extended_preprocessor = ColumnTransformer(
+logistic_model = Pipeline(
+    steps=[
+        ("preprocessor", logistic_preprocessor),
+        ("classifier", LogisticRegression(max_iter=2500, random_state=random_state)),
+    ]
+)
+
+logistic_model.fit(X_train, y_train)
+logistic_prediction = logistic_model.predict(X_val)
+
+# Random Forest: use robust scaling and balanced class weights
+forest_preprocessor = ColumnTransformer(
     transformers=[
         (
             "numeric",
@@ -510,7 +511,7 @@ extended_preprocessor = ColumnTransformer(
                     ("scaler", RobustScaler()),
                 ]
             ),
-            MODEL_NUMERIC_FEATURES,
+            numeric_features,
         ),
         (
             "categorical",
@@ -520,63 +521,64 @@ extended_preprocessor = ColumnTransformer(
                     ("encoder", OneHotEncoder(handle_unknown="ignore")),
                 ]
             ),
-            CATEGORICAL_FEATURES,
+            categorical_features,
         ),
     ]
 )
 
-models = {
-    "Logistic baseline": Pipeline(
-        steps=[
-            ("preprocessor", baseline_preprocessor),
-            ("classifier", LogisticRegression(max_iter=2500, random_state=RANDOM_STATE)),
-        ]
-    ),
-    "Balanced Random Forest": Pipeline(
-        steps=[
-            ("preprocessor", extended_preprocessor),
-            (
-                "classifier",
-                RandomForestClassifier(
-                    n_estimators=350,
-                    min_samples_leaf=2,
-                    class_weight="balanced_subsample",
-                    random_state=RANDOM_STATE,
-                    n_jobs=-1,
-                ),
+forest_model = Pipeline(
+    steps=[
+        ("preprocessor", forest_preprocessor),
+        (
+            "classifier",
+            RandomForestClassifier(
+                n_estimators=350,
+                min_samples_leaf=2,
+                class_weight="balanced_subsample",
+                random_state=random_state,
+                n_jobs=-1,
             ),
-        ]
-    ),
-}
+        ),
+    ]
+)
 
-validation_rows = []
-for name, model in models.items():
-    model.fit(X_train, y_train)
-    prediction = model.predict(X_val)
-    validation_rows.append(
-        {
-            "model": name,
-            "accuracy": accuracy_score(y_val, prediction),
-            "balanced_accuracy": balanced_accuracy_score(y_val, prediction),
-            "macro_f1": f1_score(y_val, prediction, average="macro"),
-        }
-    )
+forest_model.fit(X_train, y_train)
+forest_prediction = forest_model.predict(X_val)
 
-validation_results = pd.DataFrame(validation_rows).set_index("model").sort_values("macro_f1", ascending=False)
+# Put the validation scores in one table
+validation_results = pd.DataFrame(
+    {
+        "model": ["Balanced Random Forest", "Logistic baseline"],
+        "accuracy": [
+            accuracy_score(y_val, forest_prediction),
+            accuracy_score(y_val, logistic_prediction),
+        ],
+        "balanced_accuracy": [
+            balanced_accuracy_score(y_val, forest_prediction),
+            balanced_accuracy_score(y_val, logistic_prediction),
+        ],
+        "macro_f1": [
+            f1_score(y_val, forest_prediction, average="macro"),
+            f1_score(y_val, logistic_prediction, average="macro"),
+        ],
+    }
+)
+validation_results = validation_results.set_index("model")
+validation_results = validation_results.sort_values("macro_f1", ascending=False)
 display(validation_results.round(4))
 
 # %%
-validation_long = (
-    validation_results.reset_index()
-    .melt(id_vars="model", var_name="metric", value_name="score")
-)
+validation_long = validation_results.reset_index()
+validation_long = validation_long.melt(id_vars="model", var_name="metric", value_name="score")
 plt.figure(figsize=(10, 5.8))
 ax = sns.barplot(data=validation_long, x="metric", y="score", hue="model", palette=["#a9cfc1", "#d35b12"])
 ax.set(title="Validation comparison: baseline vs class-aware nonlinear model", xlabel="", ylabel="Score", ylim=(0, 1))
 ax.legend(title="")
 for container in ax.containers:
     ax.bar_label(container, fmt="%.3f", padding=3, fontsize=8)
-finish_plot("12_model_comparison.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "12_model_comparison.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** the comparison uses the untouched validation split. Macro F1 is
@@ -589,7 +591,11 @@ finish_plot("12_model_comparison.png")
 
 # %%
 best_model_name = validation_results.index[0]
-best_model = models[best_model_name]
+if best_model_name == "Balanced Random Forest":
+    best_model = forest_model
+else:
+    best_model = logistic_model
+
 test_prediction = best_model.predict(X_test)
 
 test_metrics = {
@@ -615,7 +621,9 @@ ConfusionMatrixDisplay.from_predictions(
 plt.title(f"Normalized test confusion matrix — {best_model_name}")
 plt.xlabel("Predicted disposition")
 plt.ylabel("True disposition")
-finish_plot("13_confusion_matrix.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "13_confusion_matrix.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** the normalized confusion matrix shows recall separately for each
@@ -630,20 +638,15 @@ permutation = permutation_importance(
     X_test,
     y_test,
     n_repeats=8,
-    random_state=RANDOM_STATE,
+    random_state=random_state,
     scoring="f1_macro",
     n_jobs=-1,
 )
-importance = (
-    pd.DataFrame(
-        {
-            "feature": FEATURES,
-            "importance": permutation.importances_mean,
-            "std": permutation.importances_std,
-        }
-    )
-    .sort_values("importance", ascending=False)
-)
+importance = pd.DataFrame()
+importance["feature"] = features
+importance["importance"] = permutation.importances_mean
+importance["std"] = permutation.importances_std
+importance = importance.sort_values("importance", ascending=False)
 display(importance.round(4))
 
 plt.figure(figsize=(9.2, 6.2))
@@ -658,7 +661,9 @@ ax.errorbar(
     capsize=3,
 )
 ax.set(title="Permutation importance on unseen host stars", xlabel="Decrease in macro F1 after shuffling", ylabel="")
-finish_plot("14_feature_importance.png")
+plt.tight_layout()
+plt.savefig(figure_folder / "14_feature_importance.png", bbox_inches="tight", facecolor="white")
+plt.show()
 
 # %% [markdown]
 # **Finding:** permutation importance measures how much macro F1 drops when one
@@ -691,20 +696,28 @@ finish_plot("14_feature_importance.png")
 # - A later independent catalogue would provide a stronger external test.
 
 # %%
+target_counts_json = {}
+for label, count in target_counts.items():
+    target_counts_json[label] = int(count)
+
+test_metrics_json = {
+    "model": test_metrics["model"],
+    "accuracy": float(test_metrics["accuracy"]),
+    "balanced_accuracy": float(test_metrics["balanced_accuracy"]),
+    "macro_f1": float(test_metrics["macro_f1"]),
+}
+
 summary = {
     "dataset": "NASA Kepler Objects of Interest cumulative table",
     "rows": int(df.shape[0]),
     "columns": int(df.shape[1]),
     "missing_cells": int(df.isna().sum().sum()),
-    "target_counts": {key: int(value) for key, value in target_counts.items()},
+    "target_counts": target_counts_json,
     "validation_results": validation_results.round(6).reset_index().to_dict(orient="records"),
-    "test_metrics": {
-        key: (float(value) if isinstance(value, (float, np.floating)) else value)
-        for key, value in test_metrics.items()
-    },
+    "test_metrics": test_metrics_json,
     "top_features": importance.head(5).round(6).to_dict(orient="records"),
 }
 
-SUMMARY_PATH = PROJECT_ROOT / "reports" / "tabular_koi_summary.json"
-SUMMARY_PATH.write_text(json.dumps(summary, indent=2), encoding="utf-8")
-print(f"Saved machine-readable summary to {SUMMARY_PATH}")
+summary_file = project_folder / "reports" / "tabular_koi_summary.json"
+summary_file.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+print("Saved summary:", summary_file)
