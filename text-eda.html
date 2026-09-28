@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vietnamese text EDA and TF-IDF classification with the official ViCTSD dataset for CO5177.">
+    <meta name="theme-color" content="#f7f5ef">
+    <title>ViCTSD · Text EDA | CO5177 DataFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eda.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Bỏ qua đến nội dung</a>
+
+    <header class="eda-header">
+      <a class="eda-brand" href="index.html#data-tracks" aria-label="Quay lại các bài tập CO5177">
+        <img src="assets/logo-bachkhoa.png" alt="Logo Bách Khoa TP.HCM">
+        <span>CO5177 / TEXT EDA</span>
+      </a>
+      <nav aria-label="Điều hướng báo cáo Text EDA">
+        <a href="#overview">Overview</a>
+        <a href="#schema">Schema</a>
+        <a href="#quality">Quality</a>
+        <a href="#signals">Signals</a>
+        <a href="#models">Models</a>
+      </nav>
+      <a class="back-link" href="index.html#data-tracks">← Back to Tasks</a>
+    </header>
+
+    <main id="main-content">
+      <section class="eda-hero" id="top">
+        <p class="kicker"><span></span>03 — TASKS / TEXT</p>
+        <div class="hero-layout">
+          <div>
+            <p class="eyebrow">UIT-VICTSD · VIETNAMESE TEXT CLASSIFICATION</p>
+            <h1>Words, labels,<br><em>and context.</em></h1>
+            <p class="hero-intro">
+              Khám phá 10.000 bình luận tiếng Việt, kiểm tra rò rỉ giữa các tập dữ liệu,
+              trực quan hoá tín hiệu ngôn ngữ và xây dựng mô hình TF-IDF đơn giản, có thể chạy lại.
+            </p>
+            <div class="hero-tags" aria-label="Thẻ dữ liệu">
+              <span>10,000 comments</span><span>Vietnamese</span><span>2 binary tasks</span>
+            </div>
+          </div>
+          <aside class="hero-signal" aria-label="Tóm tắt kết quả Text EDA">
+            <div class="signal-head"><span>DATASET / VICTSD</span><i>RUN ALL ✓</i></div>
+            <div class="signal-grid">
+              <div><strong>10K</strong><span>comments</span></div>
+              <div><strong>10</strong><span>topics</span></div>
+              <div><strong>1.1K</strong><span>toxic labels</span></div>
+              <div><strong>.679</strong><span>toxicity macro F1</span></div>
+            </div>
+            <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <p>quality / n-grams / leakage control / model comparison</p>
+          </aside>
+        </div>
+
+        <div class="resource-bar" aria-label="Tài nguyên bài Text">
+          <a class="resource-primary" href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/text_victsd_eda.ipynb" target="_blank" rel="noreferrer">
+            <span>01</span><strong>Open / view notebook in Colab</strong><i>↗</i>
+          </a>
+          <a href="reports/text-victsd-eda-report.pdf" target="_blank" rel="noreferrer">
+            <span>02</span><strong>PDF report</strong><i>↗</i>
+          </a>
+          <a href="https://github.com/tarudesu/ViCTSD" target="_blank" rel="noreferrer">
+            <span>03</span><strong>ViCTSD source</strong><i>↗</i>
+          </a>
+        </div>
+      </section>
+
+      <section class="eda-section" id="overview">
+        <div class="section-heading compact">
+          <p class="kicker">01 — DATASET OVERVIEW</p>
+        </div>
+        <div class="metric-grid">
+          <article><strong>10,000</strong><span>Vietnamese comments</span></article>
+          <article><strong>10</strong><span>balanced topics</span></article>
+          <article><strong>2</strong><span>binary label tasks</span></article>
+          <article><strong>1,101</strong><span>toxic comments · 11.01%</span></article>
+          <article><strong>65</strong><span>exact duplicate comments</span></article>
+          <article class="accent"><strong>985</strong><span>leakage-safe test rows</span></article>
+        </div>
+        <figure class="analysis-figure full-figure overview-target">
+          <div class="figure-label"><span>LABEL DISTRIBUTION / TWO TASKS</span><i>FIG. 02</i></div>
+          <img src="reports/figures/text_02_label_distribution.png" alt="Class distribution for constructiveness and toxicity labels" loading="lazy">
+          <figcaption><b>Toxicity is imbalanced:</b> 1,101 comments are toxic and 8,899 are non-toxic. Accuracy alone is insufficient, so the report also uses balanced accuracy, toxic F1, and macro F1.</figcaption>
+        </figure>
+        <div class="context-grid">
+          <article><span>PROBLEM</span><p>Dự đoán <b>Toxicity</b> và <b>Constructiveness</b> từ nội dung một bình luận tiếng Việt.</p></article>
+          <article><span>ASSIGNMENT FIT</span><p>10.000 văn bản, official train/validation/test split, EDA độc lập, tiền xử lý text và so sánh nhiều mô hình.</p></article>
+          <article><span>FAIR EVALUATION</span><p>Kiểm tra bình luận trùng sau chuẩn hoá; loại 32 validation rows và 15 test rows xuất hiện trong train.</p></article>
+        </div>
+      </section>
+
+      <section class="eda-section" id="schema">
+        <div class="section-heading compact">
+          <p class="kicker">02 — FEATURE LIST &amp; DATA TYPES</p>
+        </div>
+        <div class="table-card schema-card">
+          <table>
+            <thead><tr><th>#</th><th>Attribute</th><th>Data type</th><th>Role</th><th>Missing</th><th>Unique values</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td><code>Comment</code></td><td><span class="type-badge text">text · object</span></td><td><span class="status impute">Model input</span></td><td>0</td><td>9,935 exact texts</td><td>Vietnamese user comment. This is the only field sent to the vectorizer.</td></tr>
+              <tr><td>02</td><td><code>Constructiveness</code></td><td><span class="type-badge target">int · target</span></td><td>Target A</td><td>0</td><td>2</td><td>Binary annotation for whether the comment is constructive.</td></tr>
+              <tr><td>03</td><td><code>Toxicity</code></td><td><span class="type-badge target">int · target</span></td><td>Target B</td><td>0</td><td>2</td><td>Binary annotation for toxic versus non-toxic content.</td></tr>
+              <tr><td>04</td><td><code>Title</code></td><td><span class="type-badge text">text · object</span></td><td><span class="status exclude">Excluded</span></td><td>0</td><td>article titles</td><td>Article title provides context but is deliberately excluded from this compact model.</td></tr>
+              <tr><td>05</td><td><code>Topic</code></td><td><span class="type-badge categorical">category</span></td><td>EDA only</td><td>0</td><td>10</td><td>Discussion category. Exactly 1,000 comments per topic across the source data.</td></tr>
+              <tr><td>06</td><td><code>Unnamed: 0</code></td><td><span class="type-badge identifier">int · index</span></td><td><span class="status exclude">Dropped</span></td><td>0</td><td>row ID</td><td>CSV export index; removed immediately because it has no language signal.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="insight-panel mint-panel">
+          <span class="panel-label">DATA TYPE SUMMARY</span>
+          <div class="insight-grid">
+            <p><b>1 text input:</b> the comment is represented with word or character TF-IDF features.</p>
+            <p><b>2 labels:</b> the same text is evaluated separately for Toxicity and Constructiveness.</p>
+            <p><b>1 categorical context field:</b> Topic is used for exploration and error review, not model fitting.</p>
+            <p><b>One explicit exclusion:</b> title and CSV index are not used, keeping the first model easy to explain.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="eda-section" id="quality">
+        <div class="section-heading compact">
+          <p class="kicker">03 — SPLITS, DUPLICATES &amp; LEAKAGE CONTROL</p>
+        </div>
+        <div class="figure-grid split-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>OFFICIAL SOURCE SPLIT</span><i>FIG. 01</i></div>
+            <img src="reports/figures/text_01_split_sizes.png" alt="Bar chart with the 7000 train, 2000 validation, and 1000 test source rows" loading="lazy">
+            <figcaption><b>7,000 / 2,000 / 1,000.</b> The notebook preserves the official ViCTSD files rather than performing a new random split.</figcaption>
+          </figure>
+          <div class="quality-stack">
+            <article class="quality-stat"><span>Normalized text overlap</span><strong>32</strong><small>validation rows appearing in training are excluded from validation scoring</small></article>
+            <article class="quality-stat alternate"><span>Leakage-safe test set</span><strong>985</strong><small>15 test rows appearing in training are excluded before final metrics</small></article>
+          </div>
+        </div>
+        <div class="table-card missing-card">
+          <table>
+            <thead><tr><th>Audit</th><th>Result</th><th>Why it matters</th><th>Decision in notebook</th></tr></thead>
+            <tbody>
+              <tr><td>Missing values</td><td><span class="severity low">0 cells</span></td><td>No input value needs imputation.</td><td>Read the original text fields directly.</td></tr>
+              <tr><td>Duplicate raw rows</td><td><span class="severity low">0 per split</span></td><td>Each official file has no identical full row.</td><td>No row-level deduplication.</td></tr>
+              <tr><td>Exact comment duplicates</td><td><span class="severity moderate">65 combined</span></td><td>The same comment may recur under different source rows.</td><td>Keep for EDA; audit normalized text before evaluation.</td></tr>
+              <tr><td>Train → validation overlap</td><td><span class="severity moderate">32 rows</span></td><td>Repeated text could inflate validation score.</td><td>Score on 1,968 clean validation rows.</td></tr>
+              <tr><td>Train → test overlap</td><td><span class="severity critical">15 rows</span></td><td>Repeated test text would be direct evaluation leakage.</td><td>Score final result on 985 clean test rows.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="eda-section" id="analysis">
+        <div class="section-heading compact">
+          <p class="kicker">04 — LENGTH &amp; TOPIC EXPLORATION</p>
+        </div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>COMMENT LENGTH / CHARACTERS</span><i>FIG. 04</i></div>
+            <img src="reports/figures/text_04_comment_length.png" alt="Histogram of comment length in characters" loading="lazy">
+            <figcaption><b>Mean 128.6 · median 87 · maximum 1,494 characters.</b> The right tail contains a small number of much longer comments.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TOPIC DISTRIBUTION</span><i>FIG. 03</i></div>
+            <img src="reports/figures/text_03_topic_distribution.png" alt="Bar chart showing 1000 comments per ViCTSD topic" loading="lazy">
+            <figcaption><b>Ten evenly sized topics.</b> Topic is valuable for reading model errors but remains outside the simple text-only classifier.</figcaption>
+          </figure>
+        </div>
+        <aside class="insight-panel yellow-panel">
+          <span class="panel-label">SIMPLE PREPROCESSING / EXPLAINABLE STEPS</span>
+          <div class="insight-grid">
+            <p><b>Lowercase:</b> “Tốt” and “tốt” become the same token.</p>
+            <p><b>Remove URLs:</b> links rarely describe the meaning of a comment.</p>
+            <p><b>Remove punctuation:</b> retain words, numbers, and whitespace for a compact baseline.</p>
+            <p><b>Normalize spaces:</b> consecutive whitespace is reduced to one blank space.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="eda-section" id="signals">
+        <div class="section-heading compact">
+          <p class="kicker">05 — DISCRIMINATIVE WORDS &amp; N-GRAMS</p>
+        </div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TOXIC SIDE / POSITIVE WEIGHTS</span><i>FIG. 05</i></div>
+            <img src="reports/figures/text_05_top_toxic_ngrams.png" alt="Top TF-IDF word and phrase weights associated with toxic comments" loading="lazy">
+            <figcaption>Top positive Logistic Regression weights. These tokens are statistical signals; a single word is not a moderation decision.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>NON-TOXIC SIDE / NEGATIVE WEIGHTS</span><i>FIG. 06</i></div>
+            <img src="reports/figures/text_06_top_safe_ngrams.png" alt="Top TF-IDF word and phrase weights associated with non-toxic comments" loading="lazy">
+            <figcaption>Top negative weights help explain which terms move a prediction toward the non-toxic class.</figcaption>
+          </figure>
+        </div>
+        <div class="pipeline-strip" aria-label="Mô hình xử lý văn bản">
+          <span>Vietnamese comment</span><i>→</i><span>clean text</span><i>→</i><span>TF-IDF 1–2 grams</span><i>→</i><span>Logistic Regression</span>
+        </div>
+      </section>
+
+      <section class="eda-section" id="models">
+        <div class="section-heading row-heading">
+          <div>
+            <p class="kicker">06 — MODEL COMPARISON</p>
+            <h2>Choose <em>fair</em><br>metrics.</h2>
+          </div>
+          <p>Vì Toxicity là lớp thiểu số, mô hình không được chọn bằng accuracy một mình. Word TF-IDF + Logistic Regression cho macro F1 và toxic F1 tốt hơn baseline Naive Bayes.</p>
+        </div>
+        <div class="model-score-grid">
+          <article><span>TOXICITY TEST</span><strong>.842</strong><small>accuracy</small></article>
+          <article><span>TOXICITY TEST</span><strong>.732</strong><small>balanced accuracy</small></article>
+          <article><span>TOXICITY TEST</span><strong>.451</strong><small>F1 toxic</small></article>
+          <article class="highlight"><span>TOXICITY TEST</span><strong>.679</strong><small>macro F1</small></article>
+        </div>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>THREE SIMPLE TOXICITY MODELS / VALIDATION</span><i>FIG. 07</i></div>
+          <img src="reports/figures/text_07_toxic_model_comparison.png" alt="Bar chart comparing Naive Bayes, word TF-IDF logistic and character TF-IDF logistic models" loading="lazy">
+          <figcaption><b>Important contrast:</b> Naive Bayes has the highest validation accuracy (0.884) but toxic F1 of only 0.026. It mostly predicts the majority non-toxic class. Word TF-IDF Logistic Regression has validation macro F1 of 0.677 and toxic F1 of 0.449.</figcaption>
+        </figure>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>WORD VS CHARACTER TF-IDF</span><i>FIG. 08</i></div>
+          <img src="reports/figures/text_08_word_char_comparison.png" alt="Comparison of word and character TF-IDF Logistic Regression metrics" loading="lazy">
+          <figcaption><b>Selected representation:</b> word 1–2 grams. It gives the higher validation macro F1 and toxic F1 while remaining simple to explain in a beginner notebook.</figcaption>
+        </figure>
+      </section>
+
+      <section class="eda-section" id="test-analysis">
+        <div class="section-heading compact">
+          <p class="kicker">07 — TEST RESULTS &amp; ERROR REVIEW</p>
+        </div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TOXICITY / SELECTED MODEL</span><i>FIG. 09</i></div>
+            <img src="reports/figures/text_09_toxic_confusion_matrix.png" alt="Confusion matrix for the word TF-IDF toxicity classifier" loading="lazy">
+            <figcaption>Final metrics are reported on 985 test comments that do not recur in the normalized training text.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>CONSTRUCTIVENESS / WORD TF-IDF</span><i>FIG. 10</i></div>
+            <img src="reports/figures/text_10_constructive_confusion_matrix.png" alt="Confusion matrix for the constructiveness classifier" loading="lazy">
+            <figcaption><b>Constructiveness macro F1 = 0.800.</b> The same short text-only pipeline is evaluated as a separate binary task.</figcaption>
+          </figure>
+        </div>
+        <div class="table-card missing-card">
+          <table>
+            <thead><tr><th>Topic</th><th>True toxicity</th><th>Prediction</th><th>Example from first error rows</th><th>What it shows</th></tr></thead>
+            <tbody>
+              <tr><td>OtoXemay</td><td><span class="class-chip false-positive">Toxic · 1</span></td><td><span class="class-chip confirmed">Non-toxic · 0</span></td><td>“Nhiều người cứ nghĩ đạp xe là văn minh. haizzzz”</td><td>Subtle sarcasm and mild tone are difficult for word counts.</td></tr>
+              <tr><td>KhoaHoc</td><td><span class="class-chip false-positive">Toxic · 1</span></td><td><span class="class-chip confirmed">Non-toxic · 0</span></td><td>“Google, intel, Ibm của Mỹ đua công nghệ tạo ra...”</td><td>Context can matter more than one strongly weighted term.</td></tr>
+              <tr><td>PhapLuat</td><td><span class="class-chip confirmed">Non-toxic · 0</span></td><td><span class="class-chip false-positive">Toxic · 1</span></td><td>“ko có từ nào hình dung về 2 đứa này đc!...”</td><td>Informal shorthand and strong wording can create false positives.</td></tr>
+              <tr><td>SucKhoe</td><td><span class="class-chip confirmed">Non-toxic · 0</span></td><td><span class="class-chip false-positive">Toxic · 1</span></td><td>“Một cô giáo đang dạy âm nhạc ở lớp bên cạnh...”</td><td>Long contextual sentences remain challenging for bag-of-ngrams features.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="eda-section" id="conclusion">
+        <div class="insight-card">
+          <p class="kicker">08 — CONCLUSION / REPRODUCIBILITY</p>
+          <h2>Simple model,<br><em>honest evaluation.</em></h2>
+          <div class="insight-columns">
+            <ul>
+              <li>Official Vietnamese ViCTSD files are committed with the notebook.</li>
+              <li>Every plot is generated independently from short, editable notebook cells.</li>
+              <li>Normalized text overlap is checked before validation and test scoring.</li>
+            </ul>
+            <ul>
+              <li>Word TF-IDF + balanced Logistic Regression is the selected beginner-friendly model.</li>
+              <li>Macro F1 and toxic F1 prevent an accuracy-only interpretation.</li>
+              <li>Confusion matrices and wrong examples show limitations, not only a single score.</li>
+            </ul>
+          </div>
+          <div class="insight-actions">
+            <a class="report-link" href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/text_victsd_eda.ipynb" target="_blank" rel="noreferrer">Open notebook in Colab ↗</a>
+            <a class="report-link secondary" href="reports/text-victsd-eda-report.pdf" target="_blank" rel="noreferrer">Read PDF report ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="eda-footer">
+      <span>CO5177 · Programming Foundation for Data Analytics and Visualization</span>
+      <a href="index.html#data-tracks">Return to landing page</a>
+    </footer>
+  </body>
+</html>

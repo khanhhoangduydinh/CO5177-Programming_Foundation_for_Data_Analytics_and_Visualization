@@ -6,12 +6,13 @@ const trackData = {
     description:
       "Khám phá các mối quan hệ ẩn trong dữ liệu dạng bảng bằng thống kê, trực quan và machine learning có thể giải thích.",
     items: [
-      "≥ 2.000 samples, ≥ 10 cột",
-      "Missing values & outliers",
-      "Categorical + numerical features",
+      "NASA Kepler KOI · 9.564 objects",
+      "Leakage-safe EDA & classification",
+      "PDF, notebook and report page",
     ],
-    name: "dataset.csv",
-    count: "2.000+ rows",
+    name: "cumulative.csv",
+    count: "9.564 objects",
+    reportLink: "tabular-eda.html",
     preview: [
       '<div class="table-head"><span>id</span><span>category</span><span>value</span><span>target</span></div>',
       '<div><span>#0842</span><span class="pill pill-yellow">alpha</span><span>18.42</span><span>1</span></div>',
@@ -27,14 +28,15 @@ const trackData = {
     type: "CORE TRACK · BẮT BUỘC VỚI NHÓM",
     title: "Text Data",
     description:
-      "Biến ngôn ngữ tự nhiên thành tín hiệu định lượng qua làm sạch văn bản, biểu diễn đặc trưng và phân loại.",
+      "Phân tích 10.000 bình luận tiếng Việt của ViCTSD với kiểm tra rò rỉ dữ liệu, TF-IDF và phân loại nhị phân có thể giải thích.",
     items: [
-      "≥ 2.000 văn bản",
-      "Ưu tiên dữ liệu tiếng Việt",
-      "Crawling dữ liệu riêng được khuyến khích",
+      "ViCTSD · 10.000 Vietnamese comments",
+      "Toxicity + Constructiveness",
+      "EDA, PDF và Colab notebook",
     ],
-    name: "corpus_vi.json",
-    count: "2.000+ documents",
+    name: "victsd_train.csv",
+    count: "10.000 comments",
+    reportLink: "text-eda.html",
     preview: [
       '<div class="text-bubble">“Trải nghiệm học tập rất <mark>trực quan</mark> và dễ theo dõi.”</div>',
       '<div class="text-bubble">label: <strong>positive</strong> · confidence: 0.94</div>',
@@ -152,7 +154,10 @@ function switchTrack(trackName) {
   const next = trackData[trackName];
   if (!next) return;
 
-  if (trackReportLink) trackReportLink.hidden = trackName !== "tabular";
+  if (trackReportLink) {
+    trackReportLink.hidden = !next.reportLink;
+    if (next.reportLink) trackReportLink.href = next.reportLink;
+  }
 
   trackButtons.forEach((button) => {
     const selected = button.dataset.track === trackName;

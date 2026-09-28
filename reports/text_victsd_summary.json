@@ -1,0 +1,41 @@
+{
+  "rows": 10000,
+  "topics": 10,
+  "duplicate_comments": 65,
+  "validation_overlap_removed": 32,
+  "test_overlap_removed": 15,
+  "toxicity_test": [
+    0.8416243654822335,
+    0.7324422484057604,
+    0.4507042253521127,
+    0.6790887674803268
+  ],
+  "constructiveness_test": [
+    0.8071065989847716,
+    0.811775583514714,
+    0.760705289672544,
+    0.7995703319111019
+  ],
+  "toxicity_validation": {
+    "Accuracy": {
+      "Naive Bayes": 0.883638,
+      "Word TF-IDF + Logistic": 0.837907,
+      "Char TF-IDF + Logistic": 0.804878
+    },
+    "Balanced accuracy": {
+      "Naive Bayes": 0.506466,
+      "Word TF-IDF + Logistic": 0.717672,
+      "Char TF-IDF + Logistic": 0.71949
+    },
+    "F1 toxic": {
+      "Naive Bayes": 0.025532,
+      "Word TF-IDF + Logistic": 0.44905,
+      "Char TF-IDF + Logistic": 0.423423
+    },
+    "Macro F1": {
+      "Naive Bayes": 0.481828,
+      "Word TF-IDF + Logistic": 0.677012,
+      "Char TF-IDF + Logistic": 0.652996
+    }
+  }
+}
