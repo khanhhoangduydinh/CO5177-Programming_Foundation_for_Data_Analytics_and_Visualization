@@ -4,6 +4,9 @@ Thumbs.db
 node_modules/
 01_logobachkhoasang.png
 __pycache__/
+data/intel_image/
+data/intel_image_data/
+data/intel_image_hf/
 *.py[cod]
 .ipynb_checkpoints/
 reports/*-preview/

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Intel Image Classification: scene EDA and pretrained MobileNetV3 classification for CO5177.">
+    <meta name="theme-color" content="#f7f5ef">
+    <title>Intel Image Classification · Image EDA | CO5177 DataFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eda.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Bỏ qua đến nội dung</a>
+
+    <header class="eda-header">
+      <a class="eda-brand" href="index.html#data-tracks" aria-label="Quay lại các bài tập CO5177">
+        <img src="assets/logo-bachkhoa.png" alt="Logo Bách Khoa TP.HCM">
+        <span>CO5177 / IMAGE EDA</span>
+      </a>
+      <nav aria-label="Điều hướng báo cáo Image EDA">
+        <a href="#overview">Overview</a>
+        <a href="#images">Images</a>
+        <a href="#prepare">Prepare</a>
+        <a href="#models">Models</a>
+        <a href="#results">Results</a>
+      </nav>
+      <a class="back-link" href="index.html#data-tracks">← Back to Tasks</a>
+    </header>
+
+    <main id="main-content">
+      <section class="eda-hero" id="top">
+        <p class="kicker"><span></span>03 — TASKS / IMAGE</p>
+        <div class="hero-layout">
+          <div>
+            <p class="eyebrow">INTEL IMAGE CLASSIFICATION · SCENE RECOGNITION</p>
+            <h1>Intel Image<br>Classification</h1>
+            <p class="hero-intro">
+              Phân loại sáu loại cảnh quan từ ảnh RGB: buildings, forest, glacier,
+              mountain, sea và street. Bài làm kiểm tra dữ liệu, trực quan hoá từng
+              thành phần quan trọng và dùng MobileNetV3 pretrained theo cách dễ chạy lại.
+            </p>
+            <div class="hero-tags" aria-label="Thẻ dữ liệu">
+              <span>17,034 labelled images</span><span>150 × 150 RGB</span><span>6 scene classes</span>
+            </div>
+          </div>
+          <aside class="hero-signal" aria-label="Tóm tắt dữ liệu Intel">
+            <div class="signal-head"><span>DATASET / INTEL SCENES</span><i>RUN ALL ✓</i></div>
+            <div class="signal-grid">
+              <div><strong>17K</strong><span>labelled images</span></div>
+              <div><strong>6</strong><span>scene classes</span></div>
+              <div><strong>150</strong><span>pixels per side</span></div>
+              <div><strong data-test-f1>—</strong><span>test macro F1</span></div>
+            </div>
+            <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <p>quality / scene cues / augmentation / model comparison</p>
+          </aside>
+        </div>
+
+        <div class="resource-bar" aria-label="Tài nguyên bài Image">
+          <a class="resource-primary" href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/image_intel_eda.ipynb" target="_blank" rel="noreferrer">
+            <span>01</span><strong>Open / view notebook in Colab</strong><i>↗</i>
+          </a>
+          <a href="CO5177%20Report%20Latex/report.pdf" target="_blank" rel="noreferrer">
+            <span>02</span><strong>PDF report</strong><i>↗</i>
+          </a>
+          <a href="https://www.kaggle.com/datasets/puneet6060/intel-image-classification" target="_blank" rel="noreferrer">
+            <span>03</span><strong>Intel dataset source</strong><i>↗</i>
+          </a>
+        </div>
+      </section>
+
+      <section class="eda-section" id="overview">
+        <div class="section-heading compact"><p class="kicker">01 — DATASET OVERVIEW</p></div>
+        <div class="metric-grid">
+          <article><strong>17,034</strong><span>labelled images</span></article>
+          <article><strong>14,034</strong><span>source train images</span></article>
+          <article><strong>3,000</strong><span>source test images</span></article>
+          <article><strong>6</strong><span>scene classes</span></article>
+          <article><strong>150²</strong><span>RGB pixels per image</span></article>
+          <article class="accent"><strong>42</strong><span>fixed split seed</span></article>
+        </div>
+        <figure class="analysis-figure full-figure overview-target">
+          <div class="figure-label"><span>LABEL DISTRIBUTION / SOURCE FOLDERS</span><i>FIG. 02</i></div>
+          <img src="reports/figures/intel_02_class_distribution.png" alt="Class counts in the Intel source train and test folders" loading="lazy">
+          <figcaption><b>Six clear scene labels.</b> The labelled source training folder has 14,034 images and the separate source test folder has 3,000 images. The test folder is reserved for the final evaluation.</figcaption>
+        </figure>
+        <div class="context-grid">
+          <article><span>PROBLEM</span><p>Predict one scene label from one RGB image: buildings, forest, glacier, mountain, sea, or street.</p></article>
+          <article><span>ASSIGNMENT FIT</span><p>17,034 labelled images, six classes and 150 × 150 resolution satisfy the Image Data constraints without using a toy dataset.</p></article>
+          <article><span>FAIR EVALUATION</span><p>Only the source training folder is split into train and validation data. The separate source test folder is not used for model selection.</p></article>
+        </div>
+      </section>
+
+      <section class="eda-section" id="images">
+        <div class="section-heading compact"><p class="kicker">02 — SCENE EXAMPLES &amp; IMAGE QUALITY</p></div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>ONE EXAMPLE FROM EACH CLASS</span><i>FIG. 01</i></div>
+            <img src="reports/figures/intel_01_scene_examples.png" alt="Six Intel scene examples, one for each class" loading="lazy">
+            <figcaption><b>Class meaning is visible.</b> Each label describes the main scene in the image, so the task is accessible for a first image-classification project.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>RGB BRIGHTNESS / 100 IMAGES PER CLASS</span><i>FIG. 03</i></div>
+            <img src="reports/figures/intel_03_brightness_by_class.png" alt="Brightness distribution for 100 training images in each Intel class" loading="lazy">
+            <figcaption><b>Lighting is not constant.</b> The brightness check supports pixel normalization, but brightness is not used as a separate model input.</figcaption>
+          </figure>
+        </div>
+        <aside class="insight-panel mint-panel">
+          <span class="panel-label">WHAT THE MODEL MUST DISTINGUISH</span>
+          <div class="insight-grid">
+            <p><b>Natural cues:</b> trees, snow, water, roads and building structures can indicate a scene label.</p>
+            <p><b>Similar views:</b> mountain and glacier can share rock, sky and snow; street and buildings can share man-made structures.</p>
+            <p><b>Fixed size:</b> every image is 150 × 150 pixels, so no padding is needed before the pretrained resize step.</p>
+            <p><b>Out of scope:</b> the unlabelled prediction folder is not included in training or evaluation.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="eda-section" id="prepare">
+        <div class="section-heading compact"><p class="kicker">03 — PREPARATION, SPLIT &amp; AUGMENTATION</p></div>
+        <div class="figure-grid split-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>HORIZONTAL FLIP / TRAINING ONLY</span><i>FIG. 04</i></div>
+            <img src="reports/figures/intel_04_augmentation_example.png" alt="Original scene image and its horizontally flipped version" loading="lazy">
+            <figcaption><b>Label-preserving augmentation.</b> Mirroring a scene changes its orientation but does not change whether it is forest, sea, or another class.</figcaption>
+          </figure>
+          <div class="quality-stack">
+            <article class="quality-stat"><span>Train / validation split</span><strong>11,227 / 2,807</strong><small>stratified split from the 14,034 source training images, random seed 42</small></article>
+            <article class="quality-stat alternate"><span>Final test evaluation</span><strong>3,000</strong><small>separate source-test images; no test image is used to fit Logistic Regression or select a model</small></article>
+          </div>
+        </div>
+        <div class="table-card missing-card">
+          <table>
+            <thead><tr><th>Step</th><th>Decision</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>Resize and normalize</td><td><span class="severity low">ImageNet transform</span></td><td>MobileNetV3 expects tensors in the scale used during pretraining.</td></tr>
+              <tr><td>Augmentation</td><td><span class="severity low">Horizontal flip</span></td><td>Applied only on training images; the scene label remains unchanged.</td></tr>
+              <tr><td>Leakage control</td><td><span class="severity critical">Separate source test</span></td><td>Test images never enter feature fitting, head training, or validation-based selection.</td></tr>
+              <tr><td>Final metric</td><td><span class="severity moderate">Macro F1</span></td><td>Every scene class contributes equally to model selection and final reporting.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="eda-section" id="models">
+        <div class="section-heading row-heading">
+          <div><p class="kicker">04 — PRETRAINED MODEL COMPARISON</p><h2>Reuse visual<br>features <em>fairly.</em></h2></div>
+          <p>Both approaches start from the same ImageNet-pretrained MobileNetV3-Small. Validation macro F1 chooses the final model; the source test folder remains untouched until that choice is made.</p>
+        </div>
+        <div class="model-score-grid">
+          <article><span>SELECTED MODEL</span><strong data-selected-model>—</strong><small>highest validation macro F1</small></article>
+          <article><span>VALIDATION</span><strong data-validation-f1>—</strong><small>macro F1</small></article>
+          <article><span>TEST</span><strong data-test-accuracy>—</strong><small>accuracy</small></article>
+          <article class="highlight"><span>TEST</span><strong data-test-macro>—</strong><small>macro F1</small></article>
+        </div>
+        <div class="figure-grid two-figure">
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>FROZEN HEAD / FIVE EPOCHS</span><i>FIG. 05</i></div>
+            <img src="reports/figures/intel_05_training_history.png" alt="Training loss and validation macro F1 over five epochs" loading="lazy">
+            <figcaption>The pretrained backbone is frozen. Only the classifier head is updated, keeping the deep-learning comparison small and understandable.</figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <div class="figure-label"><span>TWO PRETRAINED APPROACHES / VALIDATION</span><i>FIG. 06</i></div>
+            <img src="reports/figures/intel_06_model_comparison.png" alt="Validation metric comparison for Logistic Regression and frozen MobileNetV3 head" loading="lazy">
+            <figcaption>Model selection follows validation macro F1 instead of choosing from the final test results.</figcaption>
+          </figure>
+        </div>
+        <div class="pipeline-strip" aria-label="Mô hình xử lý ảnh">
+          <span>scene image</span><i>→</i><span>ImageNet transform</span><i>→</i><span>MobileNetV3 pretrained</span><i>→</i><span>six scene labels</span>
+        </div>
+      </section>
+
+      <section class="eda-section" id="results">
+        <div class="section-heading compact"><p class="kicker">05 — FINAL TEST RESULTS &amp; ERROR REVIEW</p></div>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>NORMALIZED TEST CONFUSION MATRIX</span><i>FIG. 07</i></div>
+          <img src="reports/figures/intel_07_confusion_matrix.png" alt="Normalized confusion matrix of final Intel scene predictions" loading="lazy">
+          <figcaption><b>Read each row as one true class.</b> Diagonal cells are recalls; off-diagonal cells show scene labels that the selected model confuses.</figcaption>
+        </figure>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>INCORRECT TEST PREDICTIONS</span><i>FIG. 08</i></div>
+          <img src="reports/figures/intel_08_error_examples.png" alt="Examples of incorrectly predicted Intel test scenes" loading="lazy">
+          <figcaption><b>Error review matters.</b> Similar sky, snow, water, roads, and man-made objects can cause a wrong label even when the image is clear to a person.</figcaption>
+        </figure>
+        <aside class="insight-panel yellow-panel">
+          <span class="panel-label">CONCLUSION</span>
+          <div class="insight-grid">
+            <p><b>Dataset:</b> Intel Image Classification is large enough for the course, has a suitable 150-pixel resolution, and is easier to explain than a fine-grained astronomy task.</p>
+            <p><b>Method:</b> pretrained MobileNetV3 avoids training a deep network from zero while still showing a complete image-analysis pipeline.</p>
+            <p><b>Limit:</b> one scene may contain cues from several labels, so a strong score does not mean every real-world photograph can be classified perfectly.</p>
+            <p><b>Evidence:</b> the notebook, figures, summary JSON and prediction CSV are generated together from one Run all execution.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const format = (value) => Number(value).toFixed(3).replace(/^0/, "");
+      fetch("reports/image_intel_summary.json")
+        .then((response) => response.ok ? response.json() : null)
+        .then((summary) => {
+          if (!summary) return;
+          const selected = summary.selected_model;
+          const validation = summary.validation_scores[selected].macro_f1;
+          const test = summary.test_scores;
+          document.querySelector("[data-selected-model]").textContent = selected.replace("Pretrained features + ", "").replace("Frozen MobileNetV3 head", "Frozen head");
+          document.querySelector("[data-validation-f1]").textContent = format(validation);
+          document.querySelector("[data-test-accuracy]").textContent = format(test.accuracy);
+          document.querySelector("[data-test-macro]").textContent = format(test.macro_f1);
+          document.querySelector("[data-test-f1]").textContent = format(test.macro_f1);
+        });
+    </script>
+  </body>
+</html>

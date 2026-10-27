@@ -59,3 +59,16 @@ Open the notebook in Colab:
 The notebook is the source of truth. Edit the `.py` or `.ipynb`, run all cells,
 then commit and push; the GitHub-backed Colab link always opens the latest
 version from `main`.
+
+## Image assignment
+
+- Website report: `image-eda.html`
+- Executed notebook: `notebooks/image_intel_eda.ipynb`
+- Editable percent-format source: `notebooks/image_intel_eda.py`
+- Dataset: [Intel Image Classification](https://www.kaggle.com/datasets/puneet6060/intel-image-classification)
+- Generated figures, summary and prediction CSV: `reports/`
+- Consolidated PDF report: `CO5177 Report Latex/report.pdf`
+
+Open the notebook in Colab:
+
+<https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/image_intel_eda.ipynb>
