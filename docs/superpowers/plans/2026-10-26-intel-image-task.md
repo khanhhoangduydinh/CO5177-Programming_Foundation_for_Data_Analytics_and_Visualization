@@ -132,7 +132,7 @@ Run: `git status --short`, `pytest -v`, `python -m py_compile notebooks/image_in
 
 Use a conventional commit message naming the Intel Image task.
 
-- [ ] **Step 3: Push `main` and verify the remote commit**
+- [x] **Step 3: Push `main` and verify the remote commit**
 
 Run: `git push origin main` and `git ls-remote origin refs/heads/main`.
 Expected: the remote branch resolves to the committed SHA.
