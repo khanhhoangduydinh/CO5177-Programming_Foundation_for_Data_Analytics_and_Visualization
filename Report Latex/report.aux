@@ -1,0 +1,260 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
+\@nameuse{bbl@beforestart}
+\providecommand \oddpage@label [2]{}
+\babel@aux{english}{}
+\@writefile{toc}{\contentsline {section}{Introduction}{5}{section*.6}\protected@file@percent }
+\newlabel{sec:intro}{{}{5}{Introduction}{section*.6}{}}
+\newlabel{sec:intro@cref}{{}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Tabular Data: Titanic Survival Classification}{6}{section.1}\protected@file@percent }
+\newlabel{sec:tabular}{{1}{6}{Tabular Data: Titanic Survival Classification}{section.1}{}}
+\newlabel{sec:tabular@cref}{{[section][1][]1}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Exploratory Data Analysis}{6}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}Dataset Overview}{6}{subsubsection.1.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces \textbf  {Figure TAB-1} --- Target Distribution: Survived (1) vs.\ Not Survived (0). 38.4\% of passengers survived. \textit  {Code:} \texttt  {df['Survived'].value\_counts().plot(kind='bar')}.}}{7}{figure.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:tab_target}{{1.1}{7}{\textbf {Figure TAB-1} --- Target Distribution: Survived (1) vs.\ Not Survived (0). 38.4\% of passengers survived. \textit {Code:} \texttt {df['Survived'].value\_counts().plot(kind='bar')}}{figure.caption.10}{}}
+\newlabel{fig:tab_target@cref}{{[figure][1][1]1.1}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}Data Inspection and Missing Values}{7}{subsubsection.1.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3}Descriptive Statistics}{8}{subsubsection.1.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces \textbf  {Figure TAB-2} --- Distribution of continuous features: Age (left) and Fare (right). Fare is strongly right-skewed; Age has a roughly normal distribution with a missing-data gap. \textit  {Code:} \texttt  {df[['Age','Fare']].hist(bins=30)}.}}{8}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:tab_num}{{1.2}{8}{\textbf {Figure TAB-2} --- Distribution of continuous features: Age (left) and Fare (right). Fare is strongly right-skewed; Age has a roughly normal distribution with a missing-data gap. \textit {Code:} \texttt {df[['Age','Fare']].hist(bins=30)}}{figure.caption.11}{}}
+\newlabel{fig:tab_num@cref}{{[figure][2][1]1.2}{[1][8][]8}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces \textbf  {Figure TAB-3} --- Pearson Correlation Matrix for numerical features. Key insight: Fare and Pclass are negatively correlated ($r \approx -0.55$); Survived correlates positively with Fare and negatively with Pclass. \textit  {Code:} \texttt  {sns.heatmap(df.corr(), annot=True)}.}}{9}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:tab_corr}{{1.3}{9}{\textbf {Figure TAB-3} --- Pearson Correlation Matrix for numerical features. Key insight: Fare and Pclass are negatively correlated ($r \approx -0.55$); Survived correlates positively with Fare and negatively with Pclass. \textit {Code:} \texttt {sns.heatmap(df.corr(), annot=True)}}{figure.caption.12}{}}
+\newlabel{fig:tab_corr@cref}{{[figure][3][1]1.3}{[1][8][]9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces \textbf  {Figure TAB-4} --- Outlier Detection via Boxplots for numerical features. Fare shows extreme upper outliers (max \$512); Age has mild outliers at both ends. \textit  {Code:} \texttt  {df.boxplot(column=['Age','Fare','SibSp','Parch'])}.}}{9}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:tab_outliers}{{1.4}{9}{\textbf {Figure TAB-4} --- Outlier Detection via Boxplots for numerical features. Fare shows extreme upper outliers (max \$512); Age has mild outliers at both ends. \textit {Code:} \texttt {df.boxplot(column=['Age','Fare','SibSp','Parch'])}}{figure.caption.13}{}}
+\newlabel{fig:tab_outliers@cref}{{[figure][4][1]1.4}{[1][9][]9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces \textbf  {Figure TAB-5} --- Distribution of Categorical Features: Sex, Pclass, and Embarked. Males and 3rd-class passengers dominate; Southampton (S) is the most common embarkation port. \textit  {Code:} \texttt  {df['Sex'].value\_counts().plot(kind='bar')} etc.}}{10}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:tab_cat}{{1.5}{10}{\textbf {Figure TAB-5} --- Distribution of Categorical Features: Sex, Pclass, and Embarked. Males and 3rd-class passengers dominate; Southampton (S) is the most common embarkation port. \textit {Code:} \texttt {df['Sex'].value\_counts().plot(kind='bar')} etc}{figure.caption.14}{}}
+\newlabel{fig:tab_cat@cref}{{[figure][5][1]1.5}{[1][9][]10}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces \textbf  {Figure TAB-6} --- Survival Rate by Group (Sex, Pclass, Embarked). Females, 1st-class, and Cherbourg passengers show the highest survival rates. \textit  {Code:} \texttt  {df.groupby('Sex')['Survived'].mean().plot(kind='bar')} etc.}}{10}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:tab_surv_groups}{{1.6}{10}{\textbf {Figure TAB-6} --- Survival Rate by Group (Sex, Pclass, Embarked). Females, 1st-class, and Cherbourg passengers show the highest survival rates. \textit {Code:} \texttt {df.groupby('Sex')['Survived'].mean().plot(kind='bar')} etc}{figure.caption.15}{}}
+\newlabel{fig:tab_surv_groups@cref}{{[figure][6][1]1.6}{[1][10][]10}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces \textbf  {Figure TAB-7} --- Age Distribution by Passenger Class (violin plot). 1st-class passengers are older on average; 3rd class shows wider age spread including more children. \textit  {Code:} \texttt  {sns.violinplot(x='Pclass', y='Age', data=df)}.}}{10}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:tab_violin}{{1.7}{10}{\textbf {Figure TAB-7} --- Age Distribution by Passenger Class (violin plot). 1st-class passengers are older on average; 3rd class shows wider age spread including more children. \textit {Code:} \texttt {sns.violinplot(x='Pclass', y='Age', data=df)}}{figure.caption.16}{}}
+\newlabel{fig:tab_violin@cref}{{[figure][7][1]1.7}{[1][10][]10}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces \textbf  {Figure TAB-8} --- Survival Rate Heatmap by Sex and Passenger Class. The strongest interaction: 1st-class females had a $\sim $97\% survival rate vs.\ 3rd-class males at $\sim $14\%. \textit  {Code:} \texttt  {sns.heatmap(pivot\_table(Survived, Sex, Pclass))}.}}{11}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:tab_surv_heat}{{1.8}{11}{\textbf {Figure TAB-8} --- Survival Rate Heatmap by Sex and Passenger Class. The strongest interaction: 1st-class females had a $\sim $97\% survival rate vs.\ 3rd-class males at $\sim $14\%. \textit {Code:} \texttt {sns.heatmap(pivot\_table(Survived, Sex, Pclass))}}{figure.caption.17}{}}
+\newlabel{fig:tab_surv_heat@cref}{{[figure][8][1]1.8}{[1][10][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.4}Family Structure Analysis}{11}{subsubsection.1.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces \textbf  {Figure TAB-9} --- Distribution of \texttt  {SibSp} (left) and \texttt  {Parch} (right). The majority of passengers travelled without any family members aboard. \textit  {Code:} \texttt  {df['SibSp'].value\_counts().plot(kind='bar')} and \texttt  {df['Parch'].value\_counts().plot(kind='bar')}.}}{11}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:tab_sibsp_parch}{{1.9}{11}{\textbf {Figure TAB-9} --- Distribution of \texttt {SibSp} (left) and \texttt {Parch} (right). The majority of passengers travelled without any family members aboard. \textit {Code:} \texttt {df['SibSp'].value\_counts().plot(kind='bar')} and \texttt {df['Parch'].value\_counts().plot(kind='bar')}}{figure.caption.18}{}}
+\newlabel{fig:tab_sibsp_parch@cref}{{[figure][9][1]1.9}{[1][11][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.5}Categorical Features vs.\ Survival Target}{12}{subsubsection.1.1.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces \textbf  {Figure TAB-10} --- Survival Rate by Categorical Feature Value. Each bar shows the proportion of passengers who survived within that category. \textit  {Code:} \texttt  {df.groupby('Sex')['Survived'].mean().plot(kind='bar')} etc.}}{12}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:tab_cat_vs_target}{{1.10}{12}{\textbf {Figure TAB-10} --- Survival Rate by Categorical Feature Value. Each bar shows the proportion of passengers who survived within that category. \textit {Code:} \texttt {df.groupby('Sex')['Survived'].mean().plot(kind='bar')} etc}{figure.caption.19}{}}
+\newlabel{fig:tab_cat_vs_target@cref}{{[figure][10][1]1.10}{[1][11][]12}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.6}Ticket Prefix Analysis}{12}{subsubsection.1.1.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces \textbf  {Figure TAB-11} --- Ticket Prefix Distribution. Numeric-only tickets dominate; named prefixes (e.g., ``PC'', ``SOTON'', ``CA'') may encode origin or class information. \textit  {Code:} \texttt  {df['Ticket'].str.extract(r'\^([A-Za-z./]+)')} then \texttt  {value\_counts()}.}}{13}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:tab_ticket}{{1.11}{13}{\textbf {Figure TAB-11} --- Ticket Prefix Distribution. Numeric-only tickets dominate; named prefixes (e.g., ``PC'', ``SOTON'', ``CA'') may encode origin or class information. \textit {Code:} \texttt {df['Ticket'].str.extract(r'\^([A-Za-z./]+)')} then \texttt {value\_counts()}}{figure.caption.20}{}}
+\newlabel{fig:tab_ticket@cref}{{[figure][11][1]1.11}{[1][12][]13}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.7}Key Findings and Preprocessing Recommendations (Tabular EDA)}{14}{subsubsection.1.1.7}\protected@file@percent }
+\newlabel{sec:a2_tabular}{{1.1.7}{14}{Key Findings and Preprocessing Recommendations (Tabular EDA)}{Item.13}{}}
+\newlabel{sec:a2_tabular@cref}{{[subsubsection][7][1,1]1.1.7}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Preprocessing Pipeline}{15}{subsection.1.2}\protected@file@percent }
+\newlabel{sec:a2_tab_prep}{{1.2}{15}{Preprocessing Pipeline}{subsection.1.2}{}}
+\newlabel{sec:a2_tab_prep@cref}{{[subsection][2][1]1.2}{[1][14][]15}{}{}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}{\ignorespaces Preprocessing pipeline for the Titanic dataset.}}{15}{lstlisting.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Train/Test Split}{16}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Model 1 --- Random Forest Classifier}{17}{subsection.1.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.2}{\ignorespaces Random Forest training.}}{17}{lstlisting.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Random Forest --- Classification Report on Titanic Test Set}}{18}{table.caption.22}\protected@file@percent }
+\newlabel{tab:a2_rf_report}{{1.1}{18}{Random Forest --- Classification Report on Titanic Test Set}{table.caption.22}{}}
+\newlabel{tab:a2_rf_report@cref}{{[table][1][1]1.1}{[1][17][]18}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces \textbf  {Figure A2-TAB-1} --- Confusion matrix of the Random Forest classifier on the Titanic test set. Diagonal cells dominate (89 true-negatives, 62 true-positives); the model makes roughly symmetric errors (16 FP vs.\ 12 FN).}}{18}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:a2_rf_confmat}{{1.12}{18}{\textbf {Figure A2-TAB-1} --- Confusion matrix of the Random Forest classifier on the Titanic test set. Diagonal cells dominate (89 true-negatives, 62 true-positives); the model makes roughly symmetric errors (16 FP vs.\ 12 FN)}{figure.caption.23}{}}
+\newlabel{fig:a2_rf_confmat@cref}{{[figure][12][1]1.12}{[1][18][]18}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces \textbf  {Figure A2-TAB-2} --- Random Forest feature importance (Gini-based). \texttt  {Sex}, \texttt  {Fare}, \texttt  {Title}, and \texttt  {Age} dominate --- directly confirming the EDA finding that gender and socio-economic status are the strongest predictors of survival (Section~\ref {sec:tabular}).}}{19}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:a2_rf_importance}{{1.13}{19}{\textbf {Figure A2-TAB-2} --- Random Forest feature importance (Gini-based). \texttt {Sex}, \texttt {Fare}, \texttt {Title}, and \texttt {Age} dominate --- directly confirming the EDA finding that gender and socio-economic status are the strongest predictors of survival (Section~\ref {sec:tabular})}{figure.caption.24}{}}
+\newlabel{fig:a2_rf_importance@cref}{{[figure][13][1]1.13}{[1][18][]19}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Model 2 --- Support Vector Machine (SVC)}{19}{subsection.1.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.3}{\ignorespaces SVM training with default settings (serves as a cautionary baseline).}}{19}{lstlisting.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces SVM (default) --- Classification Report on Titanic Test Set}}{20}{table.caption.25}\protected@file@percent }
+\newlabel{tab:a2_svm_report}{{1.2}{20}{SVM (default) --- Classification Report on Titanic Test Set}{table.caption.25}{}}
+\newlabel{tab:a2_svm_report@cref}{{[table][2][1]1.2}{[1][20][]20}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Model Comparison \& Conclusions}{20}{subsection.1.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.3}{\ignorespaces Titanic --- Final Model Comparison on 179 Test Samples}}{20}{table.caption.26}\protected@file@percent }
+\newlabel{tab:a2_tab_cmp}{{1.3}{20}{Titanic --- Final Model Comparison on 179 Test Samples}{table.caption.26}{}}
+\newlabel{tab:a2_tab_cmp@cref}{{[table][3][1]1.3}{[1][20][]20}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Text Data: SMS Spam Classification}{21}{section.2}\protected@file@percent }
+\newlabel{sec:text}{{2}{21}{Text Data: SMS Spam Classification}{section.2}{}}
+\newlabel{sec:text@cref}{{[section][2][]2}{[1][21][]21}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Exploratory Data Analysis}{21}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Dataset Overview}{21}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces \textbf  {Figure T1} --- Class Distribution: Ham vs.\ Spam (5{,}572 total messages; 86.6\%:13.4\%). \textit  {Code:} \texttt  {df\_text['label'].value\_counts().plot(kind='bar')}.}}{22}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:text_target}{{2.1}{22}{\textbf {Figure T1} --- Class Distribution: Ham vs.\ Spam (5{,}572 total messages; 86.6\%:13.4\%). \textit {Code:} \texttt {df\_text['label'].value\_counts().plot(kind='bar')}}{figure.caption.27}{}}
+\newlabel{fig:text_target@cref}{{[figure][1][2]2.1}{[1][22][]22}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Data Inspection and Quality}{22}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Message Length Analysis}{23}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces \textbf  {Table T1} --- Message Length Statistics by Label (character count, including spaces)}}{23}{table.caption.28}\protected@file@percent }
+\newlabel{tab:text_length}{{2.1}{23}{\textbf {Table T1} --- Message Length Statistics by Label (character count, including spaces)}{table.caption.28}{}}
+\newlabel{tab:text_length@cref}{{[table][1][2]2.1}{[1][23][]23}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces \textbf  {Figure T2} --- Message Length Distribution: Histogram (left) and Boxplot (right) comparing Ham vs.\ Spam. \textit  {Code:} \texttt  {df['length'] = df['text'].apply(len)}, then \texttt  {plt.hist()} and \texttt  {df.boxplot(column='length', by='label')}.}}{24}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:text_length}{{2.2}{24}{\textbf {Figure T2} --- Message Length Distribution: Histogram (left) and Boxplot (right) comparing Ham vs.\ Spam. \textit {Code:} \texttt {df['length'] = df['text'].apply(len)}, then \texttt {plt.hist()} and \texttt {df.boxplot(column='length', by='label')}}{figure.caption.29}{}}
+\newlabel{fig:text_length@cref}{{[figure][2][2]2.2}{[1][23][]24}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Vocabulary and Word Cloud Analysis}{24}{subsubsection.2.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces \textbf  {Figure T3} --- Word Clouds for Ham (left, green) and Spam (right, red). \textit  {Code:} \texttt  {WordCloud(max\_words=200, background\_color='white').generate(text)} per label.}}{25}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:wordclouds}{{2.3}{25}{\textbf {Figure T3} --- Word Clouds for Ham (left, green) and Spam (right, red). \textit {Code:} \texttt {WordCloud(max\_words=200, background\_color='white').generate(text)} per label}{figure.caption.30}{}}
+\newlabel{fig:wordclouds@cref}{{[figure][3][2]2.3}{[1][24][]25}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Token Frequency Analysis}{25}{subsubsection.2.1.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces \textbf  {Figure T4} --- Top 20 Most Frequent Tokens across the Full Corpus (stopwords included). \textit  {Code:} \texttt  {Counter(all\_tokens).most\_common(20)}.}}{25}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:text_top_overall}{{2.4}{25}{\textbf {Figure T4} --- Top 20 Most Frequent Tokens across the Full Corpus (stopwords included). \textit {Code:} \texttt {Counter(all\_tokens).most\_common(20)}}{figure.caption.32}{}}
+\newlabel{fig:text_top_overall@cref}{{[figure][4][2]2.4}{[1][25][]25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces \textbf  {Figure T5} --- Top Stopwords in the Corpus. Removing these exposes the discriminative vocabulary. \textit  {Code:} Frequency count on a curated stopword set intersected with all tokens.}}{26}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:text_top_stopwords}{{2.5}{26}{\textbf {Figure T5} --- Top Stopwords in the Corpus. Removing these exposes the discriminative vocabulary. \textit {Code:} Frequency count on a curated stopword set intersected with all tokens}{figure.caption.34}{}}
+\newlabel{fig:text_top_stopwords@cref}{{[figure][5][2]2.5}{[1][25][]26}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces \textbf  {Figure T6} --- Top Discriminative Tokens After Stopword Removal, split by class (ham vs.\ spam). \textit  {Code:} \texttt  {Counter(filtered\_tokens).most\_common(15)} per label subset.}}{27}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:text_top_important}{{2.6}{27}{\textbf {Figure T6} --- Top Discriminative Tokens After Stopword Removal, split by class (ham vs.\ spam). \textit {Code:} \texttt {Counter(filtered\_tokens).most\_common(15)} per label subset}{figure.caption.36}{}}
+\newlabel{fig:text_top_important@cref}{{[figure][6][2]2.6}{[1][26][]27}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}N-gram Analysis}{27}{subsubsection.2.1.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces \textbf  {Figure T7} --- Bigram and Trigram Frequency Analysis by Label (Ham vs.\ Spam). \textit  {Code:} \texttt  {Counter(ngrams(tokens, n)).most\_common(12)} per label, displayed with \texttt  {ax.barh()}.}}{28}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:text_bigrams}{{2.7}{28}{\textbf {Figure T7} --- Bigram and Trigram Frequency Analysis by Label (Ham vs.\ Spam). \textit {Code:} \texttt {Counter(ngrams(tokens, n)).most\_common(12)} per label, displayed with \texttt {ax.barh()}}{figure.caption.37}{}}
+\newlabel{fig:text_bigrams@cref}{{[figure][7][2]2.7}{[1][27][]28}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}Word Count vs.\ Character Count}{28}{subsubsection.2.1.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces \textbf  {Figure T8} --- Word Count vs.\ Character Count per message, coloured by label. \textit  {Code:} \texttt  {df['n\_words'] = df['text'].str.split().str.len()}, then \texttt  {plt.scatter()}.}}{29}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:text_word_vs_char}{{2.8}{29}{\textbf {Figure T8} --- Word Count vs.\ Character Count per message, coloured by label. \textit {Code:} \texttt {df['n\_words'] = df['text'].str.split().str.len()}, then \texttt {plt.scatter()}}{figure.caption.38}{}}
+\newlabel{fig:text_word_vs_char@cref}{{[figure][8][2]2.8}{[1][28][]29}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.8}Special Character and URL Feature Analysis}{29}{subsubsection.2.1.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces \textbf  {Table T2} --- Mean Special Feature Values by Label}}{30}{table.caption.39}\protected@file@percent }
+\newlabel{tab:text_features}{{2.2}{30}{\textbf {Table T2} --- Mean Special Feature Values by Label}{table.caption.39}{}}
+\newlabel{tab:text_features@cref}{{[table][2][2]2.2}{[1][29][]30}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces \textbf  {Figure T9} --- Special Feature Comparison: Ham (green) vs.\ Spam (red) for 6 engineered features. Bar height = mean value across all messages in that class. \textit  {Code:} Feature engineering via regex and \texttt  {str.count()}, then \texttt  {groupby('label').mean()} and \texttt  {plt.bar()}.}}{30}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:text_features}{{2.9}{30}{\textbf {Figure T9} --- Special Feature Comparison: Ham (green) vs.\ Spam (red) for 6 engineered features. Bar height = mean value across all messages in that class. \textit {Code:} Feature engineering via regex and \texttt {str.count()}, then \texttt {groupby('label').mean()} and \texttt {plt.bar()}}{figure.caption.40}{}}
+\newlabel{fig:text_features@cref}{{[figure][9][2]2.9}{[1][30][]30}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.9}Vocabulary Richness Analysis (Type-Token Ratio)}{31}{subsubsection.2.1.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces \textbf  {Table T3} --- Vocabulary Richness Comparison: Ham vs.\ Spam}}{31}{table.caption.41}\protected@file@percent }
+\newlabel{tab:text_ttr}{{2.3}{31}{\textbf {Table T3} --- Vocabulary Richness Comparison: Ham vs.\ Spam}{table.caption.41}{}}
+\newlabel{tab:text_ttr@cref}{{[table][3][2]2.3}{[1][31][]31}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces \textbf  {Figure T10} --- Vocabulary Richness Analysis: Unique Word Count (left), Type-Token Ratio / TTR (centre), and Average Word Length (right) for Ham vs.\ Spam. \textit  {Code:} \texttt  {len(set(tokens)) / len(tokens)} for TTR; \texttt  {np.mean([len(w) for w in tokens])} for avg word length.}}{31}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:text_vocab_richness}{{2.10}{31}{\textbf {Figure T10} --- Vocabulary Richness Analysis: Unique Word Count (left), Type-Token Ratio / TTR (centre), and Average Word Length (right) for Ham vs.\ Spam. \textit {Code:} \texttt {len(set(tokens)) / len(tokens)} for TTR; \texttt {np.mean([len(w) for w in tokens])} for avg word length}{figure.caption.42}{}}
+\newlabel{fig:text_vocab_richness@cref}{{[figure][10][2]2.10}{[1][31][]31}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.10}Key Findings (Text EDA)}{33}{subsubsection.2.1.10}\protected@file@percent }
+\newlabel{sec:a2_text}{{2.1.10}{33}{Key Findings (Text EDA)}{Item.27}{}}
+\newlabel{sec:a2_text@cref}{{[subsubsection][10][2,1]2.1.10}{[1][33][]33}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Preprocessing Pipeline}{34}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) Deduplication.}{34}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Text cleaning with special tokens.}{34}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Tokenisation \& stopword removal.}{34}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(4) Stemming (Porter).}{34}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(5) Stratified train/test split (80/20, seed 42).}{34}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(6) TF-IDF vectorisation.}{35}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(7) Engineered features (from EDA, Table T2).}{35}{section*.49}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}{\ignorespaces End-to-end preprocessing of the SMS Spam corpus.}}{35}{lstlisting.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Model 1 --- Multinomial Naive Bayes (Baseline)}{36}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:a2_text_mnb}{{2.3}{36}{Model 1 --- Multinomial Naive Bayes (Baseline)}{subsection.2.3}{}}
+\newlabel{sec:a2_text_mnb@cref}{{[subsection][3][2]2.3}{[1][36][]36}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Model 2 --- Logistic Regression}{36}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Model 3 --- Linear SVM}{37}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Model 4 --- DistilBERT (Fine-tuned Transformer)}{38}{subsection.2.6}\protected@file@percent }
+\newlabel{sec:a2_text_bert}{{2.6}{38}{Model 4 --- DistilBERT (Fine-tuned Transformer)}{subsection.2.6}{}}
+\newlabel{sec:a2_text_bert@cref}{{[subsection][6][2]2.6}{[1][38][]38}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces DistilBERT fine-tuning configuration.}}{39}{table.caption.50}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}{\ignorespaces DistilBERT fine-tuning with HuggingFace Trainer.}}{39}{lstlisting.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Model Evaluation \& Comparison}{40}{subsection.2.7}\protected@file@percent }
+\newlabel{sec:a2_text_eval}{{2.7}{40}{Model Evaluation \& Comparison}{subsection.2.7}{}}
+\newlabel{sec:a2_text_eval@cref}{{[subsection][7][2]2.7}{[1][40][]40}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.5}{\ignorespaces \textbf  {Model comparison on the SMS Spam test set (1{,}034 messages).}}}{40}{table.caption.51}\protected@file@percent }
+\newlabel{tab:a2_text_results}{{2.5}{40}{\textbf {Model comparison on the SMS Spam test set (1{,}034 messages).}}{table.caption.51}{}}
+\newlabel{tab:a2_text_results@cref}{{[table][5][2]2.5}{[1][40][]40}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces \textbf  {Figure A2-TXT-1} --- Row-normalised confusion matrices for all four models on the test set (ham / spam). DistilBERT achieves near-perfect recall on both classes; Naive Bayes is the weakest on spam recall. Each cell is the per-class recall, so rows sum to 100\%.}}{40}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:a2_text_confmats}{{2.11}{40}{\textbf {Figure A2-TXT-1} --- Row-normalised confusion matrices for all four models on the test set (ham / spam). DistilBERT achieves near-perfect recall on both classes; Naive Bayes is the weakest on spam recall. Each cell is the per-class recall, so rows sum to 100\%}{figure.caption.52}{}}
+\newlabel{fig:a2_text_confmats@cref}{{[figure][11][2]2.11}{[1][40][]40}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces \textbf  {Figure A2-TXT-2} --- ROC curves of the four models. All four are pushed into the upper-left corner (AUC $\ge $ 0.99); DistilBERT's curve is the closest to the ideal point, followed by Linear SVM, Logistic Regression, and Naive Bayes.}}{41}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:a2_text_roc}{{2.12}{41}{\textbf {Figure A2-TXT-2} --- ROC curves of the four models. All four are pushed into the upper-left corner (AUC $\ge $ 0.99); DistilBERT's curve is the closest to the ideal point, followed by Linear SVM, Logistic Regression, and Naive Bayes}{figure.caption.53}{}}
+\newlabel{fig:a2_text_roc@cref}{{[figure][12][2]2.12}{[1][40][]41}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces \textbf  {Figure A2-TXT-3} --- Side-by-side comparison of Precision, Recall, F1, and ROC-AUC (spam class) across the four models. The gap between classical and transformer approaches is visible but small; DistilBERT's gain comes primarily from higher recall.}}{41}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:a2_text_comparison}{{2.13}{41}{\textbf {Figure A2-TXT-3} --- Side-by-side comparison of Precision, Recall, F1, and ROC-AUC (spam class) across the four models. The gap between classical and transformer approaches is visible but small; DistilBERT's gain comes primarily from higher recall}{figure.caption.54}{}}
+\newlabel{fig:a2_text_comparison@cref}{{[figure][13][2]2.13}{[1][41][]41}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Summary \& Recommendation}{42}{subsection.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Image Data: CIFAR-10 Classification}{43}{section.3}\protected@file@percent }
+\newlabel{sec:image}{{3}{43}{Image Data: CIFAR-10 Classification}{section.3}{}}
+\newlabel{sec:image@cref}{{[section][3][]3}{[1][42][]43}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Exploratory Data Analysis}{43}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Dataset Overview}{43}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces \textbf  {Figure IMG-1} --- Random sample images from CIFAR-10 across all 10 classes. The small 32$\times $32 resolution makes fine-grained class boundaries (e.g.\ \texttt  {cat} vs.\ \texttt  {dog}) difficult to resolve even by eye. \textit  {Code:} \texttt  {plt.imshow(images[idx])} on random indices per class.}}{44}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:cifar_samples}{{3.1}{44}{\textbf {Figure IMG-1} --- Random sample images from CIFAR-10 across all 10 classes. The small 32$\times $32 resolution makes fine-grained class boundaries (e.g.\ \texttt {cat} vs.\ \texttt {dog}) difficult to resolve even by eye. \textit {Code:} \texttt {plt.imshow(images[idx])} on random indices per class}{figure.caption.56}{}}
+\newlabel{fig:cifar_samples@cref}{{[figure][1][3]3.1}{[1][43][]44}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Class Distribution and Balance}{44}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces \textbf  {Figure IMG-2} --- Class distribution across the CIFAR-10 training set. All 10 classes contain exactly 5{,}000 images, confirming perfect balance. \textit  {Code:} \texttt  {np.unique(labels, return\_counts=True)} then \texttt  {plt.bar()}.}}{45}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:cifar_dist}{{3.2}{45}{\textbf {Figure IMG-2} --- Class distribution across the CIFAR-10 training set. All 10 classes contain exactly 5{,}000 images, confirming perfect balance. \textit {Code:} \texttt {np.unique(labels, return\_counts=True)} then \texttt {plt.bar()}}{figure.caption.57}{}}
+\newlabel{fig:cifar_dist@cref}{{[figure][2][3]3.2}{[1][44][]45}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Statistical Analysis of Pixels}{45}{subsubsection.3.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces CIFAR-10 Per-Channel Pixel Statistics (training set, $n = 50{,}000$)}}{45}{table.caption.58}\protected@file@percent }
+\newlabel{tab:cifar_stats}{{3.1}{45}{CIFAR-10 Per-Channel Pixel Statistics (training set, $n = 50{,}000$)}{table.caption.58}{}}
+\newlabel{tab:cifar_stats@cref}{{[table][1][3]3.1}{[1][45][]45}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf  {Figure IMG-3} --- RGB channel intensity distributions across a sample of 5{,}000 CIFAR-10 training images. The broad, overlapping distributions reflect high photometric diversity. \textit  {Code:} \texttt  {images[:5000].reshape(-1, 3)} then \texttt  {plt.hist()} per channel.}}{46}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:cifar_rgb}{{3.3}{46}{\textbf {Figure IMG-3} --- RGB channel intensity distributions across a sample of 5{,}000 CIFAR-10 training images. The broad, overlapping distributions reflect high photometric diversity. \textit {Code:} \texttt {images[:5000].reshape(-1, 3)} then \texttt {plt.hist()} per channel}{figure.caption.59}{}}
+\newlabel{fig:cifar_rgb@cref}{{[figure][3][3]3.3}{[1][46][]46}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Per-Class Visual Analysis}{46}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf  {Figure IMG-4} --- Pixel-wise mean image per class, computed over all 5{,}000 training images per category. Structured classes (airplane, ship) retain visible spatial patterns; animal classes blur into near-uniform patches. \textit  {Code:} \texttt  {images[labels==c].mean(axis=0).astype(np.uint8)} for each class \texttt  {c}.}}{47}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:cifar_mean}{{3.4}{47}{\textbf {Figure IMG-4} --- Pixel-wise mean image per class, computed over all 5{,}000 training images per category. Structured classes (airplane, ship) retain visible spatial patterns; animal classes blur into near-uniform patches. \textit {Code:} \texttt {images[labels==c].mean(axis=0).astype(np.uint8)} for each class \texttt {c}}{figure.caption.61}{}}
+\newlabel{fig:cifar_mean@cref}{{[figure][4][3]3.4}{[1][47][]47}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf  {Figure IMG-5} --- Mean pixel brightness per class. Classes in bright outdoor environments (airplane, ship) score higher; nature-heavy classes (frog, deer) score lower. \textit  {Code:} \texttt  {images[labels==c].mean()} per class, then \texttt  {plt.bar()}.}}{48}{figure.caption.63}\protected@file@percent }
+\newlabel{fig:cifar_bright}{{3.5}{48}{\textbf {Figure IMG-5} --- Mean pixel brightness per class. Classes in bright outdoor environments (airplane, ship) score higher; nature-heavy classes (frog, deer) score lower. \textit {Code:} \texttt {images[labels==c].mean()} per class, then \texttt {plt.bar()}}{figure.caption.63}{}}
+\newlabel{fig:cifar_bright@cref}{{[figure][5][3]3.5}{[1][47][]48}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Data Quality Check}{48}{subsubsection.3.1.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces CIFAR-10 Data Quality Audit Results}}{48}{table.caption.64}\protected@file@percent }
+\newlabel{tab:cifar_quality}{{3.2}{48}{CIFAR-10 Data Quality Audit Results}{table.caption.64}{}}
+\newlabel{tab:cifar_quality@cref}{{[table][2][3]3.2}{[1][48][]48}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces \textbf  {Figure IMG-6} --- Data quality audit summary for CIFAR-10. All six checks return zero anomalies. \textit  {Code:} \texttt  {np.isnan(images.astype(float)).sum()}, MD5 hash deduplication, \texttt  {np.unique(labels)}, etc.}}{49}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:cifar_quality}{{3.6}{49}{\textbf {Figure IMG-6} --- Data quality audit summary for CIFAR-10. All six checks return zero anomalies. \textit {Code:} \texttt {np.isnan(images.astype(float)).sum()}, MD5 hash deduplication, \texttt {np.unique(labels)}, etc}{figure.caption.65}{}}
+\newlabel{fig:cifar_quality@cref}{{[figure][6][3]3.6}{[1][48][]49}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Key Findings and Preprocessing Recommendations (Image EDA)}{50}{subsubsection.3.1.6}\protected@file@percent }
+\newlabel{sec:a2_image}{{3.1.6}{50}{Key Findings and Preprocessing Recommendations (Image EDA)}{subsubsection.3.1.6}{}}
+\newlabel{sec:a2_image@cref}{{[subsubsection][6][3,1]3.1.6}{[1][50][]50}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Why Transfer Learning (and why ResNet50)?}{50}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Preprocessing Pipeline}{51}{subsection.3.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces TensorFlow input pipeline for ResNet50 transfer learning.}}{51}{lstlisting.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Model Architecture}{52}{subsection.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}{\ignorespaces ResNet50 transfer-learning model.}}{52}{lstlisting.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Training}{53}{subsection.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces ResNet50 Training History --- CIFAR-10 (3 epochs, batch = 32)}}{53}{table.caption.66}\protected@file@percent }
+\newlabel{tab:a2_img_history}{{3.3}{53}{ResNet50 Training History --- CIFAR-10 (3 epochs, batch = 32)}{table.caption.66}{}}
+\newlabel{tab:a2_img_history@cref}{{[table][3][3]3.3}{[1][53][]53}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces \textbf  {Figure A2-IMG-1} --- Training vs.\ validation accuracy (left) and loss (right) across 3 epochs. Training accuracy keeps rising but validation accuracy plateaus at $\sim $0.90 after epoch 2 and validation loss starts creeping up at epoch 3. This textbook early-overfitting signal confirms that 3 epochs is the correct stopping point.}}{54}{figure.caption.67}\protected@file@percent }
+\newlabel{fig:a2_resnet_history}{{3.7}{54}{\textbf {Figure A2-IMG-1} --- Training vs.\ validation accuracy (left) and loss (right) across 3 epochs. Training accuracy keeps rising but validation accuracy plateaus at $\sim $0.90 after epoch 2 and validation loss starts creeping up at epoch 3. This textbook early-overfitting signal confirms that 3 epochs is the correct stopping point}{figure.caption.67}{}}
+\newlabel{fig:a2_resnet_history@cref}{{[figure][7][3]3.7}{[1][53][]54}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Evaluation}{54}{subsection.3.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces \textbf  {Figure A2-IMG-2} --- Sample test predictions (3$\times $3 grid). Titles in \textcolor {ForestGreen}{green} mark correct predictions, titles in \textcolor {red}{red} mark mistakes. The errors line up exactly with the EDA's warning that animal classes (\texttt  {cat} vs.\ \texttt  {dog}, \texttt  {bird} vs.\ \texttt  {deer}) are visually ambiguous at 32$\times $32 resolution.}}{55}{figure.caption.68}\protected@file@percent }
+\newlabel{fig:a2_resnet_eval}{{3.8}{55}{\textbf {Figure A2-IMG-2} --- Sample test predictions (3$\times $3 grid). Titles in \textcolor {ForestGreen}{green} mark correct predictions, titles in \textcolor {red}{red} mark mistakes. The errors line up exactly with the EDA's warning that animal classes (\texttt {cat} vs.\ \texttt {dog}, \texttt {bird} vs.\ \texttt {deer}) are visually ambiguous at 32$\times $32 resolution}{figure.caption.68}{}}
+\newlabel{fig:a2_resnet_eval@cref}{{[figure][8][3]3.8}{[1][54][]55}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Summary \& Recommendations}{56}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Overall Assignment 2 Conclusion}{56}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Multimodal Data: Flickr8k}{57}{section.4}\protected@file@percent }
+\newlabel{sec:multi}{{4}{57}{Multimodal Data: Flickr8k}{section.4}{}}
+\newlabel{sec:multi@cref}{{[section][4][]4}{[1][56][]57}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset Overview}{57}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Image Modality Analysis}{57}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces \textbf  {Figure MM-1} --- Image Width vs.\ Height Distribution across 8{,}092 Flickr8k images. Two dominant clusters appear: landscape orientation (width $>$ height) and portrait orientation (height $>$ width). Most images have their longest edge at 500 px. \textit  {Code:} \texttt  {PIL.Image.open(img).size} iterated over the dataset, then \texttt  {plt.scatter(widths, heights)}.}}{58}{figure.caption.70}\protected@file@percent }
+\newlabel{fig:multi_dims}{{4.1}{58}{\textbf {Figure MM-1} --- Image Width vs.\ Height Distribution across 8{,}092 Flickr8k images. Two dominant clusters appear: landscape orientation (width $>$ height) and portrait orientation (height $>$ width). Most images have their longest edge at 500 px. \textit {Code:} \texttt {PIL.Image.open(img).size} iterated over the dataset, then \texttt {plt.scatter(widths, heights)}}{figure.caption.70}{}}
+\newlabel{fig:multi_dims@cref}{{[figure][1][4]4.1}{[1][57][]58}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces \textbf  {Figure MM-2} --- RGB Channel Pixel Intensity Distributions for a 500-image sample from Flickr8k. \textit  {Code:} \texttt  {np.array(img).reshape(-1, 3)} for each image, then \texttt  {plt.hist(channel\_values, bins=50)} per channel.}}{59}{figure.caption.72}\protected@file@percent }
+\newlabel{fig:multi_rgb}{{4.2}{59}{\textbf {Figure MM-2} --- RGB Channel Pixel Intensity Distributions for a 500-image sample from Flickr8k. \textit {Code:} \texttt {np.array(img).reshape(-1, 3)} for each image, then \texttt {plt.hist(channel\_values, bins=50)} per channel}{figure.caption.72}{}}
+\newlabel{fig:multi_rgb@cref}{{[figure][2][4]4.2}{[1][58][]59}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Text Modality Analysis}{59}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces \textbf  {Figure MM-3} --- Caption Character Length --- Box Plot for all 40{,}460 captions in Flickr8k. \textit  {Code:} \texttt  {df['cap\_len'] = df['caption'].apply(len)}, then \texttt  {plt.boxplot()}.}}{60}{figure.caption.74}\protected@file@percent }
+\newlabel{fig:multi_cap_box}{{4.3}{60}{\textbf {Figure MM-3} --- Caption Character Length --- Box Plot for all 40{,}460 captions in Flickr8k. \textit {Code:} \texttt {df['cap\_len'] = df['caption'].apply(len)}, then \texttt {plt.boxplot()}}{figure.caption.74}{}}
+\newlabel{fig:multi_cap_box@cref}{{[figure][3][4]4.3}{[1][59][]60}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces \textbf  {Figure MM-4} --- Caption Word Count Distribution across 40{,}460 captions. The distribution is unimodal and approximately normal, peaking at 10--11 words. \textit  {Code:} \texttt  {df['n\_words'] = df['caption'].str.split().str.len()}, then \texttt  {plt.hist()}.}}{61}{figure.caption.76}\protected@file@percent }
+\newlabel{fig:multi_len}{{4.4}{61}{\textbf {Figure MM-4} --- Caption Word Count Distribution across 40{,}460 captions. The distribution is unimodal and approximately normal, peaking at 10--11 words. \textit {Code:} \texttt {df['n\_words'] = df['caption'].str.split().str.len()}, then \texttt {plt.hist()}}{figure.caption.76}{}}
+\newlabel{fig:multi_len@cref}{{[figure][4][4]4.4}{[1][60][]61}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces \textbf  {Figure MM-5} --- Top 20 Caption Words after Stopword Removal. Generated by \texttt  {Counter} on all tokenised captions with a standard English stopword list applied.}}{62}{figure.caption.78}\protected@file@percent }
+\newlabel{fig:multi_words}{{4.5}{62}{\textbf {Figure MM-5} --- Top 20 Caption Words after Stopword Removal. Generated by \texttt {Counter} on all tokenised captions with a standard English stopword list applied}{figure.caption.78}{}}
+\newlabel{fig:multi_words@cref}{{[figure][5][4]4.5}{[1][61][]62}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces \textbf  {Figure MM-6} --- Word Count vs.\ Character Count for Flickr8k Captions. The near-linear relationship confirms consistent writing style across all 5 annotators per image. \textit  {Code:} \texttt  {plt.scatter(df['n\_words'], df['cap\_len'])}.}}{63}{figure.caption.80}\protected@file@percent }
+\newlabel{fig:multi_word_char}{{4.6}{63}{\textbf {Figure MM-6} --- Word Count vs.\ Character Count for Flickr8k Captions. The near-linear relationship confirms consistent writing style across all 5 annotators per image. \textit {Code:} \texttt {plt.scatter(df['n\_words'], df['cap\_len'])}}{figure.caption.80}{}}
+\newlabel{fig:multi_word_char@cref}{{[figure][6][4]4.6}{[1][62][]63}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Key Findings and Preprocessing Recommendations}{64}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Project Links \& Resources}{65}{section*.81}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Attribution \& Data Sources}{65}{section*.82}\protected@file@percent }
+\newlabel{LastPage}{{4.4}{65}{Attribution \& Data Sources}{page.65}{}}
+\gdef\lastpage@lastpage{65}
+\gdef\lastpage@lastpageHy{65}
+\xdef \mintedoldcachechecksum{\detokenize{\minted@cachechecksum }}
+\gdef \@abspage@last{65}

@@ -49,8 +49,7 @@ Trang sẽ được xuất bản sau khi workflow Pages hoàn tất.
 - Editable percent-format source: `notebooks/tabular_koi_eda.py`
 - Dataset snapshot: `data/koi_cumulative.csv`
 - Generated figures: `reports/figures/`
-- PDF report: `reports/tabular-koi-eda-report.pdf`
-- PDF generator: `reports/generate_tabular_report.py`
+- Consolidated PDF report: `CO5177 Report Latex/report.pdf`
 
 Open the notebook in Colab:
 
@@ -59,6 +58,19 @@ Open the notebook in Colab:
 The notebook is the source of truth. Edit the `.py` or `.ipynb`, run all cells,
 then commit and push; the GitHub-backed Colab link always opens the latest
 version from `main`.
+
+## Text assignment
+
+- Website report: `text-eda.html`
+- Executed notebook: `notebooks/text_victsd_eda.ipynb`
+- Editable percent-format source: `notebooks/text_victsd_eda.py`
+- Dataset: [ViCTSD](https://github.com/tarudesu/ViCTSD)
+- Generated figures and summary: `reports/`
+- Consolidated PDF report: `CO5177 Report Latex/report.pdf`
+
+Open the notebook in Colab:
+
+<https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/text_victsd_eda.ipynb>
 
 ## Image assignment
 

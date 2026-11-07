@@ -1,0 +1,2653 @@
+image_id,true_label,predicted_label
+207,Disturbed,Cigar shaped
+8138,Barred spiral,In-between round
+8765,Barred spiral,Barred spiral
+5879,In-between round,In-between round
+12304,Unbarred loose spiral,Round smooth
+7629,Cigar shaped,Cigar shaped
+6822,In-between round,Cigar shaped
+11340,Unbarred tight spiral,Unbarred tight spiral
+4862,Round smooth,Round smooth
+6214,In-between round,In-between round
+9760,Barred spiral,Unbarred loose spiral
+12722,Unbarred loose spiral,Unbarred loose spiral
+8873,Barred spiral,Barred spiral
+10255,Unbarred tight spiral,Unbarred tight spiral
+1122,Merging,Edge-on with bulge
+2124,Merging,Merging
+10979,Unbarred tight spiral,Unbarred loose spiral
+9532,Barred spiral,Merging
+1782,Merging,Merging
+5603,In-between round,Round smooth
+2038,Merging,Merging
+138,Disturbed,Disturbed
+12328,Unbarred loose spiral,Barred spiral
+15254,Edge-on without bulge,Edge-on without bulge
+5582,In-between round,In-between round
+13895,Unbarred loose spiral,In-between round
+13551,Unbarred loose spiral,Disturbed
+8197,Barred spiral,Disturbed
+5206,Round smooth,Round smooth
+13309,Unbarred loose spiral,Unbarred loose spiral
+1557,Merging,Merging
+5438,Round smooth,In-between round
+13234,Unbarred loose spiral,Unbarred loose spiral
+9465,Barred spiral,Unbarred loose spiral
+4589,Round smooth,Round smooth
+9680,Barred spiral,Disturbed
+8543,Barred spiral,Unbarred tight spiral
+15872,Edge-on with bulge,Edge-on with bulge
+14489,Edge-on without bulge,Edge-on without bulge
+2228,Merging,Merging
+16512,Edge-on with bulge,Edge-on with bulge
+9980,Unbarred tight spiral,Unbarred tight spiral
+7843,Cigar shaped,Cigar shaped
+12177,Unbarred loose spiral,Unbarred loose spiral
+11178,Unbarred tight spiral,Unbarred tight spiral
+3844,Round smooth,Round smooth
+6162,In-between round,In-between round
+15760,Edge-on without bulge,Edge-on without bulge
+16842,Edge-on with bulge,Edge-on with bulge
+384,Disturbed,Disturbed
+4948,Round smooth,Disturbed
+7171,In-between round,In-between round
+7908,Cigar shaped,Cigar shaped
+13322,Unbarred loose spiral,Barred spiral
+17310,Edge-on with bulge,Edge-on with bulge
+3490,Round smooth,Round smooth
+11043,Unbarred tight spiral,In-between round
+3880,Round smooth,Round smooth
+5089,Round smooth,Merging
+200,Disturbed,Edge-on without bulge
+10808,Unbarred tight spiral,Round smooth
+14345,Unbarred loose spiral,Unbarred loose spiral
+16182,Edge-on with bulge,In-between round
+12115,Unbarred loose spiral,Unbarred loose spiral
+10878,Unbarred tight spiral,Barred spiral
+2853,Merging,In-between round
+9023,Barred spiral,Barred spiral
+16569,Edge-on with bulge,Edge-on with bulge
+15276,Edge-on without bulge,Edge-on without bulge
+3783,Round smooth,Round smooth
+303,Disturbed,Disturbed
+12648,Unbarred loose spiral,Unbarred loose spiral
+10193,Unbarred tight spiral,Unbarred tight spiral
+1700,Merging,Disturbed
+10206,Unbarred tight spiral,Unbarred loose spiral
+14583,Edge-on without bulge,Edge-on with bulge
+16463,Edge-on with bulge,Cigar shaped
+6329,In-between round,In-between round
+13398,Unbarred loose spiral,Unbarred tight spiral
+6709,In-between round,Round smooth
+5954,In-between round,Round smooth
+15772,Edge-on without bulge,Edge-on without bulge
+10016,Unbarred tight spiral,Barred spiral
+7711,Cigar shaped,In-between round
+2869,Merging,Merging
+6792,In-between round,In-between round
+12858,Unbarred loose spiral,Barred spiral
+8654,Barred spiral,Round smooth
+1746,Merging,Merging
+15960,Edge-on with bulge,Edge-on with bulge
+9710,Barred spiral,Barred spiral
+15372,Edge-on without bulge,Edge-on without bulge
+8902,Barred spiral,Barred spiral
+12251,Unbarred loose spiral,Unbarred loose spiral
+2596,Merging,Merging
+14035,Unbarred loose spiral,Unbarred loose spiral
+7943,Barred spiral,Unbarred tight spiral
+7381,In-between round,Round smooth
+6958,In-between round,In-between round
+12467,Unbarred loose spiral,Unbarred tight spiral
+15785,Edge-on without bulge,Edge-on without bulge
+12290,Unbarred loose spiral,Disturbed
+12913,Unbarred loose spiral,Unbarred tight spiral
+4397,Round smooth,Round smooth
+9034,Barred spiral,Unbarred tight spiral
+11940,Unbarred loose spiral,Unbarred loose spiral
+14853,Edge-on without bulge,Edge-on with bulge
+11761,Unbarred tight spiral,Unbarred tight spiral
+15322,Edge-on without bulge,Edge-on with bulge
+6682,In-between round,In-between round
+3867,Round smooth,Round smooth
+16148,Edge-on with bulge,Disturbed
+16063,Edge-on with bulge,Edge-on without bulge
+6111,In-between round,In-between round
+5260,Round smooth,In-between round
+11035,Unbarred tight spiral,Unbarred tight spiral
+8306,Barred spiral,In-between round
+11573,Unbarred tight spiral,Barred spiral
+219,Disturbed,Cigar shaped
+3545,Round smooth,Merging
+8912,Barred spiral,Barred spiral
+11793,Unbarred loose spiral,Disturbed
+6223,In-between round,In-between round
+14186,Unbarred loose spiral,Barred spiral
+8971,Barred spiral,Unbarred tight spiral
+4389,Round smooth,Round smooth
+17093,Edge-on with bulge,Edge-on with bulge
+8314,Barred spiral,Barred spiral
+9366,Barred spiral,Cigar shaped
+2304,Merging,Merging
+4849,Round smooth,Unbarred tight spiral
+11090,Unbarred tight spiral,Unbarred tight spiral
+2973,Round smooth,Round smooth
+4453,Round smooth,Round smooth
+17648,Edge-on with bulge,Edge-on with bulge
+942,Disturbed,Disturbed
+5770,In-between round,Round smooth
+16675,Edge-on with bulge,Edge-on with bulge
+2368,Merging,Merging
+16183,Edge-on with bulge,Edge-on with bulge
+4032,Round smooth,Round smooth
+441,Disturbed,Disturbed
+10355,Unbarred tight spiral,Barred spiral
+12175,Unbarred loose spiral,Unbarred tight spiral
+8268,Barred spiral,Barred spiral
+10085,Unbarred tight spiral,Unbarred loose spiral
+2070,Merging,Merging
+11427,Unbarred tight spiral,Barred spiral
+10874,Unbarred tight spiral,Barred spiral
+7218,In-between round,In-between round
+8474,Barred spiral,Cigar shaped
+13374,Unbarred loose spiral,Unbarred loose spiral
+498,Disturbed,Disturbed
+8042,Barred spiral,Round smooth
+17036,Edge-on with bulge,Edge-on with bulge
+14503,Edge-on without bulge,Edge-on without bulge
+9995,Unbarred tight spiral,Barred spiral
+8398,Barred spiral,Barred spiral
+6560,In-between round,In-between round
+15711,Edge-on without bulge,Edge-on without bulge
+2507,Merging,Merging
+6932,In-between round,In-between round
+8580,Barred spiral,Unbarred tight spiral
+14634,Edge-on without bulge,Edge-on without bulge
+4870,Round smooth,Round smooth
+7904,Cigar shaped,Cigar shaped
+14657,Edge-on without bulge,Edge-on without bulge
+12979,Unbarred loose spiral,Unbarred tight spiral
+10586,Unbarred tight spiral,Unbarred tight spiral
+8603,Barred spiral,Barred spiral
+6364,In-between round,In-between round
+11962,Unbarred loose spiral,Unbarred tight spiral
+9240,Barred spiral,Barred spiral
+16125,Edge-on with bulge,Edge-on with bulge
+11697,Unbarred tight spiral,Edge-on without bulge
+16257,Edge-on with bulge,Edge-on with bulge
+12438,Unbarred loose spiral,Unbarred loose spiral
+12121,Unbarred loose spiral,Unbarred tight spiral
+1887,Merging,Barred spiral
+12380,Unbarred loose spiral,Unbarred tight spiral
+16563,Edge-on with bulge,Edge-on with bulge
+12891,Unbarred loose spiral,Unbarred loose spiral
+9593,Barred spiral,Unbarred loose spiral
+17298,Edge-on with bulge,Cigar shaped
+2986,Round smooth,In-between round
+17413,Edge-on with bulge,Edge-on with bulge
+3755,Round smooth,Round smooth
+11923,Unbarred loose spiral,Merging
+502,Disturbed,Round smooth
+5203,Round smooth,Round smooth
+8503,Barred spiral,Disturbed
+4832,Round smooth,Merging
+17552,Edge-on with bulge,Edge-on with bulge
+641,Disturbed,Unbarred loose spiral
+2274,Merging,Merging
+13522,Unbarred loose spiral,Disturbed
+4320,Round smooth,Round smooth
+14049,Unbarred loose spiral,Unbarred tight spiral
+5187,Round smooth,Round smooth
+12141,Unbarred loose spiral,Barred spiral
+5945,In-between round,Unbarred loose spiral
+9026,Barred spiral,Unbarred tight spiral
+13881,Unbarred loose spiral,In-between round
+14701,Edge-on without bulge,Edge-on without bulge
+6183,In-between round,In-between round
+16178,Edge-on with bulge,Edge-on with bulge
+3291,Round smooth,In-between round
+7452,In-between round,In-between round
+6153,In-between round,In-between round
+5816,In-between round,In-between round
+2467,Merging,Edge-on with bulge
+3864,Round smooth,Disturbed
+7524,In-between round,Unbarred tight spiral
+4744,Round smooth,Round smooth
+16066,Edge-on with bulge,Disturbed
+15265,Edge-on without bulge,Edge-on with bulge
+10343,Unbarred tight spiral,Disturbed
+15697,Edge-on without bulge,Edge-on without bulge
+10693,Unbarred tight spiral,Unbarred tight spiral
+9354,Barred spiral,Barred spiral
+9363,Barred spiral,Barred spiral
+14458,Edge-on without bulge,Disturbed
+4068,Round smooth,Round smooth
+3274,Round smooth,Round smooth
+3829,Round smooth,In-between round
+9161,Barred spiral,Barred spiral
+4686,Round smooth,In-between round
+17640,Edge-on with bulge,Edge-on with bulge
+701,Disturbed,Disturbed
+7940,Barred spiral,Barred spiral
+11432,Unbarred tight spiral,Unbarred tight spiral
+12921,Unbarred loose spiral,Unbarred loose spiral
+14293,Unbarred loose spiral,Unbarred tight spiral
+1207,Merging,Edge-on with bulge
+8158,Barred spiral,Unbarred tight spiral
+14805,Edge-on without bulge,Edge-on with bulge
+9233,Barred spiral,Barred spiral
+8676,Barred spiral,Unbarred loose spiral
+11930,Unbarred loose spiral,Unbarred tight spiral
+961,Disturbed,Barred spiral
+11887,Unbarred loose spiral,Unbarred tight spiral
+10934,Unbarred tight spiral,Unbarred loose spiral
+2035,Merging,Merging
+17512,Edge-on with bulge,Edge-on with bulge
+7897,Cigar shaped,Cigar shaped
+15824,Edge-on with bulge,Edge-on with bulge
+4807,Round smooth,Disturbed
+6014,In-between round,In-between round
+14294,Unbarred loose spiral,In-between round
+17219,Edge-on with bulge,Edge-on with bulge
+16104,Edge-on with bulge,Cigar shaped
+8701,Barred spiral,In-between round
+9281,Barred spiral,Barred spiral
+2881,Merging,Merging
+13242,Unbarred loose spiral,Unbarred loose spiral
+14150,Unbarred loose spiral,Barred spiral
+16799,Edge-on with bulge,Edge-on with bulge
+14707,Edge-on without bulge,Edge-on without bulge
+5435,Round smooth,Round smooth
+13203,Unbarred loose spiral,Unbarred loose spiral
+3496,Round smooth,Round smooth
+10471,Unbarred tight spiral,Unbarred tight spiral
+1457,Merging,Merging
+12331,Unbarred loose spiral,Unbarred tight spiral
+15028,Edge-on without bulge,Edge-on without bulge
+14565,Edge-on without bulge,Edge-on without bulge
+8479,Barred spiral,Merging
+1498,Merging,Round smooth
+1709,Merging,Merging
+16327,Edge-on with bulge,Edge-on with bulge
+5498,Round smooth,Round smooth
+1000,Disturbed,Disturbed
+14406,Edge-on without bulge,Edge-on without bulge
+1058,Disturbed,Disturbed
+2920,Merging,In-between round
+8905,Barred spiral,Unbarred tight spiral
+16087,Edge-on with bulge,Edge-on with bulge
+9325,Barred spiral,Barred spiral
+14513,Edge-on without bulge,Edge-on without bulge
+5347,Round smooth,Round smooth
+12112,Unbarred loose spiral,Unbarred loose spiral
+186,Disturbed,Unbarred loose spiral
+5580,In-between round,In-between round
+1348,Merging,Round smooth
+16835,Edge-on with bulge,Edge-on with bulge
+9774,Barred spiral,Merging
+1092,Merging,Merging
+9596,Barred spiral,Unbarred loose spiral
+5388,Round smooth,Round smooth
+5964,In-between round,In-between round
+6937,In-between round,Cigar shaped
+9545,Barred spiral,Barred spiral
+6548,In-between round,In-between round
+1841,Merging,In-between round
+12230,Unbarred loose spiral,Barred spiral
+4776,Round smooth,In-between round
+14329,Unbarred loose spiral,Unbarred loose spiral
+14796,Edge-on without bulge,Edge-on without bulge
+11325,Unbarred tight spiral,Unbarred tight spiral
+3484,Round smooth,Unbarred loose spiral
+4742,Round smooth,Round smooth
+17295,Edge-on with bulge,Edge-on with bulge
+10116,Unbarred tight spiral,Unbarred tight spiral
+10346,Unbarred tight spiral,Disturbed
+7517,In-between round,In-between round
+4753,Round smooth,Round smooth
+10245,Unbarred tight spiral,Unbarred loose spiral
+6234,In-between round,Round smooth
+2805,Merging,Merging
+13749,Unbarred loose spiral,Unbarred tight spiral
+6172,In-between round,In-between round
+4892,Round smooth,Round smooth
+12631,Unbarred loose spiral,Unbarred loose spiral
+11511,Unbarred tight spiral,Unbarred tight spiral
+11162,Unbarred tight spiral,Barred spiral
+3537,Round smooth,Round smooth
+6664,In-between round,In-between round
+11732,Unbarred tight spiral,Unbarred tight spiral
+4403,Round smooth,Round smooth
+10433,Unbarred tight spiral,Barred spiral
+3601,Round smooth,Round smooth
+6761,In-between round,In-between round
+13953,Unbarred loose spiral,In-between round
+17605,Edge-on with bulge,Cigar shaped
+4499,Round smooth,Round smooth
+11679,Unbarred tight spiral,Unbarred tight spiral
+562,Disturbed,Round smooth
+13524,Unbarred loose spiral,Unbarred loose spiral
+15084,Edge-on without bulge,Edge-on without bulge
+17595,Edge-on with bulge,Edge-on with bulge
+13865,Unbarred loose spiral,Disturbed
+1934,Merging,Merging
+16082,Edge-on with bulge,Edge-on with bulge
+16079,Edge-on with bulge,Edge-on with bulge
+4141,Round smooth,Disturbed
+2073,Merging,Merging
+11050,Unbarred tight spiral,Unbarred tight spiral
+16520,Edge-on with bulge,Merging
+14290,Unbarred loose spiral,Unbarred loose spiral
+12770,Unbarred loose spiral,Unbarred loose spiral
+12956,Unbarred loose spiral,Merging
+15444,Edge-on without bulge,Edge-on without bulge
+17077,Edge-on with bulge,Edge-on with bulge
+9905,Barred spiral,Barred spiral
+17451,Edge-on with bulge,Edge-on with bulge
+15784,Edge-on without bulge,Edge-on without bulge
+9166,Barred spiral,Barred spiral
+15099,Edge-on without bulge,Edge-on without bulge
+2027,Merging,Merging
+4834,Round smooth,Round smooth
+524,Disturbed,Merging
+5568,Round smooth,Round smooth
+11244,Unbarred tight spiral,Unbarred loose spiral
+12341,Unbarred loose spiral,Unbarred tight spiral
+17016,Edge-on with bulge,Edge-on with bulge
+14510,Edge-on without bulge,Edge-on without bulge
+10323,Unbarred tight spiral,Unbarred tight spiral
+12143,Unbarred loose spiral,Unbarred tight spiral
+119,Disturbed,Disturbed
+17674,Edge-on with bulge,Edge-on without bulge
+12301,Unbarred loose spiral,Unbarred loose spiral
+6768,In-between round,In-between round
+17505,Edge-on with bulge,Edge-on without bulge
+16229,Edge-on with bulge,Edge-on with bulge
+11312,Unbarred tight spiral,Unbarred tight spiral
+5779,In-between round,Round smooth
+14126,Unbarred loose spiral,Merging
+1512,Merging,Merging
+15801,Edge-on without bulge,Edge-on without bulge
+8492,Barred spiral,Barred spiral
+16758,Edge-on with bulge,Edge-on with bulge
+15036,Edge-on without bulge,Edge-on with bulge
+4114,Round smooth,Round smooth
+10759,Unbarred tight spiral,Unbarred tight spiral
+12566,Unbarred loose spiral,Unbarred loose spiral
+14292,Unbarred loose spiral,Unbarred tight spiral
+16740,Edge-on with bulge,Edge-on with bulge
+6914,In-between round,In-between round
+6801,In-between round,Disturbed
+8210,Barred spiral,Barred spiral
+9394,Barred spiral,Barred spiral
+14575,Edge-on without bulge,Cigar shaped
+12854,Unbarred loose spiral,Unbarred tight spiral
+15495,Edge-on without bulge,Edge-on without bulge
+14378,Unbarred loose spiral,Disturbed
+8919,Barred spiral,Barred spiral
+3276,Round smooth,Round smooth
+2484,Merging,Merging
+4561,Round smooth,Round smooth
+15323,Edge-on without bulge,Edge-on with bulge
+36,Disturbed,Unbarred loose spiral
+7193,In-between round,In-between round
+747,Disturbed,Disturbed
+14890,Edge-on without bulge,Edge-on without bulge
+2569,Merging,Disturbed
+11603,Unbarred tight spiral,Round smooth
+16285,Edge-on with bulge,Edge-on without bulge
+13566,Unbarred loose spiral,Disturbed
+11220,Unbarred tight spiral,Unbarred tight spiral
+13075,Unbarred loose spiral,Cigar shaped
+16018,Edge-on with bulge,Unbarred tight spiral
+2868,Merging,Merging
+16265,Edge-on with bulge,Edge-on with bulge
+13393,Unbarred loose spiral,Unbarred loose spiral
+15782,Edge-on without bulge,Edge-on without bulge
+8652,Barred spiral,Round smooth
+13975,Unbarred loose spiral,Disturbed
+2830,Merging,Merging
+7350,In-between round,In-between round
+12772,Unbarred loose spiral,Barred spiral
+15839,Edge-on with bulge,Edge-on with bulge
+3562,Round smooth,Round smooth
+6527,In-between round,In-between round
+5949,In-between round,Round smooth
+4075,Round smooth,In-between round
+10024,Unbarred tight spiral,Barred spiral
+15536,Edge-on without bulge,Edge-on without bulge
+1849,Merging,Merging
+15571,Edge-on without bulge,Edge-on without bulge
+11788,Unbarred tight spiral,Cigar shaped
+8881,Barred spiral,Barred spiral
+8644,Barred spiral,Barred spiral
+12536,Unbarred loose spiral,Barred spiral
+12054,Unbarred loose spiral,Unbarred tight spiral
+3804,Round smooth,Round smooth
+348,Disturbed,Unbarred loose spiral
+7710,Cigar shaped,Cigar shaped
+15487,Edge-on without bulge,Edge-on without bulge
+3016,Round smooth,Merging
+12993,Unbarred loose spiral,Barred spiral
+7163,In-between round,In-between round
+12391,Unbarred loose spiral,Unbarred loose spiral
+17534,Edge-on with bulge,Edge-on with bulge
+5241,Round smooth,Round smooth
+5774,In-between round,In-between round
+3720,Round smooth,Round smooth
+12463,Unbarred loose spiral,Barred spiral
+9984,Unbarred tight spiral,Unbarred tight spiral
+13310,Unbarred loose spiral,Unbarred tight spiral
+15574,Edge-on without bulge,Edge-on without bulge
+16936,Edge-on with bulge,Edge-on with bulge
+7224,In-between round,Round smooth
+14279,Unbarred loose spiral,Disturbed
+14096,Unbarred loose spiral,Cigar shaped
+12909,Unbarred loose spiral,Unbarred loose spiral
+14570,Edge-on without bulge,Edge-on without bulge
+10838,Unbarred tight spiral,Unbarred tight spiral
+8869,Barred spiral,Barred spiral
+1306,Merging,Barred spiral
+7401,In-between round,In-between round
+2188,Merging,Barred spiral
+10611,Unbarred tight spiral,Disturbed
+5684,In-between round,In-between round
+4064,Round smooth,Round smooth
+4311,Round smooth,Round smooth
+10679,Unbarred tight spiral,Unbarred tight spiral
+16482,Edge-on with bulge,Edge-on with bulge
+3846,Round smooth,Round smooth
+15622,Edge-on without bulge,Edge-on without bulge
+1028,Disturbed,Disturbed
+2112,Merging,Merging
+317,Disturbed,Disturbed
+14038,Unbarred loose spiral,Unbarred loose spiral
+6097,In-between round,In-between round
+12735,Unbarred loose spiral,Merging
+12252,Unbarred loose spiral,Disturbed
+7484,In-between round,Unbarred loose spiral
+13129,Unbarred loose spiral,Cigar shaped
+1750,Merging,Merging
+129,Disturbed,Unbarred loose spiral
+10108,Unbarred tight spiral,Unbarred loose spiral
+9505,Barred spiral,Barred spiral
+17011,Edge-on with bulge,Edge-on with bulge
+9328,Barred spiral,Barred spiral
+11206,Unbarred tight spiral,Barred spiral
+14130,Unbarred loose spiral,Round smooth
+2224,Merging,Edge-on without bulge
+6941,In-between round,In-between round
+16565,Edge-on with bulge,Edge-on with bulge
+1415,Merging,Round smooth
+11878,Unbarred loose spiral,Unbarred loose spiral
+8441,Barred spiral,Barred spiral
+2573,Merging,Merging
+2062,Merging,Barred spiral
+4980,Round smooth,Unbarred tight spiral
+5375,Round smooth,Round smooth
+1044,Disturbed,Disturbed
+7498,In-between round,In-between round
+8522,Barred spiral,Barred spiral
+5817,In-between round,In-between round
+4053,Round smooth,Round smooth
+16317,Edge-on with bulge,Edge-on without bulge
+11424,Unbarred tight spiral,Unbarred loose spiral
+7790,Cigar shaped,Cigar shaped
+5000,Round smooth,Round smooth
+4444,Round smooth,Round smooth
+8467,Barred spiral,Round smooth
+10053,Unbarred tight spiral,Unbarred loose spiral
+2014,Merging,In-between round
+4451,Round smooth,Round smooth
+13806,Unbarred loose spiral,Unbarred tight spiral
+4955,Round smooth,Round smooth
+14611,Edge-on without bulge,Edge-on without bulge
+5436,Round smooth,Merging
+8108,Barred spiral,Unbarred tight spiral
+11463,Unbarred tight spiral,Unbarred loose spiral
+2922,Merging,Merging
+15191,Edge-on without bulge,Edge-on without bulge
+4482,Round smooth,Unbarred tight spiral
+10635,Unbarred tight spiral,Unbarred loose spiral
+735,Disturbed,Unbarred loose spiral
+898,Disturbed,Disturbed
+12553,Unbarred loose spiral,Unbarred loose spiral
+8546,Barred spiral,Barred spiral
+11332,Unbarred tight spiral,Unbarred tight spiral
+8819,Barred spiral,Barred spiral
+14050,Unbarred loose spiral,Merging
+8298,Barred spiral,Barred spiral
+5238,Round smooth,Round smooth
+5357,Round smooth,Round smooth
+11037,Unbarred tight spiral,Unbarred tight spiral
+2941,Round smooth,Round smooth
+6178,In-between round,In-between round
+15396,Edge-on without bulge,Edge-on without bulge
+47,Disturbed,Unbarred loose spiral
+2847,Merging,In-between round
+15638,Edge-on without bulge,Edge-on without bulge
+12638,Unbarred loose spiral,Unbarred loose spiral
+1742,Merging,Merging
+10358,Unbarred tight spiral,Unbarred tight spiral
+15129,Edge-on without bulge,Edge-on without bulge
+7633,Cigar shaped,Cigar shaped
+1376,Merging,Merging
+8985,Barred spiral,Barred spiral
+10500,Unbarred tight spiral,Barred spiral
+17461,Edge-on with bulge,Edge-on with bulge
+10826,Unbarred tight spiral,Barred spiral
+5216,Round smooth,Disturbed
+13074,Unbarred loose spiral,Barred spiral
+5818,In-between round,Unbarred tight spiral
+1726,Merging,Merging
+11544,Unbarred tight spiral,Unbarred tight spiral
+3797,Round smooth,Round smooth
+8585,Barred spiral,Unbarred loose spiral
+11208,Unbarred tight spiral,Unbarred loose spiral
+2664,Merging,Merging
+16731,Edge-on with bulge,Edge-on with bulge
+3512,Round smooth,Round smooth
+11501,Unbarred tight spiral,Cigar shaped
+10610,Unbarred tight spiral,Unbarred tight spiral
+15357,Edge-on without bulge,Merging
+5589,In-between round,Round smooth
+15628,Edge-on without bulge,Edge-on without bulge
+15995,Edge-on with bulge,Edge-on with bulge
+12444,Unbarred loose spiral,Cigar shaped
+7958,Barred spiral,Unbarred tight spiral
+492,Disturbed,Unbarred loose spiral
+14910,Edge-on without bulge,Edge-on without bulge
+3093,Round smooth,Merging
+2852,Merging,Unbarred loose spiral
+11751,Unbarred tight spiral,Unbarred tight spiral
+7483,In-between round,Round smooth
+16671,Edge-on with bulge,Edge-on with bulge
+8928,Barred spiral,Barred spiral
+1068,Disturbed,Disturbed
+12480,Unbarred loose spiral,Unbarred tight spiral
+6791,In-between round,In-between round
+4080,Round smooth,Round smooth
+15881,Edge-on with bulge,Edge-on with bulge
+4175,Round smooth,Disturbed
+3842,Round smooth,Round smooth
+15585,Edge-on without bulge,Edge-on without bulge
+6997,In-between round,In-between round
+12000,Unbarred loose spiral,Barred spiral
+9180,Barred spiral,Unbarred tight spiral
+4333,Round smooth,Round smooth
+9875,Barred spiral,Barred spiral
+4974,Round smooth,Round smooth
+4809,Round smooth,Round smooth
+14366,Unbarred loose spiral,Unbarred loose spiral
+9595,Barred spiral,Barred spiral
+11394,Unbarred tight spiral,Barred spiral
+926,Disturbed,In-between round
+5434,Round smooth,In-between round
+12161,Unbarred loose spiral,Merging
+12349,Unbarred loose spiral,Cigar shaped
+9707,Barred spiral,Unbarred loose spiral
+3259,Round smooth,Round smooth
+13304,Unbarred loose spiral,Unbarred loose spiral
+13077,Unbarred loose spiral,Edge-on without bulge
+13820,Unbarred loose spiral,Unbarred loose spiral
+12312,Unbarred loose spiral,Unbarred tight spiral
+13492,Unbarred loose spiral,Disturbed
+7198,In-between round,Round smooth
+14868,Edge-on without bulge,Edge-on without bulge
+6562,In-between round,In-between round
+9285,Barred spiral,Barred spiral
+16196,Edge-on with bulge,Edge-on with bulge
+17575,Edge-on with bulge,Edge-on with bulge
+2392,Merging,Unbarred loose spiral
+12436,Unbarred loose spiral,Unbarred tight spiral
+15918,Edge-on with bulge,Edge-on with bulge
+13682,Unbarred loose spiral,Barred spiral
+14491,Edge-on without bulge,Edge-on with bulge
+7451,In-between round,In-between round
+10946,Unbarred tight spiral,Unbarred tight spiral
+282,Disturbed,Round smooth
+15920,Edge-on with bulge,Edge-on with bulge
+16535,Edge-on with bulge,Edge-on with bulge
+8131,Barred spiral,Unbarred loose spiral
+4373,Round smooth,Round smooth
+15914,Edge-on with bulge,Edge-on with bulge
+7425,In-between round,Cigar shaped
+6536,In-between round,In-between round
+921,Disturbed,Round smooth
+10607,Unbarred tight spiral,Barred spiral
+1773,Merging,Merging
+17153,Edge-on with bulge,Edge-on with bulge
+1974,Merging,Round smooth
+3488,Round smooth,Round smooth
+607,Disturbed,In-between round
+13918,Unbarred loose spiral,Unbarred loose spiral
+15002,Edge-on without bulge,Edge-on without bulge
+1901,Merging,Merging
+9236,Barred spiral,Barred spiral
+3882,Round smooth,In-between round
+12435,Unbarred loose spiral,Unbarred tight spiral
+4823,Round smooth,Merging
+10349,Unbarred tight spiral,Unbarred tight spiral
+6683,In-between round,Merging
+13410,Unbarred loose spiral,Unbarred loose spiral
+13095,Unbarred loose spiral,Round smooth
+7994,Barred spiral,Unbarred loose spiral
+2811,Merging,Merging
+8033,Barred spiral,Unbarred tight spiral
+14043,Unbarred loose spiral,In-between round
+410,Disturbed,Unbarred loose spiral
+2339,Merging,Merging
+7756,Cigar shaped,Edge-on without bulge
+12664,Unbarred loose spiral,Barred spiral
+6971,In-between round,In-between round
+16869,Edge-on with bulge,Edge-on with bulge
+4909,Round smooth,Round smooth
+2400,Merging,Merging
+6622,In-between round,In-between round
+1606,Merging,Barred spiral
+2089,Merging,Barred spiral
+3427,Round smooth,Round smooth
+13193,Unbarred loose spiral,Unbarred tight spiral
+1466,Merging,In-between round
+3957,Round smooth,Disturbed
+8979,Barred spiral,Barred spiral
+9466,Barred spiral,Barred spiral
+17666,Edge-on with bulge,Disturbed
+14330,Unbarred loose spiral,Disturbed
+459,Disturbed,Unbarred tight spiral
+6284,In-between round,In-between round
+11901,Unbarred loose spiral,Unbarred loose spiral
+5682,In-between round,Round smooth
+10340,Unbarred tight spiral,Unbarred tight spiral
+12715,Unbarred loose spiral,Unbarred loose spiral
+2182,Merging,Merging
+7073,In-between round,Round smooth
+13534,Unbarred loose spiral,Edge-on without bulge
+11607,Unbarred tight spiral,In-between round
+14830,Edge-on without bulge,Edge-on without bulge
+8871,Barred spiral,Barred spiral
+14719,Edge-on without bulge,Edge-on without bulge
+6371,In-between round,In-between round
+8605,Barred spiral,Unbarred tight spiral
+11022,Unbarred tight spiral,Unbarred tight spiral
+2330,Merging,Merging
+13339,Unbarred loose spiral,Unbarred tight spiral
+6419,In-between round,In-between round
+7976,Barred spiral,Barred spiral
+15548,Edge-on without bulge,Edge-on without bulge
+1031,Disturbed,Disturbed
+14581,Edge-on without bulge,Cigar shaped
+15333,Edge-on without bulge,Edge-on without bulge
+7270,In-between round,Disturbed
+8733,Barred spiral,Unbarred tight spiral
+786,Disturbed,Unbarred loose spiral
+7227,In-between round,Round smooth
+16787,Edge-on with bulge,Edge-on with bulge
+651,Disturbed,Disturbed
+4608,Round smooth,Round smooth
+8646,Barred spiral,Barred spiral
+1789,Merging,Disturbed
+2049,Merging,Merging
+13006,Unbarred loose spiral,Unbarred loose spiral
+11102,Unbarred tight spiral,Merging
+6650,In-between round,Edge-on with bulge
+5824,In-between round,In-between round
+15607,Edge-on without bulge,Edge-on with bulge
+7276,In-between round,In-between round
+3508,Round smooth,In-between round
+14477,Edge-on without bulge,Edge-on without bulge
+4084,Round smooth,Round smooth
+13723,Unbarred loose spiral,Unbarred loose spiral
+1112,Merging,Disturbed
+12040,Unbarred loose spiral,Unbarred tight spiral
+6733,In-between round,In-between round
+4887,Round smooth,Round smooth
+10428,Unbarred tight spiral,Barred spiral
+14245,Unbarred loose spiral,Edge-on without bulge
+3715,Round smooth,Round smooth
+10827,Unbarred tight spiral,Unbarred tight spiral
+5416,Round smooth,Round smooth
+1777,Merging,Edge-on with bulge
+10905,Unbarred tight spiral,Unbarred tight spiral
+8576,Barred spiral,Disturbed
+645,Disturbed,Unbarred loose spiral
+4746,Round smooth,Round smooth
+5091,Round smooth,Round smooth
+5155,Round smooth,Round smooth
+12957,Unbarred loose spiral,Merging
+10106,Unbarred tight spiral,Barred spiral
+13698,Unbarred loose spiral,Unbarred loose spiral
+2605,Merging,Merging
+8382,Barred spiral,Barred spiral
+6623,In-between round,Round smooth
+10023,Unbarred tight spiral,Unbarred tight spiral
+10199,Unbarred tight spiral,Unbarred tight spiral
+4171,Round smooth,Round smooth
+13788,Unbarred loose spiral,Unbarred loose spiral
+10401,Unbarred tight spiral,Unbarred tight spiral
+2245,Merging,Merging
+5011,Round smooth,Round smooth
+2861,Merging,Merging
+8909,Barred spiral,Barred spiral
+10923,Unbarred tight spiral,Unbarred tight spiral
+8115,Barred spiral,Barred spiral
+2434,Merging,Disturbed
+5890,In-between round,In-between round
+12729,Unbarred loose spiral,Barred spiral
+10665,Unbarred tight spiral,Unbarred tight spiral
+143,Disturbed,In-between round
+1918,Merging,Cigar shaped
+11672,Unbarred tight spiral,Unbarred loose spiral
+946,Disturbed,Unbarred loose spiral
+8163,Barred spiral,Unbarred loose spiral
+11149,Unbarred tight spiral,Unbarred tight spiral
+16001,Edge-on with bulge,Merging
+8205,Barred spiral,Disturbed
+6254,In-between round,Merging
+17092,Edge-on with bulge,Edge-on with bulge
+16301,Edge-on with bulge,Edge-on with bulge
+17545,Edge-on with bulge,Edge-on with bulge
+15071,Edge-on without bulge,Edge-on without bulge
+12180,Unbarred loose spiral,Unbarred loose spiral
+3180,Round smooth,Round smooth
+1586,Merging,Unbarred tight spiral
+9563,Barred spiral,Unbarred tight spiral
+16865,Edge-on with bulge,Disturbed
+891,Disturbed,In-between round
+7516,In-between round,In-between round
+11264,Unbarred tight spiral,Unbarred tight spiral
+10620,Unbarred tight spiral,Barred spiral
+3932,Round smooth,Round smooth
+6866,In-between round,In-between round
+16545,Edge-on with bulge,Edge-on with bulge
+14952,Edge-on without bulge,Edge-on without bulge
+11319,Unbarred tight spiral,Unbarred tight spiral
+12035,Unbarred loose spiral,Round smooth
+15819,Edge-on with bulge,Edge-on with bulge
+12833,Unbarred loose spiral,Unbarred loose spiral
+9705,Barred spiral,Barred spiral
+16786,Edge-on with bulge,Edge-on with bulge
+401,Disturbed,Unbarred loose spiral
+3831,Round smooth,Round smooth
+5365,Round smooth,Round smooth
+5844,In-between round,In-between round
+6769,In-between round,In-between round
+15320,Edge-on without bulge,Edge-on without bulge
+11201,Unbarred tight spiral,Unbarred tight spiral
+17205,Edge-on with bulge,Edge-on with bulge
+9992,Unbarred tight spiral,Barred spiral
+2252,Merging,Merging
+5936,In-between round,Unbarred loose spiral
+16922,Edge-on with bulge,Edge-on with bulge
+624,Disturbed,Unbarred tight spiral
+14683,Edge-on without bulge,Edge-on without bulge
+17068,Edge-on with bulge,Edge-on with bulge
+1240,Merging,Unbarred loose spiral
+989,Disturbed,Unbarred loose spiral
+1236,Merging,Merging
+10360,Unbarred tight spiral,Unbarred loose spiral
+11139,Unbarred tight spiral,Merging
+8143,Barred spiral,Unbarred loose spiral
+9250,Barred spiral,Barred spiral
+7663,Cigar shaped,Cigar shaped
+13663,Unbarred loose spiral,Unbarred loose spiral
+2566,Merging,Merging
+9092,Barred spiral,Barred spiral
+11712,Unbarred tight spiral,Unbarred tight spiral
+3037,Round smooth,Round smooth
+15229,Edge-on without bulge,Edge-on without bulge
+3875,Round smooth,Round smooth
+1897,Merging,Merging
+17560,Edge-on with bulge,Edge-on with bulge
+226,Disturbed,Merging
+5006,Round smooth,Round smooth
+415,Disturbed,Unbarred tight spiral
+16277,Edge-on with bulge,Edge-on without bulge
+11859,Unbarred loose spiral,Round smooth
+15643,Edge-on without bulge,Edge-on without bulge
+9383,Barred spiral,Unbarred tight spiral
+6393,In-between round,In-between round
+12706,Unbarred loose spiral,In-between round
+1071,Disturbed,Edge-on without bulge
+3143,Round smooth,Round smooth
+1555,Merging,In-between round
+9999,Unbarred tight spiral,Unbarred tight spiral
+9788,Barred spiral,Barred spiral
+13323,Unbarred loose spiral,Disturbed
+11514,Unbarred tight spiral,Unbarred tight spiral
+13736,Unbarred loose spiral,Disturbed
+8226,Barred spiral,Unbarred tight spiral
+2024,Merging,Barred spiral
+15927,Edge-on with bulge,Edge-on with bulge
+8425,Barred spiral,Barred spiral
+4706,Round smooth,Round smooth
+9319,Barred spiral,Unbarred loose spiral
+1802,Merging,Merging
+15450,Edge-on without bulge,Edge-on without bulge
+12327,Unbarred loose spiral,Unbarred tight spiral
+4077,Round smooth,Round smooth
+4088,Round smooth,Round smooth
+16867,Edge-on with bulge,Edge-on with bulge
+1479,Merging,Round smooth
+11391,Unbarred tight spiral,Unbarred loose spiral
+6919,In-between round,In-between round
+509,Disturbed,Merging
+16847,Edge-on with bulge,Edge-on with bulge
+1182,Merging,Merging
+11094,Unbarred tight spiral,Unbarred tight spiral
+17421,Edge-on with bulge,Edge-on with bulge
+5460,Round smooth,Round smooth
+17030,Edge-on with bulge,Merging
+5024,Round smooth,Round smooth
+4511,Round smooth,Round smooth
+6068,In-between round,In-between round
+768,Disturbed,Disturbed
+15227,Edge-on without bulge,Edge-on without bulge
+10318,Unbarred tight spiral,Barred spiral
+130,Disturbed,In-between round
+1684,Merging,Disturbed
+16107,Edge-on with bulge,Edge-on with bulge
+5957,In-between round,In-between round
+15161,Edge-on without bulge,Edge-on without bulge
+11446,Unbarred tight spiral,Round smooth
+6236,In-between round,In-between round
+7242,In-between round,In-between round
+17409,Edge-on with bulge,Edge-on without bulge
+2737,Merging,Merging
+9781,Barred spiral,Round smooth
+13208,Unbarred loose spiral,Unbarred loose spiral
+3498,Round smooth,Merging
+1861,Merging,Merging
+6304,In-between round,Merging
+14980,Edge-on without bulge,Edge-on without bulge
+16440,Edge-on with bulge,Edge-on with bulge
+13073,Unbarred loose spiral,Unbarred loose spiral
+7047,In-between round,In-between round
+8481,Barred spiral,Unbarred tight spiral
+7499,In-between round,In-between round
+13400,Unbarred loose spiral,Cigar shaped
+7792,Cigar shaped,Cigar shaped
+7570,In-between round,In-between round
+7701,Cigar shaped,In-between round
+13354,Unbarred loose spiral,Disturbed
+9274,Barred spiral,Barred spiral
+1644,Merging,Unbarred tight spiral
+6191,In-between round,In-between round
+6978,In-between round,In-between round
+10048,Unbarred tight spiral,Disturbed
+17000,Edge-on with bulge,Cigar shaped
+16530,Edge-on with bulge,Edge-on with bulge
+12437,Unbarred loose spiral,Barred spiral
+11044,Unbarred tight spiral,Unbarred tight spiral
+10235,Unbarred tight spiral,Unbarred loose spiral
+16346,Edge-on with bulge,Edge-on with bulge
+10082,Unbarred tight spiral,Round smooth
+2084,Merging,Merging
+206,Disturbed,Round smooth
+4384,Round smooth,Round smooth
+7382,In-between round,Round smooth
+2495,Merging,Edge-on with bulge
+929,Disturbed,Round smooth
+15855,Edge-on with bulge,Edge-on with bulge
+8806,Barred spiral,Barred spiral
+10883,Unbarred tight spiral,Barred spiral
+17366,Edge-on with bulge,Edge-on without bulge
+12109,Unbarred loose spiral,Unbarred loose spiral
+9531,Barred spiral,Barred spiral
+13449,Unbarred loose spiral,Unbarred loose spiral
+15900,Edge-on with bulge,Cigar shaped
+3660,Round smooth,Round smooth
+11338,Unbarred tight spiral,Unbarred tight spiral
+4920,Round smooth,Round smooth
+7035,In-between round,In-between round
+17548,Edge-on with bulge,Edge-on with bulge
+13683,Unbarred loose spiral,Unbarred loose spiral
+3190,Round smooth,Round smooth
+1946,Merging,Merging
+2365,Merging,Merging
+871,Disturbed,Unbarred loose spiral
+8929,Barred spiral,Barred spiral
+15912,Edge-on with bulge,Edge-on with bulge
+14032,Unbarred loose spiral,Unbarred loose spiral
+11898,Unbarred loose spiral,Disturbed
+17084,Edge-on with bulge,Edge-on with bulge
+2838,Merging,Merging
+8485,Barred spiral,In-between round
+2016,Merging,In-between round
+11487,Unbarred tight spiral,Unbarred tight spiral
+4457,Round smooth,Round smooth
+1391,Merging,Merging
+2992,Round smooth,Unbarred tight spiral
+8913,Barred spiral,Barred spiral
+10728,Unbarred tight spiral,Unbarred tight spiral
+6425,In-between round,In-between round
+5785,In-between round,In-between round
+9323,Barred spiral,Barred spiral
+13728,Unbarred loose spiral,Merging
+1217,Merging,Merging
+11426,Unbarred tight spiral,Unbarred tight spiral
+5645,In-between round,In-between round
+12997,Unbarred loose spiral,Unbarred loose spiral
+3937,Round smooth,Round smooth
+1114,Merging,Edge-on with bulge
+471,Disturbed,Disturbed
+5278,Round smooth,In-between round
+10741,Unbarred tight spiral,Unbarred tight spiral
+16513,Edge-on with bulge,Cigar shaped
+6805,In-between round,In-between round
+15776,Edge-on without bulge,Edge-on without bulge
+112,Disturbed,Merging
+1471,Merging,In-between round
+3409,Round smooth,Merging
+13468,Unbarred loose spiral,Merging
+2422,Merging,Merging
+8649,Barred spiral,Barred spiral
+5439,Round smooth,Round smooth
+10907,Unbarred tight spiral,Unbarred loose spiral
+16236,Edge-on with bulge,Edge-on with bulge
+1011,Disturbed,Unbarred loose spiral
+556,Disturbed,Round smooth
+16852,Edge-on with bulge,Edge-on with bulge
+5284,Round smooth,Round smooth
+5963,In-between round,Round smooth
+3535,Round smooth,Round smooth
+13064,Unbarred loose spiral,Barred spiral
+15491,Edge-on without bulge,Edge-on without bulge
+15809,Edge-on without bulge,Edge-on without bulge
+12310,Unbarred loose spiral,Unbarred loose spiral
+663,Disturbed,Unbarred tight spiral
+4880,Round smooth,Merging
+9403,Barred spiral,Barred spiral
+1655,Merging,Unbarred loose spiral
+8442,Barred spiral,Disturbed
+17086,Edge-on with bulge,Edge-on with bulge
+11438,Unbarred tight spiral,Unbarred tight spiral
+4198,Round smooth,Round smooth
+10847,Unbarred tight spiral,Unbarred tight spiral
+3750,Round smooth,Merging
+4583,Round smooth,Round smooth
+3271,Round smooth,In-between round
+4147,Round smooth,Barred spiral
+15307,Edge-on without bulge,Edge-on without bulge
+14278,Unbarred loose spiral,Merging
+9907,Barred spiral,Unbarred loose spiral
+15370,Edge-on without bulge,Edge-on without bulge
+1025,Disturbed,Barred spiral
+16313,Edge-on with bulge,Edge-on with bulge
+14831,Edge-on without bulge,Edge-on without bulge
+2155,Merging,Merging
+4734,Round smooth,Unbarred tight spiral
+4416,Round smooth,Round smooth
+2263,Merging,Round smooth
+5419,Round smooth,Round smooth
+1227,Merging,Barred spiral
+914,Disturbed,Disturbed
+438,Disturbed,Unbarred tight spiral
+5907,In-between round,In-between round
+4383,Round smooth,Round smooth
+16661,Edge-on with bulge,Edge-on without bulge
+9261,Barred spiral,Barred spiral
+9766,Barred spiral,Unbarred loose spiral
+12732,Unbarred loose spiral,Unbarred loose spiral
+6927,In-between round,In-between round
+1409,Merging,Barred spiral
+10762,Unbarred tight spiral,Unbarred tight spiral
+7038,In-between round,In-between round
+839,Disturbed,Cigar shaped
+1020,Disturbed,Disturbed
+15724,Edge-on without bulge,Edge-on without bulge
+2305,Merging,Merging
+13316,Unbarred loose spiral,Unbarred loose spiral
+5686,In-between round,Disturbed
+147,Disturbed,Disturbed
+5877,In-between round,Unbarred loose spiral
+7702,Cigar shaped,In-between round
+6489,In-between round,In-between round
+325,Disturbed,Disturbed
+15414,Edge-on without bulge,Edge-on without bulge
+3195,Round smooth,Round smooth
+419,Disturbed,Disturbed
+7335,In-between round,In-between round
+16133,Edge-on with bulge,Edge-on with bulge
+7588,In-between round,In-between round
+6538,In-between round,Cigar shaped
+3110,Round smooth,Round smooth
+6475,In-between round,In-between round
+6578,In-between round,Round smooth
+9932,Barred spiral,Barred spiral
+725,Disturbed,Disturbed
+10459,Unbarred tight spiral,Unbarred tight spiral
+7317,In-between round,Round smooth
+1816,Merging,Unbarred tight spiral
+12739,Unbarred loose spiral,Merging
+7005,In-between round,In-between round
+14812,Edge-on without bulge,Edge-on without bulge
+12379,Unbarred loose spiral,Unbarred loose spiral
+103,Disturbed,Disturbed
+9112,Barred spiral,Barred spiral
+13328,Unbarred loose spiral,Barred spiral
+3608,Round smooth,Round smooth
+12688,Unbarred loose spiral,Merging
+15303,Edge-on without bulge,Edge-on without bulge
+7813,Cigar shaped,Cigar shaped
+5793,In-between round,In-between round
+14347,Unbarred loose spiral,Disturbed
+6303,In-between round,In-between round
+14486,Edge-on without bulge,Disturbed
+565,Disturbed,Edge-on without bulge
+8507,Barred spiral,Unbarred tight spiral
+7086,In-between round,In-between round
+14863,Edge-on without bulge,Edge-on without bulge
+7113,In-between round,Round smooth
+1263,Merging,Merging
+7914,Cigar shaped,Cigar shaped
+3730,Round smooth,Round smooth
+5744,In-between round,In-between round
+3788,Round smooth,Round smooth
+4649,Round smooth,Round smooth
+13420,Unbarred loose spiral,Round smooth
+7593,In-between round,Merging
+11117,Unbarred tight spiral,Unbarred tight spiral
+13467,Unbarred loose spiral,Unbarred loose spiral
+5784,In-between round,Round smooth
+9475,Barred spiral,Unbarred loose spiral
+2120,Merging,Disturbed
+8570,Barred spiral,Barred spiral
+1069,Disturbed,Disturbed
+9560,Barred spiral,Unbarred loose spiral
+7831,Cigar shaped,In-between round
+3065,Round smooth,Merging
+2185,Merging,Merging
+7953,Barred spiral,Barred spiral
+13216,Unbarred loose spiral,Barred spiral
+7936,Barred spiral,Barred spiral
+4843,Round smooth,Round smooth
+13385,Unbarred loose spiral,Unbarred tight spiral
+13485,Unbarred loose spiral,Unbarred tight spiral
+2826,Merging,Merging
+17285,Edge-on with bulge,Edge-on with bulge
+14328,Unbarred loose spiral,Disturbed
+402,Disturbed,Merging
+7945,Barred spiral,Merging
+2068,Merging,Merging
+4785,Round smooth,Barred spiral
+3592,Round smooth,Unbarred tight spiral
+15894,Edge-on with bulge,Edge-on with bulge
+11519,Unbarred tight spiral,Unbarred loose spiral
+1352,Merging,Merging
+13768,Unbarred loose spiral,Merging
+8044,Barred spiral,Round smooth
+14128,Unbarred loose spiral,Unbarred loose spiral
+10767,Unbarred tight spiral,Unbarred loose spiral
+7825,Cigar shaped,Cigar shaped
+8053,Barred spiral,Barred spiral
+3979,Round smooth,Round smooth
+6379,In-between round,Merging
+3631,Round smooth,Round smooth
+17187,Edge-on with bulge,Edge-on with bulge
+17307,Edge-on with bulge,Edge-on with bulge
+6498,In-between round,In-between round
+2393,Merging,Merging
+9525,Barred spiral,Disturbed
+10510,Unbarred tight spiral,Unbarred tight spiral
+14236,Unbarred loose spiral,Unbarred loose spiral
+16453,Edge-on with bulge,Edge-on with bulge
+15477,Edge-on without bulge,Edge-on without bulge
+10583,Unbarred tight spiral,Unbarred tight spiral
+5721,In-between round,Round smooth
+751,Disturbed,Unbarred tight spiral
+12123,Unbarred loose spiral,Unbarred loose spiral
+13055,Unbarred loose spiral,Barred spiral
+674,Disturbed,Disturbed
+17515,Edge-on with bulge,Edge-on with bulge
+2249,Merging,Merging
+13251,Unbarred loose spiral,Merging
+2094,Merging,Merging
+9409,Barred spiral,Barred spiral
+13950,Unbarred loose spiral,Unbarred loose spiral
+16831,Edge-on with bulge,Edge-on with bulge
+8349,Barred spiral,Barred spiral
+11004,Unbarred tight spiral,Barred spiral
+8953,Barred spiral,Barred spiral
+10781,Unbarred tight spiral,Unbarred tight spiral
+12589,Unbarred loose spiral,Unbarred tight spiral
+6826,In-between round,In-between round
+378,Disturbed,Merging
+1630,Merging,Merging
+14093,Unbarred loose spiral,Unbarred loose spiral
+1419,Merging,Merging
+15525,Edge-on without bulge,Edge-on without bulge
+14307,Unbarred loose spiral,Unbarred loose spiral
+2203,Merging,Merging
+15747,Edge-on without bulge,Edge-on without bulge
+15627,Edge-on without bulge,Edge-on without bulge
+7273,In-between round,In-between round
+2001,Merging,Merging
+10866,Unbarred tight spiral,Unbarred tight spiral
+2955,Round smooth,Round smooth
+3121,Round smooth,Merging
+4336,Round smooth,Round smooth
+2428,Merging,Merging
+14069,Unbarred loose spiral,Cigar shaped
+9490,Barred spiral,Unbarred tight spiral
+7150,In-between round,In-between round
+7749,Cigar shaped,In-between round
+13949,Unbarred loose spiral,Merging
+267,Disturbed,Disturbed
+5325,Round smooth,Round smooth
+3491,Round smooth,Round smooth
+12094,Unbarred loose spiral,Barred spiral
+9509,Barred spiral,Barred spiral
+5070,Round smooth,Round smooth
+270,Disturbed,Barred spiral
+3227,Round smooth,Unbarred tight spiral
+12534,Unbarred loose spiral,Barred spiral
+11039,Unbarred tight spiral,Round smooth
+7321,In-between round,In-between round
+10714,Unbarred tight spiral,Unbarred tight spiral
+9227,Barred spiral,Unbarred tight spiral
+15954,Edge-on with bulge,Edge-on with bulge
+4844,Round smooth,Round smooth
+14499,Edge-on without bulge,Edge-on without bulge
+573,Disturbed,In-between round
+3192,Round smooth,Round smooth
+12634,Unbarred loose spiral,Unbarred loose spiral
+15244,Edge-on without bulge,Edge-on with bulge
+6222,In-between round,In-between round
+4818,Round smooth,Round smooth
+17414,Edge-on with bulge,Edge-on with bulge
+10457,Unbarred tight spiral,Edge-on with bulge
+16043,Edge-on with bulge,Edge-on with bulge
+2389,Merging,In-between round
+8832,Barred spiral,Barred spiral
+11568,Unbarred tight spiral,Unbarred loose spiral
+16189,Edge-on with bulge,Edge-on with bulge
+3628,Round smooth,Round smooth
+14396,Edge-on without bulge,Edge-on without bulge
+330,Disturbed,Merging
+13769,Unbarred loose spiral,Unbarred loose spiral
+16664,Edge-on with bulge,Edge-on with bulge
+12554,Unbarred loose spiral,Barred spiral
+12778,Unbarred loose spiral,Disturbed
+1476,Merging,Merging
+5488,Round smooth,Round smooth
+1056,Disturbed,Disturbed
+7514,In-between round,In-between round
+12397,Unbarred loose spiral,Disturbed
+2217,Merging,Disturbed
+7716,Cigar shaped,Cigar shaped
+7011,In-between round,In-between round
+269,Disturbed,Merging
+9452,Barred spiral,Barred spiral
+5871,In-between round,In-between round
+2509,Merging,Merging
+13386,Unbarred loose spiral,In-between round
+10524,Unbarred tight spiral,Unbarred tight spiral
+10949,Unbarred tight spiral,Barred spiral
+7993,Barred spiral,Unbarred tight spiral
+7858,Cigar shaped,Cigar shaped
+9282,Barred spiral,Unbarred loose spiral
+14273,Unbarred loose spiral,Merging
+12665,Unbarred loose spiral,Barred spiral
+14646,Edge-on without bulge,Edge-on with bulge
+5495,Round smooth,In-between round
+11834,Unbarred loose spiral,Unbarred tight spiral
+17535,Edge-on with bulge,Edge-on without bulge
+15492,Edge-on without bulge,Edge-on without bulge
+5795,In-between round,In-between round
+10566,Unbarred tight spiral,Unbarred tight spiral
+4874,Round smooth,Round smooth
+13147,Unbarred loose spiral,Unbarred loose spiral
+11593,Unbarred tight spiral,Disturbed
+15261,Edge-on without bulge,Edge-on without bulge
+9720,Barred spiral,Barred spiral
+14574,Edge-on without bulge,Edge-on without bulge
+5937,In-between round,Disturbed
+11055,Unbarred tight spiral,Unbarred tight spiral
+4650,Round smooth,Round smooth
+11882,Unbarred loose spiral,Unbarred tight spiral
+4280,Round smooth,Round smooth
+10533,Unbarred tight spiral,Unbarred tight spiral
+3509,Round smooth,Round smooth
+15204,Edge-on without bulge,Edge-on without bulge
+7856,Cigar shaped,Cigar shaped
+16656,Edge-on with bulge,Edge-on with bulge
+11257,Unbarred tight spiral,Unbarred tight spiral
+2387,Merging,Disturbed
+16734,Edge-on with bulge,Edge-on with bulge
+11947,Unbarred loose spiral,Edge-on without bulge
+9043,Barred spiral,Barred spiral
+16547,Edge-on with bulge,Edge-on with bulge
+2211,Merging,Merging
+3673,Round smooth,Round smooth
+13470,Unbarred loose spiral,Unbarred loose spiral
+11874,Unbarred loose spiral,Unbarred tight spiral
+1500,Merging,Merging
+14284,Unbarred loose spiral,Unbarred tight spiral
+8289,Barred spiral,Unbarred loose spiral
+1494,Merging,Merging
+9798,Barred spiral,In-between round
+9543,Barred spiral,In-between round
+7147,In-between round,In-between round
+16448,Edge-on with bulge,Disturbed
+14459,Edge-on without bulge,Edge-on without bulge
+13808,Unbarred loose spiral,Disturbed
+17663,Edge-on with bulge,Edge-on with bulge
+812,Disturbed,Disturbed
+15716,Edge-on without bulge,Edge-on without bulge
+10079,Unbarred tight spiral,Round smooth
+9060,Barred spiral,Edge-on without bulge
+10854,Unbarred tight spiral,Unbarred tight spiral
+17130,Edge-on with bulge,Edge-on with bulge
+7023,In-between round,In-between round
+4952,Round smooth,Unbarred tight spiral
+13592,Unbarred loose spiral,Unbarred loose spiral
+719,Disturbed,Round smooth
+5988,In-between round,Merging
+14749,Edge-on without bulge,Edge-on without bulge
+13103,Unbarred loose spiral,Unbarred loose spiral
+11526,Unbarred tight spiral,Unbarred tight spiral
+8039,Barred spiral,Unbarred tight spiral
+15624,Edge-on without bulge,Edge-on with bulge
+7206,In-between round,In-between round
+15114,Edge-on without bulge,Edge-on without bulge
+15185,Edge-on without bulge,Edge-on without bulge
+12804,Unbarred loose spiral,Unbarred loose spiral
+7697,Cigar shaped,Cigar shaped
+5839,In-between round,Round smooth
+10552,Unbarred tight spiral,Barred spiral
+11907,Unbarred loose spiral,Unbarred tight spiral
+4692,Round smooth,Round smooth
+6196,In-between round,Round smooth
+16040,Edge-on with bulge,Edge-on with bulge
+4301,Round smooth,Round smooth
+15685,Edge-on without bulge,Unbarred loose spiral
+6355,In-between round,In-between round
+12191,Unbarred loose spiral,Unbarred loose spiral
+9937,Barred spiral,Barred spiral
+14775,Edge-on without bulge,Edge-on without bulge
+16476,Edge-on with bulge,Edge-on with bulge
+15669,Edge-on without bulge,Edge-on without bulge
+16599,Edge-on with bulge,Edge-on with bulge
+10159,Unbarred tight spiral,In-between round
+5595,In-between round,In-between round
+4431,Round smooth,Disturbed
+7983,Barred spiral,Round smooth
+4250,Round smooth,Round smooth
+9167,Barred spiral,Barred spiral
+9251,Barred spiral,Barred spiral
+5208,Round smooth,In-between round
+4536,Round smooth,Round smooth
+32,Disturbed,Unbarred tight spiral
+6640,In-between round,Cigar shaped
+13697,Unbarred loose spiral,Cigar shaped
+5020,Round smooth,Round smooth
+8868,Barred spiral,Unbarred loose spiral
+12524,Unbarred loose spiral,Barred spiral
+15243,Edge-on without bulge,Edge-on without bulge
+10320,Unbarred tight spiral,Unbarred tight spiral
+15224,Edge-on without bulge,Edge-on with bulge
+1911,Merging,Round smooth
+6782,In-between round,In-between round
+12612,Unbarred loose spiral,Merging
+14836,Edge-on without bulge,Edge-on without bulge
+13357,Unbarred loose spiral,In-between round
+12860,Unbarred loose spiral,Unbarred loose spiral
+12591,Unbarred loose spiral,Disturbed
+16619,Edge-on with bulge,Edge-on with bulge
+14368,Unbarred loose spiral,Unbarred loose spiral
+4733,Round smooth,Round smooth
+14092,Unbarred loose spiral,Unbarred loose spiral
+5758,In-between round,Cigar shaped
+10072,Unbarred tight spiral,Unbarred tight spiral
+15011,Edge-on without bulge,Edge-on without bulge
+4259,Round smooth,Round smooth
+16906,Edge-on with bulge,Edge-on with bulge
+15970,Edge-on with bulge,Edge-on with bulge
+4748,Round smooth,Round smooth
+6725,In-between round,In-between round
+5313,Round smooth,Round smooth
+5288,Round smooth,Merging
+8183,Barred spiral,Unbarred tight spiral
+17671,Edge-on with bulge,Edge-on with bulge
+13745,Unbarred loose spiral,In-between round
+11273,Unbarred tight spiral,Unbarred tight spiral
+14693,Edge-on without bulge,Edge-on with bulge
+1076,Disturbed,Disturbed
+13302,Unbarred loose spiral,Disturbed
+14902,Edge-on without bulge,Edge-on without bulge
+16208,Edge-on with bulge,Edge-on with bulge
+1632,Merging,Cigar shaped
+8688,Barred spiral,Disturbed
+6885,In-between round,Edge-on with bulge
+10733,Unbarred tight spiral,Unbarred tight spiral
+10701,Unbarred tight spiral,Unbarred tight spiral
+965,Disturbed,Round smooth
+4764,Round smooth,Round smooth
+729,Disturbed,Edge-on with bulge
+14252,Unbarred loose spiral,Unbarred loose spiral
+13188,Unbarred loose spiral,Unbarred loose spiral
+5090,Round smooth,In-between round
+10332,Unbarred tight spiral,Unbarred tight spiral
+3661,Round smooth,Round smooth
+11229,Unbarred tight spiral,Unbarred tight spiral
+14482,Edge-on without bulge,Edge-on without bulge
+17662,Edge-on with bulge,Cigar shaped
+16877,Edge-on with bulge,Edge-on with bulge
+8925,Barred spiral,Barred spiral
+15887,Edge-on with bulge,Edge-on without bulge
+12364,Unbarred loose spiral,Unbarred loose spiral
+738,Disturbed,Unbarred loose spiral
+1768,Merging,Unbarred loose spiral
+4170,Round smooth,In-between round
+5286,Round smooth,Round smooth
+2348,Merging,Merging
+8686,Barred spiral,Barred spiral
+6149,In-between round,Unbarred loose spiral
+9803,Barred spiral,Unbarred loose spiral
+9846,Barred spiral,Barred spiral
+11366,Unbarred tight spiral,Unbarred tight spiral
+8099,Barred spiral,Unbarred tight spiral
+9139,Barred spiral,Unbarred tight spiral
+727,Disturbed,Unbarred tight spiral
+13571,Unbarred loose spiral,Unbarred loose spiral
+10968,Unbarred tight spiral,Unbarred tight spiral
+7773,Cigar shaped,In-between round
+16651,Edge-on with bulge,Edge-on with bulge
+6229,In-between round,Round smooth
+4135,Round smooth,Round smooth
+15547,Edge-on without bulge,Edge-on without bulge
+12743,Unbarred loose spiral,Merging
+12815,Unbarred loose spiral,Unbarred loose spiral
+11758,Unbarred tight spiral,Edge-on without bulge
+2695,Merging,Merging
+12274,Unbarred loose spiral,Round smooth
+11489,Unbarred tight spiral,Unbarred loose spiral
+10028,Unbarred tight spiral,Unbarred tight spiral
+6704,In-between round,In-between round
+962,Disturbed,Disturbed
+8980,Barred spiral,Barred spiral
+13460,Unbarred loose spiral,In-between round
+6639,In-between round,In-between round
+8262,Barred spiral,Barred spiral
+6129,In-between round,In-between round
+3296,Round smooth,Round smooth
+10745,Unbarred tight spiral,Merging
+8208,Barred spiral,Barred spiral
+671,Disturbed,Cigar shaped
+11126,Unbarred tight spiral,Unbarred tight spiral
+17570,Edge-on with bulge,Edge-on with bulge
+7598,Cigar shaped,Cigar shaped
+11288,Unbarred tight spiral,Unbarred tight spiral
+3624,Round smooth,Round smooth
+15406,Edge-on without bulge,Edge-on without bulge
+11569,Unbarred tight spiral,In-between round
+2706,Merging,Round smooth
+6522,In-between round,Barred spiral
+10879,Unbarred tight spiral,Merging
+14888,Edge-on without bulge,Edge-on without bulge
+4248,Round smooth,Round smooth
+10384,Unbarred tight spiral,In-between round
+6672,In-between round,Round smooth
+6674,In-between round,In-between round
+14557,Edge-on without bulge,Edge-on with bulge
+11802,Unbarred loose spiral,Barred spiral
+5565,Round smooth,Unbarred loose spiral
+10431,Unbarred tight spiral,Unbarred loose spiral
+6500,In-between round,In-between round
+1062,Disturbed,Disturbed
+15417,Edge-on without bulge,Edge-on without bulge
+7450,In-between round,In-between round
+10811,Unbarred tight spiral,Unbarred tight spiral
+10835,Unbarred tight spiral,Unbarred tight spiral
+3951,Round smooth,In-between round
+9183,Barred spiral,Barred spiral
+5134,Round smooth,Round smooth
+12036,Unbarred loose spiral,Barred spiral
+11883,Unbarred loose spiral,Unbarred tight spiral
+15270,Edge-on without bulge,Unbarred loose spiral
+15746,Edge-on without bulge,Edge-on without bulge
+15959,Edge-on with bulge,Edge-on with bulge
+15194,Edge-on without bulge,Edge-on without bulge
+9435,Barred spiral,Barred spiral
+17017,Edge-on with bulge,Edge-on with bulge
+3987,Round smooth,Merging
+16464,Edge-on with bulge,Edge-on with bulge
+9797,Barred spiral,In-between round
+12345,Unbarred loose spiral,Unbarred loose spiral
+14085,Unbarred loose spiral,Unbarred loose spiral
+1456,Merging,Round smooth
+2633,Merging,Merging
+7772,Cigar shaped,Edge-on with bulge
+16320,Edge-on with bulge,Merging
+13882,Unbarred loose spiral,Merging
+14966,Edge-on without bulge,Edge-on without bulge
+11970,Unbarred loose spiral,Unbarred loose spiral
+9556,Barred spiral,Barred spiral
+1556,Merging,Merging
+4763,Round smooth,Disturbed
+13785,Unbarred loose spiral,Unbarred loose spiral
+3474,Round smooth,Round smooth
+16764,Edge-on with bulge,Edge-on with bulge
+7973,Barred spiral,Barred spiral
+9802,Barred spiral,Unbarred tight spiral
+16514,Edge-on with bulge,Edge-on with bulge
+4562,Round smooth,Round smooth
+9516,Barred spiral,Unbarred tight spiral
+6008,In-between round,In-between round
+2515,Merging,Merging
+10468,Unbarred tight spiral,Unbarred loose spiral
+17323,Edge-on with bulge,Edge-on without bulge
+293,Disturbed,Disturbed
+6497,In-between round,Round smooth
+11252,Unbarred tight spiral,Unbarred loose spiral
+7625,Cigar shaped,Cigar shaped
+5710,In-between round,Round smooth
+14136,Unbarred loose spiral,Unbarred loose spiral
+1956,Merging,Round smooth
+1445,Merging,Merging
+16943,Edge-on with bulge,In-between round
+766,Disturbed,Round smooth
+11741,Unbarred tight spiral,Unbarred tight spiral
+16068,Edge-on with bulge,Edge-on with bulge
+1407,Merging,Edge-on without bulge
+16243,Edge-on with bulge,Edge-on without bulge
+13642,Unbarred loose spiral,Unbarred loose spiral
+10357,Unbarred tight spiral,Barred spiral
+17422,Edge-on with bulge,Edge-on with bulge
+3292,Round smooth,Round smooth
+6701,In-between round,In-between round
+1262,Merging,Merging
+15666,Edge-on without bulge,Edge-on with bulge
+15663,Edge-on without bulge,Edge-on without bulge
+17175,Edge-on with bulge,Edge-on with bulge
+13798,Unbarred loose spiral,Unbarred loose spiral
+15957,Edge-on with bulge,Edge-on with bulge
+1134,Merging,Round smooth
+14138,Unbarred loose spiral,Barred spiral
+1325,Merging,Round smooth
+3960,Round smooth,Round smooth
+400,Disturbed,Cigar shaped
+9746,Barred spiral,Unbarred loose spiral
+10987,Unbarred tight spiral,Barred spiral
+4673,Round smooth,Round smooth
+10535,Unbarred tight spiral,Round smooth
+15516,Edge-on without bulge,Edge-on without bulge
+4237,Round smooth,Unbarred tight spiral
+13411,Unbarred loose spiral,Disturbed
+919,Disturbed,Disturbed
+4071,Round smooth,Round smooth
+4261,Round smooth,Round smooth
+14621,Edge-on without bulge,Edge-on without bulge
+17114,Edge-on with bulge,Edge-on with bulge
+8968,Barred spiral,Unbarred tight spiral
+11080,Unbarred tight spiral,Barred spiral
+3521,Round smooth,Round smooth
+7912,Cigar shaped,Cigar shaped
+8801,Barred spiral,Barred spiral
+1828,Merging,Merging
+1408,Merging,Unbarred loose spiral
+4781,Round smooth,Round smooth
+5251,Round smooth,Round smooth
+13285,Unbarred loose spiral,In-between round
+12822,Unbarred loose spiral,In-between round
+5707,In-between round,Edge-on with bulge
+10760,Unbarred tight spiral,Unbarred loose spiral
+4211,Round smooth,Round smooth
+15209,Edge-on without bulge,Edge-on without bulge
+16112,Edge-on with bulge,Edge-on with bulge
+17375,Edge-on with bulge,Edge-on with bulge
+14741,Edge-on without bulge,Edge-on with bulge
+1670,Merging,Round smooth
+2248,Merging,Unbarred loose spiral
+10516,Unbarred tight spiral,Unbarred tight spiral
+1876,Merging,Disturbed
+13969,Unbarred loose spiral,Unbarred tight spiral
+17317,Edge-on with bulge,Edge-on without bulge
+1339,Merging,Round smooth
+8006,Barred spiral,Barred spiral
+16686,Edge-on with bulge,Edge-on with bulge
+7735,Cigar shaped,Cigar shaped
+14317,Unbarred loose spiral,Unbarred tight spiral
+358,Disturbed,Barred spiral
+6184,In-between round,In-between round
+11589,Unbarred tight spiral,Barred spiral
+7064,In-between round,In-between round
+17373,Edge-on with bulge,Edge-on with bulge
+9997,Unbarred tight spiral,Edge-on with bulge
+5035,Round smooth,Round smooth
+5212,Round smooth,Round smooth
+16488,Edge-on with bulge,Edge-on with bulge
+10932,Unbarred tight spiral,Unbarred tight spiral
+10598,Unbarred tight spiral,Unbarred tight spiral
+4906,Round smooth,Round smooth
+12951,Unbarred loose spiral,Unbarred loose spiral
+12370,Unbarred loose spiral,Disturbed
+3416,Round smooth,Round smooth
+10263,Unbarred tight spiral,Barred spiral
+13253,Unbarred loose spiral,Unbarred loose spiral
+13347,Unbarred loose spiral,Unbarred loose spiral
+3434,Round smooth,Round smooth
+6897,In-between round,In-between round
+6195,In-between round,In-between round
+6891,In-between round,In-between round
+11747,Unbarred tight spiral,Unbarred tight spiral
+9334,Barred spiral,Barred spiral
+14594,Edge-on without bulge,Edge-on without bulge
+3924,Round smooth,Round smooth
+4745,Round smooth,Round smooth
+4886,Round smooth,Merging
+4894,Round smooth,Round smooth
+12282,Unbarred loose spiral,Unbarred loose spiral
+2032,Merging,Unbarred tight spiral
+6525,In-between round,In-between round
+13071,Unbarred loose spiral,Barred spiral
+4685,Round smooth,Round smooth
+3251,Round smooth,Unbarred tight spiral
+16965,Edge-on with bulge,Edge-on with bulge
+508,Disturbed,Unbarred tight spiral
+7561,In-between round,In-between round
+4518,Round smooth,Round smooth
+5195,Round smooth,Round smooth
+1985,Merging,Merging
+14756,Edge-on without bulge,Disturbed
+14417,Edge-on without bulge,Edge-on with bulge
+17659,Edge-on with bulge,Edge-on with bulge
+13049,Unbarred loose spiral,Barred spiral
+2490,Merging,Round smooth
+9551,Barred spiral,Unbarred loose spiral
+14087,Unbarred loose spiral,Disturbed
+1780,Merging,Merging
+6817,In-between round,In-between round
+13435,Unbarred loose spiral,Unbarred loose spiral
+15277,Edge-on without bulge,Edge-on without bulge
+16031,Edge-on with bulge,Edge-on with bulge
+16665,Edge-on with bulge,Edge-on with bulge
+5555,Round smooth,Unbarred tight spiral
+7233,In-between round,In-between round
+5264,Round smooth,Round smooth
+10965,Unbarred tight spiral,Unbarred tight spiral
+9199,Barred spiral,Disturbed
+14798,Edge-on without bulge,Edge-on with bulge
+17355,Edge-on with bulge,Edge-on with bulge
+6017,In-between round,In-between round
+11320,Unbarred tight spiral,Unbarred tight spiral
+10640,Unbarred tight spiral,Unbarred tight spiral
+5619,In-between round,Merging
+15994,Edge-on with bulge,Merging
+4086,Round smooth,Round smooth
+8373,Barred spiral,Barred spiral
+64,Disturbed,Disturbed
+5702,In-between round,In-between round
+4183,Round smooth,In-between round
+17229,Edge-on with bulge,Edge-on with bulge
+1790,Merging,In-between round
+14083,Unbarred loose spiral,In-between round
+16603,Edge-on with bulge,Edge-on with bulge
+13355,Unbarred loose spiral,Unbarred loose spiral
+4869,Round smooth,Round smooth
+8093,Barred spiral,Merging
+10705,Unbarred tight spiral,Disturbed
+7446,In-between round,In-between round
+7799,Cigar shaped,Cigar shaped
+7226,In-between round,Round smooth
+8438,Barred spiral,Round smooth
+11375,Unbarred tight spiral,Unbarred tight spiral
+9488,Barred spiral,Barred spiral
+9845,Barred spiral,Barred spiral
+14010,Unbarred loose spiral,Unbarred loose spiral
+15397,Edge-on without bulge,Edge-on without bulge
+11806,Unbarred loose spiral,Barred spiral
+4743,Round smooth,Round smooth
+10787,Unbarred tight spiral,Unbarred loose spiral
+3323,Round smooth,Round smooth
+4724,Round smooth,Round smooth
+8839,Barred spiral,Barred spiral
+16803,Edge-on with bulge,Edge-on with bulge
+4910,Round smooth,In-between round
+217,Disturbed,Edge-on with bulge
+11867,Unbarred loose spiral,Unbarred loose spiral
+17048,Edge-on with bulge,Edge-on with bulge
+161,Disturbed,Cigar shaped
+11059,Unbarred tight spiral,Round smooth
+10378,Unbarred tight spiral,Disturbed
+15752,Edge-on without bulge,Edge-on without bulge
+2446,Merging,Merging
+1023,Disturbed,Disturbed
+15250,Edge-on without bulge,Disturbed
+9763,Barred spiral,Unbarred loose spiral
+12412,Unbarred loose spiral,Unbarred tight spiral
+3913,Round smooth,Round smooth
+4971,Round smooth,Round smooth
+1118,Merging,Merging
+4884,Round smooth,Round smooth
+1818,Merging,Unbarred tight spiral
+4426,Round smooth,Round smooth
+586,Disturbed,Round smooth
+7661,Cigar shaped,Cigar shaped
+3046,Round smooth,Round smooth
+6353,In-between round,In-between round
+13608,Unbarred loose spiral,Merging
+7826,Cigar shaped,Edge-on without bulge
+11422,Unbarred tight spiral,Unbarred tight spiral
+16247,Edge-on with bulge,Cigar shaped
+11495,Unbarred tight spiral,Unbarred tight spiral
+8381,Barred spiral,Unbarred loose spiral
+16352,Edge-on with bulge,Edge-on with bulge
+16300,Edge-on with bulge,Edge-on with bulge
+5154,Round smooth,Disturbed
+5913,In-between round,Cigar shaped
+16432,Edge-on with bulge,Edge-on with bulge
+8874,Barred spiral,Barred spiral
+5315,Round smooth,Round smooth
+1221,Merging,Merging
+1091,Merging,Merging
+810,Disturbed,Unbarred loose spiral
+9307,Barred spiral,Barred spiral
+3127,Round smooth,Unbarred tight spiral
+1546,Merging,Merging
+4191,Round smooth,Round smooth
+2839,Merging,Merging
+17511,Edge-on with bulge,Edge-on with bulge
+8317,Barred spiral,Round smooth
+2754,Merging,Merging
+14614,Edge-on without bulge,Edge-on without bulge
+11845,Unbarred loose spiral,Barred spiral
+6917,In-between round,In-between round
+14399,Edge-on without bulge,Edge-on without bulge
+12393,Unbarred loose spiral,Disturbed
+13106,Unbarred loose spiral,Unbarred loose spiral
+4374,Round smooth,Barred spiral
+11673,Unbarred tight spiral,Barred spiral
+6793,In-between round,Merging
+7248,In-between round,In-between round
+14735,Edge-on without bulge,Edge-on with bulge
+2732,Merging,Merging
+13710,Unbarred loose spiral,Unbarred loose spiral
+1859,Merging,Unbarred loose spiral
+5385,Round smooth,Round smooth
+1903,Merging,Disturbed
+5631,In-between round,Unbarred loose spiral
+994,Disturbed,Disturbed
+13335,Unbarred loose spiral,Barred spiral
+6670,In-between round,In-between round
+13040,Unbarred loose spiral,Unbarred tight spiral
+3116,Round smooth,Round smooth
+822,Disturbed,Disturbed
+13051,Unbarred loose spiral,Unbarred loose spiral
+1,Disturbed,Merging
+7034,In-between round,In-between round
+13540,Unbarred loose spiral,Disturbed
+9561,Barred spiral,Unbarred loose spiral
+9609,Barred spiral,Unbarred loose spiral
+16037,Edge-on with bulge,Edge-on with bulge
+11581,Unbarred tight spiral,Round smooth
+4576,Round smooth,Unbarred tight spiral
+7855,Cigar shaped,Cigar shaped
+11969,Unbarred loose spiral,Barred spiral
+13394,Unbarred loose spiral,Unbarred loose spiral
+17044,Edge-on with bulge,In-between round
+53,Disturbed,Barred spiral
+1143,Merging,Disturbed
+16458,Edge-on with bulge,Disturbed
+742,Disturbed,Cigar shaped
+7155,In-between round,Unbarred loose spiral
+5797,In-between round,In-between round
+2528,Merging,Merging
+17399,Edge-on with bulge,Edge-on with bulge
+7334,In-between round,In-between round
+14028,Unbarred loose spiral,Disturbed
+230,Disturbed,Disturbed
+14970,Edge-on without bulge,Edge-on without bulge
+8057,Barred spiral,Barred spiral
+609,Disturbed,Unbarred tight spiral
+3108,Round smooth,Round smooth
+16433,Edge-on with bulge,Edge-on with bulge
+85,Disturbed,Edge-on without bulge
+17265,Edge-on with bulge,Edge-on with bulge
+4696,Round smooth,Round smooth
+5485,Round smooth,In-between round
+8468,Barred spiral,Merging
+10604,Unbarred tight spiral,Barred spiral
+17198,Edge-on with bulge,Edge-on with bulge
+6086,In-between round,In-between round
+9042,Barred spiral,Barred spiral
+13319,Unbarred loose spiral,Unbarred loose spiral
+1674,Merging,Merging
+9066,Barred spiral,Barred spiral
+14840,Edge-on without bulge,Edge-on without bulge
+16920,Edge-on with bulge,Cigar shaped
+17242,Edge-on with bulge,Edge-on with bulge
+5196,Round smooth,Round smooth
+3052,Round smooth,In-between round
+17503,Edge-on with bulge,Edge-on with bulge
+13330,Unbarred loose spiral,Round smooth
+15719,Edge-on without bulge,Edge-on without bulge
+5551,Round smooth,Edge-on with bulge
+1175,Merging,In-between round
+12517,Unbarred loose spiral,Unbarred loose spiral
+13443,Unbarred loose spiral,Barred spiral
+3320,Round smooth,Round smooth
+14852,Edge-on without bulge,Edge-on without bulge
+550,Disturbed,Unbarred loose spiral
+14337,Unbarred loose spiral,Unbarred loose spiral
+11231,Unbarred tight spiral,Unbarred tight spiral
+14874,Edge-on without bulge,Edge-on without bulge
+8331,Barred spiral,Barred spiral
+9577,Barred spiral,Unbarred loose spiral
+2202,Merging,Merging
+2482,Merging,Cigar shaped
+16337,Edge-on with bulge,Edge-on with bulge
+7651,Cigar shaped,Disturbed
+612,Disturbed,Unbarred loose spiral
+9772,Barred spiral,Barred spiral
+13512,Unbarred loose spiral,Unbarred loose spiral
+4873,Round smooth,Round smooth
+4726,Round smooth,Round smooth
+1833,Merging,Merging
+14260,Unbarred loose spiral,Barred spiral
+2275,Merging,Disturbed
+11991,Unbarred loose spiral,Cigar shaped
+10209,Unbarred tight spiral,Unbarred tight spiral
+13272,Unbarred loose spiral,In-between round
+5494,Round smooth,Round smooth
+4978,Round smooth,Round smooth
+17066,Edge-on with bulge,Cigar shaped
+7399,In-between round,In-between round
+4925,Round smooth,Round smooth
+8313,Barred spiral,Barred spiral
+8837,Barred spiral,Unbarred tight spiral
+15922,Edge-on with bulge,Edge-on without bulge
+12405,Unbarred loose spiral,Disturbed
+14820,Edge-on without bulge,Edge-on without bulge
+7116,In-between round,In-between round
+9313,Barred spiral,Unbarred loose spiral
+10096,Unbarred tight spiral,Round smooth
+2423,Merging,Merging
+15432,Edge-on without bulge,Edge-on without bulge
+13995,Unbarred loose spiral,Unbarred loose spiral
+15182,Edge-on without bulge,Edge-on without bulge
+8506,Barred spiral,Barred spiral
+7767,Cigar shaped,Edge-on with bulge
+15213,Edge-on without bulge,Edge-on without bulge
+619,Disturbed,Disturbed
+6903,In-between round,In-between round
+12697,Unbarred loose spiral,Barred spiral
+1824,Merging,Merging
+3806,Round smooth,Round smooth
+11755,Unbarred tight spiral,Cigar shaped
+6843,In-between round,In-between round
+9158,Barred spiral,Unbarred loose spiral
+8529,Barred spiral,Unbarred loose spiral
+11081,Unbarred tight spiral,Unbarred tight spiral
+8798,Barred spiral,Barred spiral
+13791,Unbarred loose spiral,Unbarred loose spiral
+12609,Unbarred loose spiral,Unbarred loose spiral
+11079,Unbarred tight spiral,Unbarred tight spiral
+12987,Unbarred loose spiral,Round smooth
+8142,Barred spiral,Barred spiral
+9471,Barred spiral,Unbarred tight spiral
+4609,Round smooth,Round smooth
+1569,Merging,Merging
+9095,Barred spiral,Merging
+5172,Round smooth,Round smooth
+17168,Edge-on with bulge,Edge-on without bulge
+11885,Unbarred loose spiral,Unbarred loose spiral
+2282,Merging,Merging
+8084,Barred spiral,Unbarred tight spiral
+5184,Round smooth,Round smooth
+15353,Edge-on without bulge,Edge-on without bulge
+7714,Cigar shaped,Cigar shaped
+10362,Unbarred tight spiral,Unbarred tight spiral
+11157,Unbarred tight spiral,Barred spiral
+6961,In-between round,In-between round
+16652,Edge-on with bulge,Edge-on with bulge
+10872,Unbarred tight spiral,Unbarred tight spiral
+12679,Unbarred loose spiral,Barred spiral
+1712,Merging,Unbarred tight spiral
+7137,In-between round,In-between round
+17471,Edge-on with bulge,Edge-on without bulge
+262,Disturbed,Unbarred loose spiral
+8028,Barred spiral,Barred spiral
+8856,Barred spiral,Unbarred tight spiral
+12780,Unbarred loose spiral,Merging
+14017,Unbarred loose spiral,Unbarred loose spiral
+17424,Edge-on with bulge,Edge-on with bulge
+12933,Unbarred loose spiral,Unbarred tight spiral
+2121,Merging,Merging
+13783,Unbarred loose spiral,Edge-on with bulge
+11195,Unbarred tight spiral,Barred spiral
+6115,In-between round,In-between round
+4646,Round smooth,Round smooth
+623,Disturbed,Unbarred loose spiral
+5983,In-between round,Round smooth
+14234,Unbarred loose spiral,Merging
+3156,Round smooth,Round smooth
+15789,Edge-on without bulge,Edge-on without bulge
+17497,Edge-on with bulge,Cigar shaped
+15192,Edge-on without bulge,Edge-on without bulge
+6775,In-between round,Disturbed
+10568,Unbarred tight spiral,Barred spiral
+2005,Merging,Unbarred tight spiral
+7618,Cigar shaped,Cigar shaped
+11008,Unbarred tight spiral,Round smooth
+13494,Unbarred loose spiral,Disturbed
+10547,Unbarred tight spiral,Unbarred tight spiral
+5176,Round smooth,Round smooth
+3554,Round smooth,Round smooth
+2863,Merging,Merging
+10713,Unbarred tight spiral,Unbarred tight spiral
+13827,Unbarred loose spiral,Disturbed
+3985,Round smooth,Round smooth
+12410,Unbarred loose spiral,Unbarred tight spiral
+14933,Edge-on without bulge,Edge-on without bulge
+967,Disturbed,Barred spiral
+16912,Edge-on with bulge,Edge-on with bulge
+5098,Round smooth,In-between round
+9298,Barred spiral,Unbarred tight spiral
+3393,Round smooth,Disturbed
+1420,Merging,Merging
+9002,Barred spiral,Unbarred loose spiral
+8718,Barred spiral,Barred spiral
+1963,Merging,Round smooth
+9838,Barred spiral,Merging
+6913,In-between round,In-between round
+2613,Merging,Disturbed
+12425,Unbarred loose spiral,Disturbed
+3546,Round smooth,Round smooth
+1769,Merging,Merging
+201,Disturbed,Unbarred loose spiral
+2055,Merging,Merging
+3330,Round smooth,Round smooth
+15971,Edge-on with bulge,Edge-on without bulge
+14813,Edge-on without bulge,Edge-on without bulge
+3712,Round smooth,Round smooth
+12701,Unbarred loose spiral,Merging
+4970,Round smooth,Round smooth
+14250,Unbarred loose spiral,Unbarred tight spiral
+15428,Edge-on without bulge,Edge-on without bulge
+6015,In-between round,Round smooth
+6783,In-between round,In-between round
+2718,Merging,Merging
+7405,In-between round,Round smooth
+10134,Unbarred tight spiral,Disturbed
+11591,Unbarred tight spiral,Disturbed
+14934,Edge-on without bulge,Edge-on without bulge
+15560,Edge-on without bulge,Edge-on without bulge
+10068,Unbarred tight spiral,Unbarred tight spiral
+387,Disturbed,Edge-on without bulge
+10849,Unbarred tight spiral,Unbarred tight spiral
+7184,In-between round,In-between round
+12070,Unbarred loose spiral,Unbarred loose spiral
+4596,Round smooth,Round smooth
+7124,In-between round,Unbarred tight spiral
+16719,Edge-on with bulge,Cigar shaped
+14468,Edge-on without bulge,Edge-on without bulge
+9799,Barred spiral,In-between round
+5838,In-between round,In-between round
+17412,Edge-on with bulge,Edge-on with bulge
+6327,In-between round,In-between round
+4508,Round smooth,Round smooth
+16459,Edge-on with bulge,Edge-on with bulge
+9580,Barred spiral,Unbarred loose spiral
+6282,In-between round,Round smooth
+805,Disturbed,Round smooth
+1004,Disturbed,Disturbed
+1826,Merging,Round smooth
+9550,Barred spiral,In-between round
+3178,Round smooth,Round smooth
+14833,Edge-on without bulge,Edge-on without bulge
+15578,Edge-on without bulge,Edge-on without bulge
+1274,Merging,Merging
+240,Disturbed,Disturbed
+10506,Unbarred tight spiral,Unbarred tight spiral
+2333,Merging,Unbarred loose spiral
+5151,Round smooth,In-between round
+9081,Barred spiral,Unbarred loose spiral
+5849,In-between round,Round smooth
+2409,Merging,Merging
+1794,Merging,Merging
+4617,Round smooth,Round smooth
+15457,Edge-on without bulge,Edge-on without bulge
+16232,Edge-on with bulge,Edge-on with bulge
+6953,In-between round,In-between round
+1155,Merging,Merging
+2343,Merging,Merging
+2511,Merging,Merging
+7564,In-between round,In-between round
+10329,Unbarred tight spiral,Unbarred tight spiral
+8250,Barred spiral,Disturbed
+2090,Merging,Disturbed
+2158,Merging,Merging
+16801,Edge-on with bulge,Edge-on with bulge
+8357,Barred spiral,Unbarred tight spiral
+170,Disturbed,Unbarred tight spiral
+11564,Unbarred tight spiral,Unbarred loose spiral
+15435,Edge-on without bulge,Edge-on without bulge
+824,Disturbed,Unbarred loose spiral
+13496,Unbarred loose spiral,Unbarred loose spiral
+12126,Unbarred loose spiral,Merging
+3075,Round smooth,Round smooth
+13268,Unbarred loose spiral,Unbarred tight spiral
+5846,In-between round,Edge-on without bulge
+10114,Unbarred tight spiral,Unbarred tight spiral
+2636,Merging,In-between round
+15777,Edge-on without bulge,Edge-on without bulge
+5909,In-between round,In-between round
+11963,Unbarred loose spiral,Unbarred loose spiral
+12934,Unbarred loose spiral,Unbarred loose spiral
+5989,In-between round,In-between round
+3123,Round smooth,Round smooth
+7220,In-between round,In-between round
+9623,Barred spiral,Barred spiral
+2804,Merging,Merging
+12107,Unbarred loose spiral,Unbarred tight spiral
+10303,Unbarred tight spiral,Unbarred tight spiral
+7605,Cigar shaped,In-between round
+2313,Merging,In-between round
+12152,Unbarred loose spiral,Disturbed
+3915,Round smooth,Round smooth
+15332,Edge-on without bulge,Edge-on without bulge
+13007,Unbarred loose spiral,Barred spiral
+11091,Unbarred tight spiral,Unbarred tight spiral
+13584,Unbarred loose spiral,Unbarred loose spiral
+2406,Merging,Round smooth
+9628,Barred spiral,Merging
+1763,Merging,Merging
+5124,Round smooth,Round smooth
+7668,Cigar shaped,Cigar shaped
+15515,Edge-on without bulge,Edge-on without bulge
+14210,Unbarred loose spiral,Merging
+3726,Round smooth,Round smooth
+12005,Unbarred loose spiral,In-between round
+16763,Edge-on with bulge,Edge-on with bulge
+3364,Round smooth,Round smooth
+7196,In-between round,In-between round
+16630,Edge-on with bulge,Edge-on with bulge
+11256,Unbarred tight spiral,Unbarred tight spiral
+16304,Edge-on with bulge,Edge-on with bulge
+8624,Barred spiral,Edge-on without bulge
+463,Disturbed,Disturbed
+15329,Edge-on without bulge,Edge-on without bulge
+15891,Edge-on with bulge,Disturbed
+5014,Round smooth,Round smooth
+15762,Edge-on without bulge,Edge-on without bulge
+8669,Barred spiral,Unbarred loose spiral
+12989,Unbarred loose spiral,Unbarred loose spiral
+10351,Unbarred tight spiral,Unbarred tight spiral
+9467,Barred spiral,Disturbed
+15090,Edge-on without bulge,Edge-on without bulge
+8009,Barred spiral,Barred spiral
+9388,Barred spiral,Barred spiral
+16210,Edge-on with bulge,Edge-on with bulge
+12133,Unbarred loose spiral,Edge-on without bulge
+202,Disturbed,Disturbed
+2015,Merging,Merging
+15661,Edge-on without bulge,Edge-on without bulge
+17369,Edge-on with bulge,Edge-on with bulge
+1153,Merging,Round smooth
+10254,Unbarred tight spiral,Unbarred loose spiral
+3473,Round smooth,Round smooth
+5625,In-between round,Round smooth
+5563,Round smooth,Round smooth
+3240,Round smooth,Round smooth
+14185,Unbarred loose spiral,Barred spiral
+10857,Unbarred tight spiral,Unbarred loose spiral
+2952,Round smooth,In-between round
+2822,Merging,Merging
+5417,Round smooth,Round smooth
+1257,Merging,Round smooth
+2875,Merging,Merging
+802,Disturbed,Barred spiral
+12547,Unbarred loose spiral,Barred spiral
+14179,Unbarred loose spiral,Disturbed
+4409,Round smooth,Round smooth
+17603,Edge-on with bulge,Edge-on with bulge
+7778,Cigar shaped,Edge-on without bulge
+9524,Barred spiral,Barred spiral
+6684,In-between round,Disturbed
+5483,Round smooth,Round smooth
+17385,Edge-on with bulge,Edge-on with bulge
+5553,Round smooth,Round smooth
+16047,Edge-on with bulge,Edge-on with bulge
+13461,Unbarred loose spiral,Unbarred loose spiral
+5562,Round smooth,In-between round
+2002,Merging,Merging
+2037,Merging,Merging
+13195,Unbarred loose spiral,Unbarred loose spiral
+15529,Edge-on without bulge,Edge-on without bulge
+1324,Merging,Merging
+8088,Barred spiral,Unbarred tight spiral
+12343,Unbarred loose spiral,Unbarred tight spiral
+8712,Barred spiral,Unbarred loose spiral
+5004,Round smooth,Round smooth
+9632,Barred spiral,Barred spiral
+9510,Barred spiral,Unbarred loose spiral
+14430,Edge-on without bulge,Edge-on without bulge
+8278,Barred spiral,Unbarred tight spiral
+12870,Unbarred loose spiral,Unbarred tight spiral
+4882,Round smooth,Round smooth
+17291,Edge-on with bulge,Edge-on with bulge
+12029,Unbarred loose spiral,Disturbed
+13303,Unbarred loose spiral,Barred spiral
+3773,Round smooth,Round smooth
+17537,Edge-on with bulge,Edge-on with bulge
+7985,Barred spiral,Round smooth
+9688,Barred spiral,Unbarred loose spiral
+9003,Barred spiral,Unbarred tight spiral
+1010,Disturbed,Disturbed
+13661,Unbarred loose spiral,Unbarred tight spiral
+11922,Unbarred loose spiral,Barred spiral
+7519,In-between round,In-between round
+13087,Unbarred loose spiral,Unbarred loose spiral
+2522,Merging,Unbarred loose spiral
+16996,Edge-on with bulge,Edge-on with bulge
+4407,Round smooth,Unbarred tight spiral
+15659,Edge-on without bulge,Edge-on without bulge
+10059,Unbarred tight spiral,Unbarred loose spiral
+13036,Unbarred loose spiral,Unbarred loose spiral
+11212,Unbarred tight spiral,Unbarred loose spiral
+1197,Merging,In-between round
+2867,Merging,Merging
+15981,Edge-on with bulge,Edge-on with bulge
+2579,Merging,Merging
+9918,Barred spiral,Barred spiral
+7138,In-between round,In-between round
+11174,Unbarred tight spiral,Unbarred loose spiral
+9113,Barred spiral,Merging
+2212,Merging,Merging
+9973,Unbarred tight spiral,Unbarred tight spiral
+12948,Unbarred loose spiral,Unbarred tight spiral
+5191,Round smooth,In-between round
+1295,Merging,Merging
+4400,Round smooth,In-between round
+6421,In-between round,In-between round
+1995,Merging,Merging
+6966,In-between round,In-between round
+9424,Barred spiral,In-between round
+1226,Merging,Round smooth
+14441,Edge-on without bulge,Edge-on without bulge
+14546,Edge-on without bulge,Edge-on without bulge
+10806,Unbarred tight spiral,Unbarred tight spiral
+6174,In-between round,Round smooth
+17426,Edge-on with bulge,Edge-on with bulge
+5995,In-between round,Merging
+9826,Barred spiral,Barred spiral
+11322,Unbarred tight spiral,Unbarred tight spiral
+12459,Unbarred loose spiral,Disturbed
+2610,Merging,Merging
+7071,In-between round,In-between round
+7255,In-between round,Barred spiral
+16187,Edge-on with bulge,Edge-on with bulge
+8484,Barred spiral,Cigar shaped
+11816,Unbarred loose spiral,Unbarred tight spiral
+11326,Unbarred tight spiral,Unbarred tight spiral
+14423,Edge-on without bulge,Edge-on with bulge
+8977,Barred spiral,Barred spiral
+12712,Unbarred loose spiral,Unbarred loose spiral
+10299,Unbarred tight spiral,Barred spiral
+3792,Round smooth,Round smooth
+8240,Barred spiral,In-between round
+16017,Edge-on with bulge,Edge-on with bulge
+13197,Unbarred loose spiral,Cigar shaped
+3594,Round smooth,Round smooth
+15810,Edge-on with bulge,In-between round
+16025,Edge-on with bulge,Edge-on with bulge
+4528,Round smooth,Round smooth
+1930,Merging,Merging
+17196,Edge-on with bulge,Edge-on with bulge
+17353,Edge-on with bulge,Edge-on with bulge
+15226,Edge-on without bulge,Edge-on without bulge
+4684,Round smooth,Round smooth
+7476,In-between round,Round smooth
+3977,Round smooth,Round smooth
+3965,Round smooth,Disturbed
+13099,Unbarred loose spiral,Barred spiral
+12012,Unbarred loose spiral,Unbarred loose spiral
+12270,Unbarred loose spiral,Unbarred tight spiral
+4737,Round smooth,Round smooth
+9620,Barred spiral,Barred spiral
+9538,Barred spiral,Unbarred loose spiral
+6320,In-between round,In-between round
+14537,Edge-on without bulge,Edge-on without bulge
+2761,Merging,Merging
+2940,Round smooth,Round smooth
+11283,Unbarred tight spiral,Merging
+7461,In-between round,In-between round
+6513,In-between round,In-between round
+8924,Barred spiral,Barred spiral
+12026,Unbarred loose spiral,Unbarred loose spiral
+17095,Edge-on with bulge,Disturbed
+9280,Barred spiral,Barred spiral
+8180,Barred spiral,Barred spiral
+7332,In-between round,In-between round
+7665,Cigar shaped,Cigar shaped
+3695,Round smooth,Round smooth
+7746,Cigar shaped,Cigar shaped
+10101,Unbarred tight spiral,Round smooth
+16735,Edge-on with bulge,Edge-on with bulge
+1131,Merging,Merging
+9380,Barred spiral,Unbarred tight spiral
+16117,Edge-on with bulge,Edge-on with bulge
+13263,Unbarred loose spiral,Edge-on without bulge
+8752,Barred spiral,Barred spiral
+4938,Round smooth,In-between round
+14704,Edge-on without bulge,Edge-on without bulge
+13657,Unbarred loose spiral,Unbarred loose spiral
+10972,Unbarred tight spiral,Unbarred tight spiral
+5289,Round smooth,Round smooth
+2020,Merging,Merging
+17256,Edge-on with bulge,Edge-on with bulge
+3616,Round smooth,Round smooth
+14728,Edge-on without bulge,Edge-on with bulge
+8737,Barred spiral,Barred spiral
+2778,Merging,Barred spiral
+5376,Round smooth,Round smooth
+11880,Unbarred loose spiral,Unbarred loose spiral
+7032,In-between round,In-between round
+13959,Unbarred loose spiral,Unbarred loose spiral
+9638,Barred spiral,Cigar shaped
+15100,Edge-on without bulge,Edge-on without bulge
+16706,Edge-on with bulge,Edge-on with bulge
+7865,Cigar shaped,Cigar shaped
+3923,Round smooth,Round smooth
+12532,Unbarred loose spiral,Merging
+2748,Merging,Merging
+17150,Edge-on with bulge,Edge-on with bulge
+7282,In-between round,Round smooth
+4543,Round smooth,In-between round
+8635,Barred spiral,Unbarred loose spiral
+7059,In-between round,In-between round
+376,Disturbed,Merging
+1373,Merging,Unbarred tight spiral
+17335,Edge-on with bulge,Edge-on with bulge
+9562,Barred spiral,Unbarred loose spiral
+6239,In-between round,Round smooth
+5889,In-between round,In-between round
+10677,Unbarred tight spiral,Unbarred tight spiral
+15107,Edge-on without bulge,Edge-on without bulge
+2855,Merging,Unbarred loose spiral
+16473,Edge-on with bulge,Edge-on with bulge
+10266,Unbarred tight spiral,Unbarred tight spiral
+15102,Edge-on without bulge,Edge-on without bulge
+3380,Round smooth,In-between round
+7902,Cigar shaped,In-between round
+8762,Barred spiral,Barred spiral
+455,Disturbed,Merging
+10889,Unbarred tight spiral,Barred spiral
+11575,Unbarred tight spiral,Unbarred tight spiral
+5633,In-between round,In-between round
+10258,Unbarred tight spiral,Unbarred tight spiral
+52,Disturbed,Merging
+14819,Edge-on without bulge,Edge-on without bulge
+1119,Merging,Merging
+2862,Merging,Merging
+804,Disturbed,Round smooth
+16059,Edge-on with bulge,Cigar shaped
+10331,Unbarred tight spiral,Unbarred tight spiral
+17474,Edge-on with bulge,Edge-on with bulge
+10624,Unbarred tight spiral,Unbarred tight spiral
+6923,In-between round,In-between round
+1482,Merging,Merging
+2061,Merging,Unbarred tight spiral
+3992,Round smooth,Round smooth
+6766,In-between round,Merging
+17388,Edge-on with bulge,Edge-on with bulge
+6582,In-between round,In-between round
+14747,Edge-on without bulge,Edge-on without bulge
+13741,Unbarred loose spiral,Round smooth
+9125,Barred spiral,Merging
+13581,Unbarred loose spiral,Barred spiral
+7107,In-between round,In-between round
+13898,Unbarred loose spiral,Round smooth
+12630,Unbarred loose spiral,Merging
+8647,Barred spiral,Unbarred tight spiral
+5853,In-between round,Round smooth
+11817,Unbarred loose spiral,Unbarred tight spiral
+16976,Edge-on with bulge,Edge-on with bulge
+288,Disturbed,Merging
+13734,Unbarred loose spiral,Merging
+12836,Unbarred loose spiral,Unbarred tight spiral
+1532,Merging,Merging
+12513,Unbarred loose spiral,Disturbed
+11646,Unbarred tight spiral,Unbarred loose spiral
+6589,In-between round,Merging
+4193,Round smooth,Round smooth
+10877,Unbarred tight spiral,Unbarred tight spiral
+6095,In-between round,Round smooth
+5355,Round smooth,Round smooth
+7611,Cigar shaped,Cigar shaped
+1626,Merging,Round smooth
+17115,Edge-on with bulge,Edge-on with bulge
+5745,In-between round,In-between round
+5499,Round smooth,Disturbed
+6480,In-between round,In-between round
+295,Disturbed,Disturbed
+12365,Unbarred loose spiral,Unbarred loose spiral
+16318,Edge-on with bulge,Edge-on without bulge
+2762,Merging,Merging
+2956,Round smooth,Round smooth
+1444,Merging,Round smooth
+10098,Unbarred tight spiral,Barred spiral
+7010,In-between round,Unbarred loose spiral
+9434,Barred spiral,Unbarred loose spiral
+8952,Barred spiral,Unbarred loose spiral
+15865,Edge-on with bulge,Edge-on with bulge
+13658,Unbarred loose spiral,Unbarred loose spiral
+17062,Edge-on with bulge,Edge-on with bulge
+13751,Unbarred loose spiral,In-between round
+9396,Barred spiral,Unbarred loose spiral
+14559,Edge-on without bulge,Edge-on without bulge
+7481,In-between round,In-between round
+8203,Barred spiral,Barred spiral
+5735,In-between round,Round smooth
+3704,Round smooth,In-between round
+2213,Merging,Merging
+12197,Unbarred loose spiral,Disturbed
+4112,Round smooth,In-between round
+9339,Barred spiral,Barred spiral
+6293,In-between round,Round smooth
+13345,Unbarred loose spiral,Unbarred loose spiral
+1281,Merging,Round smooth
+9607,Barred spiral,Barred spiral
+7522,In-between round,Disturbed
+15427,Edge-on without bulge,Edge-on with bulge
+3969,Round smooth,In-between round
+4877,Round smooth,Disturbed
+6450,In-between round,In-between round
+2347,Merging,Unbarred loose spiral
+10702,Unbarred tight spiral,Unbarred tight spiral
+11815,Unbarred loose spiral,Unbarred loose spiral
+14216,Unbarred loose spiral,Barred spiral
+13042,Unbarred loose spiral,Unbarred tight spiral
+17207,Edge-on with bulge,Edge-on with bulge
+16136,Edge-on with bulge,Edge-on with bulge
+11571,Unbarred tight spiral,Unbarred tight spiral
+13508,Unbarred loose spiral,Cigar shaped
+8681,Barred spiral,Barred spiral
+12032,Unbarred loose spiral,Unbarred loose spiral
+14996,Edge-on without bulge,Edge-on without bulge
+3705,Round smooth,Round smooth
+15305,Edge-on without bulge,Unbarred loose spiral
+12042,Unbarred loose spiral,Barred spiral
+2563,Merging,Round smooth
+7660,Cigar shaped,In-between round
+1452,Merging,Unbarred tight spiral
+6844,In-between round,Merging
+17658,Edge-on with bulge,Edge-on with bulge
+6800,In-between round,In-between round
+17672,Edge-on with bulge,Edge-on with bulge
+748,Disturbed,Unbarred loose spiral
+3480,Round smooth,Barred spiral
+3262,Round smooth,Round smooth
+13091,Unbarred loose spiral,Unbarred loose spiral
+216,Disturbed,Unbarred loose spiral
+7977,Barred spiral,Unbarred tight spiral
+15942,Edge-on with bulge,Cigar shaped
+17402,Edge-on with bulge,Edge-on with bulge
+1905,Merging,Merging
+3222,Round smooth,In-between round
+11001,Unbarred tight spiral,Unbarred tight spiral
+6080,In-between round,Merging
+10204,Unbarred tight spiral,Unbarred tight spiral
+16088,Edge-on with bulge,Edge-on with bulge
+6412,In-between round,In-between round
+4721,Round smooth,Round smooth
+7156,In-between round,In-between round
+3822,Round smooth,Round smooth
+5748,In-between round,Merging
+11739,Unbarred tight spiral,Barred spiral
+3517,Round smooth,Round smooth
+1426,Merging,Merging
+10703,Unbarred tight spiral,Unbarred tight spiral
+14160,Unbarred loose spiral,Unbarred loose spiral
+3104,Round smooth,Round smooth
+1908,Merging,Merging
+13984,Unbarred loose spiral,Disturbed
+14825,Edge-on without bulge,Edge-on without bulge
+15321,Edge-on without bulge,Edge-on without bulge
+13327,Unbarred loose spiral,In-between round
+373,Disturbed,Disturbed
+9146,Barred spiral,Merging
+5961,In-between round,Round smooth
+4058,Round smooth,Round smooth
+9749,Barred spiral,In-between round
+14214,Unbarred loose spiral,Disturbed
+15413,Edge-on without bulge,Edge-on without bulge
+8697,Barred spiral,Barred spiral
+16644,Edge-on with bulge,Edge-on with bulge
+16093,Edge-on with bulge,Edge-on with bulge
+14,Disturbed,Round smooth
+15867,Edge-on with bulge,Edge-on with bulge
+4398,Round smooth,Round smooth
+8418,Barred spiral,Unbarred loose spiral
+11460,Unbarred tight spiral,Unbarred tight spiral
+5368,Round smooth,Round smooth
+6714,In-between round,In-between round
+10756,Unbarred tight spiral,Unbarred tight spiral
+16575,Edge-on with bulge,Edge-on with bulge
+14045,Unbarred loose spiral,Unbarred loose spiral
+3214,Round smooth,In-between round
+917,Disturbed,In-between round
+6302,In-between round,In-between round
+1267,Merging,Disturbed
+6343,In-between round,In-between round
+8156,Barred spiral,Unbarred loose spiral
+17376,Edge-on with bulge,Cigar shaped
+6735,In-between round,In-between round
+3816,Round smooth,Round smooth
+2982,Round smooth,Round smooth
+16568,Edge-on with bulge,Edge-on with bulge
+9248,Barred spiral,Edge-on with bulge
+8632,Barred spiral,Unbarred loose spiral
+16002,Edge-on with bulge,Edge-on with bulge
+15567,Edge-on without bulge,Edge-on without bulge
+15672,Edge-on without bulge,Edge-on without bulge
+11271,Unbarred tight spiral,Barred spiral
+4544,Round smooth,Unbarred tight spiral
+14576,Edge-on without bulge,Edge-on without bulge
+7131,In-between round,In-between round
+9405,Barred spiral,Disturbed
+4485,Round smooth,Round smooth
+16000,Edge-on with bulge,Edge-on with bulge
+1355,Merging,In-between round
+7285,In-between round,In-between round
+1231,Merging,Cigar shaped
+13639,Unbarred loose spiral,In-between round
+15729,Edge-on without bulge,Edge-on without bulge
+14700,Edge-on without bulge,Disturbed
+5592,In-between round,Round smooth
+10162,Unbarred tight spiral,Barred spiral
+1986,Merging,Barred spiral
+592,Disturbed,Disturbed
+6391,In-between round,In-between round
+16225,Edge-on with bulge,Edge-on without bulge
+3326,Round smooth,Round smooth
+16808,Edge-on with bulge,Edge-on with bulge
+6438,In-between round,In-between round
+10567,Unbarred tight spiral,Unbarred tight spiral
+17282,Edge-on with bulge,Edge-on with bulge
+17081,Edge-on with bulge,Edge-on with bulge
+2065,Merging,Merging
+1410,Merging,Merging
+1120,Merging,Merging
+8196,Barred spiral,Unbarred loose spiral
+4931,Round smooth,Round smooth
+3843,Round smooth,Unbarred tight spiral
+7808,Cigar shaped,Merging
+16862,Edge-on with bulge,Edge-on with bulge
+8610,Barred spiral,Unbarred tight spiral
+8695,Barred spiral,Barred spiral
+16574,Edge-on with bulge,Edge-on with bulge
+8730,Barred spiral,Barred spiral
+10771,Unbarred tight spiral,Disturbed
+12014,Unbarred loose spiral,Barred spiral
+14660,Edge-on without bulge,Edge-on without bulge
+5398,Round smooth,Round smooth
+9206,Barred spiral,Unbarred tight spiral
+4582,Round smooth,Round smooth
+16293,Edge-on with bulge,Edge-on without bulge
+14241,Unbarred loose spiral,Unbarred tight spiral
+10765,Unbarred tight spiral,Barred spiral
+9667,Barred spiral,In-between round
+12654,Unbarred loose spiral,Unbarred loose spiral
+10655,Unbarred tight spiral,Unbarred loose spiral
+1659,Merging,In-between round
+13404,Unbarred loose spiral,Edge-on without bulge
+1296,Merging,Merging
+5103,Round smooth,Merging
+7120,In-between round,Round smooth
+5767,In-between round,Cigar shaped
+672,Disturbed,In-between round
+9049,Barred spiral,Barred spiral
+10313,Unbarred tight spiral,Unbarred tight spiral
+8,Disturbed,Merging
+1142,Merging,Merging
+8542,Barred spiral,Unbarred loose spiral
+8377,Barred spiral,Unbarred tight spiral
+9344,Barred spiral,Unbarred tight spiral
+7664,Cigar shaped,Edge-on with bulge
+1509,Merging,Merging
+10170,Unbarred tight spiral,Round smooth
+13289,Unbarred loose spiral,Unbarred loose spiral
+10841,Unbarred tight spiral,Unbarred tight spiral
+683,Disturbed,Disturbed
+6024,In-between round,Merging
+9074,Barred spiral,Barred spiral
+744,Disturbed,Round smooth
+3612,Round smooth,Round smooth
+17146,Edge-on with bulge,Edge-on with bulge
+8321,Barred spiral,Round smooth
+8423,Barred spiral,Barred spiral
+2166,Merging,Merging
+4038,Round smooth,Round smooth
+14684,Edge-on without bulge,Edge-on without bulge
+8559,Barred spiral,Barred spiral
+4949,Round smooth,Round smooth
+14474,Edge-on without bulge,Edge-on without bulge
+3342,Round smooth,Round smooth
+4223,Round smooth,Round smooth
+7017,In-between round,Round smooth
+9472,Barred spiral,Barred spiral
+7566,In-between round,In-between round
+1398,Merging,Merging
+4555,Round smooth,Round smooth
+7319,In-between round,Cigar shaped
+489,Disturbed,Disturbed
+11628,Unbarred tight spiral,Unbarred tight spiral
+1523,Merging,Merging
+11330,Unbarred tight spiral,Unbarred tight spiral
+9726,Barred spiral,Barred spiral
+15202,Edge-on without bulge,Edge-on with bulge
+5550,Round smooth,Round smooth
+4270,Round smooth,Round smooth
+7272,In-between round,Merging
+6341,In-between round,In-between round
+4761,Round smooth,Round smooth
+5689,In-between round,In-between round
+10953,Unbarred tight spiral,Unbarred tight spiral
+11277,Unbarred tight spiral,Unbarred tight spiral
+9094,Barred spiral,Merging
+16608,Edge-on with bulge,Edge-on with bulge
+11764,Unbarred tight spiral,Disturbed
+11517,Unbarred tight spiral,Unbarred tight spiral
+3527,Round smooth,Round smooth
+15384,Edge-on without bulge,Edge-on with bulge
+17494,Edge-on with bulge,Merging
+12356,Unbarred loose spiral,Unbarred tight spiral
+12195,Unbarred loose spiral,Disturbed
+3142,Round smooth,Round smooth
+13311,Unbarred loose spiral,Unbarred loose spiral
+12759,Unbarred loose spiral,Unbarred loose spiral
+6675,In-between round,In-between round
+16880,Edge-on with bulge,Merging
+8125,Barred spiral,In-between round
+12322,Unbarred loose spiral,In-between round
+4044,Round smooth,Round smooth
+520,Disturbed,Round smooth
+3098,Round smooth,Round smooth
+12369,Unbarred loose spiral,Unbarred tight spiral
+9163,Barred spiral,Barred spiral
+5009,Round smooth,In-between round
+11183,Unbarred tight spiral,Barred spiral
+3131,Round smooth,Round smooth
+995,Disturbed,Round smooth
+12458,Unbarred loose spiral,Disturbed
+870,Disturbed,In-between round
+13019,Unbarred loose spiral,In-between round
+12552,Unbarred loose spiral,Unbarred loose spiral
+11419,Unbarred tight spiral,Unbarred tight spiral
+15073,Edge-on without bulge,Edge-on without bulge
+1033,Disturbed,Unbarred tight spiral
+9843,Barred spiral,Barred spiral
+12348,Unbarred loose spiral,Barred spiral
+14367,Unbarred loose spiral,Disturbed
+10893,Unbarred tight spiral,Unbarred tight spiral
+7352,In-between round,In-between round
+3581,Round smooth,Round smooth
+3884,Round smooth,Round smooth
+3316,Round smooth,Round smooth
+1811,Merging,In-between round
+13764,Unbarred loose spiral,In-between round
+2621,Merging,Edge-on with bulge
+1268,Merging,Cigar shaped
+2371,Merging,In-between round
+17524,Edge-on with bulge,Edge-on with bulge
+12980,Unbarred loose spiral,Unbarred tight spiral
+5201,Round smooth,Round smooth
+13826,Unbarred loose spiral,Unbarred loose spiral
+16167,Edge-on with bulge,Edge-on with bulge
+4462,Round smooth,In-between round
+6617,In-between round,Round smooth
+16540,Edge-on with bulge,Edge-on with bulge
+1105,Merging,In-between round
+3001,Round smooth,Disturbed
+9796,Barred spiral,Barred spiral
+2066,Merging,Merging
+8320,Barred spiral,Barred spiral
+5489,Round smooth,In-between round
+11580,Unbarred tight spiral,Unbarred loose spiral
+9491,Barred spiral,Unbarred loose spiral
+16851,Edge-on with bulge,Edge-on with bulge
+7244,In-between round,In-between round
+15849,Edge-on with bulge,Edge-on with bulge
+2906,Merging,Unbarred tight spiral
+4139,Round smooth,Round smooth
+12929,Unbarred loose spiral,Unbarred tight spiral
+1486,Merging,Merging
+4784,Round smooth,In-between round
+11454,Unbarred tight spiral,Unbarred loose spiral
+5768,In-between round,In-between round
+5085,Round smooth,Round smooth
+14183,Unbarred loose spiral,Merging
+4780,Round smooth,Round smooth
+9415,Barred spiral,Barred spiral
+12639,Unbarred loose spiral,Disturbed
+3817,Round smooth,Barred spiral
+10185,Unbarred tight spiral,Unbarred tight spiral
+13651,Unbarred loose spiral,Unbarred loose spiral
+14927,Edge-on without bulge,Edge-on without bulge
+4093,Round smooth,Round smooth
+8941,Barred spiral,Barred spiral
+11740,Unbarred tight spiral,Barred spiral
+15751,Edge-on without bulge,Edge-on without bulge
+1641,Merging,Barred spiral
+13884,Unbarred loose spiral,Disturbed
+11160,Unbarred tight spiral,Unbarred tight spiral
+1792,Merging,Merging
+6797,In-between round,Round smooth
+9498,Barred spiral,Barred spiral
+12441,Unbarred loose spiral,In-between round
+15165,Edge-on without bulge,Edge-on without bulge
+13293,Unbarred loose spiral,Unbarred loose spiral
+3876,Round smooth,Round smooth
+2964,Round smooth,Round smooth
+8406,Barred spiral,Cigar shaped
+17079,Edge-on with bulge,Cigar shaped
+794,Disturbed,In-between round
+17339,Edge-on with bulge,Edge-on with bulge
+11425,Unbarred tight spiral,Unbarred tight spiral
+6907,In-between round,In-between round
+16108,Edge-on with bulge,Edge-on with bulge
+897,Disturbed,Unbarred tight spiral
+840,Disturbed,Disturbed
+397,Disturbed,Disturbed
+1248,Merging,Merging
+3863,Round smooth,Round smooth
+8324,Barred spiral,Round smooth
+10571,Unbarred tight spiral,Barred spiral
+7991,Barred spiral,Barred spiral
+4953,Round smooth,Round smooth
+14898,Edge-on without bulge,Edge-on without bulge
+9642,Barred spiral,Merging
+7926,Cigar shaped,Edge-on without bulge
+10853,Unbarred tight spiral,Unbarred tight spiral
+5214,Round smooth,Round smooth
+2078,Merging,Merging
+3970,Round smooth,Round smooth
+16455,Edge-on with bulge,Edge-on with bulge
+2327,Merging,In-between round
+11986,Unbarred loose spiral,Unbarred loose spiral
+7117,In-between round,In-between round
+15024,Edge-on without bulge,Edge-on without bulge
+4465,Round smooth,In-between round
+16789,Edge-on with bulge,Round smooth
+14947,Edge-on without bulge,Edge-on without bulge
+15063,Edge-on without bulge,Edge-on without bulge
+5369,Round smooth,Round smooth
+3010,Round smooth,Merging
+6180,In-between round,In-between round
+14437,Edge-on without bulge,Edge-on without bulge
+4752,Round smooth,Round smooth
+6778,In-between round,In-between round
+11225,Unbarred tight spiral,Unbarred tight spiral
+12767,Unbarred loose spiral,Barred spiral
+14702,Edge-on without bulge,Edge-on without bulge
+4593,Round smooth,Round smooth
+4004,Round smooth,Round smooth
+5899,In-between round,In-between round
+7144,In-between round,Round smooth
+6093,In-between round,In-between round
+3295,Round smooth,Round smooth
+890,Disturbed,Disturbed
+10324,Unbarred tight spiral,Unbarred loose spiral
+14858,Edge-on without bulge,Edge-on without bulge
+10058,Unbarred tight spiral,Unbarred tight spiral
+17235,Edge-on with bulge,Edge-on with bulge
+8032,Barred spiral,Unbarred loose spiral
+12044,Unbarred loose spiral,Unbarred tight spiral
+1668,Merging,Merging
+6834,In-between round,Round smooth
+385,Disturbed,In-between round
+13342,Unbarred loose spiral,Unbarred tight spiral
+8761,Barred spiral,Unbarred loose spiral
+647,Disturbed,Disturbed
+5057,Round smooth,In-between round
+8983,Barred spiral,Barred spiral
+3258,Round smooth,Round smooth
+12250,Unbarred loose spiral,Unbarred loose spiral
+15764,Edge-on without bulge,Unbarred loose spiral
+17586,Edge-on with bulge,Edge-on with bulge
+14940,Edge-on without bulge,Edge-on without bulge
+4217,Round smooth,Round smooth
+5317,Round smooth,Round smooth
+16592,Edge-on with bulge,Edge-on with bulge
+6171,In-between round,In-between round
+16989,Edge-on with bulge,Edge-on with bulge
+6503,In-between round,In-between round
+13772,Unbarred loose spiral,Disturbed
+10348,Unbarred tight spiral,Unbarred tight spiral
+791,Disturbed,Unbarred tight spiral
+6804,In-between round,In-between round
+9764,Barred spiral,Disturbed
+1952,Merging,Round smooth
+4866,Round smooth,Merging
+6857,In-between round,In-between round
+11891,Unbarred loose spiral,Unbarred tight spiral
+14314,Unbarred loose spiral,Unbarred loose spiral
+6496,In-between round,In-between round
+3857,Round smooth,Round smooth
+12253,Unbarred loose spiral,Barred spiral
+6170,In-between round,In-between round
+2814,Merging,Unbarred loose spiral
+8234,Barred spiral,Cigar shaped
+4632,Round smooth,Disturbed
+40,Disturbed,Merging
+7956,Barred spiral,Disturbed
+7762,Cigar shaped,In-between round
+14462,Edge-on without bulge,Edge-on without bulge
+3838,Round smooth,In-between round
+10574,Unbarred tight spiral,Unbarred tight spiral
+12188,Unbarred loose spiral,Disturbed
+17080,Edge-on with bulge,Edge-on with bulge
+13948,Unbarred loose spiral,Merging
+6481,In-between round,In-between round
+2841,Merging,Merging
+2562,Merging,Barred spiral
+13714,Unbarred loose spiral,Unbarred loose spiral
+16913,Edge-on with bulge,Edge-on with bulge
+998,Disturbed,Disturbed
+15893,Edge-on with bulge,Cigar shaped
+12944,Unbarred loose spiral,Unbarred loose spiral
+16820,Edge-on with bulge,Edge-on without bulge
+6872,In-between round,In-between round

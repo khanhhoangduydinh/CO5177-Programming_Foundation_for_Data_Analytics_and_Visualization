@@ -1,0 +1,42 @@
+{
+  "dataset": "Galaxy10 DECaLS NoDuplicated",
+  "total_images": 17675,
+  "image_shape": [
+    256,
+    256,
+    3
+  ],
+  "classes": [
+    "Disturbed",
+    "Merging",
+    "Round smooth",
+    "In-between round",
+    "Cigar shaped",
+    "Barred spiral",
+    "Unbarred tight spiral",
+    "Unbarred loose spiral",
+    "Edge-on without bulge",
+    "Edge-on with bulge"
+  ],
+  "split_sizes": {
+    "Train": 12372,
+    "Validation": 2651,
+    "Test": 2652
+  },
+  "logistic_validation": {
+    "accuracy": 0.6175,
+    "balanced_accuracy": 0.6141,
+    "macro_f1": 0.5952
+  },
+  "transfer_validation": {
+    "accuracy": 0.4594,
+    "balanced_accuracy": 0.4619,
+    "macro_f1": 0.4357
+  },
+  "selected_model": "Pretrained features + Logistic",
+  "selected_test": {
+    "accuracy": 0.5984,
+    "balanced_accuracy": 0.599,
+    "macro_f1": 0.5797
+  }
+}

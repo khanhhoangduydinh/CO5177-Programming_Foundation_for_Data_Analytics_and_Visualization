@@ -93,7 +93,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \textbf{\large PROGRAMMING FOUNDATION FOR}\\
 \textbf{\large DATA ANALYTICS AND VISUALIZATION}\\
 \\
-\textbf{\large \textit{Group: Traiblazer}}\\
+\textbf{\large \textit{Group: Trailblazer}}\\
 \\
 \hline
 \end{tabular}
@@ -173,7 +173,7 @@ The order of these stages matters. For example, a median value must be calculate
 
 \subsection*{Computational Framework}
 
-The computational workflow is designed for Google Colab and Python. Pandas and NumPy load, inspect, and transform the datasets. Matplotlib and Seaborn generate the independent EDA figures. Scikit-learn supplies the preprocessing pipelines, TF-IDF vectorizers, classification models, data splits, and evaluation metrics. PyTorch and Torchvision load pretrained MobileNetV3 weights and process the Galaxy10 images. Each data type is organized as its own reproducible notebook workflow: load data, run EDA, prepare features, train models, export figures, and report the final metrics. The website, notebooks, figures, and PDF are kept together in the project repository so the results can be checked again.
+The computational workflow is designed for Google Colab and Python. Pandas and NumPy load, inspect, and transform the datasets. Matplotlib and Seaborn generate the independent EDA figures. Scikit-learn supplies the preprocessing pipelines, TF-IDF vectorizers, classification models, data splits, and evaluation metrics. PyTorch and Torchvision load pretrained MobileNetV3 weights and process the Intel scene images. Each data type is organized as its own reproducible notebook workflow: load data, run EDA, prepare features, train models, export figures, and report the final metrics. The website, notebooks, figures, and PDF are kept together in the project repository so the results can be checked again.
 
 \begin{importantbox}
 \textbf{Scope of this report}
@@ -626,211 +626,8 @@ A false negative occurs when a toxic comment is predicted as non-toxic. This is 
 
 \clearpage
 \input{chapters/image_intel}
-\iffalse
-\section{Image Data: Galaxy10 DECaLS Galaxy Morphology}
-\label{sec:image}
 
-\subsection{Task Objective and Dataset}
-
-The image task classifies one astronomical cutout into one of ten visual morphology labels. The selected dataset is Galaxy10 DECaLS NoDuplicated \cite{galaxy10}. It contains 17,675 colour images of size 256 by 256 pixels. The three visible channels are created from the DECaLS survey bands. The task is useful for a first image-classification exercise because every observation has the same image size, but the visual shapes remain varied and difficult.
-
-The label is a morphology category, such as \textit{Round smooth}, \textit{Barred spiral}, or \textit{Edge-on with bulge}. These labels describe the visual appearance used in the dataset. They are not a new scientific confirmation produced by this project. The model learns to reproduce the provided label from pixels, and the final score measures agreement with those held-out labels.
-
-The HDF5 file also contains right ascension, declination, redshift, and pixel scale. These fields are useful for inspecting the source dataset, but they are not model inputs. The purpose of this task is image classification, so using astronomical metadata would make the answer depend on information outside the image. The notebook therefore uses only the RGB pixel array and the supplied class label.
-
-\subsubsection{Dataset Structure and Class Balance}
-
-The working file contains the HDF5 keys \texttt{images}, \texttt{ans}, \texttt{ra}, \texttt{dec}, \texttt{redshift}, and \texttt{pxscale}. The \texttt{images} key has shape $(17{,}675, 256, 256, 3)$ and unsigned 8-bit values from 0 to 255. The \texttt{ans} key is the integer class label. The notebook checks the official MD5 hash before loading the file; this prevents an interrupted download from silently entering the analysis.
-
-Figure~\ref{fig:image-examples} shows one randomly selected image from each class using the fixed seed. The examples make the task concrete. Some objects are bright and centred, while others are faint, surrounded by unrelated sources, or have a visible neighbour. These background objects and changes in brightness are part of the reason that morphology classes can be confused.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{images/image_01_class_examples.png}
-\caption{One Galaxy10 DECaLS image from each of the 10 morphology classes. The visual category is the supplied target label.}
-\label{fig:image-examples}
-\end{figure}
-
-Table~\ref{tab:image-class-counts} and Figure~\ref{fig:image-distribution} show that the classes are not equally frequent. \textit{Cigar shaped} is the smallest class with only 333 images (1.88\%), while \textit{Round smooth} and \textit{Unbarred loose spiral} each contain about 15\% of the dataset. For this reason, the report uses balanced accuracy and macro F1 in addition to ordinary accuracy. These metrics prevent a large class from dominating the evaluation.
-
-\begin{table}[H]
-\centering
-\caption{Galaxy10 DECaLS class distribution.}
-\label{tab:image-class-counts}
-\small
-\begin{tabular}{lr r}
-\toprule
-\textbf{Morphology class} & \textbf{Images} & \textbf{Share} \\
-\midrule
-Disturbed & 1,081 & 6.12\% \\
-Merging & 1,853 & 10.48\% \\
-Round smooth & 2,640 & 14.94\% \\
-In-between round & 2,021 & 11.43\% \\
-Cigar shaped & 333 & 1.88\% \\
-Barred spiral & 2,040 & 11.54\% \\
-Unbarred tight spiral & 1,823 & 10.31\% \\
-Unbarred loose spiral & 2,600 & 14.71\% \\
-Edge-on without bulge & 1,419 & 8.03\% \\
-Edge-on with bulge & 1,865 & 10.55\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.52\textwidth}
-\centering
-\includegraphics[width=\textwidth]{images/image_02_class_distribution.png}\\
-\small (a) Image count by class
-\end{minipage}\hfill
-\begin{minipage}{0.43\textwidth}
-\centering
-\includegraphics[width=\textwidth]{images/image_03_brightness_by_class.png}\\
-\small (b) Brightness from 100 images per class
-\end{minipage}
-\caption{Image-level EDA. The brightness plot is a balanced inspection sample, not a model feature.}
-\label{fig:image-distribution}
-\end{figure}
-
-The brightness box plot uses at most 100 images from every class, so a common class cannot fill the plot by itself. It confirms that image brightness varies inside and across classes. The plot is not used to make a scientific statement about galaxies, and it is not inserted as a separate numerical feature. It is a simple quality check that supports using normalization before the pretrained network.
-
-\subsubsection{Data Quality and Leakage Control}
-
-The selected release is called \textit{NoDuplicated}, which reduces the risk of exact duplicate images appearing across the split. The redshift field has 92 missing values, but this does not affect the model because redshift is excluded from the input. Pixel scale has no missing values. A separate image-level split is still needed: seeing a test image during training would make the test score unfair even when every image file is unique.
-
-\begin{table}[H]
-\centering
-\caption{Image-task data-quality and leakage decisions.}
-\label{tab:image-quality}
-\begin{tabularx}{\textwidth}{lX}
-\toprule
-\textbf{Check} & \textbf{Decision and reason} \\
-\midrule
-File integrity & The official MD5 hash is checked before HDF5 loading. A mismatched file stops the notebook. \\
-Duplicate risk & The NoDuplicated release is used. Train, validation, and test use different image indices. \\
-Missing metadata & 92 redshift values are missing; redshift is inspected only and never enters the image model. \\
-Input leakage & Right ascension, declination, redshift, pixel scale, and target names are excluded from model inputs. \\
-Model selection & Validation macro F1 selects the final model. The test set is evaluated only after this choice. \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\subsection{Preprocessing, Split, and Augmentation}
-
-The dataset has no predefined train, validation, and test partitions. The notebook first splits image indices using a fixed random seed of 42. It uses 70\% for training, then divides the remaining 30\% equally into validation and test sets. Stratification preserves the 10 label proportions in every partition. Table~\ref{tab:image-split} shows the result.
-
-\begin{table}[H]
-\centering
-\caption{Stratified split used for the Galaxy10 task.}
-\label{tab:image-split}
-\begin{tabular}{lr r}
-\toprule
-\textbf{Split} & \textbf{Images} & \textbf{Purpose} \\
-\midrule
-Training & 12,372 & Fit Logistic Regression and the small classifier head \\
-Validation & 2,651 & Compare models and choose the final model \\
-Test & 2,652 & One final evaluation after selection \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-MobileNetV3-Small was pretrained with ImageNet images. Each Galaxy10 image is therefore resized from 256 by 256 to 160 by 160 pixels, converted to a tensor, and normalized by the ImageNet channel mean and standard deviation. This does not change the target label; it changes the numerical scale of pixels into the scale expected by the pretrained model.
-
-Training images also receive a random horizontal flip. A left-right flip does not change whether a galaxy is spiral, smooth, or edge-on. The same flip is not used on validation or test images, so their predictions are deterministic. Figure~\ref{fig:image-preprocessing} shows the augmentation and the five-epoch learning history of the frozen MobileNetV3 head.
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.42\textwidth}
-\centering
-\includegraphics[width=\textwidth]{images/image_04_augmentation_example.png}\\
-\small (a) Horizontal-flip augmentation
-\end{minipage}\hfill
-\begin{minipage}{0.53\textwidth}
-\centering
-\includegraphics[width=\textwidth]{images/image_05_training_history.png}\\
-\small (b) Frozen-head learning history
-\end{minipage}
-\caption{Preprocessing and training checks. The head improves during five epochs but remains below the Logistic Regression baseline.}
-\label{fig:image-preprocessing}
-\end{figure}
-
-\subsection{Model Comparison}
-
-Two simple approaches use the same MobileNetV3-Small pretrained weights. The first approach freezes the entire network and converts each image into a 576-value feature vector. Logistic Regression with balanced class weights is fitted on the training vectors. This is the baseline because it is easy to understand: the pretrained network describes the image, then a linear classifier chooses a morphology label.
-
-The second approach also starts from pretrained MobileNetV3-Small, freezes its feature layers, and replaces the final classifier with a small head: a 256-unit linear layer, Hardswish activation, 0.2 dropout, and a 10-unit output layer. Only 150,282 head parameters are trainable. Class-weighted cross-entropy and Adam with learning rate 0.0003 are used for five epochs. This is transfer learning because ImageNet visual features are reused while the new head learns the Galaxy10 labels.
-
-Table~\ref{tab:image-validation} and Figure~\ref{fig:image-models} compare both approaches on validation data. The pretrained feature vectors plus Logistic Regression have the higher macro F1 (0.5952 versus 0.4357), so this model is selected before viewing the final test score. The frozen head is retained as a required deep-learning comparison, but it is not presented as the better result.
-
-\begin{table}[H]
-\centering
-\caption{Validation comparison. The selected model has the highest macro F1.}
-\label{tab:image-validation}
-\begin{tabular}{lrrr}
-\toprule
-\textbf{Model} & \textbf{Accuracy} & \textbf{Balanced acc.} & \textbf{Macro F1} \\
-\midrule
-Pretrained features + Logistic & \textbf{0.6175} & \textbf{0.6141} & \textbf{0.5952} \\
-Frozen MobileNetV3 head & 0.4594 & 0.4619 & 0.4357 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.80\textwidth]{images/image_06_model_comparison.png}
-\caption{Validation scores for the two pretrained-image approaches.}
-\label{fig:image-models}
-\end{figure}
-
-\subsection{Final Test Results and Error Review}
-
-The selected model is evaluated once on 2,652 test images. It obtains accuracy 0.5984, balanced accuracy 0.5990, and macro F1 0.5797. The three numbers are close because the classifier does not obtain its score only from a large class. The test macro F1 is slightly lower than validation macro F1, which is expected when a selected model is evaluated on previously unseen images.
-
-The normalized confusion matrix in Figure~\ref{fig:image-confusion} is read row by row. A row is one true class, and the diagonal cell is the recall for that class. The best recalls are 0.826 for \textit{Edge-on without bulge} and 0.782 for \textit{Edge-on with bulge}. \textit{Unbarred loose spiral} has the lowest recall, 0.369. It is often confused with other spiral classes, which is reasonable because the boundary between a loose arm, a tight arm, and a bar can be unclear in a small noisy cutout.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.91\textwidth]{images/image_07_confusion_matrix.png}
-\caption{Normalized test confusion matrix for the selected pretrained-feature Logistic Regression model.}
-\label{fig:image-confusion}
-\end{figure}
-
-Table~\ref{tab:image-errors} lists the most frequent directional errors. For example, 64 true \textit{Unbarred loose spiral} images are predicted as \textit{Unbarred tight spiral}. This does not prove that a label is wrong. It shows that the learned pretrained features and simple linear boundary are not sufficient to separate all visual subtypes reliably.
-
-\begin{table}[H]
-\centering
-\caption{Most frequent wrong test predictions.}
-\label{tab:image-errors}
-\begin{tabular}{llr}
-\toprule
-\textbf{True label} & \textbf{Predicted label} & \textbf{Images} \\
-\midrule
-Unbarred loose spiral & Unbarred tight spiral & 64 \\
-In-between round & Round smooth & 52 \\
-Unbarred loose spiral & Barred spiral & 52 \\
-Barred spiral & Unbarred loose spiral & 51 \\
-Unbarred loose spiral & Disturbed & 48 \\
-Barred spiral & Unbarred tight spiral & 45 \\
-Round smooth & In-between round & 43 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Figure~\ref{fig:image-errors} shows the first 12 incorrect test images, with true and predicted labels above each cutout. Several cases contain a small or faint target, bright nearby objects, or visual features shared by several classes. These are useful concrete examples of why a moderate macro F1 should not be interpreted as reliable automated morphology labelling.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{images/image_08_error_examples.png}
-\caption{Twelve incorrect predictions from the selected model on the held-out test set.}
-\label{fig:image-errors}
-\end{figure}
-
-\begin{importantbox}
-\textbf{Image conclusion.} Pretrained MobileNetV3 feature vectors plus balanced Logistic Regression are a clear and reproducible first baseline for Galaxy10 DECaLS. The model recognizes edge-on and round categories relatively well, but it still confuses visually related spiral and disturbed classes. The result is suitable for learning image EDA and fair evaluation; it is not a substitute for expert astronomical morphology analysis.
-\end{importantbox}
-
-\fi
+\clearpage
 \section{Overall Conclusion}
 
 The three tasks show the same lesson: EDA changes model decisions. The same general workflow is used in every task, but the details must be adapted to the data type. For KOI records, one row contains measured numerical and categorical properties of one astronomical object. The key risks are missing measurements, skewed values, and fields that reveal the final catalogue decision. For comments, one row contains a variable-length sentence. The key risks are repeated normalized text, an imbalanced toxic class, and wording that has a meaning only in context. For Intel scenes, one observation is a pixel image. The key risks are class imbalance, brightness and background variation, train--test leakage, and visually similar scenes such as glacier and mountain.
@@ -861,9 +658,9 @@ Intel Image Classification & Pretrained features + Logistic & 0.914 & 0.916 & 0.
 
 \subsection{Limitations and Future Work}
 
-The code is deliberately compact and beginner-friendly. This makes the workflow easier to reproduce, but it also creates clear limits. The KOI model uses a fixed set of catalogue variables and a simple group split; it cannot replace scientific confirmation from physical follow-up observations. The text model has no sentence-level understanding of sarcasm, conversation history, or implied meaning. Its predictions should be treated as model suggestions, not final moderation decisions. The Galaxy10 model observes only image pixels and was compared with a small frozen head for five epochs. It can confuse faint, crowded, or visually similar morphology classes and cannot replace expert inspection.
+The code is deliberately compact and beginner-friendly. This makes the workflow easier to reproduce, but it also creates clear limits. The KOI model uses a fixed set of catalogue variables and a simple group split; it cannot replace scientific confirmation from physical follow-up observations. The text model has no sentence-level understanding of sarcasm, conversation history, or implied meaning. Its predictions should be treated as model suggestions, not final moderation decisions. The Intel scene model observes only image pixels after resizing to 150 by 150. It can confuse visually related scene categories (such as glacier and mountain, or street and buildings) and cannot replace human ground truth.
 
-Future work may add carefully designed KOI features, compare different group-aware resampling seeds, or calibrate predicted probabilities. For text, later experiments may use Vietnamese word segmentation, a pretrained Vietnamese language model, or human review of important error groups. For images, later work may carefully fine-tune more MobileNetV3 layers, test additional valid augmentations, or review error groups with an astronomy expert. Each improvement would need to repeat the same leakage checks and keep the test split independent. These are possible next experiments, not results claimed by the current report.
+Future work may add carefully designed KOI features, compare different group-aware resampling seeds, or calibrate predicted probabilities. For text, later experiments may use Vietnamese word segmentation, a pretrained Vietnamese language model, or human review of important error groups. For images, later work may carefully fine-tune more MobileNetV3 layers, test additional valid augmentations, or review ambiguous scene error groups. Each improvement would need to repeat the same leakage checks and keep the test split independent. These are possible next experiments, not results claimed by the current report.
 
 \section*{Reproducibility}
 \addcontentsline{toc}{section}{Reproducibility}
