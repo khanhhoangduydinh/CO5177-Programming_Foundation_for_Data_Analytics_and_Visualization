@@ -1154,6 +1154,31 @@ svg {
   display: none;
 }
 
+.task-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.task-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 17px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.task-quick-links a:hover,
+.task-quick-links a:focus-visible {
+  color: #fff;
+  background: var(--ink);
+}
+
 .data-preview {
   border: 1px solid var(--line);
   background: #f8f8f4;

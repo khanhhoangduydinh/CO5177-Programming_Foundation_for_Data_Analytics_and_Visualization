@@ -4,9 +4,21 @@
 # This notebook classifies six outdoor-scene labels: buildings, forest,
 # glacier, mountain, sea, and street. It uses the public Intel Image
 # Classification dataset and two small pretrained MobileNetV3 approaches.
+#
+# **Học phần:** CO5177 — Programming Foundation for Data Analytics and Visualization
+# **Sinh viên:** Dinh Hoang Duy Khanh — 2670306
+# **Nhóm:** Trailblazer
+#
+# **Cách chạy:** Trong Google Colab, chọn Runtime → Change runtime type → GPU, sau đó chọn Runtime → Run all. Lần đầu cần Internet để tải thư viện, dữ liệu và trọng số; nếu không có GPU, notebook có thể chạy rất chậm. Các kết quả trong report là kết quả của một lần chạy trước, có thể chênh lệch khi chạy lại.
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Cài các thư viện cần cho notebook Colab; dấu ! chạy lệnh shell và -q giảm log. Lần chạy đầu cần Internet để tải gói, dataset và trọng số pretrained.
 
 # %%
 # !pip -q install kagglehub scikit-learn torch torchvision matplotlib seaborn
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Nạp thư viện xử lý ảnh, trực quan hóa, scikit-learn và PyTorch. ImageFolder đọc ảnh theo thư mục lớp; MobileNetV3 cung cấp trọng số pretrained.
 
 # %%
 from pathlib import Path
@@ -27,6 +39,9 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import datasets, models, transforms
 from torchvision.models import MobileNet_V3_Small_Weights
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đặt seed cho random, NumPy và PyTorch; xác định các thư mục dữ liệu, báo cáo và thiết bị CPU/GPU. Seed hỗ trợ lặp lại nhưng GPU có thể vẫn tạo sai khác nhỏ.
 
 # %%
 SEED = 42
@@ -54,6 +69,9 @@ print("Device:", device)
 # `seg_train` folder and a separate labelled `seg_test` folder. The unlabelled
 # `seg_pred` images are not used in this assignment.
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Ưu tiên bản dữ liệu local nếu có; nếu không, tải Intel Image Classification bằng kagglehub. Nếu seg_train hoặc seg_test có thêm một thư mục cùng tên bên trong, đi vào thư mục đó trước khi đọc sáu lớp; sau đó in số ảnh và kích thước ảnh mẫu.
+
 # %%
 local_copy = project_folder / "data" / "intel_image_data" / "data"
 local_sample = local_copy / "seg_train" / "buildings" / "0.jpg"
@@ -68,6 +86,10 @@ else:
     )
 train_folder = dataset_path / "seg_train"
 test_folder = dataset_path / "seg_test"
+if (train_folder / "seg_train").is_dir():
+    train_folder = train_folder / "seg_train"
+if (test_folder / "seg_test").is_dir():
+    test_folder = test_folder / "seg_test"
 
 if not train_folder.exists() or not test_folder.exists():
     raise FileNotFoundError("Expected seg_train and seg_test after the Intel dataset download.")
@@ -87,6 +109,9 @@ print("Image size:", Image.open(raw_train.samples[0][0]).size)
 # The source training folder is split into train and validation data with a
 # fixed seed. The source test folder stays untouched until final evaluation.
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Chia tập train gốc thành train và validation theo tỷ lệ 80/20, dùng stratify để giữ tỷ lệ lớp tương đối. Tập test gốc được giữ riêng.
+
 # %%
 train_ids = np.arange(len(raw_train))
 train_labels = np.array(raw_train.targets)
@@ -104,6 +129,9 @@ print("Test:", len(raw_test))
 # %% [markdown]
 # ## 3. EDA: examples, class balance, and brightness
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Chọn một ảnh mẫu của mỗi lớp train và vẽ lưới 2 × 3. Tên trên ảnh là nhãn thư mục; hình giúp hiểu dữ liệu đầu vào.
+
 # %%
 fig, axes = plt.subplots(2, 3, figsize=(12, 7))
 for label, axis in enumerate(axes.flat):
@@ -116,6 +144,9 @@ fig.suptitle("One Intel scene from each class", fontsize=16)
 fig.tight_layout()
 fig.savefig(figure_folder / "intel_01_scene_examples.png", dpi=180, bbox_inches="tight")
 plt.show()
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đếm ảnh mỗi lớp ở train và test gốc, tạo bảng và vẽ phân phối. Kiểm tra lớp nào có nhiều hoặc ít ảnh hơn.
 
 # %%
 train_counts = pd.Series(raw_train.targets).value_counts().sort_index()
@@ -134,6 +165,9 @@ plt.tight_layout()
 plt.savefig(figure_folder / "intel_02_class_distribution.png", dpi=180, bbox_inches="tight")
 plt.show()
 print(count_table)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lấy tối đa 100 ảnh train đầu tiên của mỗi lớp, tính độ sáng trung bình rồi vẽ phân phối theo lớp. Đây là thống kê trên mẫu, không phải toàn bộ dataset.
 
 # %%
 brightness = []
@@ -160,6 +194,9 @@ plt.show()
 # Images are resized and normalized in the scale expected by ImageNet-pretrained
 # MobileNetV3. A horizontal flip is used only in training because a mirrored
 # scene still has the same class.
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lấy trọng số và chuẩn hóa ImageNet, thiết lập resize, lật ngang ngẫu nhiên, crop và chuyển tensor cho train; evaluation_transform dùng cấu hình của trọng số. Hình minh họa so sánh ảnh gốc với ảnh lật.
 
 # %%
 weights = MobileNet_V3_Small_Weights.DEFAULT
@@ -191,6 +228,9 @@ fig.tight_layout()
 fig.savefig(figure_folder / "intel_04_augmentation_example.png", dpi=180, bbox_inches="tight")
 plt.show()
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo Dataset train, validation và test với transform phù hợp, rồi đóng gói DataLoader theo batch 64. Chỉ train được xáo trộn và dùng augmentation ngẫu nhiên.
+
 # %%
 train_data = Subset(datasets.ImageFolder(train_folder, transform=training_transform), fit_ids)
 validation_data = Subset(datasets.ImageFolder(train_folder, transform=evaluation_transform), validation_ids)
@@ -206,6 +246,9 @@ test_loader = DataLoader(test_data, shuffle=False, **loader_args)
 #
 # MobileNetV3 describes each image as a vector. Logistic Regression then chooses
 # one of the six scene labels. This is the simplest pretrained baseline.
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Dùng MobileNetV3 pretrained bỏ classifier để trích vector ảnh trong no_grad; fit Logistic Regression trên vector train. Tạo dự đoán validation và test để sử dụng ở bước so sánh và đánh giá.
 
 # %%
 feature_model = models.mobilenet_v3_small(weights=weights).to(device).eval()
@@ -235,6 +278,9 @@ logistic_test = logistic.predict(test_x)
 #
 # This model keeps the pretrained visual backbone fixed and trains only its
 # classifier layers for five epochs.
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đóng băng tham số khối features của MobileNetV3, thay đầu ra bằng sáu lớp và chuyển lớp mới lên CPU/GPU đang dùng. CrossEntropyLoss dùng trọng số lớp; mỗi epoch chạy forward, tính loss, backward, cập nhật classifier, sau đó ghi loss và macro F1 validation.
 
 # %%
 head_model = models.mobilenet_v3_small(weights=weights).to(device)
@@ -269,6 +315,9 @@ for epoch in range(5):
     history["validation_macro_f1"].append(float(f1_score(validation_y, predicted, average="macro")))
     print(f"Epoch {epoch + 1}: loss={history['train_loss'][-1]:.3f}, macro F1={history['validation_macro_f1'][-1]:.3f}")
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ loss train và macro F1 validation theo năm epoch. Hai đường có ý nghĩa khác nhau và cùng dùng trục dọc; quan sát xu hướng thay vì so sánh trực tiếp độ lớn.
+
 # %%
 plt.figure(figsize=(8, 4))
 plt.plot(range(1, 6), history["train_loss"], marker="o", label="train loss")
@@ -280,6 +329,9 @@ plt.legend()
 plt.tight_layout()
 plt.savefig(figure_folder / "intel_05_training_history.png", dpi=180, bbox_inches="tight")
 plt.show()
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Dự đoán bằng mô hình head trên validation và test; hàm metrics tính accuracy, balanced accuracy và macro F1. Chọn mô hình theo macro F1 validation, sau đó lấy dự đoán test tương ứng; confidence chỉ được tính cho Logistic.
 
 # %%
 head_model.eval()
@@ -307,6 +359,9 @@ selected_test = logistic_test if selected_model.startswith("Pretrained") else np
 selected_probability = logistic.predict_proba(test_x).max(axis=1) if selected_model.startswith("Pretrained") else np.full(len(test_y), np.nan)
 test_scores = metrics(test_y, selected_test)
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo bảng và biểu đồ điểm validation của hai phương án, in tên mô hình được chọn. Phép chọn dựa trên validation macro F1 như đã định nghĩa ở cell trước.
+
 # %%
 model_table = pd.DataFrame(validation_scores).T
 print(model_table.round(3))
@@ -326,6 +381,9 @@ print("Selected model:", selected_model)
 # The test folder is evaluated once after choosing the model from validation
 # macro F1. Macro F1 is reported because every scene class should matter.
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tính confusion matrix test chuẩn hóa theo hàng và vẽ heatmap có nhãn sáu lớp. Mỗi ô cho biết tỷ lệ ảnh của lớp thật được dự đoán thành lớp ở cột.
+
 # %%
 matrix = confusion_matrix(test_y, selected_test, normalize="true")
 plt.figure(figsize=(8, 6))
@@ -336,6 +394,9 @@ plt.ylabel("True label")
 plt.tight_layout()
 plt.savefig(figure_folder / "intel_07_confusion_matrix.png", dpi=180, bbox_inches="tight")
 plt.show()
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lấy tối đa 12 dự đoán sai đầu tiên trong test, mở ảnh và ghi nhãn thật/dự đoán. Những ví dụ này giúp tìm kiểu nhầm lẫn trực quan.
 
 # %%
 wrong_ids = np.flatnonzero(test_y != selected_test)[:12]
@@ -351,6 +412,9 @@ fig.suptitle("First incorrect predictions from the final test set", fontsize=15)
 fig.tight_layout()
 fig.savefig(figure_folder / "intel_08_error_examples.png", dpi=180, bbox_inches="tight")
 plt.show()
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo CSV gồm đường dẫn, nhãn thật, nhãn dự đoán, confidence và cờ đúng/sai; tạo JSON chứa dataset, split, điểm validation và test. Cuối cùng in điểm test và nơi lưu kết quả.
 
 # %%
 prediction_table = pd.DataFrame(

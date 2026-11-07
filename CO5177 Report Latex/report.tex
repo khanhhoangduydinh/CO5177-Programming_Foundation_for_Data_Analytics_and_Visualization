@@ -496,6 +496,8 @@ After this normalization, duplicate comments are checked across the official spl
 
 An exact duplicate means that the original comment text is identical. A normalized duplicate may be written with different capital letters, punctuation, or extra spaces, but becomes the same after the simple cleaning function. The normalized check is stricter and is therefore the useful one for a TF-IDF model. Only evaluation rows that overlap with training are removed; the training split is not changed. Consequently, every validation and test score reported below refers to the filtered split of 1,968 or 985 comments, not to the unfiltered official count.
 
+One normalized test comment in the checked data also occurs in the filtered validation set. It was not removed by the train-overlap filter, so the reported results still include it. Validation was used for model comparison; therefore the evaluation sets are not completely independent. A stricter follow-up should remove this overlap and recompute the metrics, figures, and report together.
+
 \begin{importantbox}
 \textbf{Why this check matters.} If the same sentence occurs in both training and testing, a bag-of-words model can receive credit for memorizing the sentence. Excluding overlap rows does not make the dataset perfect, but it avoids this direct and visible form of leakage.
 \end{importantbox}

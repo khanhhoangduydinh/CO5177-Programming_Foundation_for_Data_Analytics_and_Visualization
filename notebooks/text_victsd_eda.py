@@ -6,6 +6,8 @@
 # **Student:** Dinh Hoang Duy Khanh — 2670306
 #
 # **Group:** Trailblazer
+#
+# **Cách chạy:** Mở notebook trong Google Colab, chọn Runtime → Run all và chờ từng cell hoàn tất. Lần đầu cần Internet để tải dữ liệu. Đọc hướng dẫn tiếng Việt ngay trước mỗi cell và kiểm tra kết quả sau khi chạy.
 
 # %% [markdown]
 # This notebook studies Vietnamese social-media comments from ViCTSD. The main
@@ -13,6 +15,9 @@
 
 # %% [markdown]
 # ## 0. Import libraries
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Nạp thư viện đường dẫn, JSON, biểu thức chính quy, vẽ biểu đồ và xử lý bảng. Chúng hỗ trợ đọc dữ liệu, làm sạch văn bản và lưu kết quả.
 
 # %%
 from pathlib import Path
@@ -24,6 +29,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Nạp TF-IDF, Logistic Regression, Naive Bayes và các thước đo phân loại. Các mô hình nhận đặc trưng số được chuyển từ văn bản.
+
 # %%
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -31,10 +39,16 @@ from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
 from sklearn.metrics import balanced_accuracy_score, classification_report, f1_score
 from sklearn.naive_bayes import MultinomialNB
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đặt giao diện và màu chung cho các biểu đồ. Thiết lập này không ảnh hưởng đến nhãn hoặc kết quả mô hình.
+
 # %%
 sns.set_theme(style="whitegrid")
 plt.rcParams.update({"figure.dpi": 120, "savefig.dpi": 180})
 colors = ["#d35b12", "#efae00", "#173f4c"]
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Xác định thư mục dự án và tạo reports/figures để lưu hình. Khi chạy trong Colab, đường dẫn dựa trên thư mục làm việc hiện tại.
 
 # %%
 project_folder = Path.cwd()
@@ -43,6 +57,9 @@ if project_folder.name == "notebooks":
 
 figure_folder = project_folder / "reports" / "figures"
 figure_folder.mkdir(parents=True, exist_ok=True)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Định nghĩa save_plot để căn hình, lưu tệp và hiển thị. Việc đặt chung tên hàm giúp các cell biểu đồ có cùng cách lưu.
 
 # %%
 def save_plot(name):
@@ -54,6 +71,9 @@ def save_plot(name):
 # %% [markdown]
 # ## 1. Load the official splits
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Định nghĩa load_split: ưu tiên CSV trong data nếu có, nếu không thì đọc bản công khai từ repository ViCTSD. Tham số name là train, valid hoặc test.
+
 # %%
 def load_split(name):
     local_file = project_folder / "data" / f"victsd_{name}.csv"
@@ -61,10 +81,16 @@ def load_split(name):
     return pd.read_csv(local_file if local_file.exists() else source_url)
 
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đọc ba phần chia chính thức thành train, valid và test. Việc giữ riêng ba tập hỗ trợ huấn luyện, lựa chọn và đánh giá theo từng bước.
+
 # %%
 train = load_split("train")
 valid = load_split("valid")
 test = load_split("test")
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Bỏ cột chỉ số Unnamed: 0 trong từng bảng rồi xem vài dòng train. Cột này là chỉ số lưu kèm CSV, không phải nội dung bình luận.
 
 # %%
 for frame in [train, valid, test]:
@@ -72,11 +98,17 @@ for frame in [train, valid, test]:
 
 train.head()
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** In kích thước từng tập và tổng số bình luận. shape gồm số dòng và số cột; tổng cho biết quy mô dữ liệu được sử dụng.
+
 # %%
 print("Train:", train.shape)
 print("Validation:", valid.shape)
 print("Test:", test.shape)
 print("All comments:", len(train) + len(valid) + len(test))
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đếm giá trị thiếu theo cột và số dòng trùng hoàn toàn trong train. Kiểm tra này giúp nhận biết vấn đề trước khi làm sạch.
 
 # %%
 print("Missing values:")
@@ -90,12 +122,18 @@ print("Duplicate rows in train:", train.duplicated().sum())
 # %% [markdown]
 # ## 2. Dataset overview
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lập bảng số bình luận của train, validation và test. Bảng này mô tả cách chia có sẵn của nguồn dữ liệu.
+
 # %%
 split_sizes = pd.DataFrame({
     "Split": ["Train", "Validation", "Test"],
     "Comments": [len(train), len(valid), len(test)],
 })
 split_sizes
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ số bình luận trong từng tập và ghi số trên mỗi cột. Biểu đồ thể hiện quy mô, không đánh giá chất lượng nhãn.
 
 # %%
 plt.figure(figsize=(7.8, 4.8))
@@ -105,11 +143,17 @@ for bar in ax.containers:
 ax.set(title="Official ViCTSD split", xlabel="", ylabel="Comments")
 save_plot("text_01_split_sizes.png")
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Gắn tên tập vào từng bảng rồi nối lại để mô tả toàn bộ dữ liệu. all_data phục vụ EDA; mô hình vẫn được fit trên train riêng.
+
 # %%
 train["Split"] = "Train"
 valid["Split"] = "Validation"
 test["Split"] = "Test"
 all_data = pd.concat([train, valid, test], ignore_index=True)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đếm số chủ đề và số bình luận trùng chính xác, rồi lập bảng chéo giữa hai nhãn. Bảng chéo cho biết số lượng từng cặp nhãn.
 
 # %%
 print("Topics:", all_data["Topic"].nunique())
@@ -119,12 +163,18 @@ pd.crosstab(all_data["Constructiveness"], all_data["Toxicity"])
 # %% [markdown]
 # ## 3. Label and topic distributions
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Dùng melt để đưa hai cột nhãn về dạng dài, sau đó ánh xạ 0 và 1 thành tên lớp chung cho biểu đồ.
+
 # %%
 label_data = all_data.melt(
     value_vars=["Constructiveness", "Toxicity"],
     var_name="Task", value_name="Label",
 )
 label_data["Class"] = label_data["Label"].map({0: "Class 0", 1: "Class 1"})
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ số lượng lớp 0 và lớp 1 cho từng nhiệm vụ, kèm số trên cột. Từ đó xem nhãn nào mất cân bằng và chọn metric phù hợp.
 
 # %%
 plt.figure(figsize=(8.5, 5.2))
@@ -133,6 +183,9 @@ for bar in ax.containers:
     ax.bar_label(bar, fmt="{:,.0f}", padding=3)
 ax.set(title="Label distribution for both tasks", xlabel="", ylabel="Comments")
 save_plot("text_02_label_distribution.png")
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Đếm số bình luận theo chủ đề và vẽ biểu đồ thanh. So sánh độ dài các thanh để kiểm tra mức phân bố chủ đề.
 
 # %%
 topic_counts = all_data["Topic"].value_counts().sort_values()
@@ -150,6 +203,9 @@ save_plot("text_03_topic_distribution.png")
 # %% [markdown]
 # ## 4. Clean text and audit duplicates
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Định nghĩa clean_text: đổi chữ thường, bỏ URL và dấu không thuộc ký tự/tách từ, rồi thu gọn khoảng trắng. Đây là làm sạch đơn giản, không phải tách từ tiếng Việt chuyên sâu.
+
 # %%
 def clean_text(text):
     text = str(text).lower()
@@ -157,6 +213,9 @@ def clean_text(text):
     text = re.sub(r"[^\w\s]", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Áp dụng clean_text cho ba tập; đồng thời đếm ký tự và số từ tách theo khoảng trắng. Sau đó nối bảng để trực quan thống kê.
 
 # %%
 for frame in [train, valid, test]:
@@ -166,16 +225,25 @@ for frame in [train, valid, test]:
 
 all_data = pd.concat([train, valid, test], ignore_index=True)
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo tập bình luận train đã chuẩn hóa và loại khỏi validation/test những nội dung trùng train. Phép lọc này không loại trùng giữa validation và test; trong bản dữ liệu đã kiểm tra còn một dòng test trùng validation.
+
 # %%
 known_comments = set(train["CleanComment"])
 valid_eval = valid[~valid["CleanComment"].isin(known_comments)].reset_index(drop=True)
 test_eval = test[~test["CleanComment"].isin(known_comments)].reset_index(drop=True)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** In số dòng bị loại vì trùng train và kích thước validation/test còn lại. Điểm số về sau áp dụng cho phần được giữ lại, không phải toàn bộ tập gốc.
 
 # %%
 print("Validation comments removed for overlap:", len(valid) - len(valid_eval))
 print("Test comments removed for overlap:", len(test) - len(test_eval))
 print("Validation used for evaluation:", len(valid_eval))
 print("Test used for evaluation:", len(test_eval))
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ histogram độ dài bình luận theo nhãn độc hại; số từ dựa trên phép tách khoảng trắng đơn giản. Quan sát phân phối, không kết luận độ dài gây độc hại.
 
 # %%
 plt.figure(figsize=(9, 5.6))
@@ -192,10 +260,16 @@ save_plot("text_04_comment_length.png")
 # %% [markdown]
 # ## 5. TF-IDF features
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Khai báo bộ TF-IDF theo từ, dùng unigram và bigram, giữ từ xuất hiện ít nhất hai lần và giới hạn 8.000 đặc trưng. sublinear_tf làm giảm ảnh hưởng của tần suất lớn.
+
 # %%
 word_vectorizer = TfidfVectorizer(
     ngram_range=(1, 2), min_df=2, max_features=8000, sublinear_tf=True,
 )
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Fit bộ từ vựng và trọng số IDF chỉ trên train, sau đó transform validation và test. In số đặc trưng để kiểm tra kích thước biểu diễn.
 
 # %%
 X_train_word = word_vectorizer.fit_transform(train["CleanComment"])
@@ -203,10 +277,16 @@ X_valid_word = word_vectorizer.transform(valid_eval["CleanComment"])
 X_test_word = word_vectorizer.transform(test_eval["CleanComment"])
 print("Word TF-IDF features:", X_train_word.shape[1])
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Khai báo TF-IDF theo chuỗi ký tự dài 3–5 trong ranh giới từ, tối đa 12.000 đặc trưng. Cách này mô tả mẫu ký tự thay vì chỉ nguyên từ.
+
 # %%
 char_vectorizer = TfidfVectorizer(
     analyzer="char_wb", ngram_range=(3, 5), min_df=2, max_features=12000, sublinear_tf=True,
 )
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Fit biểu diễn ký tự trên train và transform validation; in số đặc trưng. Không học từ vựng từ validation để tránh rò rỉ.
 
 # %%
 X_train_char = char_vectorizer.fit_transform(train["CleanComment"])
@@ -216,16 +296,25 @@ print("Character TF-IDF features:", X_train_char.shape[1])
 # %% [markdown]
 # ## 6. Words and phrases related to toxicity
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Huấn luyện Logistic Regression cân bằng trọng số lớp trên TF-IDF theo từ rồi dự đoán validation. max_iter giới hạn số vòng tối ưu.
+
 # %%
 toxic_word_model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
 toxic_word_model.fit(X_train_word, train["Toxicity"])
 toxic_valid_pred = toxic_word_model.predict(X_valid_word)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lấy tên đặc trưng và hệ số của Logistic Regression; chọn các trọng số dương và âm lớn nhất. Hệ số mô tả liên hệ với nhãn trong mô hình này, không chứng minh nguyên nhân.
 
 # %%
 terms = word_vectorizer.get_feature_names_out()
 weights = pd.DataFrame({"Term": terms, "Weight": toxic_word_model.coef_[0]})
 toxic_terms = weights.nlargest(15, "Weight").sort_values("Weight")
 safe_terms = weights.nsmallest(15, "Weight").sort_values("Weight", ascending=False)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ các từ/cụm từ có hệ số dương lớn nhất liên quan đến dự đoán độc hại. Đọc biểu đồ như tín hiệu mô hình học được, không phải đánh giá mọi ngữ cảnh.
 
 # %%
 plt.figure(figsize=(9, 6))
@@ -234,6 +323,9 @@ plt.title("TF-IDF terms most associated with toxic comments")
 plt.xlabel("Logistic Regression weight")
 plt.ylabel("")
 save_plot("text_05_top_toxic_ngrams.png")
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ các từ/cụm từ có hệ số âm nổi bật liên quan đến dự đoán không độc hại. Nội dung cần được diễn giải trong giới hạn dữ liệu và mô hình.
 
 # %%
 plt.figure(figsize=(9, 6))
@@ -250,15 +342,24 @@ save_plot("text_06_top_safe_ngrams.png")
 # %% [markdown]
 # ## 7. Toxicity model comparison
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Huấn luyện Multinomial Naive Bayes làm baseline trên TF-IDF từ và dự đoán validation. Đây là mô hình đơn giản để đối chiếu.
+
 # %%
 toxic_nb = MultinomialNB()
 toxic_nb.fit(X_train_word, train["Toxicity"])
 toxic_nb_pred = toxic_nb.predict(X_valid_word)
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Huấn luyện Logistic Regression trên TF-IDF ký tự và dự đoán validation. So sánh với mô hình từ cho biết biểu diễn nào phù hợp hơn theo metric được chọn.
+
 # %%
 toxic_char_model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
 toxic_char_model.fit(X_train_char, train["Toxicity"])
 toxic_char_pred = toxic_char_model.predict(X_valid_char)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Định nghĩa score_model trả về accuracy, balanced accuracy, F1 của lớp 1 và macro F1. Truyền nhãn thật và nhãn dự đoán để tính cùng một cách cho mọi mô hình.
 
 # %%
 def score_model(y_true, y_pred):
@@ -270,6 +371,9 @@ def score_model(y_true, y_pred):
     ]
 
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo bảng điểm validation của ba phương án theo bốn metric. Chú ý accuracy cao không bảo đảm F1 của lớp độc hại cao khi dữ liệu lệch lớp.
+
 # %%
 toxic_scores = pd.DataFrame(
     [score_model(valid_eval["Toxicity"], toxic_nb_pred),
@@ -279,6 +383,9 @@ toxic_scores = pd.DataFrame(
     index=["Naive Bayes", "Word TF-IDF + Logistic", "Char TF-IDF + Logistic"],
 )
 toxic_scores.round(4)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Chuyển bảng điểm sang dạng dài và vẽ biểu đồ so sánh ba mô hình. Các cột chỉ dùng kết quả validation, không dùng test để chọn.
 
 # %%
 score_plot = toxic_scores.reset_index().melt(
@@ -290,11 +397,17 @@ ax.set(title="Toxicity validation: model comparison", xlabel="", ylabel="Score",
 ax.legend(title="")
 save_plot("text_07_toxic_model_comparison.png")
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Lấy riêng hai mô hình Logistic theo từ và theo ký tự, rồi chọn F1 toxic và macro F1 để phân tích chi tiết.
+
 # %%
 word_char = toxic_scores.loc[["Word TF-IDF + Logistic", "Char TF-IDF + Logistic"]]
 word_char = word_char[["F1 toxic", "Macro F1"]].reset_index().melt(
     id_vars="index", var_name="Metric", value_name="Score",
 )
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ so sánh F1 toxic và macro F1 giữa hai cách biểu diễn. Đối chiếu nhãn và độ cao cột để xem phương án nào tốt hơn trên validation.
 
 # %%
 plt.figure(figsize=(8.8, 5.3))
@@ -310,6 +423,9 @@ save_plot("text_08_word_char_comparison.png")
 # %% [markdown]
 # ## 8. Toxicity test results
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Dùng mô hình Logistic theo từ đã huấn luyện để dự đoán tập test đã loại trùng train; in bốn thước đo. Các giá trị áp dụng cho 985 dòng test được giữ lại ở lần chạy lưu sẵn; chạy lại cần kiểm tra số dòng thực tế.
+
 # %%
 toxic_test_pred = toxic_word_model.predict(X_test_word)
 print("Test accuracy:", round(accuracy_score(test_eval["Toxicity"], toxic_test_pred), 4))
@@ -317,8 +433,14 @@ print("Test balanced accuracy:", round(balanced_accuracy_score(test_eval["Toxici
 print("Test F1 toxic:", round(f1_score(test_eval["Toxicity"], toxic_test_pred), 4))
 print("Test macro F1:", round(f1_score(test_eval["Toxicity"], toxic_test_pred, average="macro"), 4))
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** In precision, recall, F1 và số mẫu của hai lớp trên test. Đặc biệt xem recall và F1 của lớp độc hại thay vì chỉ đọc accuracy.
+
 # %%
 print(classification_report(test_eval["Toxicity"], toxic_test_pred, target_names=["Non-toxic", "Toxic"]))
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ confusion matrix chuẩn hóa theo hàng, với nhãn thật ở hàng và nhãn dự đoán ở cột. Ô ngoài đường chéo cho biết tỷ lệ nhầm giữa hai lớp.
 
 # %%
 plt.figure(figsize=(7, 5.8))
@@ -328,6 +450,9 @@ cm = ConfusionMatrixDisplay.from_predictions(
 )
 cm.ax_.set(title="Toxicity test confusion matrix", xlabel="Predicted", ylabel="True")
 save_plot("text_09_toxic_confusion_matrix.png")
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo bảng các bình luận test dự đoán sai cùng chủ đề, nhãn thật và nhãn dự đoán; xem tám ví dụ đầu. Bảng giúp kiểm tra ngữ cảnh mà con số tổng hợp không cho thấy.
 
 # %%
 error_table = test_eval[["Comment", "Topic", "Toxicity"]].copy()
@@ -342,11 +467,17 @@ error_table.head(8)
 # %% [markdown]
 # ## 9. Constructiveness classification
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Huấn luyện Logistic Regression thứ hai cho nhãn tính xây dựng trên cùng TF-IDF từ, rồi dự đoán validation và test. Đây là nhiệm vụ riêng với toxicity.
+
 # %%
 constructive_model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
 constructive_model.fit(X_train_word, train["Constructiveness"])
 constructive_valid_pred = constructive_model.predict(X_valid_word)
 constructive_test_pred = constructive_model.predict(X_test_word)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo bảng so sánh metric của nhiệm vụ tính xây dựng trên validation và test. Phân biệt hai tập khi diễn giải; test không dùng để chọn tham số.
 
 # %%
 constructive_scores = pd.DataFrame(
@@ -356,6 +487,9 @@ constructive_scores = pd.DataFrame(
     index=["Validation", "Test"],
 )
 constructive_scores.round(4)
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Vẽ confusion matrix chuẩn hóa cho nhãn tính xây dựng. Quan sát lỗi giữa hai nhóm non-constructive và constructive.
 
 # %%
 plt.figure(figsize=(7, 5.8))
@@ -373,6 +507,9 @@ save_plot("text_10_constructive_confusion_matrix.png")
 # %% [markdown]
 # ## 10. Save results for the website
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Tạo dictionary summary chứa quy mô, chủ đề, số trùng và số dòng loại do trùng train. Dictionary này chuẩn bị thông tin để lưu dưới dạng JSON.
+
 # %%
 summary = {
     "rows": len(all_data), "topics": all_data["Topic"].nunique(),
@@ -381,10 +518,16 @@ summary = {
     "test_overlap_removed": len(test) - len(test_eval),
 }
 
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Bổ sung các điểm test và bảng validation vào summary. Các số được tính từ dự đoán hiện tại, không nhập tay vào tệp kết quả.
+
 # %%
 summary["toxicity_test"] = score_model(test_eval["Toxicity"], toxic_test_pred)
 summary["constructiveness_test"] = score_model(test_eval["Constructiveness"], constructive_test_pred)
 summary["toxicity_validation"] = toxic_scores.round(6).to_dict()
+
+# %% [markdown]
+# **Hướng dẫn cell tiếp theo:** Ghi summary ra reports/text_victsd_summary.json bằng UTF-8 và in vị trí tệp. Website hoặc người đọc có thể sử dụng JSON này để kiểm tra kết quả.
 
 # %%
 summary_file = project_folder / "reports" / "text_victsd_summary.json"
@@ -397,5 +540,5 @@ print("Saved:", summary_file)
 # - ViCTSD provides 10,000 Vietnamese comments from 10 topics.
 # - The toxicity label is imbalanced, so macro F1 and balanced accuracy matter.
 # - Word TF-IDF + Logistic Regression beats Naive Bayes and char TF-IDF here.
-# - Removing overlapping evaluation comments avoids direct text leakage.
+# - Removing train overlap reduces direct leakage; one validation/test overlap remains in the checked data.
 # - The models help moderation analysis but cannot replace human judgement.

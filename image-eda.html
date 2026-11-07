@@ -46,7 +46,7 @@
             </div>
           </div>
           <aside class="hero-signal" aria-label="Tóm tắt dữ liệu Intel">
-            <div class="signal-head"><span>DATASET / INTEL SCENES</span><i>RUN ALL ✓</i></div>
+            <div class="signal-head"><span>DATASET / INTEL SCENES</span><i>COLAB NOTEBOOK</i></div>
             <div class="signal-grid">
               <div><strong>17K</strong><span>labelled images</span></div>
               <div><strong>6</strong><span>scene classes</span></div>
@@ -65,9 +65,9 @@
           <a href="CO5177%20Report%20Latex/report.pdf" target="_blank" rel="noreferrer">
             <span>02</span><strong>PDF report</strong><i>↗</i>
           </a>
-          <a href="https://youtu.be/placeholder-image" target="_blank" rel="noreferrer" data-video-link aria-label="Video thuyết trình YouTube">
-            <span>03</span><strong>YouTube Video</strong><i>↗</i>
-          </a>
+          <div class="resource-unavailable" aria-label="Video thuyết trình chưa có">
+            <span>03</span><strong>Video: chưa có</strong><i>—</i>
+          </div>
           <a href="https://www.kaggle.com/datasets/puneet6060/intel-image-classification" target="_blank" rel="noreferrer">
             <span>04</span><strong>Intel dataset source</strong><i>↗</i>
           </a>
@@ -150,7 +150,7 @@
       <section class="eda-section" id="models">
         <div class="section-heading row-heading">
           <div><p class="kicker">04 — PRETRAINED MODEL COMPARISON</p><h2>Reuse visual<br>features <em>fairly.</em></h2></div>
-          <p>Both approaches start from the same ImageNet-pretrained MobileNetV3-Small. Validation macro F1 chooses the final model; the source test folder remains untouched until that choice is made.</p>
+          <p>Both approaches start from the same ImageNet-pretrained MobileNetV3-Small. Validation macro F1 chooses the final model; test labels and metrics are not used for that choice.</p>
         </div>
         <div class="model-score-grid">
           <article><span>SELECTED MODEL</span><strong data-selected-model>—</strong><small>highest validation macro F1</small></article>
@@ -160,9 +160,9 @@
         </div>
         <div class="figure-grid two-figure">
           <figure class="analysis-figure">
-            <div class="figure-label"><span>FROZEN HEAD / FIVE EPOCHS</span><i>FIG. 05</i></div>
+            <div class="figure-label"><span>FROZEN BACKBONE / FIVE EPOCHS</span><i>FIG. 05</i></div>
             <img src="reports/figures/intel_05_training_history.png" alt="Training loss and validation macro F1 over five epochs" loading="lazy">
-            <figcaption>The pretrained backbone is frozen. Only the classifier head is updated, keeping the deep-learning comparison small and understandable.</figcaption>
+            <figcaption>The backbone's trainable parameters are frozen and the classifier head is trained. Batch-normalization running statistics can still change in training mode.</figcaption>
           </figure>
           <figure class="analysis-figure">
             <div class="figure-label"><span>TWO PRETRAINED APPROACHES / VALIDATION</span><i>FIG. 06</i></div>
@@ -193,7 +193,7 @@
             <p><b>Dataset:</b> Intel Image Classification is large enough for the course, has a suitable 150-pixel resolution, and is easier to explain than a fine-grained astronomy task.</p>
             <p><b>Method:</b> pretrained MobileNetV3 avoids training a deep network from zero while still showing a complete image-analysis pipeline.</p>
             <p><b>Limit:</b> one scene may contain cues from several labels, so a strong score does not mean every real-world photograph can be classified perfectly.</p>
-            <p><b>Evidence:</b> the notebook, figures, summary JSON and prediction CSV are generated together from one Run all execution.</p>
+            <p><b>Evidence:</b> the repository contains the notebook, figures, summary JSON and prediction CSV for the recorded experiment.</p>
           </div>
         </aside>
       </section>
