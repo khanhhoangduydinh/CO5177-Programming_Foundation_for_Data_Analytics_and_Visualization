@@ -28,7 +28,7 @@ used for selection.
 - Produce independent EDA figures: class examples, train/test distribution,
   per-class brightness, augmentation, model comparison, confusion matrix, and
   incorrect test examples.
-- Create `image-eda.html` using the established DataFlow EDA design.
+- Create `image-eda.html` using the established CO5177 EDA design.
 - Point the Image tab on the landing page to the new report page.
 - Replace the public Image chapter in `CO5177 Report Latex/report.tex` and
   compile its PDF from actual notebook outputs.
@@ -44,7 +44,7 @@ used for selection.
   horizontal-flip augmentation.
 - Keep notebook cells short and beginner-readable. Do not add unrequested
   model families or hyperparameter searches.
-- Preserve the existing public DataFlow visual language rather than creating a
+- Preserve the existing public CO5177 visual language rather than creating a
   separate website style.
 
 ## Verification

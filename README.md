@@ -1,4 +1,4 @@
-# DataFlow
+# CO5177 — Phân tích và trực quan dữ liệu
 
 Landing page cho Bài tập lớn môn **Nền tảng lập trình cho phân tích và trực quan dữ liệu** — HCMUT, học kỳ 261 (2026–2027).
 

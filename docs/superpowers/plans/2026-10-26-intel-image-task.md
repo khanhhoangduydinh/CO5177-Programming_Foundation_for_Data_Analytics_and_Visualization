@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Publish a simple, reproducible Intel scene-classification Image assignment and include its verified outcomes in the DataFlow site and CO5177 report.
+**Goal:** Publish a simple, reproducible Intel scene-classification Image assignment and include its verified outcomes in the CO5177 site and report.
 
 **Architecture:** `notebooks/image_intel_eda.py` is the source of truth and writes compact JSON, CSV, and PNG artifacts. The static Image EDA page and LaTeX chapter only render those generated artifacts and metrics, keeping results consistent across the notebook, web page, and PDF.
 
