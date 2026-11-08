@@ -13,3 +13,12 @@ reports/*-preview/
 reports/*-check-*/
 *.h5
 data/*.h5
+
+# Sản phẩm phụ khi biên dịch LaTeX; giữ lại mã nguồn và PDF.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
