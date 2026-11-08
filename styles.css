@@ -1215,17 +1215,19 @@ svg {
 .preview-table {
   min-height: 300px;
   padding: 22px 17px;
+  overflow-x: auto;
 }
 
 .preview-table > div {
   display: grid;
-  grid-template-columns: 0.8fr 1.3fr 1fr 0.7fr;
+  grid-template-columns: 1fr 1.3fr 1.2fr 1fr;
+  min-width: 470px;
   align-items: center;
   min-height: 46px;
   padding: 0 12px;
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .preview-table .table-head {
@@ -1260,13 +1262,20 @@ svg {
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 4px 15px 15px 15px;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .text-bubble:nth-child(2) {
   justify-self: end;
   background: var(--mint-light);
   border-radius: 15px 4px 15px 15px;
+}
+
+.text-bubble small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
 }
 
 .text-bubble mark {
@@ -1277,39 +1286,24 @@ svg {
 .preview-image-grid {
   min-height: 300px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 150px));
+  justify-content: center;
   gap: 10px;
   padding: 18px;
 }
 
 .pixel-card {
   position: relative;
-  min-height: 120px;
-  background:
-    linear-gradient(135deg, transparent 45%, rgba(255, 255, 255, 0.35) 45% 52%, transparent 52%),
-    var(--mint);
+  aspect-ratio: 1;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.pixel-card:nth-child(2) {
-  background: radial-gradient(circle at 60% 40%, var(--yellow) 0 18%, transparent 19%), var(--ink);
-}
-
-.pixel-card:nth-child(3) {
-  background: linear-gradient(35deg, var(--orange) 0 38%, transparent 39%), #eddccb;
-}
-
-.pixel-card:nth-child(4) {
-  background: radial-gradient(circle at 35% 65%, var(--orange) 0 22%, transparent 23%), var(--mint-light);
-}
-
-.pixel-card:nth-child(5) {
-  background: linear-gradient(135deg, var(--yellow) 0 35%, var(--paper) 35% 65%, var(--ink) 65%);
-}
-
-.pixel-card:nth-child(6) {
-  background: linear-gradient(90deg, transparent 0 35%, rgba(255, 255, 255, 0.3) 35% 45%, transparent 45%), var(--orange);
+.pixel-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pixel-card span {
@@ -1321,7 +1315,7 @@ svg {
   background: rgba(13, 44, 54, 0.75);
   border-radius: 4px;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .preview-foot {
@@ -1761,7 +1755,7 @@ svg {
 
   .track-copy { padding: 0 7px; }
   .track-copy h3 { font-size: 42px; }
-  .preview-image-grid { grid-template-columns: repeat(2, 1fr); }
+  .preview-image-grid { grid-template-columns: repeat(2, minmax(0, 150px)); }
   .rubric-section { padding-top: 0; }
 
   .rubric-wrap {
