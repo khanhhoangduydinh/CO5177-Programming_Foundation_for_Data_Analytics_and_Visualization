@@ -12,7 +12,7 @@
 # ## 0. Import libraries
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Nạp Path để quản lý đường dẫn, warnings để điều chỉnh cảnh báo và các thư viện vẽ, mảng, bảng dữ liệu. Sau cell này, ta dùng được pandas, NumPy, Matplotlib và Seaborn.
+# Nạp Path để quản lý đường dẫn, warnings để điều chỉnh cảnh báo và các thư viện vẽ, mảng, bảng dữ liệu. Sau cell này, ta dùng được pandas, NumPy, Matplotlib và Seaborn.
 
 # %%
 from pathlib import Path
@@ -24,7 +24,7 @@ import pandas as pd
 import seaborn as sns
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Nạp các thành phần tiền xử lý và hai mô hình phân loại. ColumnTransformer áp dụng cách xử lý riêng cho từng nhóm cột; Pipeline nối các bước thành một quy trình.
+# Nạp các thành phần tiền xử lý và hai mô hình phân loại. ColumnTransformer áp dụng cách xử lý riêng cho từng nhóm cột; Pipeline nối các bước thành một quy trình.
 
 # %%
 from sklearn.compose import make_column_transformer
@@ -34,7 +34,7 @@ from sklearn.inspection import permutation_importance
 from sklearn.linear_model import LogisticRegression
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Nạp thước đo đánh giá, cách chia theo nhóm sao và các bộ mã hóa/chuẩn hóa. Macro F1 xem các lớp có trọng số ngang nhau, hữu ích khi dữ liệu lệch lớp.
+# Nạp thước đo đánh giá, cách chia theo nhóm sao và các bộ mã hóa/chuẩn hóa. Macro F1 xem các lớp có trọng số ngang nhau, hữu ích khi dữ liệu lệch lớp.
 
 # %%
 from sklearn.metrics import accuracy_score, balanced_accuracy_score
@@ -44,7 +44,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder, RobustScaler, StandardScaler
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Ẩn riêng cảnh báo FutureWarning, chọn kiểu lưới và màu cho biểu đồ. Các thiết lập này chỉ thay đổi cách trình bày, không thay đổi dữ liệu hay kết quả huấn luyện.
+# Ẩn riêng cảnh báo FutureWarning, chọn kiểu lưới và màu cho biểu đồ. Các thiết lập này chỉ thay đổi cách trình bày, không thay đổi dữ liệu hay kết quả huấn luyện.
 
 # %%
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -53,7 +53,7 @@ plt.rcParams.update({"figure.dpi": 120, "savefig.dpi": 180})
 colors = ["#d35b12", "#efae00", "#173f4c"]
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Lấy thư mục làm việc hiện tại; nếu đang ở notebooks thì đi lên thư mục gốc. Tạo reports/figures để những hình tiếp theo có nơi lưu.
+# Lấy thư mục làm việc hiện tại; nếu đang ở notebooks thì đi lên thư mục gốc. Tạo reports/figures để những hình tiếp theo có nơi lưu.
 
 # %%
 project_folder = Path.cwd()
@@ -64,7 +64,7 @@ figure_folder = project_folder / "reports" / "figures"
 figure_folder.mkdir(parents=True, exist_ok=True)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Định nghĩa save_plot: căn biểu đồ, lưu ảnh vào thư mục figures rồi hiển thị. Tên tệp được truyền vào khi gọi hàm ở từng cell vẽ hình.
+# Định nghĩa save_plot: căn biểu đồ, lưu ảnh vào thư mục figures rồi hiển thị. Tên tệp được truyền vào khi gọi hàm ở từng cell vẽ hình.
 
 # %%
 def save_plot(name):
@@ -77,7 +77,7 @@ def save_plot(name):
 # ## 1. Load the dataset
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tải bảng KOI từ tệp CSV của repository bằng pandas; df là toàn bộ bảng. head() hiển thị vài dòng đầu để kiểm tra tên cột và dữ liệu.
+# Tải bảng KOI từ tệp CSV của repository bằng pandas; df là toàn bộ bảng. head() hiển thị vài dòng đầu để kiểm tra tên cột và dữ liệu.
 
 # %%
 data_url = "https://raw.githubusercontent.com/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/main/data/koi_cumulative.csv"
@@ -85,7 +85,7 @@ df = pd.read_csv(data_url)
 df.head()
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** In số dòng và số cột qua shape, số dòng trùng hoàn toàn qua duplicated, và tổng số ô thiếu qua isnull. Các số này giúp ước lượng chất lượng dữ liệu ban đầu.
+# In số dòng và số cột qua shape, số dòng trùng hoàn toàn qua duplicated, và tổng số ô thiếu qua isnull. Các số này giúp ước lượng chất lượng dữ liệu ban đầu.
 
 # %%
 print("Shape:", df.shape)
@@ -93,13 +93,13 @@ print("Duplicate rows:", df.duplicated().sum())
 print("Missing cells:", df.isnull().sum().sum())
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Dùng info() để xem kiểu dữ liệu, số giá trị không thiếu và mức sử dụng bộ nhớ của từng cột. Đây là bước kiểm tra trước khi chọn cách xử lý.
+# Dùng info() để xem kiểu dữ liệu, số giá trị không thiếu và mức sử dụng bộ nhớ của từng cột. Đây là bước kiểm tra trước khi chọn cách xử lý.
 
 # %%
 df.info()
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** describe() tóm tắt các cột số bằng số lượng, trung bình, độ lệch chuẩn và các phân vị; round(2) làm tròn để dễ đọc.
+# describe() tóm tắt các cột số bằng số lượng, trung bình, độ lệch chuẩn và các phân vị; round(2) làm tròn để dễ đọc.
 
 # %%
 df.describe().round(2)
@@ -112,7 +112,7 @@ df.describe().round(2)
 # ## 2. Dataset overview
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo bảng overview gồm số dòng, số cột, số cột số và số cột không phải số. select_dtypes phân biệt kiểu lưu trữ, không tự quyết định ý nghĩa của biến.
+# Tạo bảng overview gồm số dòng, số cột, số cột số và số cột không phải số. select_dtypes phân biệt kiểu lưu trữ, không tự quyết định ý nghĩa của biến.
 
 # %%
 overview = pd.DataFrame({
@@ -124,7 +124,7 @@ overview = pd.DataFrame({
 overview
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Hiển thị sáu dòng mẫu để quan sát từng trường. Đây là dữ liệu gốc trước khi điền giá trị thiếu hoặc chia tập.
+# Hiển thị sáu dòng mẫu để quan sát từng trường. Đây là dữ liệu gốc trước khi điền giá trị thiếu hoặc chia tập.
 
 # %%
 df.head(6)
@@ -133,7 +133,7 @@ df.head(6)
 # ## 3. Target distribution
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Đếm từng nhãn koi_disposition và tính tỷ lệ phần trăm. normalize=True chia số lượng mỗi lớp cho tổng số dòng.
+# Đếm từng nhãn koi_disposition và tính tỷ lệ phần trăm. normalize=True chia số lượng mỗi lớp cho tổng số dòng.
 
 # %%
 target_counts = df["koi_disposition"].value_counts()
@@ -141,7 +141,7 @@ target_percent = df["koi_disposition"].value_counts(normalize=True) * 100
 pd.DataFrame({"Count": target_counts, "Percent": target_percent.round(2)})
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ biểu đồ cột cho số mẫu của ba lớp và ghi số lượng trên cột. So sánh chiều cao các cột để nhận biết mức mất cân bằng lớp.
+# Vẽ biểu đồ cột cho số mẫu của ba lớp và ghi số lượng trên cột. So sánh chiều cao các cột để nhận biết mức mất cân bằng lớp.
 
 # %%
 plt.figure(figsize=(8.4, 5.2))
@@ -159,7 +159,7 @@ save_plot("01_target_distribution.png")
 # ## 4. Missing values
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Đếm số giá trị thiếu theo từng cột, đổi sang phần trăm, chỉ giữ cột có thiếu và sắp xếp giảm dần. Bảng này giúp ưu tiên kiểm tra các cột thiếu nhiều.
+# Đếm số giá trị thiếu theo từng cột, đổi sang phần trăm, chỉ giữ cột có thiếu và sắp xếp giảm dần. Bảng này giúp ưu tiên kiểm tra các cột thiếu nhiều.
 
 # %%
 missing = pd.DataFrame({"Count": df.isnull().sum()})
@@ -169,7 +169,7 @@ missing = missing.sort_values("Percent", ascending=False)
 missing.round(2)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ tối đa 15 cột thiếu nhiều nhất. Chiều dài thanh là tỷ lệ thiếu, không phải tỷ lệ sai; hình được lưu bằng save_plot.
+# Vẽ tối đa 15 cột thiếu nhiều nhất. Chiều dài thanh là tỷ lệ thiếu, không phải tỷ lệ sai; hình được lưu bằng save_plot.
 
 # %%
 missing_plot = missing.head(15).sort_values("Percent")
@@ -188,7 +188,7 @@ save_plot("02_missing_values.png")
 # ## 5. Numerical distributions
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ phân phối chu kỳ quỹ đạo sau khi bỏ giá trị thiếu. Trục hoành dùng thang log vì giá trị trải trên nhiều bậc độ lớn.
+# Vẽ phân phối chu kỳ quỹ đạo sau khi bỏ giá trị thiếu. Trục hoành dùng thang log vì giá trị trải trên nhiều bậc độ lớn.
 
 # %%
 plt.figure(figsize=(9, 5.6))
@@ -200,7 +200,7 @@ plt.ylabel("Objects")
 save_plot("03_orbital_period_distribution.png")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Lọc bán kính dương và bỏ giá trị thiếu trước khi vẽ histogram theo thang log. Lọc này dùng cho biểu đồ; không tự xóa các dòng khỏi bảng gốc.
+# Lọc bán kính dương và bỏ giá trị thiếu trước khi vẽ histogram theo thang log. Lọc này dùng cho biểu đồ; không tự xóa các dòng khỏi bảng gốc.
 
 # %%
 radius = df.loc[df["koi_prad"] > 0, "koi_prad"].dropna()
@@ -213,7 +213,7 @@ plt.ylabel("Objects")
 save_plot("04_planet_radius_distribution.png")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ phân phối nhiệt độ sao chủ và đánh dấu trung vị bằng đường nét đứt. Trung vị là giá trị ở giữa, ít bị cực trị chi phối hơn trung bình.
+# Vẽ phân phối nhiệt độ sao chủ và đánh dấu trung vị bằng đường nét đứt. Trung vị là giá trị ở giữa, ít bị cực trị chi phối hơn trung bình.
 
 # %%
 plt.figure(figsize=(9, 5.6))
@@ -229,7 +229,7 @@ save_plot("05_stellar_temperature_distribution.png")
 # ## 6. Categorical distribution
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Điền nhãn Missing tạm thời cho cột phân loại, đếm từng nhóm và vẽ biểu đồ thanh. Mục đích là thấy các nhóm danh mục và số giá trị thiếu.
+# Điền nhãn Missing tạm thời cho cột phân loại, đếm từng nhóm và vẽ biểu đồ thanh. Mục đích là thấy các nhóm danh mục và số giá trị thiếu.
 
 # %%
 delivery = df["koi_tce_delivname"].fillna("Missing").value_counts()
@@ -244,7 +244,7 @@ save_plot("15_tce_delivery_distribution.png")
 # ## 7. Outliers
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Liệt kê các biến số được chọn để khảo sát và đưa vào mô hình. Danh sách rõ ràng giúp kiểm soát đặc trưng thay vì sử dụng mọi cột trong bảng.
+# Liệt kê các biến số được chọn để khảo sát và đưa vào mô hình. Danh sách rõ ràng giúp kiểm soát đặc trưng thay vì sử dụng mọi cột trong bảng.
 
 # %%
 numeric_cols = [
@@ -254,7 +254,7 @@ numeric_cols = [
 ]
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Với mỗi biến số, tính Q1, Q3 và khoảng IQR = Q3 − Q1; đếm giá trị ngoài [Q1 − 1,5 IQR; Q3 + 1,5 IQR]. Giá trị ngoại lệ thống kê không nhất thiết là dữ liệu sai.
+# Với mỗi biến số, tính Q1, Q3 và khoảng IQR = Q3 − Q1; đếm giá trị ngoài [Q1 − 1,5 IQR; Q3 + 1,5 IQR]. Giá trị ngoại lệ thống kê không nhất thiết là dữ liệu sai.
 
 # %%
 outlier_list = []
@@ -266,7 +266,7 @@ for col in numeric_cols:
     outlier_list.append([col, count, count / len(values) * 100])
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chuyển danh sách số ngoại lệ thành DataFrame, sắp theo tỷ lệ và làm tròn. Có thể so sánh mức độ cực trị giữa các biến trong bảng.
+# Chuyển danh sách số ngoại lệ thành DataFrame, sắp theo tỷ lệ và làm tròn. Có thể so sánh mức độ cực trị giữa các biến trong bảng.
 
 # %%
 outliers = pd.DataFrame(outlier_list, columns=["Feature", "Count", "Percent"])
@@ -274,7 +274,7 @@ outliers = outliers.sort_values("Percent", ascending=False)
 outliers.round(2)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ tỷ lệ ngoại lệ IQR của từng biến. Biểu đồ hỗ trợ lựa chọn cách xử lý, nhưng cell này không tự động loại bỏ mẫu.
+# Vẽ tỷ lệ ngoại lệ IQR của từng biến. Biểu đồ hỗ trợ lựa chọn cách xử lý, nhưng cell này không tự động loại bỏ mẫu.
 
 # %%
 outlier_plot = outliers.sort_values("Percent")
@@ -292,7 +292,7 @@ save_plot("06_outlier_share.png")
 # ## 8. Target and numerical features
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chỉ để vẽ, giới hạn bán kính đến phân vị 99% và tạo boxplot theo lớp mục tiêu. So sánh trung vị và độ phân tán giữa các lớp, không suy ra quan hệ nhân quả.
+# Chỉ để vẽ, giới hạn bán kính đến phân vị 99% và tạo boxplot theo lớp mục tiêu. So sánh trung vị và độ phân tán giữa các lớp, không suy ra quan hệ nhân quả.
 
 # %%
 plot_df = df[df["koi_prad"].between(0, df["koi_prad"].quantile(0.99))]
@@ -304,7 +304,7 @@ plt.ylabel("Planet radius (Earth radii; ≤99th percentile)")
 save_plot("07_target_vs_planet_radius.png")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Làm tương tự với tỷ số tín hiệu trên nhiễu: giới hạn phần đuôi cho biểu đồ và so sánh các lớp bằng boxplot. Dữ liệu huấn luyện không bị cắt bởi cell vẽ này.
+# Làm tương tự với tỷ số tín hiệu trên nhiễu: giới hạn phần đuôi cho biểu đồ và so sánh các lớp bằng boxplot. Dữ liệu huấn luyện không bị cắt bởi cell vẽ này.
 
 # %%
 plot_df = df[df["koi_model_snr"].between(0, df["koi_model_snr"].quantile(0.99))]
@@ -322,7 +322,7 @@ save_plot("08_target_vs_snr.png")
 # ## 9. Correlation
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chọn các biến số quan trọng và tính tương quan hạng Spearman giữa từng cặp. Giá trị gần +1 hoặc −1 cho thấy quan hệ đơn điệu mạnh hơn.
+# Chọn các biến số quan trọng và tính tương quan hạng Spearman giữa từng cặp. Giá trị gần +1 hoặc −1 cho thấy quan hệ đơn điệu mạnh hơn.
 
 # %%
 corr_cols = [
@@ -332,7 +332,7 @@ corr_cols = [
 corr = df[corr_cols].corr(method="spearman")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Hiển thị ma trận tương quan bằng heatmap, kèm giá trị làm tròn hai chữ số. Màu thể hiện chiều và độ mạnh tương quan, không chứng minh nhân quả.
+# Hiển thị ma trận tương quan bằng heatmap, kèm giá trị làm tròn hai chữ số. Màu thể hiện chiều và độ mạnh tương quan, không chứng minh nhân quả.
 
 # %%
 plt.figure(figsize=(10, 7.8))
@@ -349,7 +349,7 @@ save_plot("09_correlation_heatmap.png")
 # `koi_score`, `koi_pdisposition`, `kepler_name`, and false-positive flags.
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo X từ biến số và biến phân loại, y là nhãn cần dự đoán, groups là mã sao kepid. Mã nhóm dùng để tránh cùng một sao xuất hiện ở nhiều tập.
+# Tạo X từ biến số và biến phân loại, y là nhãn cần dự đoán, groups là mã sao kepid. Mã nhóm dùng để tránh cùng một sao xuất hiện ở nhiều tập.
 
 # %%
 category_cols = ["koi_tce_delivname"]
@@ -361,7 +361,7 @@ y = df[target]
 groups = df["kepid"]
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chia theo nhóm sao bằng GroupShuffleSplit: khoảng 70% vào train và phần còn lại vào tập tạm. random_state=42 giúp phép chia có thể lặp lại.
+# Chia theo nhóm sao bằng GroupShuffleSplit: khoảng 70% vào train và phần còn lại vào tập tạm. random_state=42 giúp phép chia có thể lặp lại.
 
 # %%
 split1 = GroupShuffleSplit(n_splits=1, test_size=0.30, random_state=42)
@@ -371,7 +371,7 @@ X_train, y_train = X.iloc[train_id], y.iloc[train_id]
 temp = df.iloc[temp_id]
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chia tiếp tập tạm thành validation và test theo nhóm sao. Validation dùng so sánh mô hình; test giữ lại cho đánh giá sau cùng.
+# Chia tiếp tập tạm thành validation và test theo nhóm sao. Validation dùng so sánh mô hình; test giữ lại cho đánh giá sau cùng.
 
 # %%
 split2 = GroupShuffleSplit(n_splits=1, test_size=0.50, random_state=42)
@@ -381,7 +381,7 @@ X_val, y_val = temp.iloc[val_id][features], temp.iloc[val_id][target]
 X_test, y_test = temp.iloc[test_id][features], temp.iloc[test_id][target]
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** In kích thước ba tập để kiểm tra số dòng và số đặc trưng. Do chia theo nhóm, tỷ lệ số dòng thực tế có thể không đúng chính xác 70/15/15.
+# In kích thước ba tập để kiểm tra số dòng và số đặc trưng. Do chia theo nhóm, tỷ lệ số dòng thực tế có thể không đúng chính xác 70/15/15.
 
 # %%
 print("Train:", X_train.shape)
@@ -396,7 +396,7 @@ print("Test:", X_test.shape)
 # ## 11. Before and after scaling
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Chuyển ba biến số train sang dạng dài bằng melt rồi vẽ boxplot trước chuẩn hóa. Các thang đo khác nhau có thể khiến một biến lấn át biểu đồ.
+# Chuyển ba biến số train sang dạng dài bằng melt rồi vẽ boxplot trước chuẩn hóa. Các thang đo khác nhau có thể khiến một biến lấn át biểu đồ.
 
 # %%
 scale_cols = ["koi_period", "koi_depth", "koi_steff"]
@@ -409,7 +409,7 @@ plt.ylabel("Raw value")
 save_plot("10_before_scaling.png")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Trên bản sao train, điền thiếu bằng trung vị và fit StandardScaler để chuẩn hóa; sau đó chuyển về dạng dài. Chỉ dùng train để học trung vị và thang đo, tránh rò rỉ.
+# Trên bản sao train, điền thiếu bằng trung vị và fit StandardScaler để chuẩn hóa; sau đó chuyển về dạng dài. Chỉ dùng train để học trung vị và thang đo, tránh rò rỉ.
 
 # %%
 scale_data = X_train[scale_cols].copy()
@@ -418,7 +418,7 @@ scale_data = pd.DataFrame(StandardScaler().fit_transform(scale_data), columns=sc
 after = scale_data.melt(var_name="Feature", value_name="Value")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ lại ba biến sau chuẩn hóa để so sánh với trước đó. Giá trị chuẩn hóa biểu thị khoảng cách theo độ lệch chuẩn, không còn đơn vị gốc.
+# Vẽ lại ba biến sau chuẩn hóa để so sánh với trước đó. Giá trị chuẩn hóa biểu thị khoảng cách theo độ lệch chuẩn, không còn đơn vị gốc.
 
 # %%
 plt.figure(figsize=(9, 5.6))
@@ -432,7 +432,7 @@ save_plot("11_after_scaling.png")
 # ## 12. Logistic Regression
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo bộ tiền xử lý cho Logistic Regression: cột số được điền trung vị và chuẩn hóa; cột danh mục được điền giá trị thường gặp rồi one-hot. handle_unknown cho phép gặp danh mục mới khi dự đoán.
+# Tạo bộ tiền xử lý cho Logistic Regression: cột số được điền trung vị và chuẩn hóa; cột danh mục được điền giá trị thường gặp rồi one-hot. handle_unknown cho phép gặp danh mục mới khi dự đoán.
 
 # %%
 log_prep = make_column_transformer(
@@ -441,7 +441,7 @@ log_prep = make_column_transformer(
 )
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Nối tiền xử lý với Logistic Regression, fit toàn bộ pipeline trên train rồi dự đoán validation. Chỉ bước fit được học tham số từ train.
+# Nối tiền xử lý với Logistic Regression, fit toàn bộ pipeline trên train rồi dự đoán validation. Chỉ bước fit được học tham số từ train.
 
 # %%
 log_model = make_pipeline(log_prep, LogisticRegression(max_iter=2500, random_state=42))
@@ -449,7 +449,7 @@ log_model.fit(X_train, y_train)
 log_pred = log_model.predict(X_val)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tính accuracy, balanced accuracy và macro F1 trên validation. Balanced accuracy và macro F1 giúp quan sát tốt hơn khi các lớp có kích thước khác nhau.
+# Tính accuracy, balanced accuracy và macro F1 trên validation. Balanced accuracy và macro F1 giúp quan sát tốt hơn khi các lớp có kích thước khác nhau.
 
 # %%
 print("Logistic accuracy:", round(accuracy_score(y_val, log_pred), 4))
@@ -460,7 +460,7 @@ print("Logistic macro F1:", round(f1_score(y_val, log_pred, average="macro"), 4)
 # ## 13. Random Forest
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo pipeline cho Random Forest: điền thiếu, dùng RobustScaler cho biến số và one-hot cho biến phân loại. RobustScaler dựa trên trung vị và IQR, ít nhạy với cực trị.
+# Tạo pipeline cho Random Forest: điền thiếu, dùng RobustScaler cho biến số và one-hot cho biến phân loại. RobustScaler dựa trên trung vị và IQR, ít nhạy với cực trị.
 
 # %%
 forest_prep = make_column_transformer(
@@ -469,7 +469,7 @@ forest_prep = make_column_transformer(
 )
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo rừng gồm 350 cây, giới hạn số mẫu tối thiểu ở lá và dùng trọng số lớp cân bằng; fit trên train rồi dự đoán validation. random_state cố định phép lấy mẫu ngẫu nhiên.
+# Tạo rừng gồm 350 cây, giới hạn số mẫu tối thiểu ở lá và dùng trọng số lớp cân bằng; fit trên train rồi dự đoán validation. random_state cố định phép lấy mẫu ngẫu nhiên.
 
 # %%
 forest = RandomForestClassifier(n_estimators=350, min_samples_leaf=2,
@@ -480,7 +480,7 @@ forest_model.fit(X_train, y_train)
 forest_pred = forest_model.predict(X_val)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tính cùng ba thước đo trên validation cho Random Forest. Dùng cùng tập và cùng thước đo để so sánh với Logistic Regression công bằng hơn.
+# Tính cùng ba thước đo trên validation cho Random Forest. Dùng cùng tập và cùng thước đo để so sánh với Logistic Regression công bằng hơn.
 
 # %%
 print("Forest accuracy:", round(accuracy_score(y_val, forest_pred), 4))
@@ -491,7 +491,7 @@ print("Forest macro F1:", round(f1_score(y_val, forest_pred, average="macro"), 4
 # ## 14. Compare models
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Ghép kết quả validation của hai mô hình thành bảng: mỗi hàng là mô hình, mỗi cột là một thước đo. So sánh các giá trị trước khi đọc kết quả test.
+# Ghép kết quả validation của hai mô hình thành bảng: mỗi hàng là mô hình, mỗi cột là một thước đo. So sánh các giá trị trước khi đọc kết quả test.
 
 # %%
 validation_results = pd.DataFrame({
@@ -503,14 +503,14 @@ validation_results.index.name = "model"
 validation_results.round(4)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Đổi bảng so sánh từ dạng rộng sang dạng dài bằng reset_index và melt để Seaborn vẽ nhóm cột theo từng thước đo.
+# Đổi bảng so sánh từ dạng rộng sang dạng dài bằng reset_index và melt để Seaborn vẽ nhóm cột theo từng thước đo.
 
 # %%
 plot_scores = validation_results.reset_index()
 plot_scores = plot_scores.melt(id_vars="model", var_name="metric", value_name="score")
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ và ghi điểm validation của hai mô hình theo từng metric. Chiều cao cột là điểm trong khoảng 0–1; hình lưu để đưa vào báo cáo.
+# Vẽ và ghi điểm validation của hai mô hình theo từng metric. Chiều cao cột là điểm trong khoảng 0–1; hình lưu để đưa vào báo cáo.
 
 # %%
 plt.figure(figsize=(10, 5.8))
@@ -529,7 +529,7 @@ save_plot("12_model_comparison.png")
 # ## 15. Test results
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Dùng Random Forest đã chọn để dự đoán X_test và in ba thước đo cuối cùng. Kết quả này mô tả hiệu quả trên tập chưa dùng để fit mô hình.
+# Dùng Random Forest đã chọn để dự đoán X_test và in ba thước đo cuối cùng. Kết quả này mô tả hiệu quả trên tập chưa dùng để fit mô hình.
 
 # %%
 test_pred = forest_model.predict(X_test)
@@ -538,13 +538,13 @@ print("Test balanced accuracy:", round(balanced_accuracy_score(y_test, test_pred
 print("Test macro F1:", round(f1_score(y_test, test_pred, average="macro"), 4))
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** In classification_report gồm precision, recall, F1 và support của từng lớp. Support là số mẫu thật của lớp trong tập test.
+# In classification_report gồm precision, recall, F1 và support của từng lớp. Support là số mẫu thật của lớp trong tập test.
 
 # %%
 print(classification_report(y_test, test_pred))
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ confusion matrix chuẩn hóa theo hàng: hàng là nhãn thật, cột là nhãn dự đoán. Đường chéo thể hiện tỷ lệ dự đoán đúng cho từng lớp.
+# Vẽ confusion matrix chuẩn hóa theo hàng: hàng là nhãn thật, cột là nhãn dự đoán. Đường chéo thể hiện tỷ lệ dự đoán đúng cho từng lớp.
 
 # %%
 plt.figure(figsize=(7.6, 6.4))
@@ -563,7 +563,7 @@ save_plot("13_confusion_matrix.png")
 # ## 16. Feature importance
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tính permutation importance trên test: lần lượt xáo trộn một đặc trưng và đo mức giảm macro F1, lặp 8 lần. Đây là phân tích sau đánh giá, không dùng để điều chỉnh mô hình trên test.
+# Tính permutation importance trên test: lần lượt xáo trộn một đặc trưng và đo mức giảm macro F1, lặp 8 lần. Đây là phân tích sau đánh giá, không dùng để điều chỉnh mô hình trên test.
 
 # %%
 result = permutation_importance(
@@ -572,7 +572,7 @@ result = permutation_importance(
 )
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Tạo bảng tên đặc trưng, độ quan trọng trung bình và độ lệch giữa các lần xáo trộn; sắp xếp từ ảnh hưởng lớn đến nhỏ.
+# Tạo bảng tên đặc trưng, độ quan trọng trung bình và độ lệch giữa các lần xáo trộn; sắp xếp từ ảnh hưởng lớn đến nhỏ.
 
 # %%
 importance = pd.DataFrame({
@@ -584,7 +584,7 @@ importance = importance.sort_values("importance", ascending=False)
 importance.round(4)
 
 # %% [markdown]
-# **Hướng dẫn cell tiếp theo:** Vẽ 10 đặc trưng có permutation importance cao nhất, kèm thanh sai lệch. Mức giảm F1 lớn cho biết mô hình phụ thuộc nhiều hơn vào biến đó trong phép đo này.
+# Vẽ 10 đặc trưng có permutation importance cao nhất, kèm thanh sai lệch. Mức giảm F1 lớn cho biết mô hình phụ thuộc nhiều hơn vào biến đó trong phép đo này.
 
 # %%
 top_features = importance.head(10).sort_values("importance")
