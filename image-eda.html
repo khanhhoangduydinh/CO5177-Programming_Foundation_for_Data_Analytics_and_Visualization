@@ -45,17 +45,9 @@
               <span>Group: Trailblazer</span><span>Author: Dinh Hoang Duy Khanh · 2670306</span><span>17,034 labelled images</span><span>150 × 150 RGB</span><span>6 scene classes</span>
             </div>
           </div>
-          <aside class="hero-signal" aria-label="Tóm tắt dữ liệu Intel">
-            <div class="signal-head"><span>DATASET / INTEL SCENES</span><i>COLAB NOTEBOOK</i></div>
-            <div class="signal-grid">
-              <div><strong>17K</strong><span>labelled images</span></div>
-              <div><strong>6</strong><span>scene classes</span></div>
-              <div><strong>150</strong><span>pixels per side</span></div>
-              <div><strong data-test-f1>—</strong><span>test macro F1</span></div>
-            </div>
-            <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-            <p>quality / scene cues / augmentation / model comparison</p>
-          </aside>
+          <figure class="hero-visual">
+            <img src="assets/intel-mountain-example.jpg" alt="Cảnh núi lúc hoàng hôn, một ảnh thuộc lớp mountain trong bộ dữ liệu Intel Image Classification">
+          </figure>
         </div>
 
         <div class="resource-bar" aria-label="Tài nguyên bài Image">
@@ -218,7 +210,6 @@
           document.querySelector("[data-validation-f1]").textContent = format(validation);
           document.querySelector("[data-test-accuracy]").textContent = format(test.accuracy);
           document.querySelector("[data-test-macro]").textContent = format(test.macro_f1);
-          document.querySelector("[data-test-f1]").textContent = format(test.macro_f1);
         });
     </script>
   </body>
