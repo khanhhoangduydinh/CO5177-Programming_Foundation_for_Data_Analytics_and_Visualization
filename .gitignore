@@ -22,3 +22,9 @@ data/*.h5
 *.out
 *.toc
 *.synctex.gz
+
+# Local copies of older reports and the duplicate combined PDF.
+/Report Latex/
+/Trailblazer-report.pdf
+/reports/tabular-koi-eda-report.pdf
+/reports/text-victsd-eda-report.pdf

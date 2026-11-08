@@ -85,14 +85,14 @@ For local notebook dependencies, run `pip install -r requirements-eda.txt` in a 
 │   ├── archive/                       # Older Intel notebook copy
 │   └── ...                            # Current notebooks and Python sources
 ├── data/                              # KOI snapshot and ViCTSD splits
-├── reports/                           # Figures, saved results, and older reports
+├── reports/                           # Figures and saved results used by the website
 ├── CO5177 Report Latex/               # LaTeX source and combined PDF report
 ├── tests/                             # Selected integrity checks
 ├── assignment-vne-v4.pdf              # Assignment
 └── requirements-eda.txt               # Main Python dependencies
 ```
 
-`Report Latex/`, the Galaxy10 notebook files, and the older Intel notebook in `notebooks/archive/` are retained as earlier versions. The website links to the three current notebooks in `notebooks/` and the combined report at `CO5177 Report Latex/report.pdf`.
+The website links to the three current notebooks in `notebooks/` and the single combined report at `CO5177 Report Latex/report.pdf`. The `reports/` folder contains figures and experiment results used by the website, not separate reports. Earlier Galaxy10 notebook files and the older Intel notebook in `notebooks/archive/` remain available.
 
 ## Data sources
 
