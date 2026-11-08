@@ -51,7 +51,7 @@ def test_intel_run_writes_final_predictions_and_all_figures():
 def test_image_page_exposes_the_intel_notebook_and_generated_figures():
     """Catch an Image tab that points to the old task or an incomplete static page."""
     page = PROJECT / "image-eda.html"
-    landing_script = PROJECT / "script.js"
+    landing_script = PROJECT / "assets" / "js" / "script.js"
     assert page.exists(), "Create image-eda.html before publishing the Image task."
 
     html = page.read_text(encoding="utf-8")
