@@ -153,7 +153,7 @@ plot_counts = target_counts.rename(index=display_labels)
 plt.figure(figsize=(8.4, 5.2))
 ax = sns.barplot(x=plot_counts.index, y=plot_counts.values,
                  hue=plot_counts.index, palette=colors, legend=False)
-ax.set(title="Catalogue category distribution", xlabel="Catalogue category", ylabel="KOI records")
+ax.set(title="Catalogue category distribution", xlabel="Catalogue category", ylabel="Sample")
 for bar in ax.containers:
     ax.bar_label(bar, fmt="{:,.0f}", padding=4)
 save_plot("01_target_distribution.png")
@@ -203,7 +203,7 @@ plt.figure(figsize=(9, 5.6))
 sns.histplot(period, bins=60, log_scale=True, color="#173f4c")
 plt.title("Orbital period distribution")
 plt.xlabel("Orbital period (days, log scale)")
-plt.ylabel("Objects")
+plt.ylabel("Sample")
 save_plot("03_orbital_period_distribution.png")
 
 # %% [markdown]
@@ -215,7 +215,7 @@ plt.figure(figsize=(9, 5.6))
 sns.histplot(radius, bins=60, log_scale=True, color="#d35b12")
 plt.title("Estimated planetary radius distribution")
 plt.xlabel("Planet radius (Earth radii, log scale)")
-plt.ylabel("Objects")
+plt.ylabel("Sample")
 save_plot("04_planet_radius_distribution.png")
 
 # %% [markdown]
@@ -227,7 +227,7 @@ sns.histplot(df["koi_steff"].dropna(), bins=45, color="#efae00")
 plt.axvline(df["koi_steff"].median(), color="#173f4c", linestyle="--", label="Median")
 plt.title("Host-star effective temperature")
 plt.xlabel("Temperature (K)")
-plt.ylabel("Objects")
+plt.ylabel("Sample")
 plt.legend()
 save_plot("05_stellar_temperature_distribution.png")
 
@@ -259,7 +259,7 @@ for ax, (column, label) in zip(axes.flat, distribution_columns):
         label += " (log scale)"
     else:
         ax.hist(shown, bins=35, color="#173f4c", edgecolor="white")
-    ax.set(title=column, xlabel=label, ylabel="Objects")
+    ax.set(title=column, xlabel=label, ylabel="Sample")
     ax.text(0.98, 0.95, f"Shown: {len(shown):,} / {len(values):,}",
             transform=ax.transAxes, ha="right", va="top", fontsize=9)
 fig.suptitle("Additional model features — 1st to 99th percentile shown", y=1.01)
@@ -277,7 +277,7 @@ plt.figure(figsize=(9, 5.6))
 ax = sns.barplot(x=delivery.values, y=delivery.index, hue=delivery.index, palette=["#173f4c", "#d35b12", "#a9cfc1", "#efae00"], legend=False)
 for bar in ax.containers:
     ax.bar_label(bar, fmt="{:,.0f}", padding=5)
-ax.set(title="KOIs by TCE delivery catalogue", xlabel="Objects", ylabel="")
+ax.set(title="KOIs by TCE delivery catalogue", xlabel="Sample", ylabel="")
 save_plot("15_tce_delivery_distribution.png")
 
 # %% [markdown]
