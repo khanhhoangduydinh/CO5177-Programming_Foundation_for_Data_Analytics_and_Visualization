@@ -218,3 +218,15 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
   .insight-card { padding: 35px 24px; }
   .insight-actions, .eda-footer { flex-direction: column; }
 }
+
+/* Detailed text EDA uses the existing analysis-figure design. */
+#detailed-eda .text-eda-plot,#detailed-eda .chart { width:100%; min-height:410px; }
+#detailed-eda .detailed-analysis > p { color:var(--muted); }
+#detailed-eda .interpret { border-left:3px solid var(--orange-dark); padding:4px 16px; margin:18px 0; }
+#detailed-eda .interpret p { margin:4px 0; }
+#detailed-eda details { margin-top:20px; }
+#detailed-eda summary { cursor:pointer; color:var(--orange-dark); font-weight:700; }
+#detailed-eda pre { overflow:auto; padding:16px; background:var(--ink); color:white; border-radius:8px; }
+#detailed-eda button { padding:8px 12px; border:1px solid var(--orange-dark); color:var(--orange-dark); background:white; border-radius:5px; cursor:pointer; }
+#detailed-eda .data { border-collapse:collapse; display:block; max-width:100%; overflow:auto; }
+#detailed-eda .data td,#detailed-eda .data th { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; }
