@@ -178,6 +178,7 @@ function switchTrack(trackName) {
     previewVisual.className = "preview-visual " + next.previewClass;
     previewVisual.innerHTML = next.preview;
     trackPanel.setAttribute("aria-labelledby", next.tabId);
+    document.dispatchEvent(new CustomEvent("co5177:track-changed"));
 
     trackCopy.classList.remove("is-changing");
     trackPreview.classList.remove("is-changing");

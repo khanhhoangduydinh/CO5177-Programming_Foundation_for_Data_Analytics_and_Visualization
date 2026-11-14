@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/eda.css">
+    <link rel="stylesheet" href="assets/css/i18n.css">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -26,10 +27,12 @@
         <a href="#analysis">Analysis</a>
         <a href="#models">Models</a>
       </nav>
+      <div class="language-switch" role="group" aria-label="Language / Ngôn ngữ"><button type="button" data-language="en" aria-pressed="false">EN</button><button type="button" data-language="vi" aria-pressed="false">VI</button></div>
       <a class="back-link" href="index.html#data-tracks">← Back to Tasks</a>
     </header>
 
     <main id="main-content">
+      <p class="static-chart-note eda-section" hidden>Nhãn bên trong hình ảnh tĩnh giữ tiếng Anh như notebook; phần mô tả được dịch sang tiếng Việt.</p>
       <section class="eda-hero" id="top">
         <p class="kicker"><span></span>02 — TASKS / TABULAR</p>
         <div class="hero-layout">
@@ -394,5 +397,6 @@
       <span>TRAILBLAZER · DINH HOANG DUY KHANH (2670306)</span>
       <a href="#top">Back to top ↑</a>
     </footer>
+    <script src="assets/js/i18n.js"></script>
   </body>
 </html>

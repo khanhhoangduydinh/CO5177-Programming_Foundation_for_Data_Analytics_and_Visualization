@@ -1,0 +1,13 @@
+.language-switch { display:inline-flex; align-items:center; gap:3px; padding:3px; border:1px solid #b8c8c4; border-radius:8px; background:#fff; white-space:nowrap; }
+.language-switch button { border:0; border-radius:5px; padding:6px 9px; font:700 12px/1.2 Arial,sans-serif; color:#173f4c; background:transparent; cursor:pointer; }
+.language-switch button[aria-pressed="true"] { color:#fff; background:#173f4c; }
+.language-switch button:focus-visible { outline:2px solid #c65318; outline-offset:2px; }
+.language-switch button:disabled { opacity:.45; cursor:not-allowed; }
+.site-header { grid-template-columns:1fr auto auto auto; gap:20px; }
+.eda-header { grid-template-columns:1fr auto auto auto; gap:24px; }
+.static-chart-note { margin:12px 0 0; color:#536c72; font-size:13px; line-height:1.5; }
+@media(max-width:1100px) { .eda-header { grid-template-columns:1fr auto auto; gap:16px; } }
+@media(max-width:760px) { .site-header { grid-template-columns:1fr auto auto; gap:10px; } .language-switch button { padding:6px 7px; } }
+@media(max-width:600px) { .eda-header { grid-template-columns:1fr auto auto; gap:8px; } }
+
+.static-chart-note.eda-section { padding: 10px 0; border: 0; margin: 0 auto; }

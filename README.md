@@ -17,11 +17,12 @@ This repository contains the course assignments for **CO5177**, Ho Chi Minh City
 
 | Task | Dataset and problem | EDA page | Google Colab |
 | --- | --- | --- | --- |
-| Tabular | NASA Kepler KOI: classify signals into three groups | [Tabular EDA](https://khanhhoangduydinh.github.io/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/tabular-eda.html) | [Open Tabular](https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb) |
+| Tabular | NASA Kepler KOI: explore three labels; classify two known classes | [Tabular EDA](https://khanhhoangduydinh.github.io/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/tabular-eda.html) | [Open Tabular](https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb) |
 | Text | ViCTSD: classify Vietnamese comments using two labels | [Text EDA](https://khanhhoangduydinh.github.io/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/text-eda.html) | [Open Text](https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/text_victsd_eda.ipynb) |
 | Image | Intel Image Classification: classify six scene categories | [Image EDA](https://khanhhoangduydinh.github.io/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/image-eda.html) | [Open Image](https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/image_intel_eda.ipynb) |
 
 - [Project website](https://khanhhoangduydinh.github.io/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/) · [Combined PDF report](CO5177%20Report%20Latex/report.pdf) · [Assignment and grading rubric](assignment-vne-v4.pdf)
+- Use the **EN / VI** switch on the website to change language; the selection is remembered across pages. Static figure labels remain in the original notebook language.
 - Presentation videos are **not yet available**.
 
 ## Task details
