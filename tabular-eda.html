@@ -80,8 +80,8 @@
         </div>
         <figure class="analysis-figure full-figure overview-target">
           <div class="figure-label"><span>TARGET DISTRIBUTION</span><i>FIG. 01</i></div>
-          <img src="reports/figures/01_target_distribution.png" alt="Counts of false-positive, confirmed, and candidate KOIs" loading="lazy">
-          <figcaption><b>4,839 false positives (50.60%)</b> · 2,748 confirmed planets (28.73%) · 1,977 candidates (20.67%). EDA retains all three labels. Binary modeling excludes the 1,977 CANDIDATE rows and evaluates CONFIRMED versus FALSE POSITIVE.</figcaption>
+          <img src="reports/figures/01_target_distribution.png?v=noun-labels" alt="Counts of confirmed planets, non-planet signals, and planet candidates" loading="lazy">
+          <figcaption><b>4,839 non-planet signals (50.60%)</b> · 2,748 confirmed planets (28.73%) · 1,977 planet candidates (20.67%). EDA retains all three categories. Binary modeling excludes the 1,977 planet candidates and evaluates confirmed planets versus non-planet signals.</figcaption>
         </figure>
         <div class="context-grid">
           <article><span>PROBLEM</span><p>Explore all three catalogue labels, then classify <b>CONFIRMED</b> versus <b>FALSE POSITIVE</b>. The 1,977 CANDIDATE rows are excluded from modeling because they have no binary ground-truth label.</p></article>

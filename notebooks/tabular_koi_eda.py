@@ -144,9 +144,16 @@ pd.DataFrame({"Count": target_counts, "Percent": target_percent.round(2)})
 # Vẽ biểu đồ cột cho số mẫu của ba lớp và ghi số lượng trên cột. So sánh chiều cao các cột để nhận biết mức mất cân bằng lớp.
 
 # %%
+display_labels = {
+    "CONFIRMED": "Confirmed planet",
+    "FALSE POSITIVE": "Non-planet signal",
+    "CANDIDATE": "Planet candidate",
+}
+plot_counts = target_counts.rename(index=display_labels)
 plt.figure(figsize=(8.4, 5.2))
-ax = sns.barplot(x=target_counts.index, y=target_counts.values, hue=target_counts.index, palette=colors, legend=False)
-ax.set(title="KOI disposition is moderately imbalanced", xlabel="Disposition", ylabel="Objects")
+ax = sns.barplot(x=plot_counts.index, y=plot_counts.values,
+                 hue=plot_counts.index, palette=colors, legend=False)
+ax.set(title="Catalogue category distribution", xlabel="Catalogue category", ylabel="KOI records")
 for bar in ax.containers:
     ax.bar_label(bar, fmt="{:,.0f}", padding=4)
 save_plot("01_target_distribution.png")

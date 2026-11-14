@@ -84,7 +84,7 @@ def build_report() -> None:
         colWidths=[60 * mm, 105 * mm], repeatRows=1,
     )
     compliance.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), INK), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("BACKGROUND", (0, 1), (-1, -1), colors.white), ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d7dedc")), ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"), ("FONTNAME", (0, 1), (-1, -1), "Helvetica"), ("FONTSIZE", (0, 0), (-1, -1), 8.5), ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 7)]))
-    story.extend([compliance, Spacer(1, 6 * mm), report_image("01_target_distribution.png", 150 * mm), Paragraph("Figure 1. The target is moderately imbalanced: 4,839 false positives, 2,748 confirmed planets, and 1,977 candidates.", styles["Caption"]), PageBreak()])
+    story.extend([compliance, Spacer(1, 6 * mm), report_image("01_target_distribution.png", 150 * mm), Paragraph("Figure 1. Catalogue categories: 4,839 non-planet signals, 2,748 confirmed planets, and 1,977 planet candidates.", styles["Caption"]), PageBreak()])
 
     story.extend([
         Paragraph("2. Data quality and exploratory findings", styles["SectionTitle"]),
