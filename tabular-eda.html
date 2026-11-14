@@ -232,13 +232,13 @@
         <div class="figure-grid three-figure">
           <figure class="analysis-figure">
             <div class="figure-label"><span>ORBITAL PERIOD</span><i>FIG. 03</i></div>
-            <img src="reports/figures/03_orbital_period_distribution.png" alt="Log-scale distribution of KOI orbital period" loading="lazy">
-            <figcaption>Orbital periods span several orders of magnitude and are strongly right-skewed.</figcaption>
+            <img src="reports/figures/03_orbital_period_distribution.png?v=2" alt="Log-scale distribution of KOI orbital period" loading="lazy">
+            <figcaption>Positive, non-missing periods are counted in logarithmically spaced bins. This filter affects the chart only.</figcaption>
           </figure>
           <figure class="analysis-figure">
             <div class="figure-label"><span>PLANET RADIUS</span><i>FIG. 04</i></div>
-            <img src="reports/figures/04_planet_radius_distribution.png" alt="Log-scale distribution of estimated planetary radius" loading="lazy">
-            <figcaption>Estimated radius has a long tail, motivating robust preprocessing and nonlinear comparison.</figcaption>
+            <img src="reports/figures/04_planet_radius_distribution.png?v=2" alt="Log-scale distribution of estimated planetary radius" loading="lazy">
+            <figcaption>Positive, non-missing radii are counted in logarithmically spaced bins. An extreme estimate is not automatically an error.</figcaption>
           </figure>
           <figure class="analysis-figure">
             <div class="figure-label"><span>STELLAR TEMPERATURE</span><i>FIG. 05</i></div>
@@ -246,6 +246,11 @@
             <figcaption>Most KOIs orbit stars in a dense temperature band, with fewer extreme hosts.</figcaption>
           </figure>
         </div>
+        <figure class="analysis-figure full-figure">
+          <div class="figure-label"><span>ADDITIONAL NUMERICAL FEATURE DISTRIBUTIONS</span><i>FIG. 16</i></div>
+          <a href="reports/figures/16_additional_numeric_distributions.png" target="_blank" rel="noreferrer" aria-label="Open the nine numerical distributions at full size"><img src="reports/figures/16_additional_numeric_distributions.png" alt="Nine histograms for the remaining numerical model features" loading="lazy"></a>
+          <figcaption><b>Nine additional features.</b> Open the image to view it at full size. Together with the period, radius and stellar-temperature charts above, these cover all 12 numerical model inputs. Each histogram displays values from its own 1st to 99th percentiles; the displayed and non-missing counts are annotated. Depth, insolation and SNR use logarithmic bins and display only positive values within those limits. The limits affect visualization only and do not remove observations from the model data.</figcaption>
+        </figure>
         <aside class="insight-panel yellow-panel">
           <span class="panel-label">KEY INSIGHTS / CONTINUOUS FEATURES</span>
           <div class="insight-grid">

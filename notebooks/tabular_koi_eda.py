@@ -188,26 +188,25 @@ save_plot("02_missing_values.png")
 # ## 5. Numerical distributions
 
 # %% [markdown]
-# Vẽ phân phối chu kỳ quỹ đạo sau khi bỏ giá trị thiếu. Trục hoành dùng thang log vì giá trị trải trên nhiều bậc độ lớn.
+# Chia các khoảng trên thang log; chỉ vẽ chu kỳ dương, không thiếu.
 
 # %%
+period = df.loc[df["koi_period"] > 0, "koi_period"].dropna()
 plt.figure(figsize=(9, 5.6))
-sns.histplot(df["koi_period"].dropna(), bins=60, color="#173f4c")
-plt.xscale("log")
-plt.title("Orbital period spans several orders of magnitude")
+sns.histplot(period, bins=60, log_scale=True, color="#173f4c")
+plt.title("Orbital period distribution")
 plt.xlabel("Orbital period (days, log scale)")
 plt.ylabel("Objects")
 save_plot("03_orbital_period_distribution.png")
 
 # %% [markdown]
-# Lọc bán kính dương và bỏ giá trị thiếu trước khi vẽ histogram theo thang log. Lọc này dùng cho biểu đồ; không tự xóa các dòng khỏi bảng gốc.
+# Chia các khoảng trên thang log; chỉ vẽ bán kính dương, không thiếu.
 
 # %%
 radius = df.loc[df["koi_prad"] > 0, "koi_prad"].dropna()
 plt.figure(figsize=(9, 5.6))
-sns.histplot(radius, bins=60, color="#d35b12")
-plt.xscale("log")
-plt.title("Estimated planetary radius contains extreme values")
+sns.histplot(radius, bins=60, log_scale=True, color="#d35b12")
+plt.title("Estimated planetary radius distribution")
 plt.xlabel("Planet radius (Earth radii, log scale)")
 plt.ylabel("Objects")
 save_plot("04_planet_radius_distribution.png")
@@ -224,6 +223,40 @@ plt.xlabel("Temperature (K)")
 plt.ylabel("Objects")
 plt.legend()
 save_plot("05_stellar_temperature_distribution.png")
+
+# %% [markdown]
+# Phân phối 9 biến số còn lại: chỉ hiển thị phân vị 1%–99%; dữ liệu gốc được giữ nguyên.
+
+# %%
+distribution_columns = [
+    ("koi_impact", "Impact parameter"),
+    ("koi_duration", "Transit duration (hours)"),
+    ("koi_depth", "Transit depth (ppm)"),
+    ("koi_teq", "Equilibrium temperature (K)"),
+    ("koi_insol", "Insolation (Earth flux)"),
+    ("koi_model_snr", "Transit model SNR"),
+    ("koi_slogg", "Stellar surface gravity (log g)"),
+    ("koi_srad", "Stellar radius (solar radii)"),
+    ("koi_kepmag", "Kepler magnitude"),
+]
+fig, axes = plt.subplots(3, 3, figsize=(16, 12))
+for ax, (column, label) in zip(axes.flat, distribution_columns):
+    values = df[column].dropna()
+    lower, upper = values.quantile([0.01, 0.99])
+    shown = values[values.between(lower, upper)]
+    if column in {"koi_depth", "koi_insol", "koi_model_snr"}:
+        shown = shown[shown > 0]
+        ax.hist(shown, bins=np.geomspace(shown.min(), shown.max(), 36),
+                color="#173f4c", edgecolor="white")
+        ax.set_xscale("log")
+        label += " (log scale)"
+    else:
+        ax.hist(shown, bins=35, color="#173f4c", edgecolor="white")
+    ax.set(title=column, xlabel=label, ylabel="Objects")
+    ax.text(0.98, 0.95, f"Shown: {len(shown):,} / {len(values):,}",
+            transform=ax.transAxes, ha="right", va="top", fontsize=9)
+fig.suptitle("Additional model features — 1st to 99th percentile shown", y=1.01)
+save_plot("16_additional_numeric_distributions.png")
 
 # %% [markdown]
 # ## 6. Categorical distribution
