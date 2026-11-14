@@ -230,3 +230,8 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 #detailed-eda button { padding:8px 12px; border:1px solid var(--orange-dark); color:var(--orange-dark); background:white; border-radius:5px; cursor:pointer; }
 #detailed-eda .data { border-collapse:collapse; display:block; max-width:100%; overflow:auto; }
 #detailed-eda .data td,#detailed-eda .data th { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; }
+
+#eda-interpretation .text-eda-plot { width:100%; min-height:410px; }
+#eda-interpretation .data { border-collapse:collapse; width:100%; }
+#eda-interpretation .data td, #eda-interpretation .data th { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; }
+#eda-interpretation .table-wrap { overflow-x:auto; }
