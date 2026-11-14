@@ -42,7 +42,7 @@
               linear baseline with a class-aware nonlinear model.
             </p>
             <div class="hero-tags" aria-label="Dataset tags">
-              <span>Group: Trailblazer</span><span>Author: Dinh Hoang Duy Khanh · 2670306</span><span>9,564 objects</span><span>30 columns</span><span>3 classes</span>
+              <span>Group: Trailblazer</span><span>Author: Dinh Hoang Duy Khanh · 2670306</span><span>9,564 objects</span><span>30 columns</span><span>3 EDA labels · 2 model classes</span>
             </div>
           </div>
           <figure class="hero-visual">
@@ -81,10 +81,10 @@
         <figure class="analysis-figure full-figure overview-target">
           <div class="figure-label"><span>TARGET DISTRIBUTION</span><i>FIG. 01</i></div>
           <img src="reports/figures/01_target_distribution.png" alt="Counts of false-positive, confirmed, and candidate KOIs" loading="lazy">
-          <figcaption><b>4,839 false positives (50.60%)</b> · 2,748 confirmed planets (28.73%) · 1,977 candidates (20.67%). This class imbalance is why the evaluation reports macro F1 and balanced accuracy in addition to accuracy.</figcaption>
+          <figcaption><b>4,839 false positives (50.60%)</b> · 2,748 confirmed planets (28.73%) · 1,977 candidates (20.67%). EDA retains all three labels. Binary modeling excludes the 1,977 CANDIDATE rows and evaluates CONFIRMED versus FALSE POSITIVE.</figcaption>
         </figure>
         <div class="context-grid">
-          <article><span>PROBLEM</span><p>Classify each observed transit signal as <b>CONFIRMED</b>, <b>CANDIDATE</b>, or <b>FALSE POSITIVE</b> from catalogue-level measurements.</p></article>
+          <article><span>PROBLEM</span><p>Explore all three catalogue labels, then classify <b>CONFIRMED</b> versus <b>FALSE POSITIVE</b>. The 1,977 CANDIDATE rows are excluded from modeling because they have no binary ground-truth label.</p></article>
           <article><span>ASSIGNMENT FIT</span><p>More than 2,000 rows and 10 columns, with missing values, categorical encoding, numerical scaling, imbalance, and outliers.</p></article>
           <article><span>LEAKAGE CONTROL</span><p>Vetting outcomes, confidence scores, false-positive flags, object names, and identifiers are excluded from model inputs.</p></article>
         </div>
@@ -160,7 +160,7 @@
               <tr><td><code>koi_depth</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–1,541,400 ppm</td><td>median 421.1 · mean 23,791.3 · heavy tail</td></tr>
               <tr><td><code>koi_prad</code></td><td>Feature</td><td>Numerical · continuous</td><td>0.08–200,346 Earth radii</td><td>median 2.39 · mean 102.89 · extreme outliers</td></tr>
               <tr><td><code>koi_teq</code></td><td>Feature</td><td>Numerical · continuous</td><td>25–14,667 K</td><td>median 878 · mean 1,085.39</td></tr>
-              <tr><td><code>koi_model_snr</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–9,054.7</td><td>median 23.0 · mean 259.90 · strongest model input</td></tr>
+              <tr><td><code>koi_model_snr</code></td><td>Feature</td><td>Numerical · continuous</td><td>0–9,054.7</td><td>median 23.0 · mean 259.90 · signal-quality feature</td></tr>
               <tr><td><code>koi_tce_delivname</code></td><td>Feature</td><td>Categorical · nominal</td><td>3 releases + missing</td><td>DR25 8,054 · Q1–Q16 796 · DR24 368 · missing 346</td></tr>
               <tr><td><code>koi_steff</code></td><td>Feature</td><td>Numerical · continuous</td><td>2,661–15,896 K</td><td>median 5,767 · mean 5,706.82</td></tr>
               <tr><td><code>koi_kepmag</code></td><td>Feature</td><td>Numerical · continuous</td><td>6.966–20.003 mag</td><td>median 14.520 · mean 14.265 · one missing value</td></tr>
@@ -289,7 +289,7 @@
         <figure class="analysis-figure correlation-figure">
           <div class="figure-label"><span>SPEARMAN CORRELATION</span><i>FIG. 09</i></div>
           <img src="reports/figures/09_correlation_heatmap.png" alt="Spearman correlation heatmap of important KOI measurements" loading="lazy">
-          <figcaption>Spearman correlation captures monotonic relationships without assuming normality. Related physical variables form visible blocks, but no single measurement determines the three-class outcome.</figcaption>
+          <figcaption>Spearman correlation captures monotonic relationships without assuming normality. Related physical variables form visible blocks, but no single measurement determines the catalogue outcome.</figcaption>
         </figure>
       </section>
 
@@ -311,7 +311,7 @@
         </div>
         <aside class="insight-panel yellow-panel">
           <span class="panel-label">INTERPRETATION</span>
-          <p>Radius and signal-to-noise provide useful separation, but the overlapping class distributions explain why a nonlinear multivariate model outperforms a linear baseline. These associations support prediction; they do not establish planetary causality.</p>
+          <p>Radius and signal-to-noise differ across the three EDA labels, but their distributions overlap. The two-class model comparison is reported separately below. These associations support prediction; they do not establish planetary causality.</p>
         </aside>
       </section>
 
@@ -319,18 +319,19 @@
         <div class="section-heading compact">
           <p class="kicker">10 — PREPROCESSING</p>
         </div>
+        <p>Binary modeling uses 7,587 labeled rows: 5,274 train, 1,152 validation and 1,161 test. The grouped split keeps each host star in one subset. These binary metrics are not directly comparable with the former three-class results.</p>
         <div class="pipeline-strip" aria-label="Preprocessing pipeline">
-          <span>RAW TABLE</span><i>→</i><span>GROUP SPLIT</span><i>→</i><span>IMPUTE</span><i>→</i><span>ENCODE</span><i>→</i><span>SCALE</span><i>→</i><span>MODEL</span>
+          <span>FULL-DATA EDA</span><i>→</i><span>EXCLUDE CANDIDATE</span><i>→</i><span>GROUP SPLIT</span><i>→</i><span>IMPUTE</span><i>→</i><span>ENCODE</span><i>→</i><span>SCALE</span><i>→</i><span>MODEL</span>
         </div>
         <div class="figure-grid two-figure">
           <figure class="analysis-figure">
             <div class="figure-label"><span>BEFORE SCALING</span><i>FIG. 10</i></div>
-            <img src="reports/figures/10_before_scaling.png" alt="Selected numerical features before scaling" loading="lazy">
+            <img src="reports/figures/10_before_scaling.png?v=binary" alt="Selected numerical features before scaling" loading="lazy">
             <figcaption>Raw temperature and transit depth operate on very different numerical magnitudes.</figcaption>
           </figure>
           <figure class="analysis-figure">
             <div class="figure-label"><span>AFTER SCALING</span><i>FIG. 11</i></div>
-            <img src="reports/figures/11_after_scaling.png" alt="Selected numerical features after standardization" loading="lazy">
+            <img src="reports/figures/11_after_scaling.png?v=binary" alt="Selected numerical features after standardization" loading="lazy">
             <figcaption>Standardization centers features in comparable units for the logistic baseline.</figcaption>
           </figure>
         </div>
@@ -341,26 +342,26 @@
           <p class="kicker">11 — MODEL COMPARISON</p>
         </div>
         <div class="model-score-grid">
-          <article><span>VALIDATION MACRO F1</span><strong>.758</strong><small>Balanced Random Forest</small></article>
-          <article><span>BASELINE MACRO F1</span><strong>.558</strong><small>Logistic Regression</small></article>
-          <article class="highlight"><span>ABSOLUTE GAIN</span><strong>+.200</strong><small>macro-F1 points</small></article>
-          <article><span>FINAL TEST MACRO F1</span><strong>.727</strong><small>unseen host stars</small></article>
+          <article><span>VALIDATION MACRO F1</span><strong>.929</strong><small>Balanced Random Forest</small></article>
+          <article><span>BASELINE MACRO F1</span><strong>.837</strong><small>Logistic Regression</small></article>
+          <article class="highlight"><span>ABSOLUTE GAIN</span><strong>+.092</strong><small>macro-F1 points</small></article>
+          <article><span>FINAL TEST MACRO F1</span><strong>.919</strong><small>unseen host stars</small></article>
         </div>
         <figure class="analysis-figure full-figure">
           <div class="figure-label"><span>VALIDATION METRICS</span><i>FIG. 12</i></div>
-          <img src="reports/figures/12_model_comparison.png" alt="Validation metric comparison between Logistic Regression and balanced Random Forest" loading="lazy">
+          <img src="reports/figures/12_model_comparison.png?v=binary" alt="Validation metric comparison between Logistic Regression and balanced Random Forest" loading="lazy">
           <figcaption>The nonlinear model improves accuracy, balanced accuracy, and macro F1—not only one favorable metric.</figcaption>
         </figure>
         <div class="figure-grid two-figure">
           <figure class="analysis-figure">
             <div class="figure-label"><span>TEST ERRORS</span><i>FIG. 13</i></div>
-            <img src="reports/figures/13_confusion_matrix.png" alt="Normalized test confusion matrix for the balanced Random Forest" loading="lazy">
-            <figcaption>Confirmed planets and false positives are recalled well; candidates remain the hardest, with approximately 54% recall.</figcaption>
+            <img src="reports/figures/13_confusion_matrix.png?v=binary" alt="Normalized test confusion matrix for the balanced Random Forest" loading="lazy">
+            <figcaption>On the held-out test set, recall is 0.89 for CONFIRMED and 0.94 for FALSE POSITIVE. CANDIDATE objects are not evaluated.</figcaption>
           </figure>
           <figure class="analysis-figure">
             <div class="figure-label"><span>FEATURE IMPORTANCE</span><i>FIG. 14</i></div>
-            <img src="reports/figures/14_feature_importance.png" alt="Permutation importance of the final model features" loading="lazy">
-            <figcaption>Transit signal-to-noise is the strongest predictive input, followed by estimated radius and impact parameter.</figcaption>
+            <img src="reports/figures/14_feature_importance.png?v=binary" alt="Permutation importance of the final model features" loading="lazy">
+            <figcaption>Estimated radius, orbital period and impact parameter rank highest in test-set permutation importance for this binary model.</figcaption>
           </figure>
         </div>
       </section>
@@ -372,10 +373,10 @@
             <ul>
               <li>The KOI catalogue satisfies every tabular-data constraint in the assignment.</li>
               <li>Grouped splitting prevents the same host star from leaking across evaluation sets.</li>
-              <li>The extended model raises validation macro F1 from 0.558 to 0.758.</li>
+              <li>The binary Random Forest raises validation macro F1 from 0.837 to 0.929.</li>
             </ul>
             <ul>
-              <li>Candidates remain scientifically ambiguous and are the hardest class to predict.</li>
+              <li>CANDIDATE rows remain visible in EDA but are excluded from binary training and evaluation.</li>
               <li>Model importance describes predictive utility, not physical causality.</li>
               <li>Predictions support review priorities; they do not establish planetary confirmation.</li>
             </ul>

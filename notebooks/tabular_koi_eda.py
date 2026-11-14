@@ -376,7 +376,8 @@ plt.title("Rank correlations among selected measurements", pad=16)
 save_plot("09_correlation_heatmap.png")
 
 # %% [markdown]
-# ## 10. Select features and split data
+# ## 10. Binary classification: select labels and split data
+# EDA retains three labels. Exclude CANDIDATE before the binary group split.
 #
 # Columns that directly reveal the result are not used. Examples are
 # `koi_score`, `koi_pdisposition`, `kepler_name`, and false-positive flags.
@@ -389,9 +390,13 @@ category_cols = ["koi_tce_delivname"]
 features = numeric_cols + category_cols
 target = "koi_disposition"
 
-X = df[features]
-y = df[target]
-groups = df["kepid"]
+model_df = df[df[target].isin(["CONFIRMED", "FALSE POSITIVE"])].copy()
+X = model_df[features]
+y = model_df[target]
+groups = model_df["kepid"]
+print("Binary modeling rows:", len(model_df))
+print("Excluded CANDIDATE rows:", int((df[target] == "CANDIDATE").sum()))
+print(y.value_counts())
 
 # %% [markdown]
 # Chia theo nhóm sao bằng GroupShuffleSplit: khoảng 70% vào train và phần còn lại vào tập tạm. random_state=42 giúp phép chia có thể lặp lại.
@@ -401,7 +406,7 @@ split1 = GroupShuffleSplit(n_splits=1, test_size=0.30, random_state=42)
 train_id, temp_id = next(split1.split(X, y, groups))
 
 X_train, y_train = X.iloc[train_id], y.iloc[train_id]
-temp = df.iloc[temp_id]
+temp = model_df.iloc[temp_id]
 
 # %% [markdown]
 # Chia tiếp tập tạm thành validation và test theo nhóm sao. Validation dùng so sánh mô hình; test giữ lại cho đánh giá sau cùng.
@@ -412,6 +417,11 @@ val_id, test_id = next(split2.split(temp[features], temp[target], temp["kepid"])
 
 X_val, y_val = temp.iloc[val_id][features], temp.iloc[val_id][target]
 X_test, y_test = temp.iloc[test_id][features], temp.iloc[test_id][target]
+
+# Check binary labels and ensure host-star groups never cross splits.
+assert set(y.unique()) == {"CONFIRMED", "FALSE POSITIVE"}
+assert set(model_df.iloc[train_id]["kepid"]).isdisjoint(temp["kepid"])
+assert set(temp.iloc[val_id]["kepid"]).isdisjoint(temp.iloc[test_id]["kepid"])
 
 # %% [markdown]
 # In kích thước ba tập để kiểm tra số dòng và số đặc trưng. Do chia theo nhóm, tỷ lệ số dòng thực tế có thể không đúng chính xác 70/15/15.
@@ -590,7 +600,7 @@ cm.ax_.set(title="Normalized test confusion matrix — Balanced Random Forest",
 save_plot("13_confusion_matrix.png")
 
 # %% [markdown]
-# Candidate objects are the hardest class to predict.
+# The confusion matrix covers the two known classes; CANDIDATE objects are excluded.
 
 # %% [markdown]
 # ## 16. Feature importance
@@ -634,6 +644,6 @@ save_plot("14_feature_importance.png")
 #
 # - The dataset has missing values, imbalance, skewness, and outliers.
 # - Random Forest performs better than Logistic Regression.
-# - The final test macro F1 is about 0.727.
-# - `koi_model_snr`, `koi_prad`, and `koi_impact` are important features.
+# - The final test macro F1 is reported above for the two known classes.
+# - Permutation importance ranks features for the fitted binary model.
 # - The model supports analysis but cannot confirm a real planet.

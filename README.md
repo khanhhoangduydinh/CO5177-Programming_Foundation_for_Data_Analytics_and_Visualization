@@ -28,9 +28,9 @@ This repository contains the course assignments for **CO5177**, Ho Chi Minh City
 
 ### 1. Tabular — Kepler Objects of Interest
 
-- **Data:** 9,564 rows and 30 columns in a snapshot of the [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/docs/Kepler_KOI_docs.html). The `koi_disposition` target has three classes: `CONFIRMED`, `CANDIDATE`, and `FALSE POSITIVE`.
+- **Data:** 9,564 rows and 30 columns in a snapshot of the [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/docs/Kepler_KOI_docs.html). EDA retains three catalogue labels: `CONFIRMED`, `CANDIDATE`, and `FALSE POSITIVE`. Binary modeling excludes the 1,977 `CANDIDATE` rows and uses the other 7,587 rows.
 - **Approach:** inspect missing values and outliers, visualize features, exclude information directly related to the target from model inputs, and compare classification models.
-- **Saved result:** Balanced Random Forest achieved test accuracy **0.758** and macro F1 **0.727**. See [tabular_koi_summary.json](reports/tabular_koi_summary.json).
+- **Saved result:** Balanced Random Forest achieved binary test accuracy **0.923** and macro F1 **0.919**. See [tabular_koi_summary.json](reports/tabular_koi_summary.json).
 - **Files:** [notebook](notebooks/tabular_koi_eda.ipynb) · [Python source](notebooks/tabular_koi_eda.py) · [data snapshot](data/koi_cumulative.csv).
 
 ### 2. Text — ViCTSD

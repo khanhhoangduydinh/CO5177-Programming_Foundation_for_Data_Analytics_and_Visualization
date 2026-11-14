@@ -70,7 +70,7 @@ def build_report() -> None:
     cover.setStyle(TableStyle([("BACKGROUND", (0, 0), (0, -1), MINT), ("BACKGROUND", (1, 0), (1, -1), colors.white), ("TEXTCOLOR", (0, 0), (-1, -1), INK), ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"), ("FONTNAME", (1, 0), (1, -1), "Helvetica"), ("FONTSIZE", (0, 0), (-1, -1), 9), ("LEADING", (0, 0), (-1, -1), 13), ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#c6d3cf")), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 8), ("BOTTOMPADDING", (0, 0), (-1, -1), 8)]))
     story.extend([cover, Spacer(1, 13 * mm), Paragraph("This report studies 9,564 transit-like signals using reproducible data-quality checks, independent visualizations, grouped train/validation/test splits, and a quantitative comparison between Logistic Regression and a balanced Random Forest.", styles["BodyReport"]), PageBreak()])
 
-    story.extend([Paragraph("1. Problem and dataset", styles["SectionTitle"]), Paragraph("The Kepler mission identifies periodic decreases in stellar brightness that may indicate a transiting planet. Each Kepler Object of Interest (KOI) is catalogued as CONFIRMED, CANDIDATE, or FALSE POSITIVE. The modelling task is to learn multivariate catalogue patterns while avoiding fields that directly encode the vetting outcome.", styles["BodyReport"]), Paragraph("Assignment compliance", styles["SubTitle"])])
+    story.extend([Paragraph("1. Problem and dataset", styles["SectionTitle"]), Paragraph("The Kepler mission identifies periodic decreases in stellar brightness that may indicate a transiting planet. Each Kepler Object of Interest (KOI) is catalogued as CONFIRMED, CANDIDATE, or FALSE POSITIVE. EDA retains all three dispositions. For binary modeling, the 1,977 CANDIDATE rows are excluded; the model classifies CONFIRMED versus FALSE POSITIVE while avoiding fields that directly encode the vetting outcome.", styles["BodyReport"]), Paragraph("Assignment compliance", styles["SubTitle"])])
     compliance = Table(
         [
             ["Requirement", "Observed"],
@@ -79,7 +79,7 @@ def build_report() -> None:
             ["Missing values", "13,878 missing cells"],
             ["Categorical encoding", "koi_tce_delivname · one-hot encoding"],
             ["Numerical scaling", "StandardScaler / RobustScaler"],
-            ["Imbalance and outliers", "3 classes · IQR outliers retained and audited"],
+            ["Imbalance and outliers", "3 EDA labels; 2 model classes · IQR outliers retained"],
         ],
         colWidths=[60 * mm, 105 * mm], repeatRows=1,
     )
@@ -104,26 +104,26 @@ def build_report() -> None:
         report_image("08_target_vs_snr.png", 121 * mm),
         Paragraph("Figure 5. Model signal-to-noise by disposition. The overlap motivates a nonlinear multivariate model.", styles["Caption"]),
         Paragraph("Leakage-safe split and transformations", styles["SubTitle"]),
-        Paragraph("Rows are split by kepid with GroupShuffleSplit, keeping every host star in exactly one of train, validation, or test. Numerical variables use median imputation and scaling; the categorical delivery field uses most-frequent imputation and one-hot encoding. All transformations are fitted inside a scikit-learn Pipeline using training data only.", styles["BodyReport"]),
+        Paragraph("After excluding CANDIDATE, 7,587 rows remain. GroupShuffleSplit by kepid yields 5,274 train, 1,152 validation, and 1,161 test rows, keeping each host star in one subset. Numerical variables use median imputation and scaling; the categorical delivery field uses most-frequent imputation and one-hot encoding. All transformations are fitted inside a scikit-learn Pipeline using training data only.", styles["BodyReport"]),
         PageBreak(),
     ])
 
     story.extend([
         Paragraph("4. Quantitative model comparison", styles["SectionTitle"]),
-        Paragraph("A multinomial Logistic Regression provides the linear baseline. The extended model is a 350-tree Random Forest with balanced subsample weights, robust scaling, and a minimum leaf size of two. Macro F1 is the primary selection score because it gives all dispositions equal weight.", styles["BodyReport"]),
+        Paragraph("A binary Logistic Regression provides the linear baseline. The extended model is a 350-tree Random Forest with balanced subsample weights, robust scaling, and a minimum leaf size of two. Macro F1 is the primary selection score because it gives both modeled classes equal weight.", styles["BodyReport"]),
         report_image("12_model_comparison.png", 158 * mm),
-        Paragraph("Figure 6. On validation hosts, the balanced Random Forest increases macro F1 from 0.558 to 0.758 and balanced accuracy from 0.582 to 0.759.", styles["Caption"]),
+        Paragraph("Figure 6. On validation hosts, the balanced Random Forest increases macro F1 from 0.837 to 0.929 and balanced accuracy from 0.843 to 0.929.", styles["Caption"]),
         report_image("13_confusion_matrix.png", 118 * mm),
-        Paragraph("Figure 7. Normalized test confusion matrix. The final test macro F1 is 0.727; candidates are the most difficult class, with approximately 54% recall.", styles["Caption"]),
+        Paragraph("Figure 7. Normalized test confusion matrix. The final binary test macro F1 is 0.919; CANDIDATE rows are excluded from evaluation.", styles["Caption"]),
         PageBreak(),
     ])
 
     story.extend([
         Paragraph("5. Interpretation, conclusions, and limitations", styles["SectionTitle"]),
         report_image("14_feature_importance.png", 155 * mm),
-        Paragraph("Figure 8. Permutation importance on unseen host stars. Transit signal-to-noise is the strongest predictor, followed by estimated radius, impact parameter, and transit duration.", styles["Caption"]),
+        Paragraph("Figure 8. Permutation importance on unseen host stars. Estimated radius ranks highest, followed by orbital period and impact parameter.", styles["Caption"]),
         Paragraph("Conclusions", styles["SubTitle"]),
-        Paragraph("The dataset meets every tabular constraint in the assignment. Grouped splitting provides a more realistic evaluation than random row splitting. The nonlinear, class-aware extension produces a measurable improvement across all reported validation metrics. The model is most reliable for confirmed and false-positive objects, while candidates remain intrinsically ambiguous.", styles["BodyReport"]),
+        Paragraph("The dataset meets every tabular constraint in the assignment. Grouped splitting provides a more realistic evaluation than random row splitting. The nonlinear, class-aware extension produces a measurable improvement across all reported validation metrics. The results apply to confirmed and false-positive catalogue labels; they do not measure performance on excluded candidates.", styles["BodyReport"]),
         Paragraph("Limitations", styles["SubTitle"]),
         Paragraph("Catalogue labels may change as new evidence is incorporated. Median imputation does not propagate measurement uncertainty. Permutation importance reflects predictive utility, not astronomical causality. Catalogue classification can prioritize review but cannot establish or reject planetary confirmation without physical validation and follow-up observations.", styles["BodyReport"]),
         Paragraph("Reproducibility", styles["SubTitle"]),
