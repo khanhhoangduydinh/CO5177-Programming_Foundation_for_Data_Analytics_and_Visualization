@@ -235,3 +235,9 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 #eda-interpretation .data { border-collapse:collapse; width:100%; }
 #eda-interpretation .data td, #eda-interpretation .data th { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; }
 #eda-interpretation .table-wrap { overflow-x:auto; }
+
+/* Match the split-analysis section for the detailed text figures. */
+#detailed-eda > .figure-grid, #eda-interpretation > .figure-grid,
+#detailed-eda > .analysis-figure, #eda-interpretation > .analysis-figure,
+#eda-interpretation > .insight-panel { margin-top:22px; }
+#detailed-eda .figure-grid .analysis-figure, #eda-interpretation .figure-grid .analysis-figure { min-width:0; }
