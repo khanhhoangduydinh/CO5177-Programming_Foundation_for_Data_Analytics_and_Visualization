@@ -249,7 +249,7 @@ Leakage is different from missing data. Leakage occurs when an input contains in
 
 Numerical fields such as orbital period and estimated planet radius have long right tails. The plots use a log scale so that both small and large values are visible. Outliers are retained because unusual astronomical objects may still be valid observations.
 
-The histograms in Figure~\ref{fig:koi-distributions} count how many objects fall into ranges of orbital period and planetary radius. A normal horizontal scale would place most short periods or small radii near the left edge and make the large values difficult to see. A logarithmic scale spreads values by orders of magnitude, so both common and rare values can be inspected in one figure. The log scale is used for visualization; the original values are still handled by the preprocessing pipeline.
+The histograms in Figure~\ref{fig:koi-distributions} count objects in logarithmically spaced bins of orbital period and estimated planetary radius. They include only positive, non-missing values because the logarithmic axis cannot represent non-positive values. These filters apply only to the figures; they do not remove rows from the model data. The full values are still handled by the preprocessing pipeline.
 
 Outliers are checked with the interquartile range (IQR) rule. For a feature, the first quartile \(Q_1\) is the value below which 25\% of observations lie, and the third quartile \(Q_3\) is the value below which 75\% lie. The IQR is \(Q_3-Q_1\). Values below \(Q_1-1.5\times IQR\) or above \(Q_3+1.5\times IQR\) are counted as possible outliers. Figure~\ref{fig:koi-outliers} reports this share for the selected numerical features. A possible outlier is reviewed, not automatically deleted, because a rare astronomical measurement can still be a valid and informative object.
 \begin{figure}[H]
@@ -264,9 +264,27 @@ Outliers are checked with the interquartile range (IQR) rule. For a feature, the
 \includegraphics[width=\textwidth]{images/04_planet_radius_distribution.png}\\
 \small (b) Planet radius
 \end{minipage}
-\caption{Two skewed numerical distributions. Log scaling is used for visualization only.}
+\caption{Orbital period and estimated planetary radius. Bins and horizontal axes use a logarithmic scale; only positive, non-missing values are plotted.}
 \label{fig:koi-distributions}
 \end{figure}
+
+The numerical EDA also includes host-star effective temperature and the remaining nine numerical model inputs. Figure~\ref{fig:koi-temperature} shows the temperature distribution and its median. Figure~\ref{fig:koi-numeric-extra} shows those nine features. To make the central distributions easier to inspect, each panel displays values between that feature's first and 99th percentiles and reports the displayed and non-missing counts. Transit depth, insolation, and model signal-to-noise ratio additionally use logarithmic bins and show only positive values in that interval. These limits are for visualization only: they do not delete observations or change model preprocessing. Together with the period, radius, and stellar-temperature plots, this covers all 12 numerical model inputs.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.63\textwidth]{images/05_stellar_temperature_distribution.png}
+\caption{Host-star effective temperature among non-missing records; the dashed line marks the median. Counts refer to catalogue rows, not necessarily distinct host stars.}
+\label{fig:koi-temperature}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth,height=0.57\textheight,keepaspectratio]{images/16_additional_numeric_distributions.png}
+\caption{Distributions of the other nine numerical inputs. Each panel shows the first to 99th percentile of its feature; selected skewed features use logarithmic bins. The displayed and non-missing counts are annotated.}
+\label{fig:koi-numeric-extra}
+\end{figure}
+
 
 \begin{figure}[H]
 \centering
@@ -456,6 +474,8 @@ The official split is preserved as the starting point. The training split is use
 
 The topics are balanced: each topic contributes 1,000 comments. This is useful for exploration because one topic cannot dominate the basic count plots. Topic and article title are not used as model inputs. The first model only uses the comment text. This keeps the prediction question clear: the model should learn from the words in a comment, not from a topic name that may happen to have a different label pattern.
 
+Topic balance does not mean that toxicity is equally distributed across topics. In the full descriptive dataset, 366 of 1,000 comments in the PhapLuat topic are labeled toxic (36.6\%), compared with 13 of 1,000 in ThoiSu (1.3\%). These are dataset-specific annotation rates, not causal claims or estimates for all comments in these categories.
+
 \begin{figure}[H]
 \centering
 \begin{minipage}{0.47\textwidth}
@@ -472,7 +492,21 @@ The topics are balanced: each topic contributes 1,000 comments. This is useful f
 \label{fig:text-eda}
 \end{figure}
 
-The comment-length histogram is right-skewed. Most comments are short, while a small number contain many more characters. The report does not remove long comments or force every comment to the same length. TF-IDF can work with comments of different lengths. The plot is used to understand the data and to remind us that very long comments may contain context that a simple word-and-phrase model cannot fully understand.
+The comment-length histogram in Figure~\ref{fig:text-eda}(b) counts whitespace-separated units after the notebook's simple text cleaning, grouped by toxicity label; it is not a character-count plot or a Vietnamese word-segmentation result. Across all 10,000 comments, this measure has mean 29.7, median 20, and maximum 422 units. Long comments are retained, and TF-IDF accepts comments of different lengths.
+
+\subsubsection{Vietnamese Word-Count Distribution}
+
+Whitespace units do not necessarily correspond to Vietnamese words: one word can contain several syllables separated by spaces. A separate descriptive analysis segments the raw comments with PyVi 0.1.1 \cite{pyvi}. Each returned token containing at least one letter or digit counts as one segmented word; punctuation-only tokens and standalone emoji are excluded. This automatic segmentation is approximate, especially for informal spelling, slang, and mixed-language text, and is used only for EDA, not to train or select the reported models.
+
+On the complete dataset of 10,000 comments, 408 comments contain exactly 10 segmented words and 238 contain exactly 20. Figure~\ref{fig:text-segmented-length} displays exact counts from zero through 100 words; 206 longer comments are omitted from the figure but retained in the dataset and the downloadable count table. The longest segmented comment has 297 words. These counts describe comments rather than individual sentences.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{images/text_victsd_exact_word_distribution.png}
+\caption{Exact distribution of PyVi-segmented word counts per comment across all official splits. The chart shows counts from 0 to 100; 206 comments beyond 100 words are outside the displayed range.}
+\label{fig:text-segmented-length}
+\end{figure}
+
 
 \subsection{Text Preparation and Leakage Control}
 
@@ -480,7 +514,7 @@ The comment-length histogram is right-skewed. Most comments are short, while a s
 
 The cleaning process is intentionally simple: lowercase text, remove URLs, remove punctuation, and collapse repeated spaces. It is enough to make a first TF-IDF baseline reproducible. It is not intended to solve Vietnamese word segmentation or understand sarcasm.
 
-The steps have direct purposes. Lowercasing treats two words that differ only by capital letters as the same word. Removing a URL avoids giving a unique web address an unnecessary feature. Removing punctuation and repeated spaces creates a consistent text form for counting words and phrases. Vietnamese letters and accents are kept. The report does not apply stemming, manual dictionaries, or a complex tokenizer, because the goal is a small baseline whose operations can be read directly from the notebook.
+The steps have direct purposes. Lowercasing treats two words that differ only by capital letters as the same word. Removing a URL avoids giving a unique web address an unnecessary feature. Removing punctuation and repeated spaces creates a consistent text form for counting words and phrases. Vietnamese letters and accents are kept. The model pipeline does not apply stemming, manual dictionaries, or a Vietnamese segmenter, because the goal is a small baseline whose operations can be read directly from the notebook. The separate PyVi analysis above is descriptive and does not alter model inputs.
 
 \begin{lstlisting}[language=Python,caption={Simple preprocessing used in the text notebook.}]
 def clean_text(text):
@@ -662,7 +696,7 @@ Intel Image Classification & Pretrained features + Logistic & 0.914 & 0.916 & 0.
 
 The code is deliberately compact and beginner-friendly. This makes the workflow easier to reproduce, but it also creates clear limits. The KOI model uses a fixed set of catalogue variables and a simple group split; it cannot replace scientific confirmation from physical follow-up observations. The text model has no sentence-level understanding of sarcasm, conversation history, or implied meaning. Its predictions should be treated as model suggestions, not final moderation decisions. The Intel scene model observes only image pixels after resizing to 150 by 150. It can confuse visually related scene categories (such as glacier and mountain, or street and buildings) and cannot replace human ground truth.
 
-Future work may add carefully designed KOI features, compare different group-aware resampling seeds, or calibrate predicted probabilities. For text, later experiments may use Vietnamese word segmentation, a pretrained Vietnamese language model, or human review of important error groups. For images, later work may carefully fine-tune more MobileNetV3 layers, test additional valid augmentations, or review ambiguous scene error groups. Each improvement would need to repeat the same leakage checks and keep the test split independent. These are possible next experiments, not results claimed by the current report.
+Future work may add carefully designed KOI features, compare different group-aware resampling seeds, or calibrate predicted probabilities. For text, later experiments may incorporate Vietnamese word segmentation into model inputs, evaluate a pretrained Vietnamese language model, or review important error groups manually. For images, later work may carefully fine-tune more MobileNetV3 layers, test additional valid augmentations, or review ambiguous scene error groups. Each improvement would need to repeat the same leakage checks and keep the test split independent. These are possible next experiments, not results claimed by the current report.
 
 \section*{Reproducibility}
 \addcontentsline{toc}{section}{Reproducibility}
@@ -673,6 +707,7 @@ The following project files can reproduce the analysis. A simple order is: insta
   \item \texttt{notebooks/image\_intel\_eda.ipynb} for the Intel Image Classification task.
   \item \texttt{data/koi\_cumulative.csv}, the three \texttt{data/victsd\_*.csv} files, and public source folders downloaded by the image notebook.
   \item \texttt{reports/figures/} for the generated figures.
+  \item \texttt{reports/} word-count generation script and distribution CSV for the separate PyVi word-count analysis; install PyVi 0.1.1 to regenerate it.
   \item The Intel JSON summary and test-prediction CSV in \texttt{reports/} for the selected image-model result.
 \end{itemize}
 
@@ -686,6 +721,9 @@ NASA Exoplanet Archive. \textit{Kepler Objects of Interest Cumulative Table}. Av
 
 \bibitem{victsd}
 tarudesu. \textit{ViCTSD: Vietnamese Constructive and Toxic Speech Detection}. GitHub repository. Available at: \url{https://github.com/tarudesu/ViCTSD}. Accessed October 2026.
+
+\bibitem{pyvi}
+Trung Tran. \textit{PyVi: Python Vietnamese Core NLP Toolkit}. Available at: \url{https://github.com/trungtv/pyvi}. Version 0.1.1 used for word segmentation.
 
 \bibitem{intel}
 Puneet6060. \textit{Intel Image Classification}. Kaggle dataset. Available at: \url{https://www.kaggle.com/datasets/puneet6060/intel-image-classification}. Accessed October 2026.
