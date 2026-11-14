@@ -241,3 +241,19 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 #detailed-eda > .analysis-figure, #eda-interpretation > .analysis-figure,
 #eda-interpretation > .insight-panel { margin-top:22px; }
 #detailed-eda .figure-grid .analysis-figure, #eda-interpretation .figure-grid .analysis-figure { min-width:0; }
+
+/* Consistent text EDA cards and responsive spacing. */
+#detailed-eda .figure-grid, #eda-interpretation .figure-grid { align-items: stretch; }
+#detailed-eda .analysis-figure, #eda-interpretation .analysis-figure { min-width: 0; margin: 0; display: flex; flex-direction: column; }
+#detailed-eda .analysis-figure .figure-label, #eda-interpretation .analysis-figure .figure-label { align-items: flex-start; line-height: 1.5; }
+#detailed-eda .figure-label span, #eda-interpretation .figure-label span { overflow-wrap: anywhere; }
+#detailed-eda .figure-label i, #eda-interpretation .figure-label i { white-space: nowrap; }
+#detailed-eda .figure-intro, #eda-interpretation .figure-intro { margin: 14px 0 4px; color: var(--muted); font-size: var(--text-small); line-height: 1.65; }
+#detailed-eda figcaption, #eda-interpretation figcaption { margin-top: auto; padding-top: 14px; }
+#detailed-eda .chart, #detailed-eda .text-eda-plot, #eda-interpretation .text-eda-plot { min-width: 0; width: 100%; min-height: 410px; }
+#detailed-eda table, #eda-interpretation table { max-width: 100%; }
+#detailed-eda > .analysis-figure, #eda-interpretation > .analysis-figure { margin-top: 22px; }
+@media (max-width: 800px) {
+  #detailed-eda .figure-grid, #eda-interpretation .figure-grid { gap: 22px; }
+  #detailed-eda .analysis-figure, #eda-interpretation .analysis-figure { min-width: 0; overflow-x: auto; }
+}
