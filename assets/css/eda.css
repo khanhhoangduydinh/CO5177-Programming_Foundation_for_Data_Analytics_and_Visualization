@@ -265,3 +265,8 @@ h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 4
 #model-preprocessing .table-wrap { overflow-x: auto; }
 #model-preprocessing .data { width: 100%; border-collapse: collapse; }
 #model-preprocessing .data td, #model-preprocessing .data th { border-bottom: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+
+.word-count-lookup { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:12px 0 6px; color:var(--ink); font-size:var(--text-small); }
+.word-count-lookup input { width:92px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; font:inherit; color:var(--ink); background:white; }
+.word-count-lookup input:focus-visible { outline:2px solid var(--orange-dark); outline-offset:2px; }
+.word-count-lookup output { color:var(--orange-dark); font-weight:700; }
