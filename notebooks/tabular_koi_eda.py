@@ -99,6 +99,98 @@ print("Missing cells:", df.isnull().sum().sum())
 df.info()
 
 # %% [markdown]
+# ### Bảng mô tả chi tiết các đặc trưng (Feature Descriptions) & Phân nhóm nghiệp vụ
+# Dưới đây là bảng phân loại và mô tả chi tiết 30 đặc trưng của tập dữ liệu NASA Kepler KOI theo 6 nhóm nghiệp vụ thiên văn, giải thích ý nghĩa tiếng Việt, đơn vị đo và vai trò trong bài toán học máy:
+# 1. **Định danh & Mục tiêu (Identification & Disposition)**: KIC ID, KOI Name, Kepler Name, Target `koi_disposition`, nhãn sơ bộ `koi_pdisposition`, điểm tin cậy `koi_score`.
+# 2. **Cờ phát hiện lỗi (Vetting False Positive Flags)**: 4 cờ thuật toán loại trừ (`nt`, `ss`, `co`, `ec`) - tiềm ẩn rò rỉ nhãn (Target Leakage).
+# 3. **Thông số Quá cảnh & Quỹ đạo (Transit & Orbital Properties)**: Chu kỳ quỹ đạo, sai số, thời gian, độ sâu quá cảnh, tỷ số tín hiệu trên nhiễu SNR.
+# 4. **Đặc trưng vật lý Hành tinh (Planetary Characteristics)**: Bán kính hành tinh, nhiệt độ cân bằng, lượng bức xạ hấp thụ.
+# 5. **Đặc trưng Sao chủ (Stellar Properties)**: Nhiệt độ bề mặt, trọng trường bề mặt, bán kính sao chủ, độ sáng Kepler.
+# 6. **Tọa độ & Siêu dữ liệu Pipeline (Coordinates & Pipeline Metadata)**: Tọa độ xích kinh/xích vĩ, phiên bản pipeline TCE.
+
+# %%
+feature_catalog = [
+    # 1. Định danh & Mục tiêu
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "kepid", "Đơn vị / Miền giá trị": "Số nguyên", "Vai trò": "Group ID (chia sao)", "Mô tả chi tiết tiếng Việt": "Mã định danh duy nhất của sao chủ trong Kepler Input Catalog (KIC). Dùng làm group split."},
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "kepoi_name", "Đơn vị / Miền giá trị": "Chuỗi ký tự (ID)", "Vai trò": "ID (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Tên định danh ứng viên Kepler Object of Interest (ví dụ: K00752.01)."},
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "kepler_name", "Đơn vị / Miền giá trị": "Chuỗi ký tự", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Tên hành tinh chính thức (chỉ gán cho hành tinh CONFIRMED, rò rỉ nhãn 100%)."},
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "koi_disposition", "Đơn vị / Miền giá trị": "{CONFIRMED, CANDIDATE, FALSE POSITIVE}", "Vai trò": "Target (Mục tiêu)", "Mô tả chi tiết tiếng Việt": "Nhãn thẩm định cuối cùng của NASA Exoplanet Archive (biến phụ thuộc cần dự đoán)."},
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "koi_pdisposition", "Đơn vị / Miền giá trị": "{CANDIDATE, FALSE POSITIVE}", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Nhãn sơ bộ do thuật toán tự động Kepler gán (loại bỏ vì gây target leakage)."},
+    {"Nhóm": "1. Định danh & Mục tiêu", "Tên cột": "koi_score", "Đơn vị / Miền giá trị": "[0.0, 1.0]", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Điểm xác suất tin cậy của thuật toán Robovetter (loại bỏ vì gây target leakage)."},
+
+    # 2. Cờ phát hiện lỗi (Vetting Flags)
+    {"Nhóm": "2. Cờ phát hiện lỗi (Flags)", "Tên cột": "koi_fpflag_nt", "Đơn vị / Miền giá trị": "{0, 1}", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Cờ Not-Transit-Like: Ánh sáng biến thiên do vết đen sao/nhiễu thiết bị, không phải quá cảnh."},
+    {"Nhóm": "2. Cờ phát hiện lỗi (Flags)", "Tên cột": "koi_fpflag_ss", "Đơn vị / Miền giá trị": "{0, 1}", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Cờ Stellar-Eclipse: Tín hiệu thực chất là hệ sao đôi che khuất lẫn nhau."},
+    {"Nhóm": "2. Cờ phát hiện lỗi (Flags)", "Tên cột": "koi_fpflag_co", "Đơn vị / Miền giá trị": "{0, 1}", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Cờ Centroid-Offset: Trọng tâm nguồn sáng bị lệch, tín hiệu đến từ sao nền lân cận."},
+    {"Nhóm": "2. Cờ phát hiện lỗi (Flags)", "Tên cột": "koi_fpflag_ec", "Đơn vị / Miền giá trị": "{0, 1}", "Vai trò": "Rò rỉ (loại bỏ)", "Mô tả chi tiết tiếng Việt": "Cờ Ephemeris-Contamination: Trùng khớp chu kỳ/hài âm với hệ sao đôi xung quanh."},
+
+    # 3. Thông số Quá cảnh & Quỹ đạo
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_period", "Đơn vị / Miền giá trị": "Ngày (days)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Chu kỳ quỹ đạo: Thời gian để hành tinh quay trọn một vòng quanh sao chủ."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_period_err1", "Đơn vị / Miền giá trị": "Ngày (days)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Sai số dương (+) của chu kỳ quỹ đạo."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_period_err2", "Đơn vị / Miền giá trị": "Ngày (days)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Sai số âm (-) của chu kỳ quỹ đạo."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_impact", "Đơn vị / Miền giá trị": "Khoảng cách chuẩn hóa", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Tham số va chạm góc: Khoảng cách ngắn nhất giữa tâm hành tinh và tâm sao (theo R_star)."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_duration", "Đơn vị / Miền giá trị": "Giờ (hours)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Thời gian quá cảnh: Tổng thời gian hành tinh đi cắt ngang bề mặt đĩa sao."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_depth", "Đơn vị / Miền giá trị": "ppm (phần triệu)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Độ sâu quá cảnh: Tỷ lệ phần trăm độ sáng sao bị sụt giảm khi hành tinh che chắn."},
+    {"Nhóm": "3. Quá cảnh & Quỹ đạo", "Tên cột": "koi_model_snr", "Đơn vị / Miền giá trị": "Tỷ số SNR", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Tỷ số tín hiệu trên nhiễu (Signal-to-Noise Ratio) của mô hình quá cảnh."},
+
+    # 4. Đặc trưng vật lý Hành tinh
+    {"Nhóm": "4. Vật lý Hành tinh", "Tên cột": "koi_prad", "Đơn vị / Miền giá trị": "Bán kính T.Đất (R_Earth)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Bán kính ước tính của hành tinh (so sánh tương đối với kích thước Trái Đất)."},
+    {"Nhóm": "4. Vật lý Hành tinh", "Tên cột": "koi_prad_err1", "Đơn vị / Miền giá trị": "Bán kính T.Đất (R_Earth)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Sai số dương (+) của bán kính hành tinh."},
+    {"Nhóm": "4. Vật lý Hành tinh", "Tên cột": "koi_prad_err2", "Đơn vị / Miền giá trị": "Bán kính T.Đất (R_Earth)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Sai số âm (-) của bán kính hành tinh."},
+    {"Nhóm": "4. Vật lý Hành tinh", "Tên cột": "koi_teq", "Đơn vị / Miền giá trị": "Kelvin (K)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Nhiệt độ cân bằng bức xạ trên bề mặt hành tinh (tính theo mô hình vật đen)."},
+    {"Nhóm": "4. Vật lý Hành tinh", "Tên cột": "koi_insol", "Đơn vị / Miền giá trị": "Năng lượng T.Đất (F_Earth)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Mật độ thông lượng bức xạ hành tinh nhận được từ sao mẹ (chuẩn hóa theo Trái Đất)."},
+
+    # 5. Đặc trưng Sao chủ
+    {"Nhóm": "5. Đặc trưng Sao chủ", "Tên cột": "koi_steff", "Đơn vị / Miền giá trị": "Kelvin (K)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Nhiệt độ hiệu dụng bề mặt của ngôi sao chủ (Stellar Effective Temperature)."},
+    {"Nhóm": "5. Đặc trưng Sao chủ", "Tên cột": "koi_slogg", "Đơn vị / Miền giá trị": "log10(cm/s²)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Gia tốc trọng trường tại bề mặt sao (chỉ số phân biệt sao lùn hay sao khổng lồ)."},
+    {"Nhóm": "5. Đặc trưng Sao chủ", "Tên cột": "koi_srad", "Đơn vị / Miền giá trị": "Bán kính M.Trời (R_Sun)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Bán kính của sao chủ (chuẩn hóa theo kích thước Mặt Trời)."},
+    {"Nhóm": "5. Đặc trưng Sao chủ", "Tên cột": "koi_kepmag", "Đơn vị / Miền giá trị": "Magnitude (cấp sao)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Độ sáng biểu kiến của ngôi sao nhìn qua bộ lọc dải thông quang học Kepler."},
+
+    # 6. Tọa độ & Pipeline
+    {"Nhóm": "6. Tọa độ & Pipeline", "Tên cột": "ra", "Đơn vị / Miền giá trị": "Độ (° J2000)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Góc xích kinh (Right Ascension): Tọa độ thiên văn ngang trên thiên cầu."},
+    {"Nhóm": "6. Tọa độ & Pipeline", "Tên cột": "dec", "Đơn vị / Miền giá trị": "Độ (° J2000)", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Góc xích vĩ (Declination): Tọa độ thiên văn dọc trên thiên cầu."},
+    {"Nhóm": "6. Tọa độ & Pipeline", "Tên cột": "koi_tce_plnt_num", "Đơn vị / Miền giá trị": "Số nguyên", "Vai trò": "Đặc trưng số (Input)", "Mô tả chi tiết tiếng Việt": "Số thứ tự ứng viên hành tinh được phát hiện trong cùng một hệ sao TCE."},
+    {"Nhóm": "6. Tọa độ & Pipeline", "Tên cột": "koi_tce_delivname", "Đơn vị / Miền giá trị": "Phân loại (Categorical)", "Vai trò": "Đặc trưng phân loại (Input)", "Mô tả chi tiết tiếng Việt": "Tên đợt bàn giao dữ liệu TCE của NASA (Data delivery release version)."},
+]
+
+feature_df = pd.DataFrame(feature_catalog)
+feature_df["Kiểu dữ liệu"] = feature_df["Tên cột"].apply(lambda c: str(df[c].dtype))
+feature_df["Số ô thiếu"] = feature_df["Tên cột"].apply(lambda c: int(df[c].isnull().sum()))
+feature_df["Tỷ lệ thiếu (%)"] = feature_df["Tên cột"].apply(lambda c: round(df[c].isnull().mean() * 100, 2))
+
+# Hiển thị bảng mô tả chi tiết các đặc trưng
+pd.set_option("display.max_rows", 35)
+pd.set_option("display.max_colwidth", None)
+feature_df[["Nhóm", "Tên cột", "Kiểu dữ liệu", "Số ô thiếu", "Tỷ lệ thiếu (%)", "Vai trò", "Mô tả chi tiết tiếng Việt"]]
+
+# %% [markdown]
+# Trực quan hóa phân bố các đặc trưng theo nhóm nghiệp vụ thiên văn và vai trò trong mô hình học máy:
+
+# %%
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
+
+# Subplot 1: Phân bố số lượng đặc trưng theo từng nhóm nghiệp vụ
+group_counts = feature_df["Nhóm"].value_counts().sort_values(ascending=True)
+group_colors = ["#173f4c", "#1f5f73", "#2a809b", "#efae00", "#d35b12", "#8b3807"]
+bars1 = ax1.barh(group_counts.index, group_counts.values, color=group_colors[:len(group_counts)], height=0.6)
+ax1.set_title("Số lượng đặc trưng theo Nhóm nghiệp vụ thiên văn", fontsize=12, fontweight="bold", pad=12)
+ax1.set_xlabel("Số lượng đặc trưng", fontsize=10)
+ax1.bar_label(bars1, padding=5, fontsize=10, fontweight="bold")
+ax1.grid(axis="x", linestyle="--", alpha=0.5)
+
+# Subplot 2: Phân bố đặc trưng theo Vai trò trong quy trình học máy
+role_counts = feature_df["Vai trò"].value_counts().sort_values(ascending=True)
+role_colors = sns.color_palette("Set2", len(role_counts))
+bars2 = ax2.barh(role_counts.index, role_counts.values, color=role_colors, height=0.6)
+ax2.set_title("Phân bố đặc trưng theo Vai trò mô hình hóa", fontsize=12, fontweight="bold", pad=12)
+ax2.set_xlabel("Số lượng đặc trưng", fontsize=10)
+ax2.bar_label(bars2, padding=5, fontsize=10, fontweight="bold")
+ax2.grid(axis="x", linestyle="--", alpha=0.5)
+
+plt.suptitle("TỔNG QUAN PHÂN NHÓM & VAI TRÒ CÁC ĐẶC TRƯNG KEPLER KOI", fontsize=14, fontweight="bold", y=1.02)
+save_plot("00_feature_groups_overview.png")
+
+# %% [markdown]
 # describe() tóm tắt các cột số bằng số lượng, trung bình, độ lệch chuẩn và các phân vị; round(2) làm tròn để dễ đọc.
 
 # %%
