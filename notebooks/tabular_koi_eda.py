@@ -1,4 +1,7 @@
 # %% [markdown]
+# <a href="https://colab.research.google.com/github/khanhhoangduydinh/CO5177-Programming_Foundation_for_Data_Analytics_and_Visualization/blob/main/notebooks/tabular_koi_eda.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+# %% [markdown]
 # # Kepler Objects of Interest — Tabular EDA
 #
 # **Course:** CO5177 — Programming Foundation for Data Analytics and Visualization
@@ -347,140 +350,95 @@ plt.suptitle("DISTRIBUTIONS OF ALL 20 CONTINUOUS NUMERICAL FEATURES", fontsize=1
 save_plot("16_additional_numeric_distributions.png")
 
 # %% [markdown]
-# ### Phân phối các đặc trưng số quan trọng trong học máy (Key Machine Learning Feature Distributions)
-#
-# Biểu đồ cột phân phối tần suất (binned histograms & density) của 6 đặc trưng số quan trọng nhất đối với mô hình học máy phân loại ngoại hành tinh (được kiểm chứng qua Permutation Importance ở phần sau). Các đặc trưng này phản ánh các đặc tính vật lý cốt lõi phân biệt giữa hành tinh thực sự (`CONFIRMED`) và các dạng dương tính giả (`FALSE POSITIVE` do sao đôi che khuất hoặc nhiễu thiết bị):
-
-# %%
-ml_key_features = [
-    ("koi_prad", "Planetary Radius (Earth radii, log scale)", True, 0.1, 100),
-    ("koi_period", "Orbital Period (days, log scale)", True, 0.5, 500),
-    ("koi_model_snr", "Transit Model SNR (log scale)", True, 5, 2000),
-    ("koi_depth", "Transit Depth (ppm, log scale)", True, 10, 100000),
-    ("koi_duration", "Transit Duration (hours)", False, 0.5, 20),
-    ("koi_impact", "Impact Parameter", False, 0.0, 1.5),
-]
-
-fig, axes = plt.subplots(2, 3, figsize=(16, 9.5))
-palette = {"CONFIRMED": "#173f4c", "FALSE POSITIVE": "#d35b12", "CANDIDATE": "#efae00"}
-
-for ax, (col, label, use_log, vmin, vmax) in zip(axes.flat, ml_key_features):
-    sub_df = df[df[col].notnull()].copy()
-    if use_log:
-        sub_df = sub_df[(sub_df[col] >= vmin) & (sub_df[col] <= vmax)]
-        bins = np.geomspace(sub_df[col].min(), sub_df[col].max(), 35)
-        sns.histplot(data=sub_df, x=col, hue="koi_disposition", bins=bins,
-                     element="bars", common_norm=False, stat="density",
-                     palette=palette, alpha=0.55, edgecolor="white", ax=ax)
-        ax.set_xscale("log")
-    else:
-        q_low, q_high = sub_df[col].quantile([0.005, 0.995])
-        sub_df = sub_df[sub_df[col].between(q_low, q_high)]
-        sns.histplot(data=sub_df, x=col, hue="koi_disposition", bins=35,
-                     element="bars", common_norm=False, stat="density",
-                     palette=palette, alpha=0.55, edgecolor="white", ax=ax)
-        
-    median_val = df[col].median()
-    line = ax.axvline(median_val, color="#173f4c", linestyle="--", linewidth=1.5, label="Median")
-    ax.set_title(f"Distribution of {col}\n({label})", fontsize=11, fontweight="bold", pad=8)
-    ax.set_xlabel(label, fontsize=10)
-    ax.set_ylabel("Density", fontsize=10)
-    handles, labels = ax.get_legend_handles_labels()
-    if "Median" not in labels:
-        handles.append(line)
-        labels.append("Median")
-    ax.legend(handles=handles, labels=labels, fontsize=8, loc="upper right")
-
-plt.suptitle("KEY MACHINE LEARNING FEATURE DISTRIBUTIONS ACROSS DISPOSITIONS", fontsize=14, fontweight="bold", y=1.01)
-save_plot("17_key_ml_features_distribution.png")
-
-# %% [markdown]
-# **Ý nghĩa vật lý và vai trò trong học máy của các đặc trưng quan trọng:**
-#
-# 1. **Bán kính hành tinh (`koi_prad` — Importance ~ 0.11, Quan trọng nhất):**
-#    - *Phân phối:* Phân bố lệch phải cực mạnh. Đa phần các ngoại hành tinh đã xác nhận (`CONFIRMED`) tập trung dày đặc ở kích thước nhỏ ($1 - 4 R_{Earth}$, gồm các hành tinh đất đá siêu Trái Đất và tiểu Hải Vương Tinh).
-#    - *Ý nghĩa ML:* Đây là ranh giới vật lý sắc bén nhất. Các ứng viên có bán kính ước tính vượt quá $20 - 30 R_{Earth}$ hầu như chắc chắn là sao thứ cấp trong hệ sao đôi che khuất (`FALSE POSITIVE`), vì ngay cả hành tinh khí khổng lồ lớn nhất (như Sao Mộc) cũng chỉ đạt cỡ $11 - 14 R_{Earth}$.
-#
-# 2. **Chu kỳ quỹ đạo (`koi_period` — Importance ~ 0.10):**
-#    - *Phân phối:* Trải rộng trên thang log từ dưới 1 ngày đến hàng trăm ngày, đạt đỉnh mật độ trong khoảng 3 đến 20 ngày.
-#    - *Ý nghĩa ML:* Các hệ sao đôi che khuất giả mạo thường bị khóa thủy triều ở chu kỳ cực ngắn ($< 2 - 3$ ngày), trong khi hành tinh thực sự phân bố dàn trải hơn và tuân theo định luật cơ học Kepler III.
-#
-# 3. **Tỷ số tín hiệu trên nhiễu (`koi_model_snr` — Importance ~ 0.06):**
-#    - *Phân phối:* Đa số tín hiệu ứng viên tập trung ở vùng SNR từ 10 đến 50, với phần đuôi kéo dài tới hàng nghìn.
-#    - *Ý nghĩa ML:* Đo lường độ tin cậy thống kê của tín hiệu quá cảnh so với nhiễu nền trắc quang. Tín hiệu quá yếu ($SNR < 10$) thường là nhiễu thiết bị quang học; tín hiệu quá mạnh bất thường ($SNR > 500$) thường phản ánh độ sụt sáng sâu của sao đôi.
-#
-# 4. **Độ sâu quá cảnh (`koi_depth` — Importance ~ 0.03):**
-#    - *Phân phối:* Tỷ lệ quang thông sao bị che khuất ($\\Delta F / F \\approx (R_p / R_*)^2$). Hành tinh thực sự làm mờ sao mẹ rất ít (chỉ từ vài chục đến vài nghìn ppm, tương đương $0.005\\% - 0.3\\%$).
-#    - *Ý nghĩa ML:* Các sự kiện sụt giảm độ sáng lớn ($> 10,000 - 50,000$ ppm, tức giảm $1\\% - 5\\%$ ánh sáng sao) vượt xa kích thước tối đa của một hành tinh, cung cấp cho mô hình bằng chứng phân loại trực tiếp để đánh dấu `FALSE POSITIVE`.
-#
-# 5. **Thời gian quá cảnh (`koi_duration` — Importance ~ 0.06):**
-#    - *Phân phối:* Phân bố dạng chuông lệch phải, tập trung chủ yếu trong khoảng 2 đến 6 giờ.
-#    - *Ý nghĩa ML:* Bị ràng buộc chặt chẽ bởi chu kỳ quỹ đạo và kích thước sao chủ ($T_{dur} \\propto P^{1/3}$). Thời lượng quá cảnh quá ngắn hoặc quá dài so với chu kỳ quỹ đạo dự kiến là đặc trưng chỉ điểm của tín hiệu nhiễu hoặc sai lệch tâm quang học.
-#
-# 6. **Tham số va chạm (`koi_impact` — Importance ~ 0.06):**
-#    - *Phân phối:* Khoảng cách hình chiếu từ tâm sao lúc quá cảnh ($b \\in [0, 1]$ là cắt qua đĩa sao, $b > 1$ là trượt mép / grazing).
-#    - *Ý nghĩa ML:* Các sự kiện trượt mép ($b \\approx 1$ hoặc $b > 1$) tạo ra đường cong ánh sáng chữ V thoai thoải, là trường hợp gây nhầm lẫn nhiều nhất giữa hành tinh trượt mép và hệ sao đôi che khuất một phần.
-
-# %% [markdown]
 # ## 5. Categorical features distribution
 
 # %% [markdown]
-# Khảo sát phân phối của toàn bộ các đặc trưng phân loại và chẩn đoán trong tập dữ liệu (phiên bản TCE delivery, nhãn pipeline sơ bộ `koi_pdisposition`, tình trạng đặt tên hành tinh `kepler_name` và 4 cờ chẩn đoán vetting false positive flags):
+# Khảo sát phân phối của đặc trưng phân loại đợt bàn giao dữ liệu `koi_tce_delivname` (đặc trưng phân loại duy nhất được giữ lại cho mô hình học máy):
 
 # %%
-fig, axes = plt.subplots(2, 2, figsize=(15, 10))
-
-# Subplot 1: TCE Delivery Catalogue
-deliv = df["koi_tce_delivname"].fillna("Missing").value_counts()
-ax1 = axes[0, 0]
-sns.barplot(x=deliv.values, y=deliv.index, hue=deliv.index, palette=["#173f4c", "#d35b12", "#2a809b", "#efae00"], legend=False, ax=ax1)
-for bar in ax1.containers:
-    ax1.bar_label(bar, fmt="{:,.0f}", padding=5, fontsize=9)
-ax1.set_title("TCE Delivery Catalogue Version", fontsize=12, fontweight="bold")
-ax1.set_xlabel("Sample count", fontsize=10)
-
-# Subplot 2: Kepler Pipeline Disposition (koi_pdisposition)
-pdisp = df["koi_pdisposition"].value_counts()
-ax2 = axes[0, 1]
-sns.barplot(x=pdisp.index, y=pdisp.values, hue=pdisp.index, palette=["#d35b12", "#efae00"], legend=False, ax=ax2)
-for bar in ax2.containers:
-    ax2.bar_label(bar, fmt="{:,.0f}", padding=5, fontsize=9)
-ax2.set_title("Kepler Pipeline Disposition (koi_pdisposition)", fontsize=12, fontweight="bold")
-ax2.set_ylabel("Sample count", fontsize=10)
-
-# Subplot 3: Official Kepler Planet Name Status
-kname_status = pd.Series({
-    "Named (Confirmed Planet)": df["kepler_name"].notnull().sum(),
-    "Unnamed (No Kepler Name)": df["kepler_name"].isnull().sum(),
-})
-ax3 = axes[1, 0]
-sns.barplot(x=kname_status.index, y=kname_status.values, hue=kname_status.index, palette=["#173f4c", "#999999"], legend=False, ax=ax3)
-for bar in ax3.containers:
-    ax3.bar_label(bar, fmt="{:,.0f}", padding=5, fontsize=9)
-ax3.set_title("Official Kepler Planet Name Status", fontsize=12, fontweight="bold")
-ax3.set_ylabel("Sample count", fontsize=10)
-
-# Subplot 4: False Positive Vetting Flags Frequency
-flag_counts = pd.Series({
-    "Not-Transit-Like (nt)": (df["koi_fpflag_nt"] == 1).sum(),
-    "Stellar-Eclipse (ss)": (df["koi_fpflag_ss"] == 1).sum(),
-    "Centroid-Offset (co)": (df["koi_fpflag_co"] == 1).sum(),
-    "Ephemeris-Match (ec)": (df["koi_fpflag_ec"] == 1).sum(),
-})
-ax4 = axes[1, 1]
-sns.barplot(x=flag_counts.values, y=flag_counts.index, hue=flag_counts.index, palette=["#d35b12", "#e67e22", "#f39c12", "#d98880"], legend=False, ax=ax4)
-for bar in ax4.containers:
-    ax4.bar_label(bar, fmt="{:,.0f}", padding=5, fontsize=9)
-ax4.set_title("False Positive Vetting Flags (Flag = 1 count)", fontsize=12, fontweight="bold")
-ax4.set_xlabel("Positive flag count", fontsize=10)
-
-plt.suptitle("CATEGORICAL & DIAGNOSTIC FEATURES DISTRIBUTION", fontsize=14, fontweight="bold", y=1.01)
+delivery = df["koi_tce_delivname"].fillna("Missing").value_counts()
+plt.figure(figsize=(9, 5.2))
+ax = sns.barplot(x=delivery.values, y=delivery.index, hue=delivery.index,
+                 palette=["#173f4c", "#d35b12", "#2a809b", "#efae00"], legend=False)
+for bar in ax.containers:
+    ax.bar_label(bar, fmt="{:,.0f}", padding=5, fontsize=10)
+ax.set(title="KOIs by TCE Delivery Catalogue Version", xlabel="Sample Count", ylabel="")
 save_plot("15_tce_delivery_distribution.png")
 
 # %% [markdown]
-# **Nhận xét về đặc trưng phân loại:**
-# - `koi_tce_delivname`: Đợt bàn giao `q1_q17_dr25_tce` chiếm đại đa số (hơn 84% mẫu). Có 346 mẫu khuyết thiếu được mã hóa bằng "Missing" trong quá trình chuẩn bị dữ liệu.
-# - `koi_pdisposition`, `kepler_name`, và 4 cờ `koi_fpflag_*`: Phản ánh kết quả chẩn đoán tự động của NASA Kepler. Do tiềm ẩn nguy cơ gây rò rỉ nhãn nghiêm trọng (Target Leakage), các trường này bắt buộc bị loại bỏ trước khi huấn luyện mô hình học máy.
+# ### Phân phối của nhãn sơ bộ pipeline, tên định danh và 4 cờ lọc lỗi (Vetting Flags)
+#
+# Dưới đây là biểu đồ phân phối tần suất của 6 đặc trưng chẩn đoán và nhãn sơ bộ gồm `koi_pdisposition`, tình trạng đặt tên `kepler_name`, và 4 cờ thuật toán loại trừ (`koi_fpflag_nt`, `koi_fpflag_ss`, `koi_fpflag_co`, `koi_fpflag_ec`). Mỗi cột hiển thị chính xác số lượng mẫu và tỷ lệ phần trăm (%):
+
+# %%
+fig, axes = plt.subplots(2, 3, figsize=(18, 11))
+total = len(df)
+
+# (1) koi_pdisposition
+pdisp = df["koi_pdisposition"].value_counts()
+ax1 = axes[0, 0]
+sns.barplot(x=pdisp.index, y=pdisp.values, hue=pdisp.index,
+            palette=["#d35b12", "#efae00"], legend=False, ax=ax1)
+for bar in ax1.containers:
+    labels = [f"{val:,.0f} ({val/total*100:.1f}%)" for val in bar.datavalues]
+    ax1.bar_label(bar, labels=labels, padding=5, fontsize=9.5)
+ax1.set_title("Pipeline Disposition (koi_pdisposition)", fontsize=12, fontweight="bold", pad=8)
+ax1.set_ylabel("Sample Count", fontsize=10)
+ax1.set_xlabel("Pipeline Category", fontsize=10)
+ax1.set_ylim(0, max(pdisp.values) * 1.15)
+
+# (2) kepler_name status
+kname_status = pd.Series({
+    "Named (Confirmed)": int(df["kepler_name"].notnull().sum()),
+    "Unnamed (Missing)": int(df["kepler_name"].isnull().sum()),
+})
+ax2 = axes[0, 1]
+sns.barplot(x=kname_status.index, y=kname_status.values, hue=kname_status.index,
+            palette=["#173f4c", "#7f8c8d"], legend=False, ax=ax2)
+for bar in ax2.containers:
+    labels = [f"{val:,.0f} ({val/total*100:.1f}%)" for val in bar.datavalues]
+    ax2.bar_label(bar, labels=labels, padding=5, fontsize=9.5)
+ax2.set_title("Official Planet Name (kepler_name)", fontsize=12, fontweight="bold", pad=8)
+ax2.set_ylabel("Sample Count", fontsize=10)
+ax2.set_xlabel("Naming Status", fontsize=10)
+ax2.set_ylim(0, max(kname_status.values) * 1.15)
+
+# 4 Vetting flags
+flags_info = [
+    ("koi_fpflag_nt", "Not-Transit-Like (nt)", axes[0, 2]),
+    ("koi_fpflag_ss", "Stellar-Eclipse (ss)", axes[1, 0]),
+    ("koi_fpflag_co", "Centroid-Offset (co)", axes[1, 1]),
+    ("koi_fpflag_ec", "Ephemeris-Match (ec)", axes[1, 2]),
+]
+
+for col, label, ax in flags_info:
+    s = pd.Series({
+        "0 (Passed)": int((df[col] == 0).sum()),
+        "1 (Failed)": int((df[col] == 1).sum()),
+    })
+    sns.barplot(x=s.index, y=s.values, hue=s.index,
+                palette=["#173f4c", "#d35b12"], legend=False, ax=ax)
+    for bar in ax.containers:
+        labels = [f"{val:,.0f} ({val/total*100:.1f}%)" for val in bar.datavalues]
+        ax.bar_label(bar, labels=labels, padding=5, fontsize=9.5)
+    ax.set_title(f"Vetting Flag: {label}", fontsize=12, fontweight="bold", pad=8)
+    ax.set_ylabel("Sample Count", fontsize=10)
+    ax.set_xlabel(f"{col} value", fontsize=10)
+    ax.set_ylim(0, max(s.values) * 1.15)
+
+plt.suptitle("DISTRIBUTIONS OF PIPELINE DISPOSITION, PLANET NAME & VETTING FLAGS", fontsize=15, fontweight="bold", y=1.01)
+save_plot("18_diagnostic_and_leakage_distributions.png")
+
+# %% [markdown]
+# **Nhận xét chuyên sâu & Cảnh báo Rò rỉ Nhãn (Target Leakage):**
+# - **`koi_pdisposition`:** Là nhãn sơ bộ do thuật toán tự động Kepler phân loại thành `FALSE POSITIVE` (50,7%) và `CANDIDATE` (49,3%). Biến này phản ánh trực tiếp biến mục tiêu cuối cùng nên bắt buộc phải loại bỏ để tránh rò rỉ thông tin.
+# - **`kepler_name`:** Có 2.304 mẫu được gán tên chính thức (~24,1%) và 7.260 mẫu khuyết thiếu (~75,9%). Toàn bộ các dòng có tên chính thức đều thuộc lớp `CONFIRMED` (rò rỉ nhãn 100%). Nếu không loại bỏ, mô hình chỉ cần dựa vào việc có tên hay không để dự đoán mà không học bất kỳ đặc trưng vật lý nào.
+# - **4 cờ `koi_fpflag_*`:** 
+#   - Cờ `nt` (Not-Transit-Like): 1.879 mẫu vi phạm (19,6%).
+#   - Cờ `ss` (Stellar-Eclipse): 2.301 mẫu vi phạm (24,1%).
+#   - Cờ `co` (Centroid-Offset): 1.902 mẫu vi phạm (19,9%).
+#   - Cờ `ec` (Ephemeris-Match): 1.189 mẫu vi phạm (12,4%).
+#   - Các cờ này là kết quả của các bài kiểm tra chẩn đoán chuyên sâu hậu kỳ của NASA. Mọi mẫu vi phạm bất kỳ cờ nào đều được gắn nhãn `FALSE POSITIVE`. Việc loại bỏ 4 cờ này là điều kiện tiên quyết để mô hình học máy học cách phân loại từ các thông số vật lý gốc thay vì học thuộc lòng kết quả thuật toán chẩn đoán.
 
 # %% [markdown]
 # ## 6. Target variable distribution
