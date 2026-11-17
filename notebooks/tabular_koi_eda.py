@@ -533,34 +533,133 @@ save_plot("06_outlier_share.png")
 # Outliers are kept because rare astronomical objects may still be valid.
 
 # %% [markdown]
-# ## 8. Target and numerical features
+# ## 8. Target vs Features Analysis
 
 # %% [markdown]
-# Chỉ để vẽ, giới hạn bán kính đến phân vị 99% và tạo boxplot theo lớp mục tiêu. So sánh trung vị và độ phân tán giữa các lớp, không suy ra quan hệ nhân quả.
+# **Mục đích (What):** Phân tích mối quan hệ giữa biến mục tiêu và từng đặc trưng để xác định đặc trưng nào liên quan mạnh tới nhãn.
+#
+# **Lý do (Why):** Đặc trưng có quan hệ mạnh với target là ứng viên dự báo tốt; đặc trưng quan hệ yếu có thể không đóng góp nhiều cho mô hình.
+#
+# **Cách làm (How):** Với biến phân loại/nhị phân, so sánh tỷ lệ target trong từng nhóm. Với biến số, so sánh trung vị (median) giữa hai lớp. Khác biệt càng lớn thì đặc trưng càng mạnh.
+#
+# Target ở đây chỉ gồm **hai lớp**: `Planet` (`CONFIRMED`) và `Non-planet` (`FALSE POSITIVE`). Lớp `CANDIDATE` bị loại vì chưa có nhãn kết luận.
 
 # %%
-plot_df = df[df["koi_prad"].between(0, df["koi_prad"].quantile(0.99))]
-plt.figure(figsize=(9, 5.8))
-sns.boxplot(data=plot_df, x="koi_disposition", y="koi_prad", hue="koi_disposition", palette=colors, legend=False, showfliers=False)
-plt.title("Planet radius differs across dispositions")
-plt.xlabel("Disposition")
-plt.ylabel("Planet radius (Earth radii; ≤99th percentile)")
-save_plot("07_target_vs_planet_radius.png")
+binary_target_map = {"CONFIRMED": "Planet", "FALSE POSITIVE": "Non-planet"}
+target_order = ["Non-planet", "Planet"]
+target_palette = {"Non-planet": "#d35b12", "Planet": "#173f4c"}
+
+tv_df = df[df["koi_disposition"].isin(binary_target_map)].copy()
+tv_df["target_class"] = tv_df["koi_disposition"].map(binary_target_map)
+tv_df["target_class"].value_counts().rename("Count").to_frame()
 
 # %% [markdown]
-# Làm tương tự với tỷ số tín hiệu trên nhiễu: giới hạn phần đuôi cho biểu đồ và so sánh các lớp bằng boxplot. Dữ liệu huấn luyện không bị cắt bởi cell vẽ này.
+# ### 8.1 Target vs Numerical features
+#
+# Với mỗi đặc trưng số, vẽ boxplot theo hai lớp (đường giữa hộp là trung vị). Các đặc trưng lệch phải mạnh được vẽ trên thang log; chỉ để vẽ, giá trị bị giới hạn trong khoảng phân vị 1%–99%.
 
 # %%
-plot_df = df[df["koi_model_snr"].between(0, df["koi_model_snr"].quantile(0.99))]
-plt.figure(figsize=(9, 5.8))
-sns.boxplot(data=plot_df, x="koi_disposition", y="koi_model_snr", hue="koi_disposition", palette=colors, legend=False, showfliers=False)
-plt.title("Transit signal-to-noise by disposition")
-plt.xlabel("Disposition")
-plt.ylabel("Model SNR (≤99th percentile)")
-save_plot("08_target_vs_snr.png")
+log_scale_cols = {"koi_period", "koi_depth", "koi_prad", "koi_insol", "koi_model_snr"}
+fig, axes = plt.subplots(3, 4, figsize=(18, 12))
+for ax, col in zip(axes.flat, numeric_cols):
+    sub = tv_df[["target_class", col]].dropna()
+    if col in log_scale_cols:
+        sub = sub[sub[col] > 0]
+    low, high = sub[col].quantile([0.01, 0.99])
+    sub = sub[sub[col].between(low, high)]
+    sns.boxplot(data=sub, x="target_class", y=col, order=target_order, hue="target_class",
+                palette=target_palette, legend=False, showfliers=False, ax=ax)
+    if col in log_scale_cols:
+        ax.set_yscale("log")
+    medians = tv_df.groupby("target_class")[col].median()
+    ax.set_title(f"{col}\nmedian: Non-planet={medians['Non-planet']:,.2f} | Planet={medians['Planet']:,.2f}",
+                 fontsize=10, fontweight="bold")
+    ax.set_xlabel("")
+    ax.set_ylabel(col + (" (log)" if col in log_scale_cols else ""), fontsize=9)
+plt.suptitle("TARGET VS NUMERICAL FEATURES (Planet vs Non-planet)", fontsize=14, fontweight="bold", y=1.01)
+save_plot("19_target_vs_numeric_features.png")
 
 # %% [markdown]
-# The classes overlap. Therefore, one feature alone cannot solve the problem.
+# Để xếp hạng mức độ phân tách giữa hai lớp, dùng thống kê hạng Mann-Whitney: `AUC` là xác suất một mẫu `Planet` có giá trị cao hơn một mẫu `Non-planet`, còn `Separation = |AUC − 0.5| × 2` nằm trong khoảng 0 (không phân tách) đến 1 (phân tách hoàn toàn). Cách này không cần giả định phân phối chuẩn và không bị ảnh hưởng bởi đơn vị đo.
+
+# %%
+from scipy.stats import mannwhitneyu
+
+numeric_summary = []
+for col in numeric_cols:
+    planet_values = tv_df.loc[tv_df["target_class"] == "Planet", col].dropna()
+    non_planet_values = tv_df.loc[tv_df["target_class"] == "Non-planet", col].dropna()
+    auc = mannwhitneyu(planet_values, non_planet_values).statistic / (len(planet_values) * len(non_planet_values))
+    numeric_summary.append({
+        "Feature": col,
+        "Median (Non-planet)": non_planet_values.median(),
+        "Median (Planet)": planet_values.median(),
+        "Mean (Non-planet)": non_planet_values.mean(),
+        "Mean (Planet)": planet_values.mean(),
+        "AUC": auc,
+        "Separation": abs(auc - 0.5) * 2,
+    })
+numeric_summary = pd.DataFrame(numeric_summary).sort_values("Separation", ascending=False).reset_index(drop=True)
+numeric_summary.round(3)
+
+# %%
+plot_sep = numeric_summary.sort_values("Separation")
+plt.figure(figsize=(9, 6))
+ax = sns.barplot(data=plot_sep, x="Separation", y="Feature", hue="Feature", palette="viridis", legend=False)
+for bar in ax.containers:
+    ax.bar_label(bar, fmt="%.2f", padding=3)
+ax.set(title="Numerical features ranked by target separation", xlabel="Separation = |AUC - 0.5| x 2", ylabel="")
+ax.set_xlim(0, plot_sep["Separation"].max() * 1.15)
+save_plot("20_numeric_target_separation.png")
+
+# %% [markdown]
+# ### 8.2 Target vs Categorical / Binary features
+#
+# Với mỗi đặc trưng phân loại hoặc nhị phân, vẽ cột chồng 100% thể hiện tỷ lệ `Planet` và `Non-planet` trong từng nhóm; số trên cột là kích thước nhóm. Nhóm có tỷ lệ lệch xa mức chung (khoảng 36% `Planet`) là nhóm có sức dự báo mạnh. Bốn cờ `koi_fpflag_*` chỉ để khảo sát: chúng là rò rỉ nhãn (Target Leakage) và bị loại khỏi mô hình.
+
+# %%
+categorical_checks = [
+    ("koi_tce_delivname", "TCE delivery version (kept for modeling)"),
+    ("koi_fpflag_nt", "Not-Transit-Like flag (leakage)"),
+    ("koi_fpflag_ss", "Stellar-Eclipse flag (leakage)"),
+    ("koi_fpflag_co", "Centroid-Offset flag (leakage)"),
+    ("koi_fpflag_ec", "Ephemeris-Match flag (leakage)"),
+]
+overall_planet_pct = (tv_df["target_class"] == "Planet").mean() * 100
+
+fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+for ax, (col, title) in zip(axes.flat, categorical_checks):
+    values = tv_df[col].fillna("Missing")
+    if col.startswith("koi_fpflag_"):
+        values = (tv_df[col] > 0).map({False: "0 (Passed)", True: "1 (Failed)"})
+    share = pd.crosstab(values, tv_df["target_class"], normalize="index")[target_order] * 100
+    sizes = values.value_counts().reindex(share.index)
+    share.plot(kind="bar", stacked=True, color=[target_palette[c] for c in target_order], ax=ax, width=0.7)
+    for i, (label, n) in enumerate(sizes.items()):
+        ax.text(i, 102, f"n={n:,}", ha="center", fontsize=9)
+    ax.axhline(100 - overall_planet_pct, color="white", linestyle="--", linewidth=1.2)
+    ax.set_title(title, fontsize=11, fontweight="bold", pad=18)
+    ax.set_xlabel("")
+    ax.set_ylabel("Share of samples (%)")
+    ax.set_ylim(0, 110)
+    ax.tick_params(axis="x", rotation=20)
+    ax.legend(title="", fontsize=8, loc="lower right")
+axes.flat[-1].axis("off")
+plt.suptitle("TARGET VS CATEGORICAL / BINARY FEATURES (dashed line = overall Non-planet share)",
+             fontsize=14, fontweight="bold", y=1.01)
+save_plot("21_target_vs_categorical_features.png")
+
+# %% [markdown]
+# **Nhận xét (Planet vs Non-planet, 7.587 mẫu: 2.748 Planet, 4.839 Non-planet):**
+#
+# - **Đặc trưng số có khả năng phân tách mạnh nhất:** `koi_prad` (Separation ≈ 0,34), `koi_impact` (≈ 0,34), `koi_insol` (≈ 0,31), `koi_teq` (≈ 0,31) và `koi_steff` (≈ 0,27). Trung vị bán kính của `Non-planet` (≈ 8,97 R⊕) gấp hơn 4 lần `Planet` (≈ 2,16 R⊕); `Non-planet` cũng có tham số va chạm, độ chiếu sáng và nhiệt độ cân bằng cao hơn rõ rệt.
+# - **`koi_period`** phân tách ở mức trung bình (≈ 0,19) và theo chiều ngược lại: trung vị của `Planet` (≈ 11,4 ngày) dài hơn `Non-planet` (≈ 5,2 ngày), phù hợp với việc các hệ sao đôi che khuất thường có chu kỳ ngắn.
+# - **Đặc trưng yếu:** `koi_model_snr` (≈ 0,05) và `koi_kepmag` (≈ 0,06) gần như không tách được hai lớp khi xét riêng lẻ; vì vậy cần mô hình kết hợp nhiều đặc trưng thay vì dựa vào một biến.
+# - **`koi_tce_delivname`:** Đợt `q1_q17_dr25_tce` chứa ≈ 99% mẫu `Planet` (trong nhóm này `Planet` chiếm ≈ 41%), trong khi các đợt cũ (`q1_q16_tce`, `q1_q17_dr24_tce`) và nhóm `Missing` hầu như chỉ gồm `Non-planet` (96–99,7%). Biến này mang thông tin mạnh nhưng phản ánh phiên bản pipeline hơn là đặc tính vật lý, nên cần thận trọng khi diễn giải.
+# - **Bốn cờ `koi_fpflag_*`:** Khi cờ bằng 1, gần như 100% mẫu là `Non-planet` (99,4–100%); đây chính là lý do chúng là rò rỉ nhãn và bị loại.
+# - **Lưu ý chất lượng dữ liệu:** `koi_fpflag_nt` có một dòng mang giá trị 465 (không phải 0/1); biểu đồ gộp mọi giá trị > 0 vào nhóm "1 (Failed)".
+#
+# Các so sánh này chỉ mô tả mối liên hệ, không suy ra quan hệ nhân quả; hai lớp vẫn chồng lấn nhau nên không đặc trưng đơn lẻ nào đủ để phân loại.
 
 # %% [markdown]
 # ## 9. Correlation
