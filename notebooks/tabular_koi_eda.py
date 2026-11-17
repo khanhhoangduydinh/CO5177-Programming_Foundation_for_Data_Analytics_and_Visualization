@@ -447,9 +447,14 @@ save_plot("18_diagnostic_and_leakage_distributions.png")
 # Phân tích biến mục tiêu `koi_disposition` (Nhãn thẩm định cuối cùng của NASA Exoplanet Archive). Đếm số lượng và tính tỷ lệ phần trăm phân bố trên toàn bộ 9.564 mẫu:
 
 # %%
+display_labels = {
+    "CONFIRMED": "Confirmed planet",
+    "FALSE POSITIVE": "Non-planet signal",
+    "CANDIDATE": "Planet candidate",
+}
 target_counts = df["koi_disposition"].value_counts()
 target_percent = df["koi_disposition"].value_counts(normalize=True) * 100
-pd.DataFrame({"Count": target_counts, "Percent": target_percent.round(2)})
+pd.DataFrame({"Count": target_counts, "Percent": target_percent.round(2)}).rename(index=display_labels)
 
 # %% [markdown]
 # Vẽ biểu đồ cột phân phối biến mục tiêu với số lượng mẫu hiển thị trên từng cột:
@@ -461,9 +466,14 @@ display_labels = {
     "CANDIDATE": "Planet candidate",
 }
 plot_counts = target_counts.rename(index=display_labels)
+target_colors = {
+    "Confirmed planet": "#173f4c",
+    "Non-planet signal": "#d35b12",
+    "Planet candidate": "#efae00",
+}
 plt.figure(figsize=(8.4, 5.2))
 ax = sns.barplot(x=plot_counts.index, y=plot_counts.values,
-                 hue=plot_counts.index, palette=colors, legend=False)
+                 hue=plot_counts.index, palette=target_colors, legend=False)
 ax.set(title="Target Variable Distribution (koi_disposition)", xlabel="Target Disposition", ylabel="Sample Count")
 for bar in ax.containers:
     ax.bar_label(bar, fmt="{:,.0f}", padding=4)
@@ -471,7 +481,7 @@ save_plot("01_target_distribution.png")
 
 # %% [markdown]
 # **Phân tích phân phối biến mục tiêu:**
-# - **Mất cân bằng lớp (Class Imbalance):** `FALSE POSITIVE` là lớp chiếm đa số với 5.023 mẫu (52,52%), trong khi `CONFIRMED` chiếm 2.293 mẫu (23,97%) và `CANDIDATE` chiếm 2.248 mẫu (23,51%). Do dữ liệu mất cân bằng, độ chính xác thuần túy (Accuracy) không phản ánh đúng năng lực phân loại; các thước đo cân bằng như **Macro F1** và **Balanced Accuracy** là bắt buộc.
+# - **Mất cân bằng lớp (Class Imbalance):** `FALSE POSITIVE` (`Non-planet signal`) là lớp chiếm đa số với 4.839 mẫu (50,60%), trong khi `CONFIRMED` (`Confirmed planet`) chiếm 2.748 mẫu (28,73%) và `CANDIDATE` (`Planet candidate`) chiếm 1.977 mẫu (20,67%). Do dữ liệu mất cân bằng, độ chính xác thuần túy (Accuracy) không phản ánh đúng năng lực phân loại; các thước đo cân bằng như **Macro F1** và **Balanced Accuracy** là bắt buộc.
 # - **Lý do loại trừ `CANDIDATE` trong bài toán học máy:** Nhãn `CANDIDATE` là các tín hiệu ứng viên chưa có kết luận thẩm định chắc chắn từ các quan sát kiểm chứng độc lập. Do đó, bài toán học máy nhị phân sẽ giữ lại hai lớp có nhãn rõ ràng: `CONFIRMED` (1 - ngoại hành tinh thực sự) và `FALSE POSITIVE` (0 - tín hiệu thiên thực sao đôi hoặc nhiễu), giúp mô hình học được ranh giới phân lớp vật lý tường minh.
 
 # %% [markdown]
