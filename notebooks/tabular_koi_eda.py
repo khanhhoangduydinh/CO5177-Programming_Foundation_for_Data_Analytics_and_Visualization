@@ -261,9 +261,11 @@ save_plot("02_missing_values.png")
 period = df.loc[df["koi_period"] > 0, "koi_period"].dropna()
 plt.figure(figsize=(9, 5.6))
 sns.histplot(period, bins=60, log_scale=True, color="#173f4c")
+plt.axvline(df["koi_period"].median(), color="#d35b12", linestyle="--", label="Median")
 plt.title("Orbital period distribution")
 plt.xlabel("Orbital period (days, log scale)")
 plt.ylabel("Sample")
+plt.legend()
 save_plot("03_orbital_period_distribution.png")
 
 # %% [markdown]
@@ -273,9 +275,11 @@ save_plot("03_orbital_period_distribution.png")
 radius = df.loc[df["koi_prad"] > 0, "koi_prad"].dropna()
 plt.figure(figsize=(9, 5.6))
 sns.histplot(radius, bins=60, log_scale=True, color="#d35b12")
+plt.axvline(df["koi_prad"].median(), color="#173f4c", linestyle="--", label="Median")
 plt.title("Estimated planetary radius distribution")
 plt.xlabel("Planet radius (Earth radii, log scale)")
 plt.ylabel("Sample")
+plt.legend()
 save_plot("04_planet_radius_distribution.png")
 
 # %% [markdown]
@@ -333,12 +337,11 @@ for ax, (column, label) in zip(axes.flat, all_numeric_cols):
     else:
         ax.hist(shown, bins=35, color="#173f4c", edgecolor="white")
     median_val = values.median()
-    ax.axvline(median_val, color="#d35b12", linestyle="--", linewidth=1.2)
+    ax.axvline(median_val, color="#d35b12", linestyle="--", linewidth=1.5, label="Median")
     ax.set_title(column, fontsize=11, fontweight="bold")
     ax.set_xlabel(label, fontsize=9)
     ax.set_ylabel("Sample", fontsize=9)
-    ax.text(0.97, 0.93, f"Median: {median_val:.2f}", transform=ax.transAxes,
-            ha="right", va="top", fontsize=8, color="#d35b12", fontweight="bold")
+    ax.legend(fontsize=8, loc="upper right")
 
 plt.suptitle("DISTRIBUTIONS OF ALL 20 CONTINUOUS NUMERICAL FEATURES", fontsize=15, fontweight="bold", y=1.01)
 save_plot("16_additional_numeric_distributions.png")
@@ -378,10 +381,15 @@ for ax, (col, label, use_log, vmin, vmax) in zip(axes.flat, ml_key_features):
                      palette=palette, alpha=0.55, edgecolor="white", ax=ax)
         
     median_val = df[col].median()
-    ax.axvline(median_val, color="#333333", linestyle="--", linewidth=1.5)
+    line = ax.axvline(median_val, color="#173f4c", linestyle="--", linewidth=1.5, label="Median")
     ax.set_title(f"Distribution of {col}\n({label})", fontsize=11, fontweight="bold", pad=8)
     ax.set_xlabel(label, fontsize=10)
     ax.set_ylabel("Density", fontsize=10)
+    handles, labels = ax.get_legend_handles_labels()
+    if "Median" not in labels:
+        handles.append(line)
+        labels.append("Median")
+    ax.legend(handles=handles, labels=labels, fontsize=8, loc="upper right")
 
 plt.suptitle("KEY MACHINE LEARNING FEATURE DISTRIBUTIONS ACROSS DISPOSITIONS", fontsize=14, fontweight="bold", y=1.01)
 save_plot("17_key_ml_features_distribution.png")
