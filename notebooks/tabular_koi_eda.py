@@ -123,10 +123,10 @@ feature_catalog = [
     {"Group": "1. Identification & Disposition", "Column": "koi_score", "Role": "Target Leakage (Drop)", "Description": "Điểm xác suất tin cậy của thuật toán tự động Robovetter trong khoảng từ 0.0 đến 1.0."},
 
     # 2. Vetting Flags
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_nt", "Role": "Target Leakage (Drop)", "Description": "Cờ Not-Transit-Like (0 hoặc 1): Đường cong ánh sáng không mang hình dạng hành tinh quá cảnh (nhiễu thiết bị hoặc biến quang sao)."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ss", "Role": "Target Leakage (Drop)", "Description": "Cờ Stellar-Eclipse (0 hoặc 1): Tín hiệu giảm sáng thực chất là do hệ sao đôi che khuất lẫn nhau (Eclipsing Binary)."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_co", "Role": "Target Leakage (Drop)", "Description": "Cờ Centroid-Offset (0 hoặc 1): Trọng tâm nguồn sáng bị lệch, nguồn gốc giảm sáng từ sao nền lân cận."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ec", "Role": "Target Leakage (Drop)", "Description": "Cờ Ephemeris-Match Contamination (0 hoặc 1): Trùng khớp chu kỳ và thời điểm quá cảnh với tạp âm hoặc hệ sao đôi xung quanh."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_nt", "Role": "Target Leakage (Drop)", "Description": "Cờ nhị phân Not-Transit-Like (0 = Passed, 1 = Failed): Đường cong ánh sáng không mang hình dạng hành tinh quá cảnh (nhiễu thiết bị hoặc biến quang sao)."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ss", "Role": "Target Leakage (Drop)", "Description": "Cờ nhị phân Stellar-Eclipse (0 = Passed, 1 = Failed): Tín hiệu giảm sáng thực chất là do hệ sao đôi che khuất lẫn nhau (Eclipsing Binary)."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_co", "Role": "Target Leakage (Drop)", "Description": "Cờ nhị phân Centroid-Offset (0 = Passed, 1 = Failed): Trọng tâm nguồn sáng bị lệch, nguồn gốc giảm sáng từ sao nền lân cận."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ec", "Role": "Target Leakage (Drop)", "Description": "Cờ nhị phân Ephemeris-Match Contamination (0 = Passed, 1 = Failed): Trùng khớp chu kỳ và thời điểm quá cảnh với tạp âm hoặc hệ sao đôi xung quanh."},
 
     # 3. Transit & Orbital Properties
     {"Group": "3. Transit & Orbital Properties", "Column": "koi_period", "Role": "Numerical Feature", "Description": "Chu kỳ quỹ đạo: Khoảng thời gian giữa hai lần quá cảnh liên tiếp (đơn vị: Ngày)."},
@@ -350,7 +350,7 @@ plt.suptitle("DISTRIBUTIONS OF ALL 20 CONTINUOUS NUMERICAL FEATURES", fontsize=1
 save_plot("16_additional_numeric_distributions.png")
 
 # %% [markdown]
-# ## 5. Categorical features distribution
+# ## 5. Categorical & Binary features distribution
 
 # %% [markdown]
 # Khảo sát phân phối của đặc trưng phân loại đợt bàn giao dữ liệu `koi_tce_delivname` (đặc trưng phân loại duy nhất được giữ lại cho mô hình học máy):
@@ -368,7 +368,7 @@ save_plot("15_tce_delivery_distribution.png")
 # %% [markdown]
 # ### Phân phối của nhãn sơ bộ pipeline, tên định danh và 4 cờ lọc lỗi (Vetting Flags)
 #
-# Dưới đây là biểu đồ phân phối tần suất của 6 đặc trưng chẩn đoán và nhãn sơ bộ gồm `koi_pdisposition`, tình trạng đặt tên `kepler_name`, và 4 cờ thuật toán loại trừ (`koi_fpflag_nt`, `koi_fpflag_ss`, `koi_fpflag_co`, `koi_fpflag_ec`). Mỗi cột hiển thị chính xác số lượng mẫu và tỷ lệ phần trăm (%):
+# Dưới đây là biểu đồ phân phối tần suất của 6 đặc trưng chẩn đoán và nhãn sơ bộ gồm `koi_pdisposition` (categorical), tình trạng đặt tên `kepler_name` (categorical, theo có/không có giá trị), và 4 cờ thuật toán loại trừ (`koi_fpflag_nt`, `koi_fpflag_ss`, `koi_fpflag_co`, `koi_fpflag_ec`). Lưu ý: 4 cờ này là **biến nhị phân (binary)** kiểu `int64` chỉ nhận giá trị 0 (Passed) hoặc 1 (Failed); chúng được vẽ bằng biểu đồ cột đếm thay vì histogram vì giá trị 0/1 là mã hóa trạng thái, không phải đại lượng liên tục (không có ý nghĩa với trung bình hay median). Mỗi cột hiển thị chính xác số lượng mẫu và tỷ lệ phần trăm (%):
 
 # %%
 fig, axes = plt.subplots(2, 3, figsize=(18, 11))
