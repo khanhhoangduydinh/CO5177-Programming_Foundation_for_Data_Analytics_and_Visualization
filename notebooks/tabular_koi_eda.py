@@ -112,46 +112,46 @@ df.info()
 # %%
 feature_catalog = [
     # 1. Identification & Disposition
-    {"Group": "1. Identification & Disposition", "Column": "kepid", "Role": "Group ID", "Description": "Mã định danh duy nhất của sao chủ trong Kepler Input Catalog (KIC). Dùng làm group split."},
-    {"Group": "1. Identification & Disposition", "Column": "kepoi_name", "Role": "Identifier", "Description": "Tên định danh ứng viên Kepler Object of Interest (ví dụ: K00752.01)."},
-    {"Group": "1. Identification & Disposition", "Column": "kepler_name", "Role": "Target Leakage (Drop)", "Description": "Tên hành tinh chính thức (chỉ gán cho hành tinh CONFIRMED, rò rỉ nhãn 100%)."},
-    {"Group": "1. Identification & Disposition", "Column": "koi_disposition", "Role": "Target", "Description": "Nhãn thẩm định cuối cùng của NASA Exoplanet Archive (biến phụ thuộc cần dự đoán)."},
-    {"Group": "1. Identification & Disposition", "Column": "koi_pdisposition", "Role": "Target Leakage (Drop)", "Description": "Nhãn sơ bộ do thuật toán tự động Kepler gán (loại bỏ vì gây target leakage)."},
-    {"Group": "1. Identification & Disposition", "Column": "koi_score", "Role": "Target Leakage (Drop)", "Description": "Điểm xác suất tin cậy của thuật toán Robovetter trong khoảng [0.0, 1.0] (loại bỏ vì gây target leakage)."},
+    {"Group": "1. Identification & Disposition", "Column": "kepid", "Role": "Group ID", "Description": "Mã định danh duy nhất của sao chủ trong Danh mục Kepler Input Catalog (KIC). Dùng để chia nhóm sao (group split)."},
+    {"Group": "1. Identification & Disposition", "Column": "kepoi_name", "Role": "Identifier", "Description": "Tên định danh theo dõi của ứng viên Kepler Object of Interest (KOI) (ví dụ: K00752.01)."},
+    {"Group": "1. Identification & Disposition", "Column": "kepler_name", "Role": "Target Leakage (Drop)", "Description": "Tên định danh chính thức của hành tinh Kepler đã xác nhận (chỉ gán cho CONFIRMED, rò rỉ nhãn 100%)."},
+    {"Group": "1. Identification & Disposition", "Column": "koi_disposition", "Role": "Target", "Description": "Nhãn thẩm định cuối cùng của NASA Exoplanet Archive (CONFIRMED, CANDIDATE, FALSE POSITIVE)."},
+    {"Group": "1. Identification & Disposition", "Column": "koi_pdisposition", "Role": "Target Leakage (Drop)", "Description": "Nhãn phân loại sơ bộ của pipeline tự động Kepler chỉ dựa trên dữ liệu trắc quang Kepler."},
+    {"Group": "1. Identification & Disposition", "Column": "koi_score", "Role": "Target Leakage (Drop)", "Description": "Điểm xác suất tin cậy của thuật toán tự động Robovetter trong khoảng từ 0.0 đến 1.0."},
 
     # 2. Vetting Flags
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_nt", "Role": "Target Leakage (Drop)", "Description": "Cờ Not-Transit-Like: Ánh sáng biến thiên do vết đen sao/nhiễu thiết bị, không phải quá cảnh."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ss", "Role": "Target Leakage (Drop)", "Description": "Cờ Stellar-Eclipse: Tín hiệu thực chất là hệ sao đôi che khuất lẫn nhau."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_co", "Role": "Target Leakage (Drop)", "Description": "Cờ Centroid-Offset: Trọng tâm nguồn sáng bị lệch, tín hiệu đến từ sao nền lân cận."},
-    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ec", "Role": "Target Leakage (Drop)", "Description": "Cờ Ephemeris-Contamination: Trùng khớp chu kỳ/hài âm với hệ sao đôi xung quanh."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_nt", "Role": "Target Leakage (Drop)", "Description": "Cờ Not-Transit-Like (0 hoặc 1): Đường cong ánh sáng không mang hình dạng hành tinh quá cảnh (nhiễu thiết bị hoặc biến quang sao)."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ss", "Role": "Target Leakage (Drop)", "Description": "Cờ Stellar-Eclipse (0 hoặc 1): Tín hiệu giảm sáng thực chất là do hệ sao đôi che khuất lẫn nhau (Eclipsing Binary)."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_co", "Role": "Target Leakage (Drop)", "Description": "Cờ Centroid-Offset (0 hoặc 1): Trọng tâm nguồn sáng bị lệch, nguồn gốc giảm sáng từ sao nền lân cận."},
+    {"Group": "2. Vetting Flags", "Column": "koi_fpflag_ec", "Role": "Target Leakage (Drop)", "Description": "Cờ Ephemeris-Match Contamination (0 hoặc 1): Trùng khớp chu kỳ và thời điểm quá cảnh với tạp âm hoặc hệ sao đôi xung quanh."},
 
     # 3. Transit & Orbital Properties
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period", "Role": "Numerical Feature", "Description": "Chu kỳ quỹ đạo: Thời gian để hành tinh quay trọn một vòng quanh sao chủ (đơn vị: Ngày)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period_err1", "Role": "Numerical Feature", "Description": "Sai số dương (+) của chu kỳ quỹ đạo (đơn vị: Ngày)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period_err2", "Role": "Numerical Feature", "Description": "Sai số âm (-) của chu kỳ quỹ đạo (đơn vị: Ngày)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_impact", "Role": "Numerical Feature", "Description": "Tham số va chạm góc: Khoảng cách ngắn nhất giữa tâm hành tinh và tâm sao (theo R_star)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_duration", "Role": "Numerical Feature", "Description": "Thời gian quá cảnh: Tổng thời gian hành tinh đi cắt ngang bề mặt đĩa sao (đơn vị: Giờ)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_depth", "Role": "Numerical Feature", "Description": "Độ sâu quá cảnh: Tỷ lệ phần trăm độ sáng sao bị sụt giảm khi hành tinh che chắn (đơn vị: ppm)."},
-    {"Group": "3. Transit & Orbital Properties", "Column": "koi_model_snr", "Role": "Numerical Feature", "Description": "Tỷ số tín hiệu trên nhiễu (Signal-to-Noise Ratio) của mô hình quá cảnh."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period", "Role": "Numerical Feature", "Description": "Chu kỳ quỹ đạo: Khoảng thời gian giữa hai lần quá cảnh liên tiếp (đơn vị: Ngày)."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period_err1", "Role": "Numerical Feature", "Description": "Độ không đảm bảo đo trên (+) của chu kỳ quỹ đạo (đơn vị: Ngày)."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_period_err2", "Role": "Numerical Feature", "Description": "Độ không đảm bảo đo dưới (-) của chu kỳ quỹ đạo (đơn vị: Ngày)."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_impact", "Role": "Numerical Feature", "Description": "Tham số va chạm: Khoảng cách hình chiếu giữa tâm sao và tâm quỹ đạo hành tinh lúc cực đại, chuẩn hóa theo bán kính sao."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_duration", "Role": "Numerical Feature", "Description": "Thời gian quá cảnh: Khoảng thời gian từ lần tiếp xúc đầu tiên đến lần tiếp xúc cuối cùng (đơn vị: Giờ)."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_depth", "Role": "Numerical Feature", "Description": "Độ sâu quá cảnh: Tỷ lệ quang thông của sao bị sụt giảm tại điểm cực tiểu quá cảnh (đơn vị: ppm - phần triệu)."},
+    {"Group": "3. Transit & Orbital Properties", "Column": "koi_model_snr", "Role": "Numerical Feature", "Description": "Tỷ số tín hiệu trên nhiễu (SNR) của mô hình: Tỷ số giữa độ sâu quá cảnh và độ bất định trắc quang trung bình."},
 
     # 4. Planetary Properties
-    {"Group": "4. Planetary Properties", "Column": "koi_prad", "Role": "Numerical Feature", "Description": "Bán kính ước tính của hành tinh (chuẩn hóa theo bán kính Trái Đất R_Earth)."},
-    {"Group": "4. Planetary Properties", "Column": "koi_prad_err1", "Role": "Numerical Feature", "Description": "Sai số dương (+) của bán kính hành tinh (đơn vị: R_Earth)."},
-    {"Group": "4. Planetary Properties", "Column": "koi_prad_err2", "Role": "Numerical Feature", "Description": "Sai số âm (-) của bán kính hành tinh (đơn vị: R_Earth)."},
-    {"Group": "4. Planetary Properties", "Column": "koi_teq", "Role": "Numerical Feature", "Description": "Nhiệt độ cân bằng bức xạ trên bề mặt hành tinh (đơn vị: Kelvin)."},
-    {"Group": "4. Planetary Properties", "Column": "koi_insol", "Role": "Numerical Feature", "Description": "Mật độ thông lượng bức xạ hành tinh nhận được từ sao mẹ (chuẩn hóa theo Trái Đất)."},
+    {"Group": "4. Planetary Properties", "Column": "koi_prad", "Role": "Numerical Feature", "Description": "Bán kính hành tinh: Bán kính tính toán của ứng viên hành tinh chuẩn hóa theo bán kính Trái Đất (đơn vị: R_Earth)."},
+    {"Group": "4. Planetary Properties", "Column": "koi_prad_err1", "Role": "Numerical Feature", "Description": "Độ không đảm bảo đo trên (+) của bán kính hành tinh (đơn vị: R_Earth)."},
+    {"Group": "4. Planetary Properties", "Column": "koi_prad_err2", "Role": "Numerical Feature", "Description": "Độ không đảm bảo đo dưới (-) của bán kính hành tinh (đơn vị: R_Earth)."},
+    {"Group": "4. Planetary Properties", "Column": "koi_teq", "Role": "Numerical Feature", "Description": "Nhiệt độ cân bằng: Nhiệt độ cân bằng bức xạ lý thuyết của hành tinh theo mô hình vật đen (đơn vị: Kelvin)."},
+    {"Group": "4. Planetary Properties", "Column": "koi_insol", "Role": "Numerical Feature", "Description": "Mật độ thông lượng bức xạ: Lượng bức xạ nhận từ sao chủ chuẩn hóa theo mức Trái Đất nhận từ Mặt Trời (đơn vị: F_Earth)."},
 
     # 5. Stellar Properties
-    {"Group": "5. Stellar Properties", "Column": "koi_steff", "Role": "Numerical Feature", "Description": "Nhiệt độ hiệu dụng bề mặt của ngôi sao chủ (Stellar Effective Temperature, đơn vị: Kelvin)."},
-    {"Group": "5. Stellar Properties", "Column": "koi_slogg", "Role": "Numerical Feature", "Description": "Gia tốc trọng trường tại bề mặt sao chủ (đơn vị: log10(cm/s²))."},
-    {"Group": "5. Stellar Properties", "Column": "koi_srad", "Role": "Numerical Feature", "Description": "Bán kính của sao chủ (chuẩn hóa theo kích thước Mặt Trời R_Sun)."},
-    {"Group": "5. Stellar Properties", "Column": "koi_kepmag", "Role": "Numerical Feature", "Description": "Độ sáng biểu kiến của ngôi sao nhìn qua bộ lọc dải thông quang học Kepler (Magnitude)."},
+    {"Group": "5. Stellar Properties", "Column": "koi_steff", "Role": "Numerical Feature", "Description": "Nhiệt độ hiệu dụng của sao: Nhiệt độ quang cầu của ngôi sao chủ (đơn vị: Kelvin)."},
+    {"Group": "5. Stellar Properties", "Column": "koi_slogg", "Role": "Numerical Feature", "Description": "Trọng trường bề mặt sao: Logarit cơ số 10 của gia tốc trọng trường tại bề mặt sao (đơn vị: log10(cm/s²))."},
+    {"Group": "5. Stellar Properties", "Column": "koi_srad", "Role": "Numerical Feature", "Description": "Bán kính sao chủ: Bán kính quang cầu của sao chủ chuẩn hóa theo bán kính Mặt Trời (đơn vị: R_Sun)."},
+    {"Group": "5. Stellar Properties", "Column": "koi_kepmag", "Role": "Numerical Feature", "Description": "Cấp sao Kepler: Độ sáng biểu kiến của ngôi sao đo qua dải thông quang học của kính viễn vọng Kepler (Magnitude)."},
 
     # 6. Coordinates & Pipeline Metadata
-    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "ra", "Role": "Numerical Feature", "Description": "Góc xích kinh (Right Ascension): Tọa độ thiên văn ngang trên thiên cầu (độ J2000)."},
-    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "dec", "Role": "Numerical Feature", "Description": "Góc xích vĩ (Declination): Tọa độ thiên văn dọc trên thiên cầu (độ J2000)."},
-    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "koi_tce_plnt_num", "Role": "Numerical Feature", "Description": "Số thứ tự ứng viên hành tinh được phát hiện trong cùng một hệ sao TCE."},
-    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "koi_tce_delivname", "Role": "Categorical Feature", "Description": "Tên đợt bàn giao dữ liệu TCE của NASA (Data delivery release version)."},
+    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "ra", "Role": "Numerical Feature", "Description": "Xích kinh: Tọa độ thiên văn ngang của sao trên thiên cầu theo hệ J2000 (đơn vị: độ)."},
+    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "dec", "Role": "Numerical Feature", "Description": "Xích vĩ: Tọa độ thiên văn dọc của sao trên thiên cầu theo hệ J2000 (đơn vị: độ)."},
+    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "koi_tce_plnt_num", "Role": "Numerical Feature", "Description": "Số thứ tự ứng viên hành tinh trong hệ sự kiện vượt ngưỡng TCE (Threshold Crossing Event)."},
+    {"Group": "6. Coordinates & Pipeline Metadata", "Column": "koi_tce_delivname", "Role": "Categorical Feature", "Description": "Tên phiên bản bàn giao dữ liệu của pipeline sự kiện vượt ngưỡng TCE (ví dụ: q1_q17_dr25_tce)."},
 ]
 
 feature_df = pd.DataFrame(feature_catalog)
@@ -357,6 +357,76 @@ for ax, (column, label) in zip(axes.flat, distribution_columns):
             transform=ax.transAxes, ha="right", va="top", fontsize=9)
 fig.suptitle("Additional model features — 1st to 99th percentile shown", y=1.01)
 save_plot("16_additional_numeric_distributions.png")
+
+# %% [markdown]
+# ### Phân phối các đặc trưng số quan trọng trong học máy (Key Machine Learning Feature Distributions)
+#
+# Biểu đồ cột phân phối tần suất (binned histograms & density) của 6 đặc trưng số quan trọng nhất đối với mô hình học máy phân loại ngoại hành tinh (được kiểm chứng qua Permutation Importance ở phần sau). Các đặc trưng này phản ánh các đặc tính vật lý cốt lõi phân biệt giữa hành tinh thực sự (`CONFIRMED`) và các dạng dương tính giả (`FALSE POSITIVE` do sao đôi che khuất hoặc nhiễu thiết bị):
+
+# %%
+ml_key_features = [
+    ("koi_prad", "Planetary Radius (Earth radii, log scale)", True, 0.1, 100),
+    ("koi_period", "Orbital Period (days, log scale)", True, 0.5, 500),
+    ("koi_model_snr", "Transit Model SNR (log scale)", True, 5, 2000),
+    ("koi_depth", "Transit Depth (ppm, log scale)", True, 10, 100000),
+    ("koi_duration", "Transit Duration (hours)", False, 0.5, 20),
+    ("koi_impact", "Impact Parameter", False, 0.0, 1.5),
+]
+
+fig, axes = plt.subplots(2, 3, figsize=(16, 9.5))
+palette = {"CONFIRMED": "#173f4c", "FALSE POSITIVE": "#d35b12", "CANDIDATE": "#efae00"}
+
+for ax, (col, label, use_log, vmin, vmax) in zip(axes.flat, ml_key_features):
+    sub_df = df[df[col].notnull()].copy()
+    if use_log:
+        sub_df = sub_df[(sub_df[col] >= vmin) & (sub_df[col] <= vmax)]
+        bins = np.geomspace(sub_df[col].min(), sub_df[col].max(), 35)
+        sns.histplot(data=sub_df, x=col, hue="koi_disposition", bins=bins,
+                     element="bars", common_norm=False, stat="density",
+                     palette=palette, alpha=0.55, edgecolor="white", ax=ax)
+        ax.set_xscale("log")
+    else:
+        q_low, q_high = sub_df[col].quantile([0.005, 0.995])
+        sub_df = sub_df[sub_df[col].between(q_low, q_high)]
+        sns.histplot(data=sub_df, x=col, hue="koi_disposition", bins=35,
+                     element="bars", common_norm=False, stat="density",
+                     palette=palette, alpha=0.55, edgecolor="white", ax=ax)
+        
+    median_val = df[col].median()
+    ax.axvline(median_val, color="#333333", linestyle="--", linewidth=1.5)
+    ax.set_title(f"Distribution of {col}\n({label})", fontsize=11, fontweight="bold", pad=8)
+    ax.set_xlabel(label, fontsize=10)
+    ax.set_ylabel("Density", fontsize=10)
+
+plt.suptitle("KEY MACHINE LEARNING FEATURE DISTRIBUTIONS ACROSS DISPOSITIONS", fontsize=14, fontweight="bold", y=1.01)
+save_plot("17_key_ml_features_distribution.png")
+
+# %% [markdown]
+# **Ý nghĩa vật lý và vai trò trong học máy của các đặc trưng quan trọng:**
+#
+# 1. **Bán kính hành tinh (`koi_prad` - Importance ~ 0.11, Quan trọng nhất):**
+#    - *Phân phối:* Phân bố lệch phải cực mạnh. Đa phần các ngoại hành tinh đã xác nhận (`CONFIRMED`) tập trung dày đặc ở kích thước nhỏ ($1 - 4 R_{Earth}$, gồm các hành tinh đất đá siêu Trái Đất và tiểu Hải Vương Tinh).
+#    - *Ý nghĩa ML:* Đây là ranh giới vật lý sắc bén nhất. Các ứng viên có bán kính ước tính vượt quá $20 - 30 R_{Earth}$ hầu như chắc chắn là sao thứ cấp trong hệ sao đôi che khuất (`FALSE POSITIVE`), vì ngay cả hành tinh khí khổng lồ lớn nhất (như Sao Mộc) cũng chỉ đạt cỡ $11 - 14 R_{Earth}$.
+#
+# 2. **Chu kỳ quỹ đạo (`koi_period` - Importance ~ 0.10):**
+#    - *Phân phối:* Trải rộng trên thang log từ dưới 1 ngày đến hàng trăm ngày, đạt đỉnh mật độ trong khoảng 3 đến 20 ngày.
+#    - *Ý nghĩa ML:* Các hệ sao đôi che khuất giả mạo thường bị khóa thủy triều ở chu kỳ cực ngắn ($< 2 - 3$ ngày), trong khi hành tinh thực sự phân bố dàn trải hơn và tuân theo định luật cơ học Kepler III.
+#
+# 3. **Tỷ số tín hiệu trên nhiễu (`koi_model_snr` - Importance ~ 0.06):**
+#    - *Phân phối:* Đa số tín hiệu ứng viên tập trung ở vùng SNR từ 10 đến 50, với phần đuôi kéo dài tới hàng nghìn.
+#    - *Ý nghĩa ML:* Đo lường độ tin cậy thống kê của tín hiệu quá cảnh so với nhiễu nền trắc quang. Tín hiệu quá yếu ($SNR < 10$) thường là nhiễu thiết bị quang học; tín hiệu quá mạnh bất thường ($SNR > 500$) thường phản ánh độ sụt sáng sâu của sao đôi.
+#
+# 4. **Độ sâu quá cảnh (`koi_depth` - Importance ~ 0.03):**
+#    - *Phân phối:* Tỷ lệ quang thông sao bị che khuất ($\\Delta F / F \\approx (R_p / R_*)^2$). Hành tinh thực sự làm mờ sao mẹ rất ít (chỉ từ vài chục đến vài nghìn ppm, tương đương $0.005\\% - 0.3\\%$).
+#    - *Ý nghĩa ML:* Các sự kiện sụt giảm độ sáng lớn ($> 10,000 - 50,000$ ppm, tức giảm $1\\% - 5\\%$ ánh sáng sao) vượt xa kích thước tối đa của một hành tinh, cung cấp cho mô hình bằng chứng phân loại trực tiếp để đánh dấu `FALSE POSITIVE`.
+#
+# 5. **Thời gian quá cảnh (`koi_duration` - Importance ~ 0.06):**
+#    - *Phân phối:* Phân bố dạng chuông lệch phải, tập trung chủ yếu trong khoảng 2 đến 6 giờ.
+#    - *Ý nghĩa ML:* Bị ràng buộc chặt chẽ bởi chu kỳ quỹ đạo và kích thước sao chủ ($T_{dur} \\propto P^{1/3}$). Thời lượng quá cảnh quá ngắn hoặc quá dài so với chu kỳ quỹ đạo dự kiến là đặc trưng chỉ điểm của tín hiệu nhiễu hoặc sai lệch tâm quang học.
+#
+# 6. **Tham số va chạm (`koi_impact` - Importance ~ 0.06):**
+#    - *Phân phối:* Khoảng cách hình chiếu từ tâm sao lúc quá cảnh ($b \\in [0, 1]$ là cắt qua đĩa sao, $b > 1$ là trượt mép / grazing).
+#    - *Ý nghĩa ML:* Các sự kiện trượt mép ($b \\approx 1$ hoặc $b > 1$) tạo ra đường cong ánh sáng chữ V thoai thoải, là trường hợp gây nhầm lẫn nhiều nhất giữa hành tinh trượt mép và hệ sao đôi che khuất một phần.
 
 # %% [markdown]
 # ## 6. Categorical distribution
